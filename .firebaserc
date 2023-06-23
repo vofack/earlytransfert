@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dashboard-33d8e"
+  },
+  "targets": {
+    "dashboard-33d8e": {
+      "hosting": {
+        "finance1": [
+          "dashboard-33d8e"
+        ]
+      }
+    }
+  }
+}

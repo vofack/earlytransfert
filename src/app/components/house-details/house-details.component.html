@@ -1,0 +1,38 @@
+      <!-- bradcam_area  -->
+      <div class="bradcam_area bradcam_bg_2" id="goToTop">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h4>Details</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    <br>
+    <br>
+    <div class="text-center" (mouseover)="hideButton=true" (mouseout)="hideButton=false">
+        <button *ngIf="!hideButton" class="boxed-btn3 trigger-btn wow bounce"  style="animation-duration:2s; animation-delay:2s; animation-iteration-count:infinite;"  type="submit" data-toggle="modal" (click)="Order()">Send a message</button>
+
+        <button *ngIf="hideButton"  class="boxed-btn3 trigger-btn"   type="submit" data-toggle="modal" (click)="Order()">Send a message</button>
+
+        <div class="all">
+        
+            <!-- <div class="gallery">
+                <a href="./../../../assets/img/house/img-1.jpg" data-lightbox="mygallerie" data-title="house to loan"><img src="./../../../assets/img/house/img-1.jpg"></a>
+                <a href="./../../../assets/img/house/img-2.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-2.jpg"></a>
+                <a href="./../../../assets/img/house/img-3.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-3.jpg"></a>
+                <a href="./../../../assets/img/house/img-4.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-4.jpg"></a>
+                <a href="./../../../assets/img/house/img-5.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-5.jpg"></a>
+                <a href="./../../../assets/img/house/img-6.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-6.jpg"></a>
+                <a href="./../../../assets/img/house/img-1.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-1.jpg"></a>
+                <a href="./../../../assets/img/house/img-2.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-2.jpg"></a>
+                <a href="./../../../assets/img/house/img-3.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-3.jpg"></a>
+                <a href="./../../../assets/img/house/img-4.jpg" data-lightbox="mygallerie"><img src="./../../../assets/img/house/img-4.jpg"></a>
+            </div> -->
+        </div>
+    </div>
+
+   

@@ -1,0 +1,90 @@
+<a (click)="handleClickEvent($event)"  class="text-success">
+    <span class="glyphicon glyphicon-edit"></span> 
+</a>
+
+    <!-- Modifier beneficiare -->
+    <ng-template #templateEdit>
+    
+        <div class="modal-header" style="background-color: #FFD700;">   
+          <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>Edit</h4>
+          <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      
+        <div class="modal-body">
+          <form>
+            <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1">Identification</label></div>
+            <div class="row form-group">
+              <div class="col">
+                <input class="form-control inputSize" type="text" id="Inputprenom"  #Inputprenom placeholder="First name">
+                <div *ngIf="enablePrenom" style="color: red;" i18n>First name required please !</div>
+              </div>
+              <div class="col"> 
+                <input class="form-control inputSize" type="text" id="Inputnom" #Inputnom placeholder="Name">
+                <div *ngIf="enableNom"  style="color: red;" i18n>Name required please !</div>
+              </div>
+            </div>
+          <div class="row form-group">
+            <div class="col">
+              <input class="form-control inputSize" type="text" id="InputCountry" #InputCountry placeholder="Country">
+              <div  *ngIf="enableCountry"  style="color: red;" i18n>Country required please !</div>
+            </div>
+            <div class="col">
+              <input class="form-control inputSize" type="text" id="InputTown" #InputTown placeholder="City">
+              <div  *ngIf="enableTown"  style="color: red;" i18n>City required please !</div>
+            </div>
+            <div class="col">
+              <input class="form-control inputSize" type="text" id="InputProvince" #InputProvince  placeholder="Province">
+            </div>
+          </div>
+          <div class="form-group">
+            <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Phone</label></div>
+          
+            
+        <div class="row">
+          <div class="col">
+  
+              <select name="selectId" class="form-control" id="selectId" (change)="selectElement($event)">
+                <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
+                <optgroup id="country-optgroup-Africa" label="Africa">
+                    <option value="CM" label="Cameroon"> Cameroon</option>
+                    <option value="CI" label="Côte d’Ivoire">Côte d’Ivoire</option>
+                </optgroup>
+                <optgroup id="country-optgroup-Americas" label="Americas">
+                    <option value="CA" label="Canada">Canada</option>
+                    <option value="US">United States</option>
+                </optgroup>
+                <optgroup id="country-optgroup-Asia" label="Asia">
+                    <option value="CN" label="China">China</option>
+                </optgroup>
+                <optgroup id="country-optgroup-Europe" label="Europe">    
+                    <option value="FR" label="France">France</option>
+                    <option value="GB" label="United Kingdom">United Kingdom</option>
+                </optgroup>
+              </select>
+  
+          </div>
+          <div class="col">
+            <input type="tel" id="InputTel" class="form-control inputSize" #InputTel placeholder="Phone">
+          </div>
+        </div>
+
+            <div  *ngIf="enableTelephone"  style="color: red;" i18n>phone-- required please !</div>
+          </div> 
+          <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputEmail1" i18n>Email address</label></div>
+              <input class="form-control inputSize" type="email" id="Inputemail" #Inputemail aria-describedby="emailHelp" placeholder="Enter email" required>
+              <div  *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
+          </div>    
+          </form>
+        </div>
+      
+        <div class="modal-footer">
+        <button type="submit" class="boxed-btn4-xs h-15"  (click)="modifier(Inputnom,Inputprenom,InputCountry,InputProvince,InputTown,Inputemail,InputTel)" i18n>Edit</button>
+        <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()" i18n>Close</button>
+        
+        </div>
+      
+      </ng-template>
+      <!-- / Modifier beneficiare  -->

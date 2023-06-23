@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<ngx-loading-bar height="5px" color="#f6f82"></ngx-loading-bar>
+<app-header id="goToTop"></app-header>
+<router-outlet></router-outlet>
+<app-appointment (click)="goToTop()"></app-appointment>
+<app-footer></app-footer>
+<app-chatbox></app-chatbox>
+
+<ngx-spinner
+bdColor= "rgba(151,149,149,0.4)"
+size="large"
+color="#FFD700"
+type="ball-clip-rotate-pulse"
+
+>
+</ngx-spinner>
+<!-- type="line-scale-pulse-out-rapid" -->
+<!-- logOut -->
+<ng-template #templateLogout>
+
+    <div class="modal-header" style="background-color: #FFD700;">
+  
+      <h4 class="modal-title pull-left d-block d-sm-none" style="font-size: 10px !important;" i18n>Logout</h4>
+      <h4 class="modal-title pull-left d-none d-sm-block" i18n>Logout</h4>
+      <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  
+    </div>
+  
+    <div class="modal-body" i18n>
+       <p>Are you around ?</p>
+       
+       Apps will reload in <strong>{{reloadCounter}}</strong> seconde(s) . Click <strong>yes </strong>  to continue
+    </div>
+  
+    <div class="modal-footer">
+  
+        <a class="boxed-btn4-xs pull-left h-15" (click)="stillAround()" i18n>Yes</a>
+        <a class="boxed-btn4-red-xs pull-rigth h-15" (click)="modalRef.hide()" i18n>No</a>
+    </div>
+  
+  </ng-template>
+  <!-- / logOut  -->

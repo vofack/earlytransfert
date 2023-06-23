@@ -1,0 +1,18 @@
+:host::ng-deep.selected-item {
+    border-radius: 6px !important;
+    background: #FFD700 !important;
+    border: 1px solid #FFD700 !important;
+    color: black!important;
+    }
+    
+    :host::ng-deep ng-multiselect-dropdown .multiselect-item-checkbox input[type=checkbox] + div:before {
+    border: 2px solid black !important;
+    }
+    
+    :host::ng-deep ng-multiselect-dropdown .multiselect-item-checkbox input[type=checkbox]:checked + div:before {
+    background: #FFD700 !important;
+    }
+
+    .hoverClass:hover {
+        background-color: #ffffff;
+      }

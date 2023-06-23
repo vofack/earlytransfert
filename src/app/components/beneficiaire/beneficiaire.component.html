@@ -1,0 +1,242 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_2">
+    <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3 i18n>Beneficiaries</h3>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+<div class="container">
+         
+        <form class="form-inline justify-content-center">
+                <input class="form-control mr-sm-2 inputSize" style="width: 300px;" type="search" placeholder="Search" (keyup)=getVal($event)  aria-label="Search">                 
+        </form>  
+        <br>
+
+        <div>
+            <a class="boxed-btn4-xs bg-success text-light"  (click)="openModal(template1)">
+                <span class="glyphicon glyphicon-plus-sign"></span> 
+            </a>
+        </div>         
+</div>
+
+<div *ngIf="showXl" class="container  justify-content-center">
+            <ag-grid-angular
+            style="width: 100%; height: 500px;padding-top: 10px;"
+            class="ag-theme-balham custom-class"
+            [columnDefs]="columnDefs"
+            [animateRows]="true"
+            [pagination]="true"    
+            [frameworkComponents]="frameworkComponents"
+            (selectionChanged)="onSelectionChanged($event)"
+            (gridReady)="onGridReady($event)"
+            (cellClicked)="onCellClicked($event)"
+            [overlayLoadingTemplate]="loadingTemplate"
+            [overlayNoRowsTemplate]="noRowsTemplate"
+            >
+            </ag-grid-angular>    
+</div>
+    
+<div *ngIf="showXs" class="container  justify-content-center">
+            <ag-grid-angular
+            style="width: 100%; height: 350px;padding-top: 10px;"
+            class="ag-theme-balham custom-class"
+            [columnDefs]="columnDefsXs"
+            [animateRows]="true"
+            [pagination]="true" 
+            [frameworkComponents]="frameworkComponents"
+            (selectionChanged)="onSelectionChanged($event)"
+            (gridReady)="onGridReady($event)"
+            (cellClicked)="onCellClicked($event)"
+            [overlayLoadingTemplate]="loadingTemplate"
+            [overlayNoRowsTemplate]="noRowsTemplate"
+            >
+            </ag-grid-angular>  
+</div>
+          
+</div>
+ <!-- Ajouter beneficiare -->
+<ng-template #template1>
+    
+        <div class="modal-header" style="background-color: #FFD700;">   
+          <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>Add</h4>
+          <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      
+        <div class="modal-body">
+          <form>
+            <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Identification</label></div>
+            <div class="row form-group">
+              <div class="col">
+                <input type="text" class="form-control inputSize" #Inputprenom placeholder="First name">
+                <div *ngIf="enablePrenom" style="color: red;" i18n>First name required please !</div>
+              </div>
+              <div class="col"> 
+                <input type="text" class="form-control inputSize" #Inputnom placeholder="Name">
+                <div *ngIf="enableNom"  style="color: red;" i18n>Name required please !</div>
+              </div>
+            </div>
+          <div class="row form-group">
+            <div class="col">
+              <input type="text" class="form-control inputSize" #InputCountry placeholder="Country">
+              <div  *ngIf="enableCountry"  style="color: red;" i18n>Country required please !</div>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control inputSize" #InputTown placeholder="City">
+              <div  *ngIf="enableTown"  style="color: red;" i18n>City required please !</div>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control inputSize" #InputProvince placeholder="Province">
+            </div>
+          </div>
+          <div class="form-group">
+            <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Phone</label></div>
+         
+            <div class="row">
+              <div class="col">
+      
+                  <select name="selectId" class="form-control" id="selectId" (change)="selectElement($event)">
+                    <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
+                    <optgroup id="country-optgroup-Africa" label="Africa">
+                        <option value="CM" label="Cameroon"> Cameroon</option>
+                        <option value="CI" label="Côte d’Ivoire">Côte d’Ivoire</option>
+                    </optgroup>
+                    <optgroup id="country-optgroup-Americas" label="Americas">
+                        <option value="CA" label="Canada">Canada</option>
+                        <option value="US">United States</option>
+                    </optgroup>
+                    <optgroup id="country-optgroup-Asia" label="Asia">
+                        <option value="CN" label="China">China</option>
+                    </optgroup>
+                    <optgroup id="country-optgroup-Europe" label="Europe">    
+                        <option value="FR" label="France">France</option>
+                        <option value="GB" label="United Kingdom">United Kingdom</option>
+                    </optgroup>
+                  </select>
+      
+              </div>
+              <div class="col">
+                <input type="tel" id="InputTel" class="form-control inputSize" #InputTel placeholder="Phone">
+              </div>
+            </div>
+      
+
+            <div  *ngIf="enableTelephone"  style="color: red;" i18n>phone-- required please !</div>
+          </div> 
+          <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputEmail1" i18n>Email address</label></div>
+              <input type="email" class="form-control inputSize" id="exampleInputEmail1" #Inputemail aria-describedby="emailHelp" placeholder="Enter email" required>
+              <div  *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
+          </div>    
+          </form>
+        </div>
+      
+        <div class="modal-footer">
+        <button type="submit" class="boxed-btn4-xs h-15"  (click)="ajouter(Inputnom,Inputprenom,InputCountry,InputProvince,InputTown,Inputemail,InputTel)" i18n>Create</button>
+        <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()" i18n>Close</button>
+        
+        </div>
+      
+</ng-template>
+<!-- / Ajouter beneficiare  -->
+
+
+<!-- sendTransaction -->
+<ng-template #templateSendTransaction>
+
+        <div class="modal-header" style="background-color: #FFD700;">
+      
+          <h4 class="modal-title pull-left d-block d-sm-none" style="font-size: 10px !important;" i18n>Transaction</h4>
+          <h4 class="modal-title pull-left d-none d-sm-block" i18n>Transaction</h4>
+          <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      
+        </div>
+      
+        <div class="modal-body">
+            
+          <div class="payment_form white-bg ">
+            <div class="info text-center">
+                <h3 i18n>recipient</h3>
+                <h3><strong>{{recipient}}</strong></h3>
+                <p *ngIf="!amountToSendError"  style="animation-duration:2s; animation-delay:2s; animation-iteration-count:infinite;" i18n>You have to pay: <strong>$0</strong> for fees</p>
+                <p *ngIf="amountToSendError" class="text-danger d-none d-sm-block" data-aos="fade-right" data-aos-duration="1500" i18n>Amount need to be from 5$ to 999$ !</p>
+                <p *ngIf="amountToSendError" class="text-danger d-block d-sm-none" data-aos="fade-right" data-aos-duration="1500" i18n>Amount need to be from 5$ to 999$ !</p>
+                <div *ngIf="showRate"  class="col-lg-12 justify-content-center text-center" style="padding-top: 25px">
+                    <h3><span i18n>RATE : 1 {{currencyToSend}} = </span><strong>{{rate}} {{currencyToReceive}}</strong></h3>
+                </div>
+                <div *ngIf="showRateSpinner"  class="dots-bars-2" style="margin: auto;color:#FFD700;"></div>
+            </div>
+            <div class="form">
+                <div class="row">
+                    <div class="col-lg-12">   
+                        <label class="form-label" for="formControlLg" i18n>AMOUNT TO SEND</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span *ngIf="showCanadaCmr" class="input-group-text" data-aos="fade-up"><strong>$CA</strong></span>
+                              <span *ngIf="showCmrCanada" class="input-group-text" data-aos="fade-up"><strong>XAF</strong></span>
+                            </div>
+                            <input type="number" (keyup)=getValForTransaction($event) (click)=getValForTransaction($event) class="form-control inputSize" aria-label="Amount (to the nearest dollar)"
+                            style="height: 50px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;font-size:16px;">
+                            <div class="input-group-append">
+                              <span class="input-group-text">.00</span>
+                            </div>
+                            <i *ngIf="showCanadaCmr" class="flag-icon flag-icon-ca w-25 " data-aos="fade-up"></i>
+                            <i *ngIf="showCmrCanada" class="flag-icon flag-icon-cm w-25 " data-aos="fade-up"></i>
+                          </div>
+                          
+                    </div>
+                    
+                    <i (click)="changeCurrency()" class="glyphicon glyphicon-sort justify-content-center text-center"   style="font-size:24px;color:#FFD700;cursor:pointer;"></i>
+
+                    <div class="col-lg-12">
+                       
+                        <label class="form-label" for="formControlLg" i18n>AMOUNT TO BE RECEIVED</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span *ngIf="showCanadaCmr" class="input-group-text" data-aos="fade-down"><strong>XAF</strong></span>
+                              <span *ngIf="showCmrCanada" class="input-group-text" data-aos="fade-down"><strong>$CA</strong></span>
+                            </div>
+                            <input disabled id="receiveInput"  type="text" class="form-control inputSize" aria-label="Amount (to the nearest dollar)"
+                            style="height: 50px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; font-weight: bold; font-size:24px;">
+                            <div class="input-group-append">
+                              <span class="input-group-text">.00</span>
+                            </div>
+                            <i *ngIf="showCanadaCmr" class="flag-icon flag-icon-cm w-25 " data-aos="fade-down"></i>
+                            <i *ngIf="showCmrCanada" class="flag-icon flag-icon-ca w-25 " data-aos="fade-down"></i>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+               
+                    <button class="boxed-btn3" style="width: 100%;" (click)="asynTransition()"  type="submit" i18n>Continue</button>
+                
+             </div>
+        </div>
+
+        </div>
+
+</ng-template>
+<!-- / sendTransaction  -->
+

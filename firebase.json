@@ -1,0 +1,79 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": [
+    {
+      "public": "dist/finance1",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/en-US/index.html"
+        },
+        {
+          "source": "/en-US/**",
+          "destination": "/en-US/index.html"
+        },
+        {
+          "source": "/fr/**",
+          "destination": "/fr/index.html"
+        }
+      ], 
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/en-US",
+          "type": 301
+        }
+      ]
+    },
+    {
+      "target": "finance1",
+      "public": "dist/finance1",
+      "ignore": [
+        "**/.*"
+      ],
+      "headers": [
+        {
+          "source": "*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].+(css|js)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/en-US/index.html"
+        },
+        {
+          "source": "/en-US/**",
+          "destination": "/en-US/index.html"
+        },
+        {
+          "source": "/fr/**",
+          "destination": "/fr/index.html"
+        }
+      ], 
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/en-US",
+          "type": 301
+        }
+      ]
+    }
+  ]
+}

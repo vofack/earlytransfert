@@ -87,7 +87,7 @@ export class TransactionComponent implements OnInit {
               localStorage.getItem('messageForTransaction') === null || 
               !localStorage.getItem('messageForTransaction')) { // save data if user reload page
               localStorage.setItem('messageForTransaction', this.message);
-              //location.reload();
+              
             }else{
               this.message = localStorage.getItem('messageForTransaction');
             }

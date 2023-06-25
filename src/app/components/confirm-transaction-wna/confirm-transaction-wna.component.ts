@@ -180,7 +180,8 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
                       }).then( message => {console.log(message); } );
       //  this.sendWhasap();    
         this.reinitialiazeAll();
-        this.firebaseService.logOut();
+        this.firebaseService.logOut();   // logOut the guest user (when user dont have account)
+        localStorage.setItem("transactionStatus", 'Done'); // show that transaction is done
         if(this.goToTracking_) this.goToTracking();
         else  this.goToHome();
     

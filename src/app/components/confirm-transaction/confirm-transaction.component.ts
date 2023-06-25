@@ -92,6 +92,7 @@ export class ConfirmTransactionComponent implements OnInit {
        /** spinner ends after 2 seconds */
        this.spinner.hide();
        this.data.updatePay("mg6GHY8RPYCo7KzHobR2", Number(this.amount - Number(this.transactionObj.amountReceive.split('XAF')[0].trim())));
+       localStorage.setItem("transactionStatus", 'Done'); // show that transaction is done
        this.router.navigate(link);
      }, 2000);
      if(this.modalRef) this.modalRef.hide(); // pour fermer le popup

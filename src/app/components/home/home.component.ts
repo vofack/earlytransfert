@@ -406,6 +406,8 @@ currentLanguage = '';
 
  async asynTransition() {
 
+  localStorage.removeItem('transactionStatus');
+
   if(this.recipientFlag !== 'flag-icon flag-icon-ca') {
     swal.fire({title: 'Early Transfert', text: 'Comming Soon', 
     confirmButtonColor: '#FFD700', customClass: 'swal-wide', icon: 'info', position: 'top-middle'});
@@ -460,13 +462,17 @@ currentLanguage = '';
                 this.amountToSendError = false;
                 let link = ['/transaction'];
                 if (!localStorage.getItem('user'))  link = ['/transactionWithNoAccount'];
-                this.spinner.show();
-                initParticule();
-                setTimeout(() => {
-                /** spinner ends after 2 seconds */
-                this.spinner.hide();
-                this.router.navigate(link);
-                }, 2000);
+              if(localStorage.getItem('transactionStatus') === 'default message' ||
+                  localStorage.getItem('transactionStatus') === null || 
+                  !localStorage.getItem('transactionStatus')) {
+                    this.spinner.show();
+                    initParticule();
+                    setTimeout(() => {
+                    /** spinner ends after 2 seconds */
+                    this.spinner.hide();
+                    this.router.navigate(link);
+                    }, 2000);
+                }
                 if(this.modalRef) this.modalRef.hide(); // pour fermer le popup
             } 
       return respomse;

@@ -1,0 +1,26 @@
+// 3nd code
+.all{
+    font-family: sans-serif;
+}
+
+h1{
+    text-align: center;
+    color: forestgreen;
+    margin: 30px 0 50px;
+}
+
+.gallery{
+    margin: 10px 20px;
+}
+
+.gallery img{
+    width: 150px;
+    padding: 5px;
+    filter: grayscale(100%);
+    transition: 1s;
+}
+
+.gallery img:hover{
+    filter: grayscale(0);
+    transform: scale(1.1);
+}

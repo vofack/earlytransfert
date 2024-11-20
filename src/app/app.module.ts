@@ -53,6 +53,7 @@ import { TrackingWithIdComponent } from './components/tracking-with-id/tracking-
 import { AgGridModule } from 'ag-grid-angular';
 import { TransactionWithNoAccountComponent } from './components/transaction-with-no-account/transaction-with-no-account.component';
 import { ConfirmTransactionWnaComponent } from './components/confirm-transaction-wna/confirm-transaction-wna.component';
+import { WhasapAppointmentComponent } from './components/whasap-appointment/whasap-appointment.component';
 
 
 
@@ -85,7 +86,8 @@ import { ConfirmTransactionWnaComponent } from './components/confirm-transaction
     HouseDetailsComponent,
     TrackingWithIdComponent,
     TransactionWithNoAccountComponent,
-    ConfirmTransactionWnaComponent 
+    ConfirmTransactionWnaComponent,
+    WhasapAppointmentComponent 
   ],
   imports: [
     BrowserModule,

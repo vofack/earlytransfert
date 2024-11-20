@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+
+.Progresscontainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    //background-color:#eaedfb;
+    min-height:100vh;
+}
+.card{
+    font-family: 'Rubik', sans-serif;
+    font-weight: bolder;
+    
+}
+.progress_bar{
+
+    display:flex;
+    counter-reset:circle 0;
+}
+.progress_bar li{
+    list-style:none;  
+    margin-right:55px;
+    counter-increment:circle 1;
+    display:flex;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.progress_bar li::before{
+    content:counter(circle);
+    position:absolute;
+    top:30px;
+    height:40px;
+    width:40px;
+    background-color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#000;
+    border-radius:50%;
+    z-index:10;
+    font-weight:700;
+    cursor:pointer;
+    transition:all 0.5s;
+}
+.progress_bar li::after{
+    content:'';
+    position:absolute; 
+    height:3px;
+    width:120px;
+    background-color:#fff; 
+    top:48px;
+    right:37px;
+     cursor:pointer;
+    transition:all 0.5s;
+}
+.progress_bar li:nth-child(1)::after{
+    display:none;
+}
+.progress_bar li.active::before{
+     background-color:#FFD700 !important;
+     color:#fff !important;
+}
+.progress_bar li.active::after{
+     background-color:#FFD700 !important;
+}

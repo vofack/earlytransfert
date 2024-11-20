@@ -290,6 +290,7 @@ export class ManageTransactionsComponent implements OnInit {
       
       }, err => {
         console.log('Error while fetching pay');
+        console.log(err);
         this.unsuscribe();
     });
   }

@@ -1,0 +1,150 @@
+<div class="bradcam_area bradcam_bg_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3 i18n>Tracking</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div >
+      <!-- <br>
+      <br>
+      <br> -->
+      <div class="section" >
+          <!-- container -->
+          <div class="container">
+            <!-- row -->
+            <div class="row">    
+              <div class="col-md-7">
+
+                
+                    <div class="card bg-transparent" style="border: none;">
+                        <!-- <ul class="progress_bar">
+                            <li id="firstPoint" i18n>Pending payment</li>
+                            <li id="secondPoint" i18n>payment receive</li>
+                            <li id="thirdPoint" i18n>Deposit complete</li>
+                            <li id="fourthPoint" i18n>Transaction complete</li> 
+                        </ul> -->
+                        <div class="row d-flex justify-content-center">
+                          <div class="col-12">
+                              <ul id="progressbar" class="text-center">
+                                  <li class="{{pendingActive}} step0" i18n>Pending payment</li>
+                                  <li class="{{paymentActive}} step0" i18n>payment receive</li>
+                                  <li class="{{depositActive}} step0" i18n>Deposit complete</li>
+                                  <li class="{{transactionActive}} step0" i18n>Transaction complete</li>
+                              </ul>
+                          </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="d-none d-sm-block">
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                        </div>
+                        
+                        
+                        <ul> 
+                          <h3 style="font-size: 20px;" i18n>Interact transfer :                  
+                          <i class="align-items-center text-success justify-content-center glyphicon glyphicon-arrow-right wow flash "  style=" animation-duration:2s; animation-delay:2s; animation-iteration-count:infinite; font-size: 20px;"></i><strong> 438-404-2421</strong>
+                          </h3>
+                        </ul>
+                    </div>         
+              </div>
+
+              
+              <div class="d-block d-sm-none">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+              </div>
+            
+              <!-- Order Details -->
+              <div class="col-md-5 order-details">
+                <div class="section-title text-center">
+                  <h3 class="title" i18n>Your Transaction</h3>
+                </div>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col" i18n>Description</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                          <td i18n>From :</td>
+                          <td>{{countryToSend}}</td>
+                      </tr>
+                    <tr>
+                      <td i18n>To :</td>
+                      <td>{{countryToReceive}}</td>
+                    </tr>
+                    <tr>
+                      <td i18n>Amount to send : </td>
+                      <td><strong>{{sendValue}} </strong></td>
+                    </tr>
+                    <tr>
+                      <td i18n>Amount to be received :</td>
+                      <td><strong>{{receiveValue}} </strong></td>
+                    </tr>
+                    <tr>
+                      <td i18n>Transaction fees :</td>
+                      <td><strong>0 $CA</strong></td>
+                    </tr>
+                    <tr>
+                      <td i18n>Receive mode :</td>
+                      <td >Mobile money</td>
+                    </tr>
+                    <tr>
+                      <td i18n>Payment method :</td>
+                      <td i18n>Interact transfer</td>
+                    </tr>
+                    <tr>
+                      <td i18n>Change rate :</td>
+                      <td><strong>{{currentRate}}</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block hoverClass" style="border-color: black; background-color: aqua;">Confirmer</button> -->
+                <div class="row d-flex justify-content-center">
+                    <button class="boxed-btn3-xl d-none d-sm-block" (click)="Home()" type="submit" i18n>Confirm</button>
+                    <button class="boxed-btn3-xs d-block d-sm-none" (click)="Home()" type="submit" i18n>Confirm</button>
+                </div>
+                <br>
+                <div class="section-title text-center">
+                    <h3 class="title" i18n>SENDER</h3>
+                    <span  *ngIf="sender">{{sender}}</span>
+                  </div>
+                  <div class="section-title text-center">
+                    <h3 class="title" i18n>RECIPIENT</h3>
+                    <span>{{recipient}}</span>
+                  </div>
+              </div>
+              <!-- /Order Details -->
+            </div>
+            <!-- /row -->
+          </div>
+          <!-- /container -->
+          </div>
+          <br>
+          <br>
+          <br>
+
+  </div>

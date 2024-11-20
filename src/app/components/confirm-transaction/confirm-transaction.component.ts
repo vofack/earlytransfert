@@ -21,6 +21,8 @@ export class ConfirmTransactionComponent implements OnInit {
   hideButton = false;
   private subscription: Subscription;
   private getavailablePaySuscribtions: Subscription;
+  private sendMsgSuscribtions: Subscription;
+
   message:string;
   transactionObj: Transaction = {
     id: '',
@@ -66,6 +68,7 @@ export class ConfirmTransactionComponent implements OnInit {
       this.amount = Number(res[0]['amount']);   
       }, err => {
         console.log('Error while fetching pay');
+        console.log(err);
         this.unsuscribe();
     });
   }
@@ -135,6 +138,20 @@ export class ConfirmTransactionComponent implements OnInit {
     this.data.addTransaction(transactionObj);
   }
 
+  sendMsg(email: string, id: string){
+    this.sendMsgSuscribtions = this .service.sendEmail(email, id).subscribe(res => {
+
+    console.log(res);
+      
+  }, 
+    (err) => {
+          if (err.status === 200){
+            this.unsuscribe();
+          }
+    }
+  );
+  }
+
   sendEmail() {
 
         let Message = this.transactionObj.userEmail + '-' + this.transactionObj.transactionCode + '-' 
@@ -147,7 +164,7 @@ export class ConfirmTransactionComponent implements OnInit {
                       + this.transactionObj.amountSend + '*' + this.transactionObj.amountReceive + '*' 
                       + this.transactionObj.date + '*' + this.transactionObj.status + '*' + 'sender : ' + sender + 'recipient : ' + recipient + '*' 
                       + 'Link :  '+ document.location.host +'/trackingWithId?transaction=' + this.transactionId;
-        initEmail(message);
+        this.sendMsg(this.transactionObj.userEmail, this.transactionId)// initEmail(message);
         Email.send({
         Host : 'smtp.elasticemail.com',
         Username : 'pemetaskpwd@gmail.com',
@@ -167,6 +184,9 @@ export class ConfirmTransactionComponent implements OnInit {
     }
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+    if(this.sendMsgSuscribtions){
+      this.sendMsgSuscribtions.unsubscribe();
     }
   }
   

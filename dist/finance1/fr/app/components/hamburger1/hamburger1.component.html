@@ -1,0 +1,338 @@
+
+ 
+<link href="https://fonts.googleapis.com/css?family=Roboto|Work+Sans:400,600" rel="stylesheet">
+
+<div (window:resize)="onResize($event)"></div>
+<nav role="navigation">
+    <div id="menuToggle">
+                <input type="checkbox" id="menuCheckbox" (click)="manageMenu()" />
+                <span></span>
+                <span></span>
+                <span></span>
+                <!-- <div  style="cursor:pointer; font-size: 10px; margin-left: {{paddinLeftSize}}px; " class="boxed-btn4" (click)="changeLanguage()">{{language}}</div> -->
+            <ul class="ulClass" id="menu"> 
+            <li><a class="aClass" href="index.html"><img class="logo" alt=""></a></li>
+              <li><a class="aClass" (click)="Home()" style="cursor:pointer;" i18n>Home</a></li>
+              <li *ngIf="showUser"><a class="aClass" (click)="open(templateModif)" style="cursor:pointer;" i18n>My infos</a></li>
+              <li><a class="aClass" (click)="about()" i18n>About</a></li>
+              <li *ngIf="showUser"><a class="aClass" (click)="beneficiaire()" style="cursor:pointer;" i18n>Beneficiary</a></li>
+              <li *ngIf="showUser"><a class="aClass" (click)="Transactions()" style="cursor:pointer;" i18n>Transactions</a></li>
+              <li class="aClass"><a (click)="faq()" style="cursor:pointer;" i18n>Faq</a></li>
+              <li><a class="aClass" (click)="contact()" style="cursor:pointer;" i18n>Contact</a></li>
+              <li *ngIf="showConnexion"><a class="aClass" data-wow-duration="1s" data-wow-delay=".1s"  (click)="openModal(template)" i18n>Connexion</a></li>
+              <li *ngIf="showUser"  (click)="openModal(template)"><a class="aClass"> <i class="glyphicon glyphicon-user wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s" ></i>{{user}}</a></li>
+              <li><a class="aClass" (click)="changeLanguage()" style="cursor:pointer; font-weight: bold;">{{language}}</a></li>
+              <li *ngIf="showUser"  (click)="openModal(templateLogout)"  style="cursor:pointer; text-align: -webkit-center;"><a class="aClass"> <i class="glyphicon glyphicon-off text-danger wow fadeInUp " data-wow-duration="1s" data-wow-delay=".1s" ></i> </a></li>
+            </ul>
+    </div>
+    
+</nav>
+
+
+    <!-- Authentification -->
+    <ng-template #template>
+
+        <div class="modal-header" style="background-color: #FFD700;">
+      
+          <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>Authentification</h4>
+          <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      
+        </div>
+      
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputEmail1" i18n>Email address</label></div>
+              <input type="email" class="form-control inputSize" id="exampleInputEmail1" #InputEmail aria-describedby="emailHelp" placeholder="Enter email" required>
+              <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
+              <small id="emailHelp" class="form-text text-muted" i18n>We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPassword1" i18n>Password</label></div>
+              <input type="password" class="form-control inputSize" id="exampleInputPassword1" #InputPassword placeholder="Password" required>
+              <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enablePassword"  style="color: red;" i18n>Password required please !</div>
+            </div>
+            <div class="form-group form-check">
+              <a  class="text-danger" (click)="openModal(templateReset)" i18n>Forgot password ?</a>
+            </div>
+            <div class="form-group form-check">
+              <a  (click)="openModalCreerCompte(template1)" i18n>Not a member yet? create an account</a>
+            </div>   
+          </form>
+        </div>
+      
+        <div class="modal-footer">
+          <a class="boxed-btn4-xs h-15" (click)="authentification(InputEmail,InputPassword)" i18n>open</a>
+        <a class="boxed-btn4-red-xs pull-rigth h-15" (click)="modalRef.hide()" i18n>Close</a>
+        </div>
+      
+      </ng-template>
+      <!-- / Authentification  -->
+    
+    <!-- Creation de compte -->
+    <ng-template #template1>
+    
+        <div class="modal-header" style="background-color: #FFD700;">
+      
+          <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>Create an account</h4>
+          <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      
+        </div>
+      
+        <div class="modal-body">
+          <form  id="myForm">
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control inputSize" #Inputprenom placeholder="First name">
+                <div *ngIf="enablePrenom" style="color: red;" i18n>First name required please !</div>
+              </div>
+              <div class="col"> 
+                <input type="text" class="form-control inputSize" #Inputnom placeholder="Name">
+                <div *ngIf="enableNom"  style="color: red;" i18n>Name required please !</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Date of Birth</label></div>
+              <div class="input-group date" data-provide="datepicker">
+              <input type="date" class="form-control inputSize" id="exampleInputDate" #Inputdate aria-describedby="dateHelp" placeholder="Entrer date" required>   
+              </div>
+              <div  *ngIf="enableDate"  style="color: red;" i18n>Date required please !</div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control inputSize" #InputCountry placeholder="Country">
+              <div  *ngIf="enableCountry"  style="color: red;" i18n>Country required please !</div>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control inputSize" #InputTown placeholder="City">
+              <div  *ngIf="enableTown"  style="color: red;" i18n>City required please !</div>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control inputSize" #InputProvince placeholder="Province">
+              <div  *ngIf="enableProvince"  style="color: red;" i18n>Province required please !</div>
+            </div>
+          </div>
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Adresse</label></div>
+              <input type="adress" class="form-control inputSize" id="exampleInputAdresse" #Inputadress aria-describedby="adresseHelp" placeholder="Entrer adresse" required>
+              <div  *ngIf="enableAdresse"  style="color: red;" i18n>Address required please !</div>
+          </div>
+          <div class="form-group">
+            <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Phone</label></div>
+            
+            <div class="row">
+              <div class="col">
+      
+                  <select name="selectId" class="form-control" id="selectId" (change)="selectElement($event)">
+                    <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
+                    <optgroup id="country-optgroup-Africa" label="Africa">
+                        <option value="CM" label="Cameroon"> Cameroon</option>
+                        <option value="CI" label="Côte d’Ivoire">Côte d’Ivoire</option>
+                    </optgroup>
+                    <optgroup id="country-optgroup-Americas" label="Americas">
+                        <option value="CA" label="Canada">Canada</option>
+                        <option value="US">United States</option>
+                    </optgroup>
+                    <optgroup id="country-optgroup-Asia" label="Asia">
+                        <option value="CN" label="China">China</option>
+                    </optgroup>
+                    <optgroup id="country-optgroup-Europe" label="Europe">    
+                        <option value="FR" label="France">France</option>
+                        <option value="GB" label="United Kingdom">United Kingdom</option>
+                    </optgroup>
+                  </select>
+      
+              </div>
+              <div class="col">
+                <input type="tel" id="InputTel" class="form-control inputSize" #InputTel placeholder="Phone">
+              </div>
+            </div>
+
+            <div  *ngIf="enableTelephone"  style="color: red;" i18n>Phone-- required please !</div>
+          </div> 
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputEmail1" i18n>Email address</label></div>
+              <input type="email" class="form-control inputSize" id="exampleInputEmail1" #Inputemail aria-describedby="emailHelp" placeholder="Enter email" required>
+              <div  *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
+            </div>
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPassword1" i18n>Password</label></div>
+              <input type="password" class="form-control inputSize" id="Inputpassword" #Inputpassword placeholder="Password" required>
+              <div  *ngIf="enablePassword"  style="color: red;" i18n>Password required please !</div>
+            </div>
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPassword1" i18n>Confirm password</label></div>
+              <input type="password" class="form-control inputSize" id="InputConfirmPassword" #InputConfirmPassword placeholder="Confirm password" required>
+              <div  *ngIf="enableConfirmPassword"  style="color: red;" i18n>Password required please !</div>
+              <div  *ngIf="enablePasswordMatch"  style="color: red;" i18n> Passwords do not match</div>
+            </div>
+          </form>
+        </div>
+      
+        <div class="modal-footer">
+        <button type="submit" class="boxed-btn4-xs h-15"  (click)="creerCompte(Inputnom,Inputprenom,Inputdate,InputCountry,InputProvince,InputTown,Inputadress,Inputemail,Inputpassword,InputConfirmPassword,InputTel)" i18n>Create</button>
+        <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()" i18n>Close</button>
+        
+        </div>
+      
+      </ng-template>
+      <!-- / creation de compte -->
+
+  <!-- modif de compte -->
+  <ng-template #templateModif>
+
+    <div class="modal-header" style="background-color: #FFD700;">
+  
+      <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>My information</h4>
+      <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  
+    </div>
+  
+    <div class="modal-body">
+      <form  id="myForm">
+        <div class="row">
+          <div class="col">
+            <input type="text" id="Inputprenom" class="form-control inputSizeBold" #Inputprenom placeholder="First name">
+            <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enablePrenom" style="color: red;" i18n>First name required please !</div>
+          </div>
+          <div class="col"> 
+            <input type="text" id="Inputnom" class="form-control inputSizeBold" #Inputnom placeholder="Name">
+            <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableNom"  style="color: red;" i18n>Name required please !</div>
+          </div>
+        </div>
+      <div class="form-group">
+          <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Date of Birth</label></div>
+          <div class="input-group date" data-provide="datepicker">
+            <input type="date" class="form-control inputSizeBold" id="Inputdate" #Inputdate aria-describedby="dateHelp" placeholder="Entrer date" required>   
+          </div>
+          <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableDate"  style="color: red;" i18n>Date required please !</div>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <input type="text" id="InputCountry" class="form-control inputSizeBold" #InputCountry placeholder="Country">
+          <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableCountry"  style="color: red;" i18n>Country required please !</div>
+        </div>
+        <div class="col">
+          <input type="text" id="InputTown" class="form-control inputSizeBold" #InputTown placeholder="City">
+          <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableTown"  style="color: red;" i18n>City required please !</div>
+        </div>
+        <div class="col">
+          <input type="text" id="InputProvince" class="form-control inputSizeBold" #InputProvince placeholder="Province">
+          <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableProvince"  style="color: red;" i18n>Province required please !</div>
+        </div>
+      </div>
+  
+        <div class="form-group">
+          <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Adresse</label></div>
+          <input type="adress" id="Inputadress" class="form-control inputSizeBold"  #Inputadress aria-describedby="adresseHelp" placeholder="Entrer adresse" required>
+          <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableAdresse"  style="color: red;" i18n>Address required please !</div>
+      </div> 
+  
+      <div class="form-group">
+        <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Phone</label></div>
+       
+        <div class="row">
+          <div class="col">
+  
+              <select name="selectId" class="form-control" id="selectId" (change)="selectElement($event)">
+                <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
+                <optgroup id="country-optgroup-Africa" label="Africa">
+                    <option value="CM" label="Cameroon"> Cameroon</option>
+                    <option value="CI" label="Côte d’Ivoire">Côte d’Ivoire</option>
+                </optgroup>
+                <optgroup id="country-optgroup-Americas" label="Americas">
+                    <option value="CA" label="Canada">Canada</option>
+                    <option value="US">United States</option>
+                </optgroup>
+                <optgroup id="country-optgroup-Asia" label="Asia">
+                    <option value="CN" label="China">China</option>
+                </optgroup>
+                <optgroup id="country-optgroup-Europe" label="Europe">    
+                    <option value="FR" label="France">France</option>
+                    <option value="GB" label="United Kingdom">United Kingdom</option>
+                </optgroup>
+              </select>
+  
+          </div>
+          <div class="col">
+            <input type="tel" id="InputTel" class="form-control inputSize" #InputTel placeholder="Phone">
+          </div>
+        </div>
+
+        <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableTelephone"  style="color: red;" i18n>Phone -- required please !</div>
+      </div> 
+      </form>
+    </div>
+  
+    <div class="modal-footer">
+      <button type="submit" value="Verify" class="boxed-btn4-xs h-15"  (click)="modifierCompte(Inputnom,Inputprenom,Inputdate,InputCountry,InputProvince,InputTown,Inputadress,InputTel)" i18n>Edit</button>
+      <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()" i18n>Close</button>
+    </div>
+  
+  </ng-template>
+  <!-- / modif de compte -->
+
+      <!-- logOut -->
+<ng-template #templateLogout>
+
+  <div class="modal-header" style="background-color: #FFD700;">
+
+    <h4 class="modal-title pull-left d-block d-sm-none" style="font-size: 10px !important;" i18n>Logout</h4>
+    <h4 class="modal-title pull-left d-none d-sm-block" i18n>Logout</h4>
+    <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+
+  <div class="modal-body">
+     <p i18n>Do you really want to Logout ?</p>
+  </div>
+
+  <div class="modal-footer">
+
+      <a class="boxed-btn4-xs pull-left h-15" (click)="logOut()" i18n>Yes</a>
+      <a class="boxed-btn4-red-xs pull-rigth h-15" (click)="modalRef.hide()" i18n>No</a>
+  </div>
+
+</ng-template>
+<!-- / logOut  -->
+    
+<!-- reset password -->
+<ng-template #templateReset>
+
+  <div class="modal-header" style="background-color: #FFD700;">
+
+    <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>Reset password</h4>
+    <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputEmail1" i18n>Email address</label></div>
+      <input type="email" class="form-control inputSize" id="exampleInputEmail1" #Inputemail aria-describedby="emailHelp" placeholder="Enter email" required>
+      <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
+      <small id="emailHelp" class="form-text text-muted" i18n>We'll never share your email with anyone else.</small>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+
+      <a class="boxed-btn4-xs pull-left h-15" (click)="forgotPassword(Inputemail)" i18n>Send</a>
+      <a class="boxed-btn4-red-xs pull-rigth h-15" (click)="modalRef.hide()" i18n>Cancel</a>
+  </div>
+
+</ng-template>
+<!-- / reset password  -->
+

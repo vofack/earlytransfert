@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverURL: 'https://api.exchangerate.host/latest?/source=ecb&base=',
+  serverURL: 'https://api.exchangerate-api.com/v4/latest/',
   firebase : {
     apiKey: "AIzaSyCHus9wv4ZgmqvxbGYFI0ZyGD6qO2knSBM",
     authDomain: "dashboard-33d8e.firebaseapp.com",

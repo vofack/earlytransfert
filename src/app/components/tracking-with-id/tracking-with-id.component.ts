@@ -10,6 +10,8 @@ import { DataService } from 'src/app/services/data.service';
 import { MessageService } from 'src/app/services/message.service';
 import { Service } from 'src/app/services/service';
 declare function initProgressBar(): void; 
+declare let swal: any;
+
 
 @Component({
   selector: 'app-tracking-with-id',
@@ -26,7 +28,9 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
   secondPoint = false;
   thirdPoint = false;
   fourthPoint = false;
-  trackingInterval = setInterval(this.getTransactionCallBack, 5000);
+  form: any = this;
+  timer4Updates: number;
+  trackingInterval: any;
   message:string;
   sendValue = '0';
   receiveValue = '0';
@@ -53,6 +57,11 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
   trackingId: string;
   language = '';
   currentLanguage = '';
+  pendingActive = '';
+  paymentActive = '';
+  depositActive = '';
+  transactionActive = '';
+  showLoginAlert = true;
   
 
   constructor(private route: ActivatedRoute, private service: Service, private  spinner: NgxSpinnerService,
@@ -73,7 +82,7 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
   }
   
 
-  getTransactionCallBack(): void {
+  getTransactionCallBack(this): void {
     this.getTransaction(this.trackingId);
   }
 
@@ -85,8 +94,10 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
                 localStorage.setItem('messageForTrackingWith', this.trackingId);    
               }      
       );
-      debugger
       this.getTransaction(this.trackingId);
+      this.trackingInterval = setInterval( ()=> {
+        this.getTransaction(this.trackingId);
+      }, 5000);
   }
 
   reinitialiazeAll(): void {
@@ -114,22 +125,38 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
   trackingPayement(): void {
 
     if (this.transactionTrack['status'] === 'PENDING') {
-      document.getElementById("firstPoint").click(); // to start the tracking 
+      // document.getElementById("firstPoint").click(); // to start the tracking ?
+      this.pendingActive = 'active';
+      this.paymentActive = '';
+      this.depositActive = '';
+      this.transactionActive = '';
     }else
     if (this.transactionTrack['status'] === 'INCOMPLETE') {
-      document.getElementById("firstPoint").click(); // to start the tracking 
-      document.getElementById("secondPoint").click(); // to start the tracking
+      // document.getElementById("firstPoint").click(); // to start the tracking 
+      // document.getElementById("secondPoint").click(); // to start the tracking
+      this.pendingActive = 'active';
+      this.paymentActive = 'active';
+      this.depositActive = '';
+      this.transactionActive = '';
     }else
     if (this.transactionTrack['status'] === 'INPROGRESS') {
-      document.getElementById("firstPoint").click(); // to start the tracking 
-      document.getElementById("secondPoint").click(); // to start the tracking 
-      document.getElementById("thirdPoint").click(); // to start the tracking 
+      // document.getElementById("firstPoint").click(); // to start the tracking 
+      // document.getElementById("secondPoint").click(); // to start the tracking 
+      // document.getElementById("thirdPoint").click(); // to start the tracking 
+      this.pendingActive = 'active';
+      this.paymentActive = 'active';
+      this.depositActive = 'active';
+      this.transactionActive = '';
     }else
     if (this.transactionTrack['status'] === 'COMPLETE'){
-      document.getElementById("firstPoint").click(); // to start the tracking 
-      document.getElementById("secondPoint").click(); // to start the tracking 
-      document.getElementById("thirdPoint").click(); // to start the tracking
-      document.getElementById("fourthPoint").click(); // to continue the tracking
+      // document.getElementById("firstPoint").click(); // to start the tracking 
+      // document.getElementById("secondPoint").click(); // to start the tracking 
+      // document.getElementById("thirdPoint").click(); // to start the tracking
+      // document.getElementById("fourthPoint").click(); // to continue the tracking
+      this.pendingActive = 'active';
+      this.paymentActive = 'active';
+      this.depositActive = 'active';
+      this.transactionActive = 'active';
       clearInterval(this.trackingInterval);
     }
 
@@ -155,11 +182,13 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
    getTransaction(id: string) {
     this.getTransactionsSuscribtions = this.data.getAlltransactions().subscribe(res => {
       let reponse = true;
+      this.spinner.show();
       this.allTransactionsList = res.map((e: any) => {
         const data = e.payload.doc.data();
         data.id = e.payload.doc.id;
         if (data.id === id || data.transactionCode === id) {
           this.transactionTrack = data;
+          this.spinner.hide();
           if(reponse){
             this.fieldTransaction();
             reponse = false;
@@ -170,6 +199,12 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
       
     }, err => {
       console.log('Error while fetching Transactions data');
+      if (this.showLoginAlert) {
+        swal.fire({title: 'Early Transfert', text: 'Please you need to login', 
+          confirmButtonColor: '#FFD700', customClass: 'swal-wide', icon: 'warning', position: 'top-middle'});
+          this.showLoginAlert = false;
+          clearInterval(this.trackingInterval); 
+      }
       this.unSuscribe();
     })
   

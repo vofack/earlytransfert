@@ -39,6 +39,7 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
   goToTracking_ = false;
   language = '';
   currentLanguage = '';
+  private sendMsgSuscribtions: Subscription;
   
   constructor(private service: Service, private  spinner: NgxSpinnerService,
               private router: Router, private modalService:BsModalService, 
@@ -66,6 +67,7 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
       this.amount = Number(res[0]['amount']);   
       }, err => {
         console.log('Error while fetching pay');
+        console.log(err);
         this.unsuscribe();
     });
   }
@@ -153,8 +155,22 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
     this.data.addTransaction(transactionObj);
   }
 
+  sendMsg(email: string, id: string){
+    this.sendMsgSuscribtions = this .service.sendEmail(email, id).subscribe(res => {
+
+    console.log(res);
+      
+  }, 
+    (err) => {
+          if (err.status === 200){
+            this.unsuscribe();
+          }
+    }
+  );
+  }
+
   sendEmail() {
-       
+    
         let Message = this.transactionObj.userEmail + '-' + this.transactionObj.transactionCode + '-' 
                       + this.transactionObj.receiver + '-' + this.transactionObj.amountSend + '-' 
                       + this.transactionObj.amountReceive + '-' + this.transactionObj.date + '-'
@@ -167,7 +183,7 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
                       + 'Link :  https://dashboard-33d8e.web.app/trackingWithId?transaction=' + this.transactionId;
         
         
-                      initEmail(message);
+                      this.sendMsg(this.transactionObj.userEmail, this.transactionId)// initEmail(message);
                       Email.send({
                       Host : 'smtp.elasticemail.com',
                       Username : 'pemetaskpwd@gmail.com',
@@ -196,6 +212,9 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
     }
     if(this.sendWhasapSuscribtions) {
       this.sendWhasapSuscribtions.unsubscribe();
+    }
+    if(this.sendMsgSuscribtions){
+      this.sendMsgSuscribtions.unsubscribe();
     }
   }
 

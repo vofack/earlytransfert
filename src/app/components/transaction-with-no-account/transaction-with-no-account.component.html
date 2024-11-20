@@ -1,233 +1,233 @@
 
 <div class="bradcam_area bradcam_bg_2">
-    <div class="container">
-        
-        <!-- <div  class="row d-block d-sm-none" >
-            <div  class="col-xl-12 "  data-aos="fade-up" data-aos-duration="1500"> 
-                <a  style="cursor:pointer; font-size: 10px; float: right;" class="boxed-btn4" (click)="changeLanguage()">{{language}}</a>
-            </div>
-        </div> -->
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="bradcam_text">
-                    <h3 i18n>Transaction</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="container">
+      
+      <!-- <div  class="row d-block d-sm-none" >
+          <div  class="col-xl-12 "  data-aos="fade-up" data-aos-duration="1500"> 
+              <a  style="cursor:pointer; font-size: 10px; float: right;" class="boxed-btn4" (click)="changeLanguage()">{{language}}</a>
+          </div>
+      </div> -->
+      <div class="row">
+          <div class="col-xl-12">
+              <div class="bradcam_text">
+                  <h3 i18n>Transaction</h3>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 <div >
 <br>
 <br>
 <br>
 <div class="section" >
-          <!-- container -->
-          <div class="container">
-            <!-- row -->
-            <div class="row">
-          
-              <div class="col-md-7">
-                <!-- destinataire -->
-                <div class="billing-details">
-                  <div class="section-title">
-                    <h3 class="title" i18n>Your informations</h3>
-                  </div>
-              
+        <!-- container -->
+        <div class="container">
+          <!-- row -->
+          <div class="row">
+        
+            <div class="col-md-7">
+              <!-- destinataire -->
+              <div class="billing-details">
+                <div class="section-title">
+                  <h3 class="title" i18n>Your informations</h3>
                 </div>
-                <!-- /destinataire -->
-          
-             
-                <form>
-                    <div class="row form-group">
-                      <div class="col">
-                        <input type="text" class="form-control" #Inputprenom placeholder="First name">
-                        <div *ngIf="enablePrenom" style="color: red;" i18n>First name required please !</div>
-                      </div>
-                      <div class="col"> 
-                        <input type="text" class="form-control" #Inputnom placeholder="Name">
-                        <div *ngIf="enableNom"  style="color: red;" i18n>Name required please !</div>
-                      </div>
-                    </div>
+            
+              </div>
+              <!-- /destinataire -->
+        
+           
+              <form>
                   <div class="row form-group">
                     <div class="col">
-                      <input type="text" class="form-control" #InputCountry placeholder="Country">
-                      <div  *ngIf="enableCountry"  style="color: red;" i18n>Country required please !</div>
+                      <input type="text" class="form-control" #Inputprenom placeholder="First name">
+                      <div *ngIf="enablePrenom" style="color: red;" i18n>First name required please !</div>
                     </div>
-                    <div class="col">
-                      <input type="text" class="form-control" #InputTown placeholder="City">
-                      <div  *ngIf="enableTown"  style="color: red;" i18n>City required please !</div>
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control" #InputPostal placeholder="code postal">
+                    <div class="col"> 
+                      <input type="text" class="form-control" #Inputnom placeholder="Name">
+                      <div *ngIf="enableNom"  style="color: red;" i18n>Name required please !</div>
                     </div>
                   </div>
-                  <div class="form-group">
-                   
-                    <div class="row">
-                      <div class="col">
-              
-                          <select #Inputselect name="selectId" class="form-control" id="selectId">
-                            <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
-                            <optgroup id="country-optgroup-Africa" label="Africa">
-                                <option value="CM" label="Cameroon"> Cameroon</option>
-                                <option value="CI" label="Côte d’Ivoire">Côte d’Ivoire</option>
-                            </optgroup>
-                            <optgroup id="country-optgroup-Americas" label="Americas">
-                                <option value="CA" label="Canada">Canada</option>
-                                <option value="US">United States</option>
-                            </optgroup>
-                            <optgroup id="country-optgroup-Asia" label="Asia">
-                                <option value="CN" label="China">China</option>
-                            </optgroup>
-                            <optgroup id="country-optgroup-Europe" label="Europe">    
-                                <option value="FR" label="France">France</option>
-                                <option value="GB" label="United Kingdom">United Kingdom</option>
-                            </optgroup>
-                          </select>
-              
-                      </div>
-                      <div class="col">
-                        <input type="tel" id="InputTel" class="form-control inputSize" #InputTel placeholder="Phone">
-                      </div>
-                    </div>
-              
-                    <div  *ngIf="enableTelephone"  style="color: red;" i18n>Phone-- required please !</div>
-                  </div> 
-                  <div class="form-group">
-                      <input type="email" class="form-control" id="exampleInputEmail1" #Inputemail aria-describedby="emailHelp" placeholder="Enter email" required>
-                      <div  *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
-                  </div>    
-                </form>
-
-
-                <!-- destinataire -->
-                <div class="billing-details">
-                  <div class="section-title">
-                    <h3 class="title" i18n>Recipient</h3>
+                <div class="row form-group">
+                  <div class="col">
+                    <input type="text" class="form-control" #InputCountry placeholder="Country">
+                    <div  *ngIf="enableCountry"  style="color: red;" i18n>Country required please !</div>
                   </div>
-              
+                  <div class="col">
+                    <input type="text" class="form-control" #InputTown placeholder="City">
+                    <div  *ngIf="enableTown"  style="color: red;" i18n>City required please !</div>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" #InputPostal placeholder="code postal">
+                  </div>
                 </div>
-                <!-- /destinataire -->
-          
-             
-                <form>
-                    <div class="row form-group">
-                      <div class="col">
-                        <input type="text" class="form-control" #InputprenomDest placeholder="First name">
-                        <div *ngIf="enablePrenomDest" style="color: red;" i18n>First name required please !</div>
-                      </div>
-                      <div class="col"> 
-                        <input type="text" class="form-control" #InputnomDest placeholder="Name">
-                        <div *ngIf="enableNomDest"  style="color: red;" i18n>Name required please !</div>
-                      </div>
-                    </div>
+                <div class="form-group">
                  
-                  <div class="form-group">
-                   
-                    <div class="row">
-                      <div class="col">
-              
-                          <select #InputselectDest name="selectIdDest" class="form-control" id="selectIdDest">
-                            <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
-                            <optgroup id="country-optgroup-Africa" label="Africa">
-                                <option value="CM" label="Cameroon"> Cameroon</option>
-                                <option value="CI" label="Côte d’Ivoire">Côte d’Ivoire</option>
-                            </optgroup>
-                            <optgroup id="country-optgroup-Americas" label="Americas">
-                                <option value="CA" label="Canada">Canada</option>
-                                <option value="US">United States</option>
-                            </optgroup>
-                            <optgroup id="country-optgroup-Asia" label="Asia">
-                                <option value="CN" label="China">China</option>
-                            </optgroup>
-                            <optgroup id="country-optgroup-Europe" label="Europe">    
-                                <option value="FR" label="France">France</option>
-                                <option value="GB" label="United Kingdom">United Kingdom</option>
-                            </optgroup>
-                          </select>
-              
-                      </div>
-                      <div class="col">
-                        <input type="tel" id="InputTelDest" class="form-control inputSize" #InputTelDest placeholder="Phone">
-                      </div>
-                    </div>
-              
-                    <div  *ngIf="enableTelephoneDest"  style="color: red;" i18n>Phone-- required please !</div>
-                  </div>    
-                </form>
-               
-          
-        </div>
-
-              
+                  <div class="row">
+                    <div class="col">
             
-              <!-- Order Details -->
-              <div class="col-md-5 order-details">
-                <div class="section-title text-center">
-                  <h3 class="title" i18n>Your Transaction</h3>
-                </div>
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col" i18n>Description</th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                          <td i18n>To :</td>
-                          <td>{{countryToSend}}</td>
-                      </tr>
-                    <tr>
-                      <td i18n>From :</td>
-                      <td>{{countryToReceive}}</td>
-                    </tr>
-                    <tr>
-                      <td i18n>Amount to send : </td>
-                      <td><strong>{{sendValue}} </strong></td>
-                    </tr>
-                    <tr>
-                      <td i18n>Amount to be received :</td>
-                      <td><strong>{{receiveValue}} </strong></td>
-                    </tr>
-                    <tr>
-                      <td i18n>Transaction fees :</td>
-                      <td><strong>0 $CA</strong></td>
-                    </tr>
-                    <tr>
-                      <td i18n>Receive mode :</td>
-                      <td>Mobile money</td>
-                    </tr>
-                    <tr>
-                      <td i18n>Payment method :</td>
-                      <td i18n>Interact transfer</td>
-                    </tr>
-                    <tr>
-                      <td i18n>Change rate :</td>
-                      <td><strong>{{currentRate}}</strong></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!-- (click)="ajouter(Inputnom,InputnomDest,Inputprenom,InputprenomDest,InputCountry,InputPostal,InputTown,Inputemail,InputTel,InputTelDest)" -->
-                <!-- <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block hoverClass" style="border-color: black; background-color: aqua;">Confirmer</button> -->
-                <div class="row d-flex justify-content-center">
-                  <button class="boxed-btn3-xl d-none d-sm-block" (click)="ajouter(Inputnom,InputnomDest,Inputprenom,InputprenomDest,InputCountry,InputPostal,InputTown,Inputemail,InputTel,InputTelDest,Inputselect,InputselectDest)" type="submit" i18n>Confirm</button>
-                  <button class="boxed-btn3-xs d-block d-sm-none" (click)="ajouter(Inputnom,InputnomDest,Inputprenom,InputprenomDest,InputCountry,InputPostal,InputTown,Inputemail,InputTel,InputTelDest,Inputselect,InputselectDest)" type="submit" i18n>Confirm</button>
-                </div>
-                <br>
-                
-              </div>
-              <!-- /Order Details -->
-            </div>
-            <!-- /row -->
-          </div>
-          <!-- /container -->
-          </div>
-          <br>
-          <br>
-          <br>
+                        <select #Inputselect name="selectId" class="form-control" id="selectId">
+                          <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
+                          <optgroup id="country-optgroup-Africa" label="Africa">
+                              <option value="CM" label="Cameroon"> Cameroon</option>
+                              <option value="CI" label="Côte d’Ivoire">Côte d’Ivoire</option>
+                          </optgroup>
+                          <optgroup id="country-optgroup-Americas" label="Americas">
+                              <option value="CA" label="Canada">Canada</option>
+                              <option value="US">United States</option>
+                          </optgroup>
+                          <optgroup id="country-optgroup-Asia" label="Asia">
+                              <option value="CN" label="China">China</option>
+                          </optgroup>
+                          <optgroup id="country-optgroup-Europe" label="Europe">    
+                              <option value="FR" label="France">France</option>
+                              <option value="GB" label="United Kingdom">United Kingdom</option>
+                          </optgroup>
+                        </select>
+            
+                    </div>
+                    <div class="col">
+                      <input type="tel" id="InputTel" class="form-control inputSize" #InputTel placeholder="Phone">
+                    </div>
+                  </div>
+            
+                  <div  *ngIf="enableTelephone"  style="color: red;" i18n>Phone-- required please !</div>
+                </div> 
+                <div class="form-group">
+                    <input type="email" class="form-control" id="exampleInputEmail1" #Inputemail aria-describedby="emailHelp" placeholder="Enter email" required>
+                    <div  *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
+                </div>    
+              </form>
 
-  </div>
+
+              <!-- destinataire -->
+              <div class="billing-details">
+                <div class="section-title">
+                  <h3 class="title" i18n>Recipient</h3>
+                </div>
+            
+              </div>
+              <!-- /destinataire -->
+        
+           
+              <form>
+                  <div class="row form-group">
+                    <div class="col">
+                      <input type="text" class="form-control" #InputprenomDest placeholder="First name">
+                      <div *ngIf="enablePrenomDest" style="color: red;" i18n>First name required please !</div>
+                    </div>
+                    <div class="col"> 
+                      <input type="text" class="form-control" #InputnomDest placeholder="Name">
+                      <div *ngIf="enableNomDest"  style="color: red;" i18n>Name required please !</div>
+                    </div>
+                  </div>
+               
+                <div class="form-group">
+                 
+                  <div class="row">
+                    <div class="col">
+            
+                        <select #InputselectDest name="selectIdDest" class="form-control" id="selectIdDest">
+                          <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
+                          <optgroup id="country-optgroup-Africa" label="Africa">
+                              <option value="CM" label="Cameroon"> Cameroon</option>
+                              <option value="CI" label="Côte d’Ivoire">Côte d’Ivoire</option>
+                          </optgroup>
+                          <optgroup id="country-optgroup-Americas" label="Americas">
+                              <option value="CA" label="Canada">Canada</option>
+                              <option value="US">United States</option>
+                          </optgroup>
+                          <optgroup id="country-optgroup-Asia" label="Asia">
+                              <option value="CN" label="China">China</option>
+                          </optgroup>
+                          <optgroup id="country-optgroup-Europe" label="Europe">    
+                              <option value="FR" label="France">France</option>
+                              <option value="GB" label="United Kingdom">United Kingdom</option>
+                          </optgroup>
+                        </select>
+            
+                    </div>
+                    <div class="col">
+                      <input type="tel" id="InputTelDest" class="form-control inputSize" #InputTelDest placeholder="Phone">
+                    </div>
+                  </div>
+            
+                  <div  *ngIf="enableTelephoneDest"  style="color: red;" i18n>Phone-- required please !</div>
+                </div>    
+              </form>
+             
+        
+      </div>
+
+            
+          
+            <!-- Order Details -->
+            <div class="col-md-5 order-details">
+              <div class="section-title text-center">
+                <h3 class="title" i18n>Your Transaction</h3>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" i18n>Description</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                        <td i18n>To :</td>
+                        <td>{{countryToSend}}</td>
+                    </tr>
+                  <tr>
+                    <td i18n>From :</td>
+                    <td>{{countryToReceive}}</td>
+                  </tr>
+                  <tr>
+                    <td i18n>Amount to send : </td>
+                    <td><strong>{{sendValue}} </strong></td>
+                  </tr>
+                  <tr>
+                    <td i18n>Amount to be received :</td>
+                    <td><strong>{{receiveValue}} </strong></td>
+                  </tr>
+                  <tr>
+                    <td i18n>Transaction fees :</td>
+                    <td><strong>0 $CA</strong></td>
+                  </tr>
+                  <tr>
+                    <td i18n>Receive mode :</td>
+                    <td>Mobile money</td>
+                  </tr>
+                  <tr>
+                    <td i18n>Payment method :</td>
+                    <td i18n>Interact transfer</td>
+                  </tr>
+                  <tr>
+                    <td i18n>Change rate :</td>
+                    <td><strong>{{currentRate}}</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- (click)="ajouter(Inputnom,InputnomDest,Inputprenom,InputprenomDest,InputCountry,InputPostal,InputTown,Inputemail,InputTel,InputTelDest)" -->
+              <!-- <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block hoverClass" style="border-color: black; background-color: aqua;">Confirmer</button> -->
+              <div class="row d-flex justify-content-center">
+                <button class="boxed-btn3-xl d-none d-sm-block" (click)="ajouter(Inputnom,InputnomDest,Inputprenom,InputprenomDest,InputCountry,InputPostal,InputTown,Inputemail,InputTel,InputTelDest,Inputselect,InputselectDest)" type="submit" i18n>Confirm</button>
+                <button class="boxed-btn3-xs d-block d-sm-none" (click)="ajouter(Inputnom,InputnomDest,Inputprenom,InputprenomDest,InputCountry,InputPostal,InputTown,Inputemail,InputTel,InputTelDest,Inputselect,InputselectDest)" type="submit" i18n>Confirm</button>
+              </div>
+              <br>
+              
+            </div>
+            <!-- /Order Details -->
+          </div>
+          <!-- /row -->
+        </div>
+        <!-- /container -->
+        </div>
+        <br>
+        <br>
+        <br>
+
+</div>
 
 
 

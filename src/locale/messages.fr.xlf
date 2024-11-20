@@ -962,7 +962,7 @@
       </trans-unit>
       <trans-unit id="1569885b97d7dc7d45168e283f1499f6f066ca9a" datatype="html">
         <source>AMOUNT TO SEND</source>
-        <target>MONTANT À ENVOYER</target>
+        <target>ENVOYER</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
           <context context-type="linenumber">178</context>
@@ -970,7 +970,7 @@
       </trans-unit>
       <trans-unit id="07afbfe10f549b629ebbb4cc1675a479bb71f66b" datatype="html">
         <source>AMOUNT TO BE RECEIVED</source>
-        <target>MONTANT À RECEVOIR</target>
+        <target>RECEVOIR</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
           <context context-type="linenumber">199</context>
@@ -1965,7 +1965,25 @@
         <target>Vos informations</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/transaction-with-no-account/transaction-with-no-account.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="88b455077249f2fc82db8f0ff7fa37fac91b4df7" datatype="html">
+        <source>Do you want to contact us ?</source>
+        <target>Voulez vous nous contacter ?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/whasap-appointment/whasap-appointment.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="68826c852d63095450811953b1781e019347ad5d" datatype="html">
+        <source>You will be redirect to another application !</source>
+        <target>Vous serez redirige a une autre application !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/whasap-appointment/whasap-appointment.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
     </body>

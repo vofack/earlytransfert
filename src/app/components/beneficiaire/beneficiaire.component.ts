@@ -468,6 +468,7 @@ export class BeneficiaireComponent implements OnInit {
       this.transaction();
       }, err => {
         console.log('Error while fetching pay');
+        console.log(err);
         this.unsuscribe();
     });
  }
@@ -574,12 +575,12 @@ export class BeneficiaireComponent implements OnInit {
       currency = 'XAF';
     }
     
-    this.getCurrencySuscribtions = this .service.getCurrency(currency).subscribe(data => {
+    this.getCurrencySuscribtions = this .service.getCurrency(currency).subscribe(currency => {
 
         this.available = true;
-        this.rate = data.rates['XAF'].toFixed(2);
+        this.rate = currency.rates['XAF'].toFixed(2);
         if(this.showCmrCanada){
-          this.rate = data.rates['CAD'].toFixed(3);
+          this.rate = currency.rates['CAD'].toFixed(3);
         }
         
     }, 

@@ -71,6 +71,11 @@
                                   <div style="padding: 11px 29px 13px 29px;" class="d-none d-lg-block "data-aos="fade-up" data-aos-duration="1500">
                                       <a class="boxed-btn4 submitZoom" (click)="changeLanguage()">{{language}}</a>
                                   </div>
+
+                                  <div  class="col-lg-7 col-md-6 phone_num d-block d-sm-none top" data-aos="fade-up" data-aos-duration="1500" 
+                                  style="cursor:pointer; font-size: 24px; padding-left: {{paddinLeftSizeForBackArrow}}px; padding-top: 25px;"  >
+                                      <a> <i class="glyphicon glyphicon-arrow-left    text-danger" (click)="Home()"></i></a>
+                                  </div>
                                    
                                    <div style="padding: 11px 29px 13px 29px;" *ngIf="showConnexion" class="d-none d-lg-block "data-aos="fade-up" data-aos-duration="1500">
                                      <a class="boxed-btn4 submitZoom" (click)="openModalCreerCompte(template1)" i18n>Create account</a>

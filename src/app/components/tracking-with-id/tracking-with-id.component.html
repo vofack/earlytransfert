@@ -10,9 +10,9 @@
     </div>
 </div>
 <div >
+      <!-- <br>
       <br>
-      <br>
-      <br>
+      <br> -->
       <div class="section" >
           <!-- container -->
           <div class="container">
@@ -22,12 +22,22 @@
 
                 
                     <div class="card bg-transparent" style="border: none;">
-                        <ul class="progress_bar">
+                        <!-- <ul class="progress_bar">
                             <li id="firstPoint" i18n>Pending payment</li>
                             <li id="secondPoint" i18n>payment receive</li>
                             <li id="thirdPoint" i18n>Deposit complete</li>
                             <li id="fourthPoint" i18n>Transaction complete</li> 
-                        </ul>
+                        </ul> -->
+                        <div class="row d-flex justify-content-center">
+                          <div class="col-12">
+                              <ul id="progressbar" class="text-center">
+                                  <li class="{{pendingActive}} step0" i18n>Pending payment</li>
+                                  <li class="{{paymentActive}} step0" i18n>payment receive</li>
+                                  <li class="{{depositActive}} step0" i18n>Deposit complete</li>
+                                  <li class="{{transactionActive}} step0" i18n>Transaction complete</li>
+                              </ul>
+                          </div>
+                        </div>
                         <br>
                         <br>
                         <br>

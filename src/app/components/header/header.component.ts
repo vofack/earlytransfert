@@ -94,6 +94,7 @@ export class HeaderComponent implements OnInit {
   ];
   language = localStorage.getItem('language');
   indicatifPays = '0';
+  paddinLeftSizeForBackArrow = 0;
 
   constructor(private loadingBar: LoadingBarService,  private modalService:BsModalService,
               private  spinner: NgxSpinnerService, private toastr: ToastrService,
@@ -103,7 +104,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.unsuscribe();
-    
+    this.paddinLeftSizeForBackArrow = Number(window.innerWidth) - 50;
     if(localStorage.getItem('user') !== null) {
       this.showConnexion = false;
       this.showUser = true;

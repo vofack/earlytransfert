@@ -1,0 +1,29 @@
+<a (click)="handleClickEvent($event)"  style="color: #d6333b;">
+    <span class="glyphicon glyphicon-trash"></span> 
+</a>
+
+<!-- logOut -->
+<ng-template #templateDelete>
+
+    <div class="modal-header" style="background-color: #FFD700;">
+  
+      <h4 class="modal-title pull-left d-block d-sm-none" style="font-size: 10px !important;" i18n>Delete</h4>
+      <h4 class="modal-title pull-left d-none d-sm-block" i18n>Delete</h4>
+      <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  
+    </div>
+  
+    <div class="modal-body">
+       <p i18n>Do you really want to Delete <strong>{{itemToDelete}}</strong> ?</p>
+    </div>
+  
+    <div class="modal-footer">
+  
+        <a class="boxed-btn4-xs pull-left h-15" (click)="deleteTransaction()" i18n>Yes</a>
+        <a class="boxed-btn4-red-xs pull-rigth h-15" (click)="modalRef.hide()" i18n>No</a>
+    </div>
+  
+  </ng-template>
+  <!-- / delete  -->

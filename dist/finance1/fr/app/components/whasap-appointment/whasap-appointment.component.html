@@ -1,0 +1,35 @@
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<a class="gotopbtn  wow fadeInDown" data-wow-duration="1.2s" data-wow-delay=".2s"  data-aos="zoom-in" style="background-color: #FFD700;cursor:pointer;" (click)="openModal(templateWhasap)"> 
+    <i class="fa fa-whatsapp" style="font-size:36px"></i>
+</a>
+
+
+<!-- templateWhasap -->
+<ng-template #templateWhasap>
+
+    <div class="modal-header" style="background-color: #FFD700;">
+   
+      <h4 class="modal-title pull-left d-block d-sm-none" style="font-size: 10px !important;" i18n>Contact us</h4>
+      <h4 class="modal-title pull-left d-none d-sm-block" data-wow-duration="1.2s" data-wow-delay=".5s" data-aos="fade-right" data-aos-offset="500"
+      data-aos-duration="1500">Contact us</h4>
+      <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+   
+    </div>
+   
+    <div class="modal-body">
+       <p i18n>Do you want to contact us ?</p>
+        <p i18n>You will be redirect to another application !</p>
+    </div>
+   
+    <div class="modal-footer">
+   
+        <a class="boxed-btn4-xs submitZoom pull-left h-15" (click)="openWhasap()" i18n>Yes</a>
+        <a class="boxed-btn4-red-xs submitZoom pull-rigth h-15" (click)="modalRef.hide()" i18n>No</a>
+    </div>
+   
+   </ng-template>
+   <!-- / templateWhasap  -->

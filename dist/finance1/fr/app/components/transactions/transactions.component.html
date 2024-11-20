@@ -1,0 +1,143 @@
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_2">
+    <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3 i18n>Transaction History</h3>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+<div class="container">
+         
+        <form class="form-inline justify-content-center">
+                <input class="form-control mr-sm-2" style="width: 300px;" type="search" placeholder="Search" (keyup)=getVal($event)  aria-label="Search">                 
+        </form>  
+        <br>
+        <div>
+            <a class="boxed-btn4-xs bg-success text-light"  (click)="exportAsExcelFile()">
+                <span class="glyphicon glyphicon-download-alt"></span> 
+            </a>
+        </div>         
+</div>
+
+<div *ngIf="showXl" class="container  justify-content-center">
+            <ag-grid-angular
+            style="width: 100%; height: 500px;padding-top: 10px;"
+            class="ag-theme-balham custom-class"
+            [columnDefs]="columnDefs"
+            [animateRows]="true"
+            [pagination]="true"    
+            [frameworkComponents]="frameworkComponents"
+            (selectionChanged)="onSelectionChanged($event)"
+            (gridReady)="onGridReady($event)"
+            [overlayLoadingTemplate]="loadingTemplate"
+            [overlayNoRowsTemplate]="noRowsTemplate"
+            >
+            </ag-grid-angular>    
+</div>
+    
+<div *ngIf="showXs" class="container  justify-content-center">
+            <ag-grid-angular
+            style="width: 100%; height: 350px;padding-top: 10px;"
+            class="ag-theme-balham custom-class"
+            [columnDefs]="columnDefsXs"
+            [animateRows]="true"
+            [pagination]="true" 
+            [frameworkComponents]="frameworkComponents"
+            (selectionChanged)="onSelectionChanged($event)"
+            (gridReady)="onGridReady($event)"
+            [overlayLoadingTemplate]="loadingTemplate"
+            [overlayNoRowsTemplate]="noRowsTemplate"
+            >
+            </ag-grid-angular>  
+</div>
+          
+</div>
+ <!-- Ajouter beneficiare -->
+<ng-template #template1>
+    
+        <div class="modal-header" style="background-color: #FFD700;">   
+          <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>Edit</h4>
+          <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      
+        <div class="modal-body">
+          <form>
+            <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Identification</label></div>
+            <div class="row form-group">
+              <div class="col">
+                <input type="text" class="form-control" #Inputprenom placeholder="First name">
+                <div *ngIf="enablePrenom" style="color: red;" i18n>First name required please !</div>
+              </div>
+              <div class="col"> 
+                <input type="text" class="form-control" #Inputnom placeholder="Name">
+                <div *ngIf="enableNom"  style="color: red;" i18n>Name required please !</div>
+              </div>
+            </div>
+          <div class="row form-group">
+            <div class="col">
+              <input type="text" class="form-control" #InputCountry placeholder="Country">
+              <div  *ngIf="enableCountry"  style="color: red;" i18n>Country required please !</div>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" #InputTown placeholder="City">
+              <div  *ngIf="enableTown"  style="color: red;" i18n>City required please !</div>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" #InputProvince placeholder="Province">
+            </div>
+          </div>
+          <div class="form-group">
+            <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Phone</label></div>
+            <form #f="ngForm" [formGroup]="phoneForm">
+              <!-- <div class="wrapper">
+                <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                  [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                  [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                  [selectedCountryISO]="CountryISO.Canada" [maxLength]="15"
+                  [phoneValidation]="true" [separateDialCode]="true" (ngModelChange)="onChange($event)"
+                  [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
+                </ngx-intl-tel-input>
+              </div> -->
+              <!-- <div class="wrapper">
+                <button (click)="f.reset()">Reset</button>
+              </div> -->
+            </form>
+            <div  *ngIf="enableTelephone"  style="color: red;" i18n>Phone-- required please !</div>
+          </div> 
+          <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputEmail1" i18n>Email address</label></div>
+              <input type="email" class="form-control" id="exampleInputEmail1" #Inputemail aria-describedby="emailHelp" placeholder="Enter email" required>
+              <div  *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
+          </div>    
+          </form>
+        </div>
+      
+        <div class="modal-footer">
+        <button type="submit" class="boxed-btn4-xs h-15"  (click)="ajouter(Inputnom,Inputprenom,InputCountry,InputProvince,InputTown,Inputemail)" i18n>Create</button>
+        <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()" i18n>Close</button>
+        
+        </div>
+      
+</ng-template>
+<!-- / Ajouter beneficiare  -->
+
+
+
+

@@ -2719,6 +2719,20 @@
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="88b455077249f2fc82db8f0ff7fa37fac91b4df7" datatype="html">
+        <source>Do you want to contact us ?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/whasap-appointment/whasap-appointment.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68826c852d63095450811953b1781e019347ad5d" datatype="html">
+        <source>You will be redirect to another application !</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/whasap-appointment/whasap-appointment.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

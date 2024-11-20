@@ -1,0 +1,1992 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="fr">
+    <body>
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+        <source>Logout</source>
+        <target>Déconnexion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="563e411447f3b408b789ab5a867f39ce4dbfe4d1" datatype="html">
+        <source>
+       <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Are you around ?<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
+       
+       Apps will reload in <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{reloadCounter}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> seconde(s) . Click <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>yes <x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>  to continue
+    </source>
+    <target>
+           <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Toujours disponible ?<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
+       L'application va se déconnecter dans <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{reloadCounter}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> seconde(s) . Click <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>oui <x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>  pour continuer
+
+    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4f20f2d5a6882190892e58b85f6ccbedfa737952" datatype="html">
+        <source>Yes</source>
+        <target>Oui</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3d3ae7deebc5949b0c1c78b9847886a94321d9fd" datatype="html">
+        <source>No</source>
+        <target>Non</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c" datatype="html">
+        <source>Home</source>
+        <target>Acceuil</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0118a8dfb8fc5554cc29a1a7f678a5c46d943a94" datatype="html">
+        <source>My infos</source>
+        <target>Infos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3f53a6f6a56819b145655527b57f3cb617abfdf5" datatype="html">
+        <source> Beneficiary</source>
+        <target>Bénéficiaire</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8da6c27c77bf61e748a0d75981ae76aee6b87e29" datatype="html">
+        <source>Managetransactions</source>
+        <target>Managetransactions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="add4cd82e3e38a3110fe67b3c7df56e9602644ee" datatype="html">
+        <source>Transactions</source>
+        <target>Transactions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="004b222ff9ef9dd4771b777950ca1d0e4cd4348a" datatype="html">
+        <source>About</source>
+        <target>A Propos</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c5ef90c9396652ee85993ace8f122f0094e1c5da" datatype="html">
+        <source>Infos<x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/></source>
+        <target>Infos<x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d5fc2dc49721902505226d02f602f8435f3859ba" datatype="html">
+        <source>Faq</source>
+        <target>Faq</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="34746fb1c7f3d2194d99652bdff89e6e14c9c4f4" datatype="html">
+        <source>Contact</source>
+        <target>Contact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4b6dbf2d92858e82bcf6ae5dbc8dfb4b29d82ad0" datatype="html">
+        <source>FAQ</source>
+         <target>FAQ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="79fab0cfec1f5f5d8e52476a2fe3cb69da0f4335" datatype="html">
+        <source>Create account</source>
+        <target>Créer un compte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="55a57e6165759f4c48fd86a29d674304066044e9" datatype="html">
+        <source>Connexion</source>
+        <target>Connexion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="847171f94c5e932a67df0c3b4d57e4e10d844b52" datatype="html">
+        <source>About Us</source>
+         <target>A propos de nous</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e666cc137164db2105f51d28d5f4e15d5d73dc0f" datatype="html">
+        <source>We provide money transfert from america to africa</source>
+        <target>Nous assurons le transfert d'argent de l'Amérique vers l'Afrique</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3ed4c7b8f8d620a338979b1365457a18c195fbf6" datatype="html">
+        <source>Transfer Money easily in a Secure Way.</source>
+        <target>Transférez facilement de l'argent de manière sécurisée.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7a2dd2d7a46e5100b994c0902834565cdc289bc4" datatype="html">
+        <source>Customer service : We&apos;re here to help that&apos;s why our service is available 24/7.</source>
+        <target>Nous sommes là pour vous aider, c'est pourquoi notre service est disponible 24h/24 et 7j/7.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4315f5ca78fa6c6c69ed1c439fc1393eb5420cda" datatype="html">
+        <source>Rapid : Your money arrives in minutes.</source>
+        <target>Rapide : Votre argent arrive en quelques minutes.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="19e36fd77a00d3709e16c6939d3c589838046928" datatype="html">
+        <source>Secured : You can send money directly to a mobile wallet</source>
+        <target>Sécurisé : Vous pouvez envoyer de l'argent directement sur un portefeuille mobile</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="95848c2363d0d4e081f71d1da2349fda9d027286" datatype="html">
+        <source>Up to date : Use our system to track the status of your transfer.</source>
+        <target>À jour : Utilisez notre système pour suivre l'état de votre transfert.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c2d0ac9f528bbd5f53fd34269fde8b59e029621b" datatype="html">
+        <source>Apply</source>
+        <target>Appliquer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a29df34a07fe45f98fd90d449c5f219d6a5fc419" datatype="html">
+        <source>How it Works</source>
+        <target>Comment ça marche</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5c2aa44db17fc78b1f422b809297a711636ffe62" datatype="html">
+        <source>We provide online instant cash loans with quick approval that suit your term</source>
+        <target>Nous fournissons des prêts de trésorerie instantanés en ligne avec une approbation rapide qui convient à votre terme</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4ab6f8f9ea5181f4dbb224c5269f2508bd7425f8" datatype="html">
+        <source>Make your transaction</source>
+        <target>Faites votre transaction</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4365acfd7e6da8ecd8ccc61598d366b27cece88c" datatype="html">
+        <source>Enter The Amount In The Receiver’s Or Beneficiary’s Currency.
+                            Enter The Sender And Receiver’s Information.
+                            Choose A Method Of Delivery.
+                            Submit The Form.
+                        </source>
+        <target>Entrez le montant dans la devise du destinataire ou du bénéficiaire.
+                             Entrez les informations de l'expéditeur et du destinataire.
+                             Choisissez une méthode de livraison.
+                             Soumettez le formulaire.
+                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3f2e7d0104571f49140696fe5087c6a841e2d752" datatype="html">
+        <source>Pay the amount to send</source>
+        <target>Payez le montant à envoyer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="818c148fd180a695d529b8baf44d134662f949b9" datatype="html">
+        <source>Via Interac E-Transfer.
+                            We&apos;re Integrated With All Canadian Banks For Free Interac E-Transfer.</source>
+        <target>A travers le transfert interac.
+                           Nous sommes intégrés à toutes les banques canadiennes pour un virement électronique Interac gratuit.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fdf68d98b1f96cd4bf42b6473cec186b390f9ceb" datatype="html">
+        <source>Receive the money</source>
+        <target>Recevez l'argent</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4748af21cd08bb646442d8265edab7ad49d19bb0" datatype="html">
+        <source>Track Your Transaction Using The Code Provided.
+                            Both You And Your Recipient Can Be Notified Of Funds Transfer.</source>
+        <target>Suivez votre transaction à l'aide du code fourni.
+                             Vous et votre destinataire pouvez être informés du transfert de fonds.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e0892bd4177b9bef2f1a4de9b4feb01eb3253453" datatype="html">
+        <source>Frequently ask</source>
+        <target>Demander fréquemment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cb8eb8cb4db7aaec2e9ef552861322eaebca5b68" datatype="html">
+        <source>
+                                        What are acceptable ID documents for picking up money?
+                                    </source>
+        <target>
+                                        Quels sont les documents d'identité acceptables pour retirer de l'argent ?
+                                    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bd57c3f97ddb418e4efefc0540b6f691b53ef573" datatype="html">
+        <source>
+                                    In general passports and national IDs are acceptable.
+                                  </source>
+         <target>
+                                    En général, les passeports et les cartes d'identité nationales sont acceptables.
+                                  </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="25a72b54dcc2120c97c5fe4b7291b721f8266fb9" datatype="html">
+        <source>
+                                                How do I find out if my money has been sent?
+                                            </source>
+        <target>
+                                                Comment savoir si mon argent a été envoyé ?
+                                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1c6ebe4700e42cad67194d41dfa9c713d88a65c2" datatype="html">
+        <source>Any time after sending, you will receive a link that allows you to check the status of your transaction.
+                                        </source>
+         <target>À tout moment après l'envoi, vous recevrez un lien vous permettant de vérifier l'état de votre transaction.
+                                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bcf03bce0bfaf5a4e27f497cba5ff4e6cf64b68a" datatype="html">
+        <source>
+                                                What rate do you use?
+                                            </source>
+        <target>
+                                                Quel tarif utilisez-vous ?
+                                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e4c85ab7c1fa71acba4534a559b08502162fc4af" datatype="html">
+        <source>We use the midmarket rates
+                                        </source>
+        <target>Nous utilisons les tarifs moyens du marché
+                                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c8de7229038b1e51d87ce6805b754b206340fcd5" datatype="html">
+        <source>
+                                                Is there any hidden fees?
+                                            </source>
+        <target>
+                                                Y a-t-il des frais cachés ?
+                                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5f5ef9a5fa133de4d220bbe5ac82b99b1566ed6d" datatype="html">
+        <source>No, we&apos;re here to help the community and we do not plan to charge our customers.
+                                        </source>
+        <target>Non, nous sommes là pour aider la communauté et nous ne prévoyons pas de facturer nos clients.
+                                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bd35e13aba731004745bcd5fadb24637231d21fb" datatype="html">
+        <source>
+                                                Which banks do you cover?
+                                            </source>
+        <target>
+                                                Quelles banques couvrez-vous ?
+                                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92c4395d092d0df6fcdc260b476ccd82aac6ce55" datatype="html">
+        <source>We deposit money at all the major Cameroon banks.
+                                        </source>
+        <target>Nous déposons de l'argent dans toutes les grandes banques camerounaises.
+                                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">169</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7efcf9dd0e7870cbb2f800323c990bbe7f734cc1" datatype="html">
+        <source>&quot;Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.</source>
+        <target>&quot;En collaboration avec des agences d'aide humanitaire, nous avons soutenu des programmes visant à soulager la souffrance humaine grâce au bien-être animal lorsque les gens pourraient dépendre du bétail comme seule source de revenus ou de nourriture.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">215</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">233</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d4f58c58dc70991029d03f32a6e6ce0c9c53c2e4" datatype="html">
+        <source>- Micky Mouse</source>
+        <target>- Micky Mouse</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">198</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">216</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">234</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f741e5ab610abe1fbb23e18113dfae5124f23ebd" datatype="html">
+        <source>Create your account and, 
+                            make a transaction</source>
+        <target>Créez votre compte et,
+                             faire une transaction</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">278</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="70a67e04629f6d412db0a12d51820b480788d795" datatype="html">
+        <source>Create</source>
+        <target>Créez</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">284</context>
+        </context-group>
+      </trans-unit>
+
+
+       <trans-unit id="1f9f20d8dacd761785a375aef9b0340964b406d5" datatype="html">
+        <source>Web design </source>
+        <target>création de sites web </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9e4095fc6e1a6c407af2e294f24d4fce9cf23789" datatype="html">
+        <source>Ecommerce</source>
+        <target>Ecommerce</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f8e3f85a165eafd77f4836b00018e5b11ee04fef" datatype="html">
+        <source>Tranning</source>
+        <target>Formation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="495725304f91f08a6362564dc9a7339893c13419" datatype="html">
+        <source>Loan</source>
+        <target>Location</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a1314558398460047c95317f302170e0f4d4a2e5" datatype="html">
+        <source>
+                                Useful Links
+                            </source>
+        <target>
+                                Liens utiles
+                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b0dd6f455dee8ff93263f247ed6f5808da23fbab" datatype="html">
+        <source> Contact</source>
+        <target> Contact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b05a2640d7a8e9ee2dacca21b6ab19a784084368" datatype="html">
+        <source> FAQ</source>
+        <target> FAQ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a7f3b206bc044193864f2d9d1ad7b84b8a2841ca" datatype="html">
+        <source>
+                                Subscribe
+                            </source>
+        <target>
+                                Souscrire
+                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d0336848b0c375a1c25ba369b3481ee383217a4f" datatype="html">
+        <source>Subscribe</source>
+        <target>Souscrire</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+
+
+
+      <trans-unit id="399e01133dcead357dac1730c554cb32e1d673a0" datatype="html">
+        <source>Enter The Amount In The Receiver’s Or Beneficiary’s Currency.
+                        Enter The Sender And Receiver’s Information.
+                        Choose A Method Of Delivery.
+                        Submit The Form.
+                    </source>
+        <target>Entrez le montant dans la devise du destinataire ou du bénéficiaire.
+                             Entrez les informations de l'expéditeur et du destinataire.
+                             Choisissez une méthode de livraison.
+                             Soumettez le formulaire.
+                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9fa31ecc876e6bf646e9578f109a40abd7c05b42" datatype="html">
+        <source>Via Interac E-Transfer.
+                        We&apos;re Integrated With All Canadian Banks For Free Interac E-Transfer.</source>
+        <target>A travers le transfert interac.
+                           Nous sommes intégrés à toutes les banques canadiennes pour un virement électronique Interac gratuit.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4c10867f1ea653af78e1249d54dbf97e7930e0ae" datatype="html">
+        <source>Track Your Transaction Using The Code Provided.
+                        Both You And Your Recipient Can Be Notified Of Funds Transfer.</source>
+        <target>Suivez votre transaction à l'aide du code fourni.
+                             Vous et votre destinataire pouvez être informés du transfert de fonds.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17e0731051402e49e0466abc36806d40c849a9a8" datatype="html">
+        <source>
+                                    What are acceptable ID documents for picking up money?
+                                </source>
+        <target>
+                                        Quels sont les documents d'identité acceptables pour retirer de l'argent ?
+                                    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4db0d6d1361dc150ea3126849627ea51ac9a1f31" datatype="html">
+        <source>
+                                In general passports and national IDs are acceptable.
+                              </source>
+        <target>
+                                    En général, les passeports et les cartes d'identité nationales sont acceptables.
+                                  </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5a48e5779d9f24803e2b8faf32881043354d5a25" datatype="html">
+        <source>
+                                            How do I find out if my money has been sent?
+                                        </source>
+        <target>
+                                                Comment savoir si mon argent a été envoyé ?
+                                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5eb2547dc60cc9c9b0e78314671ed81d845d68a5" datatype="html">
+        <source>Any time after sending, you will receive a link that allows you to check the status of your transaction.
+                                    </source>
+        <target>À tout moment après l'envoi, vous recevrez un lien vous permettant de vérifier l'état de votre transaction.
+                                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">144</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="28fe12403122e939c525599679d927d1a3dd7e8d" datatype="html">
+        <source>
+                                            What rate do you use?
+                                        </source>
+        <target>
+                                                Quel tarif utilisez-vous ?
+                                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4e563f264833f8d7121e7c1fa8bcc2a188d725c2" datatype="html">
+        <source>We use the midmarket rates
+                                    </source>
+        <target>Nous utilisons les tarifs moyens du marché
+                                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c1130fa80846432f600adf23d214a9a98c6bffae" datatype="html">
+        <source>
+                                            Is there any hidden fees?
+                                        </source>
+        <target>
+                                                Y a-t-il des frais cachés ?
+                                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">164</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="70806a5898ca7ca4f9393030fd4e0839a7b41e37" datatype="html">
+        <source>No, we&apos;re here to help the community and we do not plan to charge our customers.
+                                    </source>
+        <target>Non, nous sommes là pour aider la communauté et nous ne prévoyons pas de facturer nos clients.
+                                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">170</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="722861e20ae7e2c9fc6214ffab07f8d8260f7997" datatype="html">
+        <source>
+                                            Which banks do you cover?
+                                        </source>
+        <target>
+                                                Quelles banques couvrez-vous ?
+                                            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">177</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1c917f5a6b98b4b8e03ff4ffe4312e71278c062b" datatype="html">
+        <source>We deposit money at all the major Cameroon banks.
+                                    </source>
+        <target>Nous déposons de l'argent dans toutes les grandes banques camerounaises.
+                                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">183</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8b418cf08e806d691bc22c96fdf1e7cf86945bbf" datatype="html">
+        <source>Create your account and, 
+                        make a transaction</source>
+        <target>Créez votre compte et,
+                             faire une transaction</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/faq/faq.component.html</context>
+          <context context-type="linenumber">293</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="6e8d3b518ff70956197265ede2b55f99b201ab76" datatype="html">
+        <source>Contact us</source>
+        <target>Contactez-nous</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="33f46beae629773ad255e544725fff33320bd732" datatype="html">
+        <source>Get in Touch</source>
+        <target>Entrer en contact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c7ae6b1d7e824bd02fdbf233a7d4de02d912c267" datatype="html">
+        <source>Please leave us a message !</source>
+        <target>Merci de nous laisser un message !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="14463dc47ed73a8d0b9fb25c8cbe48c17f8c79ab" datatype="html">
+        <source>Name required !</source>
+        <target>Nom requis !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="80a45941e73a01355a8cdbb706942a97eb22a89b" datatype="html">
+        <source>Email required !</source>
+        <target>Email requis !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="411e14bea1395c9e8c0bf9117a505dab14346b97" datatype="html">
+        <source>Please enter a valid email address.</source>
+        <target>Une adresse email valide, s'il vous plaît</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="918751ae91d9ac80aa4e18ec078bb8b675b5ad2c" datatype="html">
+        <source>Subject required !</source>
+        <target>Sujet requis !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73781b6453d10fa938407405d6ce6c5a16312707" datatype="html">
+        <source>Must consist of at least 4 characters</source>
+        <target>Doit être composé d'au moins 4 caractères</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7d175f1b7310aecce08c1141c9ba8588b8642a99" datatype="html">
+        <source>Send Message</source>
+        <target>Envoyer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7d5d6a241316e7b791393974f659237a737088b7" datatype="html">
+        <source>Mon to Fri 9am to 6pm</source>
+        <target>Du lundi au vendredi de 9h à 18h</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="180cbbc855314cc56905b57ad77d981d70ff5c52" datatype="html">
+        <source>Send us your query anytime!</source>
+        <target>Envoyez-nous votre demande à tout moment!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/contact/contact.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+
+
+
+
+      <trans-unit id="bf5f623b9a6a69d296ac32f7233db949c39c6a22" datatype="html">
+        <source>Beneficiaries</source>
+        <target>Bénéficiaires</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f6755cff4957d5c3c89bafce5651f1b6fa2b1fd9" datatype="html">
+        <source>Add</source>
+        <target>Ajouter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2fd8db76f566a3b06a4ef0ae25ec1373d6006b05" datatype="html">
+        <source>Identification</source>
+        <target>Identification</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="314fde756c08faaa940c5c2f370f3a09305d4bc4" datatype="html">
+        <source>First name required please !</source>
+        <target>Prénom requis s'il vous plait!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="47773f368b4b60b6225bfc9fd7d90d7bfb48d126" datatype="html">
+        <source>Name required please !</source>
+        <target>Nom requis s'il vous plait!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="abfa4c0ddfecd12820240d57d4d25cecf2693beb" datatype="html">
+        <source>Country required please !</source>
+        <target>Pays requis s'il vous plait!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eefd68aa3d28e6569c0887509b6f779d3c35d869" datatype="html">
+        <source>City required please !</source>
+        <target>Ville requise s'il vous plait!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6934d8edd276d59e050006fe91b695ebad0218f8" datatype="html">
+        <source>Phone</source>
+        <target>TelePhone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ce560302906908e70dd55c5b6aba40967447b24b" datatype="html">
+        <source>phone-- required please !</source>
+        <target>telePhone-- requis s'il vous plait!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="69b6ac577a19acc39fc0c22342092f327fff2529" datatype="html">
+        <source>Email address</source>
+        <target>Adresse e-mail</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="21a97e66e6c9a24969accc7aee8fc56e25f6b345" datatype="html">
+        <source>Email required please !</source>
+        <target>Email requis s'il vous plait !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source>
+        <target>Fermer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b59ea65c89a5ae15b787d8318fdad9edd6fec243" datatype="html">
+        <source>Transaction</source>
+        <target>Transaction</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">153</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71ab27ae1b93e4e347ee8cb5140bda4b50edcfc1" datatype="html">
+        <source>recipient</source>
+        <target>Destinataire</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">165</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="da96443ee7190c989c6afb3bb844adea7156afe9" datatype="html">
+        <source>You have to pay: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>$0<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> for fees</source>
+        <target>Vous avez: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>$0<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> comme frais</target>
+       
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="372a94ea2c8fe11a392df6a89b011c33b6df9a7d" datatype="html">
+        <source>Amount need to be from 5$ to 999$ !</source>
+        <target>Il doit être compris entre 5$ et 999$ !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">168</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">169</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cddb6ca2639e3691f767bce476df274510090e76" datatype="html">
+        <source>RATE : 1 <x id="INTERPOLATION" equiv-text="{{currencyToSend}}"/> = </source>
+        <target>TAUX : 1 <x id="INTERPOLATION" equiv-text="{{currencyToSend}}"/> = </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">171</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1569885b97d7dc7d45168e283f1499f6f066ca9a" datatype="html">
+        <source>AMOUNT TO SEND</source>
+        <target>ENVOYER</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">178</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="07afbfe10f549b629ebbb4cc1675a479bb71f66b" datatype="html">
+        <source>AMOUNT TO BE RECEIVED</source>
+        <target>RECEVOIR</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">199</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ac10a3d9b59575640797c1a8e6aea642cf5d5e77" datatype="html">
+        <source>Continue</source>
+        <target>Continuer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/beneficiaire/beneficiaire.component.html</context>
+          <context context-type="linenumber">218</context>
+        </context-group>
+      </trans-unit>
+
+
+
+
+      <trans-unit id="b60d84373a9cdde9556f5f37db6542728898ca0f" datatype="html">
+        <source>Your Transaction</source>
+        <target>Votre Transaction</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
+        <source>Description</source>
+        <target>Description</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0cf97c45db7af06574e0218cc40a94e7704f40aa" datatype="html">
+        <source>To :</source>
+        <target>De :</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3c9b412c77be8f09756c71f0aa251e051bbf14db" datatype="html">
+        <source>From :</source>
+        <target>Vers :</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5c66440907a537b528d88dfa9984cd4d427c6554" datatype="html">
+        <source>Amount to send : </source>
+        <target>Montant à envoyer : </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6b3768dc4cc4e6c070e0800383dd46ae99d86442" datatype="html">
+        <source>Amount to be received :</source>
+        <target>Montant à recevoir :</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="87666dcf790508e79ac8aaad2cffc7f9ad71bc0a" datatype="html">
+        <source>Transaction fees :</source>
+        <target>Frais de transaction :</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c8c75fd80163ca1dcb5a50d8d7f0b52cf421e6f2" datatype="html">
+        <source>Receive mode :</source>
+        <target>Mode de réception :</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c7daff6f2850c5b9bc5d44db09c6d3eed7df73b2" datatype="html">
+        <source>Payment method :</source>
+        <target>Mode de paiement :</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="93934280f47bbec78d6f38f82df423a6358eda04" datatype="html">
+        <source>Interact transfer</source>
+        <target>Transfert Interact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="94baf7c846f338386ccd3cd5de66c0aa549bfa5a" datatype="html">
+        <source>Change rate :</source>
+        <target>Taux de change :</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68e710782ccb5398b3acb8844caf0b199da2c3da" datatype="html">
+        <source>Confirm</source>
+        <target>Confirmer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">126</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target>Modifier</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transactions/transactions.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d23f19d9478c430fbf9e8ab94ea580e1edf18c9e" datatype="html">
+        <source>Phone-- required please !</source>
+        <target>TelePhone-- requis s'il vous plait! !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="7ca1e4969f0bf230fc44058ba3db02618ff80100" datatype="html">
+        <source>Recipient</source>
+        <target>Destinataire</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0341585c3d1afb42aa5fd011813465b46cd29e00" datatype="html">
+        <source>
+                  Beneficiary required !
+                </source>
+        <target>
+                  Bénéficiaire requis !
+                </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction/transaction.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20ceaefc547a588fde25ce0f54ef18dfaad279c6" datatype="html">
+        <source>Transaction History</source>
+        <target>Historique des transactions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transactions/transactions.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+     
+ 
+      <trans-unit id="ea4fc1a55d0644a2c31da09c915e1ba9285328fd" datatype="html">
+        <source>Send money without paying fees</source>
+        <target>Envoyez de l'argent sans payer de frais</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+    
+      <trans-unit id="3cbac9d2007f9ad632f20f775553757e564d9569" datatype="html">
+        <source>How much do you want to send ?</source>
+        <target>Combien voulez-vous envoyer ?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+ 
+      
+      <trans-unit id="fc15a18c5a424c959441d2e0b02cc4e97c8608b3" datatype="html">
+        <source>RATE : 1  <x id="INTERPOLATION" equiv-text="{{currencyToSend}}"/> = <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_1" equiv-text="{{rate}}"/> <x id="INTERPOLATION_2" equiv-text="{{currencyToReceive}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target>TAUX : 1  <x id="INTERPOLATION" equiv-text="{{currencyToSend}}"/> = <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_1" equiv-text="{{rate}}"/> <x id="INTERPOLATION_2" equiv-text="{{currencyToReceive}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+
+
+
+      <trans-unit id="ecc14ea363007a655137be9d16113401fe00708e" datatype="html">
+        <source>What we offer for you</source>
+        <target>Ce que nous vous proposons</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="98b556a710e314a4aa3779fe1b9bb03b5bdbd0b0" datatype="html">
+        <source>We provide online instant transfert with quick approval that suit your term</source>
+        <target>Nous fournissons un transfert instantané en ligne avec une approbation rapide qui convient à votre mandat</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">342</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">391</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c35c4d82c7da2b3eb04cf53cc884e94571c65459" datatype="html">
+        <source>Home Loan</source>
+        <target>Location immobilier</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">202</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0b1b55fd5219145e6deed63cfda6d8c4c37869e7" datatype="html">
+        <source>$3000-$10000</source>
+        <target>3000$-10000$</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">126</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6a7529554e71208853fb0b8e9b2e432efebc63ef" datatype="html">
+        <source> Borrow - $350 over 3 months </source>
+        <target> Emprunter - 350 $ sur 3 mois </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">180</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">207</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">231</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">255</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6a30b500614579e3216e0e85f03925c236a087eb" datatype="html">
+        <source> Interest rate - 292% pa fixed</source>
+        <target> Taux d'intérêt - 292% pa fixe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">181</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">232</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">256</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7d28e2bb2d3ead5e8720788360bb050d9ef85d48" datatype="html">
+        <source>Total amount payable - $525.12</source>
+        <target>Montant total à payer - 525,12 $</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">182</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">209</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">233</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">257</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6411b51ea816168991d42c34dbb6bea38901a1b1" datatype="html">
+        <source>Representative - 1,286% APR</source>
+        <target>Représentant - 1 286 % APR</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">157</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">183</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">210</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">234</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">258</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ec0517467a3fe8fb06c3d7c07f2886297863c0c" datatype="html">
+        <source>Apply Now</source>
+        <target>Appliquer maintenant</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">186</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">213</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">237</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">261</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="183f6bf4f4bb3affebaa6dbf110a97687ac1717c" datatype="html">
+        <source>car Loan</source>
+        <target>Location automobile</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">226</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ed6283b90d495dba95b8ea1c42455acc1d4916a4" datatype="html">
+        <source>Training</source>
+        <target>Formation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">175</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">250</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3f2f8215f91d80c6bc3cd2ff53d78ce9dce27b2d" datatype="html">
+        <source>Why Choose Us?</source>
+        <target>Pourquoi nous choisir?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">283</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">314</context>
+        </context-group>
+      </trans-unit>
+
+
+
+
+      <trans-unit id="e0d34d460335945dd5f8b14bc2013b1aca229808" datatype="html">
+        <source>Connexion Required</source>
+        <target>Connexion Requise</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">607</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">608</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="58e99ad022a0e79438c099856a85410022b45e3b" datatype="html">
+        <source>
+            please login first
+        </source>
+         <target>
+            s'il vous plait Connectez-vous avant
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">615</context>
+        </context-group>
+      </trans-unit>
+
+  
+    
+      <trans-unit id="8314d3a36da2092565b9b0a429b5335542e6c8dd" datatype="html">
+        <source>Date of Birth</source>
+        <target>Date de naissanceh</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">653</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="d3bc112d09207f1022029a1fff6d3fede86d9da4" datatype="html">
+        <source>Date required please !</source>
+        <target>Date requise s'il vous plaît !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">657</context>
+        </context-group>
+      </trans-unit>
+
+
+     
+      <trans-unit id="4329d69e79769327ecfdca9ef19faabe5aa33e3c" datatype="html">
+        <source>Province required please !</source>
+        <target>Province requise s'il vous plaît !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">671</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="71134e1f8e386768460814d4d54b826ea9e1790a" datatype="html">
+        <source>Adresse</source>
+        <target>Adresse</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">675</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0a58ed531d66b259337554331e41d9237424be6" datatype="html">
+        <source>Address required please !</source>
+        <target>Adresse requise s'il vous plaît !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">677</context>
+        </context-group>
+      </trans-unit>
+
+    
+      <trans-unit id="7f890a7c4c210d3bffdf0c045e8282bae4c01544" datatype="html">
+        <source>phone -- required please !</source>
+        <target>téléphone - obligatoire s'il vous plaît !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">696</context>
+        </context-group>
+      </trans-unit>
+
+    
+    
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <target>Mot de passe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">704</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">801</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="260fd71cb40c15e8b3ef6006cee06169ba0ee44c" datatype="html">
+        <source>Password required please !</source>
+        <target>Mot de passe requis s'il vous plaît !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">706</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">711</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">803</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7f3bdcce4b2e8c37cd7f0f6c92ef8cff34b039b8" datatype="html">
+        <source>Confirm password</source>
+        <target>Confirmez le mot de passe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">709</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0a9dcaac5aadd48fe716eaff77ab9b21a8bef3af" datatype="html">
+        <source>Passwords do not match</source>
+        <target>Les mots de passe ne correspondent pas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">712</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eba0f5cb3a95ec92a7d6dd4e81a46716b2fd555c" datatype="html">
+        <source>Already a member ? open a session</source>
+        <target>Déjà membre ? ouvrir une session</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">715</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="49443539be536f167bcfe030143c7341b9099351" datatype="html">
+        <source>Do you really want to Logout ?</source>
+        <target>Voulez-vous vraiment vous déconnecter ?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">742</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="409473350f9a0686f7d197361a45699f76661bd5" datatype="html">
+        <source>Add beneficiary</source>
+        <target>Ajouter un bénéficiaire</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">759</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">760</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9cc51abf2fa1bcd806b67d13ae4296245aacaa16" datatype="html">
+        <source>You don&apos;t have beneficiary !  click <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>yes<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> to create it </source>
+        <target>Avez vous  de bénéficiaire ! Cliquez sur <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Oui<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> pour le créer </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">768</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="114c39f03d06e8f63f183b405bf34a28eb1efc68" datatype="html">
+        <source>Authentification</source>
+        <target>Authentification</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">785</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="897b3bba2d33454e83c17d779ffed2ffba5f8332" datatype="html">
+        <source>We&apos;ll never share your email with anyone else.</source>
+        <target>Nous ne partagerons jamais votre e-mail avec qui que ce soit d'autre.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">798</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">839</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6afd3bae6acda11d2307959bb62ef2052ffc73df" datatype="html">
+        <source>Forgot password ?</source>
+        <target>Mot de passe oublié ?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">806</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c59fd7a8babb45a1466e5f9f2ea92218b258b2b3" datatype="html">
+        <source>Not a member yet ? create an account</source>
+        <target>Pas encore membre ? créer un compte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">809</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4d12a7a8f3c4e268fb18f47ef751b1d56784e039" datatype="html">
+        <source>open</source>
+        <target>ouvrir</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">815</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6676f052ab9d1ed83317074f054f2ec6e896f0cc" datatype="html">
+        <source>Reset password</source>
+        <target>Réinitialiser le mot de passe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">827</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2c5ff8fa9c9aaec93f97e37c9a0edcd797194573" datatype="html">
+        <source>Send</source>
+        <target>Envoyer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">845</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <target>Annuler</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">846</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="79fab0cfec1f5f5d8e52476a2fe3cb69da0f4335" datatype="html">
+        <source>Create account</source>
+        <target>Créer un compte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/home/home.component.html</context>
+          <context context-type="linenumber">633</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/header/header.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="b224747bd63f0e56f5cb0b72593933f70da0252d" datatype="html">
+        <source>Not a member yet? create an account</source>
+        <target>Pas encore membre? créer un compte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hamburger1/hamburger1.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d207cc1965ec0c29e594e0e9917f39bfc276ed87" datatype="html">
+        <source>Create an account</source>
+        <target>Créer un compte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hamburger1/hamburger1.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d5b8869570ddb430d8cda75a6cdd7d1222da1912" datatype="html">
+        <source> Passwords do not match</source>
+        <target> Les mots de passe ne correspondent pas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hamburger1/hamburger1.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9db4434cb83390749cd77682a745c7176abb0fe7" datatype="html">
+        <source>My information</source>
+        <target>Mes informations</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hamburger1/hamburger1.component.html</context>
+          <context context-type="linenumber">174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="07e2cf9ce05df1b7056ae1f06230af88cc3abe98" datatype="html">
+        <source>Phone -- required please !</source>
+        <target>Phone -- required please !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/hamburger1/hamburger1.component.html</context>
+          <context context-type="linenumber">238</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="edbf22bb0f910d0851b7fbef3d6c2aa7eb253372" datatype="html">
+        <source>Send Money</source>
+        <target>Envoyer de l'argent</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/checkbox-cell/checkbox-cell.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="067ca0f682d0f3d6e593dcddbf11af38b1e8c58f" datatype="html">
+        <source>Click to Confirm Transaction</source>
+        <target>Confirmer la transaction</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/confirm-transaction/confirm-transaction.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8a9608cf463a32afbd7338e1276015339cef6934" datatype="html">
+        <source>Awesome!</source>
+        <target>Parfait!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/confirm-transaction/confirm-transaction.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a32669c1e902c9bbb86140492f209f22799436f7" datatype="html">
+        <source>Your transaction has been confirmed. Check your email for detials.</source>
+        <target>Votre transaction a été confirmée. Vérifiez votre e-mail pour plus de détails.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/confirm-transaction/confirm-transaction.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="2c8524235952561df2c1cb0b1f64034913b83f25" datatype="html">
+        <source>Your transaction has been confirmed. Check your email for detials or go to transactions.</source>
+         <target>Votre transaction a été confirmée. Vérifiez votre e-mail pour plus de détails ou aller aux transactions.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/confirm-transaction/confirm-transaction.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3b3bd313a30382aa9277a424c3fb8e0e24c192fb" datatype="html">
+        <source>Now you can proceed interact to this number : <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>438-404-2421<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</source>
+        <target>Vous pouvez maintenant continuer à interagir avec ce numéro : <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>438-404-2421<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/confirm-transaction/confirm-transaction.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4bbe8dbdec337c68312de0446465c21347385141" datatype="html">
+        <source>Click to track the transaction</source>
+        <target>Suivre la transaction</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/confirm-transaction/confirm-transaction.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+
+
+
+     <trans-unit id="7933616c3eceb5c67faf48a2c55db963c6829a1f" datatype="html">
+        <source>Set <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{itemToModify}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_1" equiv-text="{{status}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ?</source>
+        <target>Set <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{itemToModify}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_1" equiv-text="{{status}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/customized-cell-component/customized-cell-component.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="87cba0031b149306c9b812b5d90018f48da89e34" datatype="html">
+        <source>Open this select menu</source>
+        <target>Menu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/customized-cell-component/customized-cell-component.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bf612b44e3ba6c05c219aceac6a6ed6c37df1dc4" datatype="html">
+        <source>Complete</source>
+        <target>Complète</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/customized-cell-component/customized-cell-component.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e0e80fdaa3228d53bba26f2f378d03bd4ced23b3" datatype="html">
+        <source>InProgess</source>
+        <target>En cours</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/customized-cell-component/customized-cell-component.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6012663fddb1a91f68d0782739fbe89cb37decc5" datatype="html">
+        <source>Incomplete</source>
+        <target>Incomplet</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/customized-cell-component/customized-cell-component.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e6a27066251ca1e04c5be86ad758380856df2506" datatype="html">
+        <source>Pending</source>
+        <target>En attente</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/customized-cell-component/customized-cell-component.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target>Supprimer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/delete-renderer/delete-renderer.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/delete-renderer/delete-renderer.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e3c8f2afc649698ec6cf65b6afc4008360a898f5" datatype="html">
+        <source>Do you really want to Delete <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{itemToDelete}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ?</source>
+        <target>Voulez-vous vraiment supprimer <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{itemToDelete}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/delete-renderer/delete-renderer.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="c558524988e267b08e25d7621e7846f9129d03ea" datatype="html">
+        <source>Manage Transactions</source>
+        <target>Gérer les transactions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/manage-transactions/manage-transactions.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3dd67b27f3ac142f8cf8412a80cbeb0a0d9da8d5" datatype="html">
+        <source>Solde disponible :  </source>
+        <target>Available balance:  </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/manage-transactions/manage-transactions.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1de13df0a3f0b8ebee9f06b6b54b2455de0c65da" datatype="html">
+        <source>New Balance</source>
+        <target>Nouvelle balance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/manage-transactions/manage-transactions.component.html</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="af13cde294562905428c013c4a35e9134460a76c" datatype="html">
+        <source>Balance required please !</source>
+        <target>Solde requis s'il vous plaît !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/manage-transactions/manage-transactions.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="024cdb2814b0cb3f4ced148f1a0b9854447cb214" datatype="html">
+        <source>Change</source>
+        <target>Changer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/manage-transactions/manage-transactions.component.html</context>
+          <context context-type="linenumber">162</context>
+        </context-group>
+      </trans-unit>
+
+
+
+      <trans-unit id="ca4a5672c7325fc9e73d88aff9c1f320573f9f20" datatype="html">
+        <source>Tracking</source>
+        <target>Suivie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bf6a5e537fd98dabea007e82bebb4e5d2d57c84e" datatype="html">
+        <source>Pending payment</source>
+        <target>En attente</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a092a2a3010dcec8a56cb770ab51b839fb1ed1c7" datatype="html">
+        <source>payment receive</source>
+        <target>paiement recu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7560dfe48f2111dfc75fb4313533b443642dd7dd" datatype="html">
+        <source>Deposit complete</source>
+        <target>Dépôt terminé</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b596749fa89e2239cee2f121e145a0160d935153" datatype="html">
+        <source>Transaction complete</source>
+        <target>Opération terminée</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0369b80128e3fc7f4f7e39dceb0c9f6f2edc7055" datatype="html">
+        <source>Interact transfer :                
+                            <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+                            <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/> 438-404-2421<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>
+                          </source>
+        <target>Transfert Interact:                
+                            <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+                            <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/> 438-404-2421<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>
+                          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5cdb9c9e1db5d6eb115765fc8127e094ec9db776" datatype="html">
+        <source>Mobile money</source>
+        <target>Mobile money</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="03d560336cd0ad736a3a8358bcc99deab7f8b8ed" datatype="html">
+        <source>SENDER</source>
+        <target>EXPÉDITEUR</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0154476bc179a7b2aa7ca1c5acdb8b6851686e5a" datatype="html">
+        <source>RECIPIENT</source>
+        <target>DESTINATAIRE</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tracking/tracking.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="02784fb777c8b3c64fa27c7baeb038d3090e6ce7" datatype="html">
+        <source>Your informations</source>
+        <target>Vos informations</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/transaction-with-no-account/transaction-with-no-account.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="88b455077249f2fc82db8f0ff7fa37fac91b4df7" datatype="html">
+        <source>Do you want to contact us ?</source>
+        <target>Voulez vous nous contacter ?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/whasap-appointment/whasap-appointment.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="68826c852d63095450811953b1781e019347ad5d" datatype="html">
+        <source>You will be redirect to another application !</source>
+        <target>Vous serez redirige a une autre application !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/whasap-appointment/whasap-appointment.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+    </body>
+
+  </file>
+</xliff>

@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class Service {
   products: ProductResponseModel[] = [];
   ServerURL = environment.serverURL;
+  private apiUrl = 'https://nodemailerapi-ohbheeq7pq-uc.a.run.app/';
 
   constructor(private http: HttpClient) {
   }
@@ -26,9 +27,14 @@ export class Service {
     let yyyy = today.getFullYear();
     let today_ =  yyyy + '/' + mm  + '/' + dd;
 
-    const url = this.ServerURL + currency + '&v=' + today_;
+    const url = this.ServerURL + currency;
     return this.http.get<any>(url);
   }
+
+  sendEmail(email: string, id: string): Observable<any> {
+    return this.http.get<any>(this.apiUrl + `sendEmail/${email}/${id}`);
+  }
+
 
   sendWhasap(number: string): Observable < any > {
     const url = 'https://betablaster.in/api/send.php?number=' + number +'&type=text&message=test%20message&instance_id=64674E4507E74&access_token=3ed83066f2f69f0c19f7f5d6ddd5065a';

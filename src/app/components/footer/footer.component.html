@@ -1,3 +1,6 @@
+      <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous">
     <!-- footer start -->
     <footer class="footer">
         <div class="footer_top">
@@ -5,16 +8,18 @@
                 <div class="row">
                     <div class="col-xl-4 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                            <div class="footer_logo">
+                            <div class="socail_links" >
                                 <a href="#">
                                     <img class="logo" alt="">
                                 </a>
                             </div>
-                            <p>
-                                pmetask@gmail.com <br>
-                                +1 438 404 2421 <br>
-                                26 Rue JB D'amour Mercier
-                            </p>
+                            <!-- <div>
+                                <p>
+                                    pmetask@gmail.com <br>
+                                    +1 438 404 2421 <br>
+                                    26 Rue JB D'amour Mercier
+                                </p>
+                            </div> -->
                             <div class="socail_links">
                                 <ul>
                                     <li>
@@ -42,7 +47,7 @@
 
                         </div>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
+                    <div class="col-xl-2 col-md-6 col-lg-3 d-none d-lg-block">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
                             <h3 class="footer_title">
                                 Services
@@ -57,7 +62,22 @@
 
                         </div>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
+                    <!-- <div class="d-block d-sm-none textSize" style="text-align: center;">
+                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
+                            <h3 style="font-size: 32px!important;">
+                                Services
+                            </h3>
+                            <ul>
+                               
+                                <li><a (click)="apply()" style="cursor:pointer;	font-size: 16px!important;" i18n>Web design </a></li>
+                                <li><a (click)="apply()" style="cursor:pointer;font-size: 16px!important;" i18n>Ecommerce</a></li>
+                                <li><a (click)="apply()" style="cursor:pointer;font-size: 16px!important;" i18n>Tranning</a></li>
+                                <li><a (click)="houseLoan()" style="cursor:pointer;font-size: 16px!important;" i18n>Loan</a></li>
+                            </ul>
+
+                        </div>
+                    </div> -->
+                    <div class="col-xl-2 col-md-6 col-lg-2 d-none d-lg-block">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
                             <h3 class="footer_title" i18n>
                                 Useful Links
@@ -67,6 +87,19 @@
                                 <li><a (click)="about()" style="cursor:pointer;" i18n>About</a></li>
                                 <li><a (click)="contact()" style="cursor:pointer;" i18n> Contact</a></li>
                                 <li><a (click)="faq()" style="cursor:pointer;" i18n> FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-block d-sm-none" style="text-align: center;">
+                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
+                            <h3 class="footer_title" style="font-size: 24px!important;" i18n>
+                                Useful Links
+                            </h3>
+                            <ul>
+                                <li><a (click)="Home()" style="cursor:pointer;font-size: 18px!important;" i18n>Home</a></li>
+                                <li><a (click)="about()" style="cursor:pointer;font-size: 18px!important;" i18n>About</a></li>
+                                <li><a (click)="contact()" style="cursor:pointer;font-size: 18px!important;" i18n> Contact</a></li>
+                                <li><a (click)="faq()" style="cursor:pointer;font-size: 18px!important;" i18n> FAQ</a></li>
                             </ul>
                         </div>
                     </div>

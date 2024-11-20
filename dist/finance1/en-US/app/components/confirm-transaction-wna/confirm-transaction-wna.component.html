@@ -1,0 +1,46 @@
+<div class="bradcam_area bradcam_bg_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3 i18n>Transaction</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div >
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+   
+    <div class="text-center" (mouseover)="hideButton=true" (mouseout)="hideButton=false">
+
+        <button *ngIf="!hideButton" href="#myModal" class="boxed-btn3 trigger-btn wow bounce"  style="animation-duration:2s; animation-delay:2s; animation-iteration-count:infinite;"  type="submit" data-toggle="modal" i18n>Click to Confirm Transaction</button>
+
+        <button *ngIf="hideButton"  href="#myModal" class="boxed-btn3 trigger-btn"   type="submit" data-toggle="modal" i18n>Click to Confirm Transaction</button>
+    </div>
+    
+    <!-- Modal HTML -->
+    <div  id="myModal" class="container modal fade align-items-center justify-content-center">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>
+                    <h4 class="modal-title w-100" i18n>Awesome!</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center" i18n>Your transaction has been confirmed. Check your email for detials.</p>
+                    <p class="text-center" i18n>Now you can proceed interact to this number : <strong>438-404-2421</strong>.</p>
+                    <a  (click)="showTracking(true)" href="" class="d-flex justify-content-center" data-dismiss="modal" i18n>Click to track the transaction</a>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="showHome(false)" class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>

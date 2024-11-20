@@ -1,0 +1,24 @@
+
+  .cell-fail {
+    text-align: center;
+    font-weight: bold;
+    background-color: #f44336;
+  }
+  
+  .cell-pass {
+    text-align: center;
+    font-weight: bold;
+    background-color: #4caf50;
+  }
+
+  .cell-pending {
+    text-align: center;
+    font-weight: bold;
+    background-color: #FFD700;
+  }
+
+  .cell-inProgress {
+    text-align: center;
+    font-weight: bold;
+    background-color: #07d5f5;
+  }

@@ -146,6 +146,9 @@ localesList = [
 ];
 language = '';
 currentLanguage = '';
+ios = 'iOS';
+unknown = 'Unknown';
+android = 'Android';
 
   constructor(private service: Service, private  spinner: NgxSpinnerService,
               private router: Router, private modalService:BsModalService,
@@ -420,6 +423,7 @@ currentLanguage = '';
       this.transaction();
       }, err => {
         console.log('Error while fetching pay');
+        console.log(err);
         this.unsuscribe();
     });
  }
@@ -937,5 +941,25 @@ currentLanguage = '';
 
   changeLanguage(): void {  
     this.sendMessage.changeMessage('change language'); //send message to Hamburger1Component
+  }
+  getPlatform(): boolean {
+    return this.detectOS() === this.ios;
+  }
+
+  detectOS(): string {
+    const userAgent = navigator.userAgent || navigator.vendor;
+  
+    // Check for Android
+    if (/android/i.test(userAgent)) {
+      return this.android;
+    }
+  
+    // Check for iOS (iPhone, iPad, iPod)
+    if (/iPad|iPhone|iPod/.test(userAgent)) {
+      return this.ios;
+    }
+  
+    // If neither, return Unknown
+    return this.unknown;
   }
 }

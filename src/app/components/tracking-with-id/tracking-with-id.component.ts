@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -9,6 +9,9 @@ import { Transaction } from 'src/app/models/transaction';
 import { DataService } from 'src/app/services/data.service';
 import { MessageService } from 'src/app/services/message.service';
 import { Service } from 'src/app/services/service';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { User } from 'src/app/models/user';
+
 declare function initProgressBar(): void; 
 declare let swal: any;
 
@@ -54,6 +57,21 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
   };
   allTransactionsList: Beneficiary[] = [];
   transactionTrack: any[];
+  usersList: User[] = [];
+  currentUser: User= {
+    id: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    mobile: '',
+    address : '',
+    password : '',
+    dateOfBirth : '',
+    town : '',
+    province : '',
+    country : '',
+    occupation : ''
+  };
   trackingId: string;
   language = '';
   currentLanguage = '';
@@ -62,11 +80,48 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
   depositActive = '';
   transactionActive = '';
   showLoginAlert = true;
-  
+  rate = '';
+  showCanadaCmr = true;
+  showCmrCanada = false;
+  showRate = true;
+  showRateSpinner = false;
+  showAccountLogin = true;
+  amountToSendError = false;
+  currentValueTosend = 0;
+  currentValueToReceive = 0;
+  enableEmail: boolean;
+  enablePassword: boolean;
+  enablePrenom: boolean;
+  enableNom: boolean;
+  enableAdresse: boolean;
+  enableDate: boolean;
+  enableCountry: boolean;
+  enableProvince: boolean;
+  enableTown: boolean;
+  enableTelephone: boolean;
+  enableConfirmPassword: boolean;
+  enablePasswordMatch: boolean;
+  available: boolean = true;
+  mobileValue = '';
+  load = '';
+  indicatifPays = '0';
+  modalRefArray: any[];
+  config = {
+    animated: true,
+    keyboard: true,
+    backdrop: true,
+    ignoreBackdropClick: false,
+    class: 'modalSmall',
+    size: 10
+  };
+  @ViewChild('template', { static: true }) myTemplateRef!: TemplateRef<any>;
+
+
+
 
   constructor(private route: ActivatedRoute, private service: Service, private  spinner: NgxSpinnerService,
-    private router: Router, private data: DataService, 
-    private sendMessage: MessageService) { }
+    private router: Router, private data: DataService, private firebaseService: FirebaseService,
+    private sendMessage: MessageService, private modalService:BsModalService) { }
  
 
   ngAfterViewInit() {
@@ -201,7 +256,9 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
       console.log('Error while fetching Transactions data');
       if (this.showLoginAlert) {
         swal.fire({title: 'Early Transfert', text: 'Please you need to login', 
-          confirmButtonColor: '#FFD700', customClass: 'swal-wide', icon: 'warning', position: 'top-middle'});
+          confirmButtonColor: '#FFD700', customClass: 'swal-wide', icon: 'warning', position: 'top-middle'}).then((result) => {
+             this.openModalCreerCompte(this.myTemplateRef);
+          });
           this.showLoginAlert = false;
           clearInterval(this.trackingInterval); 
       }
@@ -244,6 +301,123 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
       this.currentRate = '1 XAF = '+ Number(this.receiveValue.split(' ')[0]) / Number(this.sendValue.split(' ')[0]) + ' $CA';
     }
     this.trackingPayement(); // to start the tracking 
+  }
+
+  async authentification(email,password){
+    this.reinitialiseError();
+    
+    if(email.value.length===0 || password.value.length===0){
+      this.showAccountLogin = true;
+        if (email.value.length === 0) this.enableEmail = true;
+        if (password.value.length === 0) this.enablePassword = true;
+    }else if(email.value==="admin"&&password.value==="admin"){
+        this.openSpinner("Chargement...");
+    }else{
+        
+        let email_ = email.value.toString().trim();
+        let password_ = password.value.toString().trim();
+        this.getUser(email_);
+        this.spinner.show();
+        await this.firebaseService.signIn(email_, password_); 
+        if (this.firebaseService.isLoggedIn) {
+            this.getUser(email_);
+            this.openSpinnerForAccount("Chargement...");
+            this.modalRef.hide(); // pour fermer le popup
+            this.showAccountLogin = false;
+            location.reload();
+    
+        }
+        
+    }    
+  }
+
+  openSpinnerForAccount($event){
+    /** spinner starts on init */
+    this.load = $event;
+    this.spinner.show();
+  
+    setTimeout(() => {
+      /** spinner ends after 2 seconds */
+      this.spinner.hide();
+    }, 2000);
+  }
+
+  openSpinner($event){
+    /** spinner starts on init */
+    this.load = $event;
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 2 seconds */
+      this.spinner.hide();
+    }, 1000);
+    this.modalRef.hide(); // pour fermer le popup
+ }
+
+  reinitialiseError(){
+    this.enableEmail = false;
+    this.enablePassword = false;
+    this.enablePrenom = false;
+    this.enableNom = false;
+    this.enableAdresse = false;
+    this.enableDate = false;
+    this.enableCountry = false;
+    this.enableProvince = false;
+    this.enableTown = false;
+    this.enableTelephone = false;
+    this.enableConfirmPassword = false;
+    this.enablePasswordMatch = false;
+
+  }
+
+
+  getUser(email: string) {
+
+    this.data.getAllusers().subscribe(res => {
+
+      this.usersList = res.map((e: any) => {
+        const data = e.payload.doc.data();
+        data.id = e.payload.doc.id;
+        return data;
+      })
+
+      for (const user of this.usersList){
+        
+          if (user.email === email) {
+            this.currentUser = user;
+            break;
+          }
+      }
+
+      localStorage.setItem('last_name', this.currentUser.last_name);
+      localStorage.setItem('first_name', this.currentUser.first_name);
+      localStorage.setItem('mobile', this.currentUser.mobile);
+      
+    }, err => {
+      console.log('Error while fetching user data');
+    })
+    
+  }
+
+
+  public openModalCreerCompte(template:TemplateRef<any>){
+
+    this.indicatifPays = '0';
+    if(this.modalRef) this.modalRef.hide();
+    this.modalRef = this.modalService.show(template, this.config);
+    this.modalRefArray.push(this.modalRef);
+
+    setTimeout(() => {
+      /** spinner ends after 0.5 seconds */
+      this.clear();
+    }, 500);
+   
+  }
+
+  clear(): void {
+  
+    let form =  document.getElementById("myForm") as HTMLFormElement;
+    form.reset();
   }
 
 }

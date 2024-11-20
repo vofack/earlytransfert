@@ -148,3 +148,46 @@
           <br>
 
   </div>
+
+
+      <!-- Authentification -->
+      <ng-template #template>
+
+        <div class="modal-header" style="background-color: #FFD700;">
+      
+          <h4 class="modal-title pull-left" style="font-size: 10px !important;"  i18n>Authentification</h4>
+          <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      
+        </div>
+      
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputEmail1"  i18n>Email address</label></div>
+              <input type="email" class="form-control inputSize" id="exampleInputEmail1" #InputEmail aria-describedby="emailHelp" placeholder="Enter email" required>
+              <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enableEmail"  style="color: red;"  i18n>Email required please !</div>
+              <small id="emailHelp" class="form-text text-muted"  i18n>We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPassword1"  i18n>Password</label></div>
+              <input type="password" class="form-control inputSize" id="exampleInputPassword1" #InputPassword placeholder="Password" required>
+              <div data-aos="fade-right" data-aos-duration="1500" *ngIf="enablePassword"  style="color: red;"  i18n>Password required please !</div>
+            </div>
+            <!-- <div class="form-group form-check">
+              <a  class="text-danger" (click)="openModal(templateReset)"  i18n>Forgot password ?</a>
+            </div>
+            <div class="form-group form-check">
+              <a  (click)="openModalCreerCompte(template1)" i18n>Not a member yet ? create an account</a>
+            </div>    -->
+          </form>
+        </div>
+      
+        <div class="modal-footer">
+          <a class="boxed-btn4-xs h-15" (click)="authentification(InputEmail,InputPassword)"  i18n>open</a>
+        <a class="boxed-btn4-red-xs pull-rigth h-15" (click)="modalRef.hide()"  i18n>Close</a>
+        </div>
+      
+      </ng-template>
+      <!-- / Authentification  -->

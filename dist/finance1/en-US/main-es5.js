@@ -6235,6 +6235,30 @@
             field: "date",
             filter: "agTextColumnFilter",
             width: 186
+          }, {
+            headerName: "SendingCountry",
+            field: "sendingCountry",
+            cellClassRules: cellClassRules,
+            filter: "agTextColumnFilter",
+            width: 150
+          }, {
+            headerName: "receivingCountry",
+            field: "receivingCountry",
+            cellClassRules: cellClassRules,
+            filter: "agTextColumnFilter",
+            width: 150
+          }, {
+            headerName: "receiverNumber",
+            field: "receiverNumber",
+            cellClassRules: cellClassRules,
+            filter: "agTextColumnFilter",
+            width: 150
+          }, {
+            headerName: "receivingMethod",
+            field: "receivingMethod",
+            cellClassRules: cellClassRules,
+            filter: "agTextColumnFilter",
+            width: 150
           }];
           this.columnDefsXs = [{
             headerName: "Transaction code",
@@ -6266,6 +6290,12 @@
           }, {
             headerName: "Status",
             field: "status",
+            cellClassRules: cellClassRules,
+            filter: "agTextColumnFilter",
+            width: 150
+          }, {
+            headerName: "SendingCountry",
+            field: "SendingCountry",
             cellClassRules: cellClassRules,
             filter: "agTextColumnFilter",
             width: 150
@@ -6315,7 +6345,7 @@
           value: function getTransactions(email) {
             var _this21 = this;
 
-            this.data.getAlltransactions().subscribe(function (res) {
+            this.data._getAlltransactions().subscribe(function (res) {
               var transactionsList = [];
               _this21.allTransactionsList = res.map(function (e) {
                 var data = e.payload.doc.data();
@@ -7782,9 +7812,8 @@
           value: function getTransaction(id) {
             var _this30 = this;
 
+            var reponse = true;
             this.getTransactionsSuscribtions = this.data.getAlltransactions().subscribe(function (res) {
-              var reponse = true;
-
               _this30.spinner.show();
 
               _this30.allTransactionsList = res.map(function (e) {
@@ -7825,6 +7854,50 @@
 
               _this30.unSuscribe();
             });
+
+            if (reponse) {
+              this.getTransactionsSuscribtions = this.data._getAlltransactions().subscribe(function (res) {
+                _this30.spinner.show();
+
+                _this30.allTransactionsList = res.map(function (e) {
+                  var data = e.payload.doc.data();
+                  data.id = e.payload.doc.id;
+
+                  if (data.id === id || data.transactionCode === id) {
+                    _this30.transactionTrack = data;
+
+                    _this30.spinner.hide();
+
+                    if (reponse) {
+                      _this30.fieldTransaction();
+
+                      reponse = false;
+                    }
+                  }
+
+                  return data;
+                });
+              }, function (err) {
+                console.log('Error while fetching Transactions data');
+
+                if (_this30.showLoginAlert) {
+                  swal.fire({
+                    title: 'Early Transfert',
+                    text: 'Please you need to login',
+                    confirmButtonColor: '#FFD700',
+                    customClass: 'swal-wide',
+                    icon: 'warning',
+                    position: 'top-middle'
+                  }).then(function (result) {
+                    _this30.openModalCreerCompte(_this30.myTemplateRef);
+                  });
+                  _this30.showLoginAlert = false;
+                  clearInterval(_this30.trackingInterval);
+                }
+
+                _this30.unSuscribe();
+              });
+            }
           }
         }, {
           key: "fieldTransaction",
@@ -16771,18 +16844,36 @@
           value: function addTransaction(transaction) {
             transaction.id = this.afs.createId();
             return this.afs.collection('/transactions').add(transaction);
+          }
+        }, {
+          key: "_addTransaction",
+          value: function _addTransaction(transaction) {
+            transaction.id = this.afs.createId();
+            return this.afs.collection('/allTransactions').add(transaction);
           } // get all transactions
 
         }, {
           key: "getAlltransactions",
           value: function getAlltransactions() {
             return this.afs.collection('/transactions').snapshotChanges();
+          } // get all transactions
+
+        }, {
+          key: "_getAlltransactions",
+          value: function _getAlltransactions() {
+            return this.afs.collection('/allTransactions').snapshotChanges();
           } // delete user
 
         }, {
           key: "deleteTransaction",
           value: function deleteTransaction(transaction) {
             this.afs.doc('/transactions/' + transaction.id)["delete"]();
+          } // delete user
+
+        }, {
+          key: "_deleteTransaction",
+          value: function _deleteTransaction(transaction) {
+            this.afs.doc('/allTransactions/' + transaction.id)["delete"]();
           } // update user
 
         }, {
@@ -16790,6 +16881,14 @@
           value: function updateTransaction(transaction) {
             this.deleteTransaction(transaction);
             this.afs.collection('/transactions').add(transaction);
+          } // update user
+
+        }, {
+          key: "_updateTransaction",
+          value: function _updateTransaction(transaction) {
+            this._deleteTransaction(transaction);
+
+            this.afs.collection('/allTransactions').add(transaction);
           }
         }]);
       }();
@@ -17673,7 +17772,7 @@
       FooterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
         type: FooterComponent,
         selectors: [["app-footer"]],
-        decls: 95,
+        decls: 100,
         vars: 0,
         consts: function consts() {
           var i18n_0;
@@ -18180,13 +18279,25 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](91, " All rights reserved | made by ");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](92, "a", 49);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](92, "br");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](93, "Eric Vofack");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](93, "a", 49);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](94, "Eric Vofack ");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](94, ".\n");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](95, ".\n");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](96, "br");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](97, "a", 49);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](98, "Serges-michel Doumo ");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](99, ".\n");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -20253,7 +20364,11 @@
             amountSend: '',
             amountReceive: '',
             date: '',
-            status: ''
+            status: '',
+            receiverNumber: '',
+            receivingCountry: '',
+            receivingMethod: '',
+            sendingCountry: ''
           };
         }
 
@@ -20311,6 +20426,10 @@
             this.transactionObj.amountSend = this.params.data.amountSend;
             this.transactionObj.amountReceive = this.params.data.amountReceive;
             this.transactionObj.date = this.params.data.date;
+            this.transactionObj.receiverNumber = this.params.data.receiverNumber;
+            this.transactionObj.receivingCountry = this.params.data.receivingCountry;
+            this.transactionObj.receivingMethod = this.params.data.receivingMethod;
+            this.transactionObj.sendingCountry = this.params.data.sendingCountry;
             this.transactionObj.status = this.status;
             this.toastr.success('Modification effectue avec succes', 'Early Transfer', {
               progressBar: true,
@@ -20323,13 +20442,13 @@
 
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this64.data.updateTransaction(_this64.transactionObj);
+              _this64.data._updateTransaction(_this64.transactionObj);
             }, 3500);
           }
         }, {
           key: "updateTransaction",
           value: function updateTransaction(transactionObj) {
-            this.data.updateTransaction(transactionObj);
+            this.data._updateTransaction(transactionObj);
           }
         }]);
       }();

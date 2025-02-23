@@ -8,7 +8,7 @@ import { IAfterGuiAttachedParams, ICellRendererParams } from 'ag-grid-community'
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Transaction } from 'src/app/models/transaction';
+import { allTransaction, Transaction } from 'src/app/models/transaction';
 import { DataService } from 'src/app/services/data.service';
 import { MessageService } from 'src/app/services/message.service';
 
@@ -24,7 +24,7 @@ export class CustomizedCellComponentComponent implements OnInit, ICellRendererAn
   status = '';
   modalRef: any;
   @ViewChild('templateDelete', {read: TemplateRef}) modalTemplate: TemplateRef<any>;
-  transactionObj: Transaction = {
+  transactionObj: allTransaction = {
     id: '',
     userEmail: '',
     transactionCode: '',
@@ -32,7 +32,12 @@ export class CustomizedCellComponentComponent implements OnInit, ICellRendererAn
     amountSend: '',
     amountReceive : '',
     date : '',
-    status : '' 
+    status : '',
+    receiverNumber: '',
+    receivingCountry: '',
+    receivingMethod: '',
+    sendingCountry: ''
+
   };
 
   constructor(private toastr: ToastrService, private  spinner: NgxSpinnerService,
@@ -78,6 +83,10 @@ export class CustomizedCellComponentComponent implements OnInit, ICellRendererAn
     this.transactionObj.amountSend = this.params.data.amountSend;
     this.transactionObj.amountReceive = this.params.data.amountReceive;
     this.transactionObj.date = this.params.data.date;
+    this.transactionObj.receiverNumber = this.params.data.receiverNumber;
+    this.transactionObj.receivingCountry = this.params.data.receivingCountry;
+    this.transactionObj.receivingMethod = this.params.data.receivingMethod;
+    this.transactionObj.sendingCountry = this.params.data.sendingCountry;
     this.transactionObj.status = this.status;
             
     this.toastr.success('Modification effectue avec succes','Early Transfer', {progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000});
@@ -85,13 +94,13 @@ export class CustomizedCellComponentComponent implements OnInit, ICellRendererAn
 
     setTimeout(() => {
             /** spinner ends after 2 seconds */        
-            this.data.updateTransaction(this.transactionObj);
+            this.data._updateTransaction(this.transactionObj);
     }, 3500);
 
   }
 
-  updateTransaction(transactionObj: Transaction): void {
-    this.data.updateTransaction(transactionObj);
+  updateTransaction(transactionObj: allTransaction): void {
+    this.data._updateTransaction(transactionObj);
   }
 
 }

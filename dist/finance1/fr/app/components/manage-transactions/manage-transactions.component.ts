@@ -144,7 +144,35 @@ export class ManageTransactionsComponent implements OnInit {
                     field: "date",
                     filter: "agTextColumnFilter",
                     width: 186
-                  }     
+                  },
+                  {
+                    headerName: "SendingCountry",
+                    field: "sendingCountry",
+                    cellClassRules: cellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 150
+                  },
+                  {
+                    headerName: "receivingCountry",
+                    field: "receivingCountry",
+                    cellClassRules: cellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 150
+                  },
+                  {
+                    headerName: "receiverNumber",
+                    field: "receiverNumber",
+                    cellClassRules: cellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 150
+                  },
+                  {
+                    headerName: "receivingMethod",
+                    field: "receivingMethod",
+                    cellClassRules: cellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 150
+                  }
                 ];
             
                 this.columnDefsXs = [
@@ -184,6 +212,13 @@ export class ManageTransactionsComponent implements OnInit {
                   {
                     headerName: "Status",
                     field: "status",
+                    cellClassRules: cellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 150
+                  },
+                  {
+                    headerName: "SendingCountry",
+                    field: "SendingCountry",
                     cellClassRules: cellClassRules,
                     filter: "agTextColumnFilter",
                     width: 150
@@ -232,7 +267,7 @@ export class ManageTransactionsComponent implements OnInit {
 
   getTransactions(email: string) {
   
-    this.data.getAlltransactions().subscribe(res => {
+    this.data._getAlltransactions().subscribe(res => {
       let transactionsList = [];
       this.allTransactionsList = res.map((e: any) => {
         const data = e.payload.doc.data();

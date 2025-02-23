@@ -235,8 +235,8 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
    }
 
    getTransaction(id: string) {
+    let reponse = true;
     this.getTransactionsSuscribtions = this.data.getAlltransactions().subscribe(res => {
-      let reponse = true;
       this.spinner.show();
       this.allTransactionsList = res.map((e: any) => {
         const data = e.payload.doc.data();
@@ -263,7 +263,38 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
           clearInterval(this.trackingInterval); 
       }
       this.unSuscribe();
-    })
+    });
+
+    if(reponse) {
+        this.getTransactionsSuscribtions = this.data._getAlltransactions().subscribe(res => {
+          this.spinner.show();
+          this.allTransactionsList = res.map((e: any) => {
+            const data = e.payload.doc.data();
+            data.id = e.payload.doc.id;
+            if (data.id === id || data.transactionCode === id) {
+              this.transactionTrack = data;
+              this.spinner.hide();
+              if(reponse){
+                this.fieldTransaction();
+                reponse = false;
+              }
+            }       
+            return data;
+          });
+          
+        }, err => {
+          console.log('Error while fetching Transactions data');
+          if (this.showLoginAlert) {
+            swal.fire({title: 'Early Transfert', text: 'Please you need to login', 
+              confirmButtonColor: '#FFD700', customClass: 'swal-wide', icon: 'warning', position: 'top-middle'}).then((result) => {
+                this.openModalCreerCompte(this.myTemplateRef);
+              });
+              this.showLoginAlert = false;
+              clearInterval(this.trackingInterval); 
+          }
+          this.unSuscribe();
+        });
+      }
   
   }
 

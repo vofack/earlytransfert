@@ -3337,6 +3337,34 @@ class ManageTransactionsComponent {
                 field: "date",
                 filter: "agTextColumnFilter",
                 width: 186
+            },
+            {
+                headerName: "SendingCountry",
+                field: "sendingCountry",
+                cellClassRules: cellClassRules,
+                filter: "agTextColumnFilter",
+                width: 150
+            },
+            {
+                headerName: "receivingCountry",
+                field: "receivingCountry",
+                cellClassRules: cellClassRules,
+                filter: "agTextColumnFilter",
+                width: 150
+            },
+            {
+                headerName: "receiverNumber",
+                field: "receiverNumber",
+                cellClassRules: cellClassRules,
+                filter: "agTextColumnFilter",
+                width: 150
+            },
+            {
+                headerName: "receivingMethod",
+                field: "receivingMethod",
+                cellClassRules: cellClassRules,
+                filter: "agTextColumnFilter",
+                width: 150
             }
         ];
         this.columnDefsXs = [
@@ -3378,6 +3406,13 @@ class ManageTransactionsComponent {
                 cellClassRules: cellClassRules,
                 filter: "agTextColumnFilter",
                 width: 150
+            },
+            {
+                headerName: "SendingCountry",
+                field: "SendingCountry",
+                cellClassRules: cellClassRules,
+                filter: "agTextColumnFilter",
+                width: 150
             }
         ];
         this.sortingOrder = ["desc", "asc", null];
@@ -3411,7 +3446,7 @@ class ManageTransactionsComponent {
         this.getTransactions(localStorage.getItem('user'));
     }
     getTransactions(email) {
-        this.data.getAlltransactions().subscribe(res => {
+        this.data._getAlltransactions().subscribe(res => {
             let transactionsList = [];
             this.allTransactionsList = res.map((e) => {
                 const data = e.payload.doc.data();
@@ -4265,8 +4300,8 @@ class TrackingWithIdComponent {
             this.modalRef.hide(); // pour fermer le popup  
     }
     getTransaction(id) {
+        let reponse = true;
         this.getTransactionsSuscribtions = this.data.getAlltransactions().subscribe(res => {
-            let reponse = true;
             this.spinner.show();
             this.allTransactionsList = res.map((e) => {
                 const data = e.payload.doc.data();
@@ -4293,6 +4328,35 @@ class TrackingWithIdComponent {
             }
             this.unSuscribe();
         });
+        if (reponse) {
+            this.getTransactionsSuscribtions = this.data._getAlltransactions().subscribe(res => {
+                this.spinner.show();
+                this.allTransactionsList = res.map((e) => {
+                    const data = e.payload.doc.data();
+                    data.id = e.payload.doc.id;
+                    if (data.id === id || data.transactionCode === id) {
+                        this.transactionTrack = data;
+                        this.spinner.hide();
+                        if (reponse) {
+                            this.fieldTransaction();
+                            reponse = false;
+                        }
+                    }
+                    return data;
+                });
+            }, err => {
+                console.log('Error while fetching Transactions data');
+                if (this.showLoginAlert) {
+                    swal.fire({ title: 'Early Transfert', text: 'Please you need to login',
+                        confirmButtonColor: '#FFD700', customClass: 'swal-wide', icon: 'warning', position: 'top-middle' }).then((result) => {
+                        this.openModalCreerCompte(this.myTemplateRef);
+                    });
+                    this.showLoginAlert = false;
+                    clearInterval(this.trackingInterval);
+                }
+                this.unSuscribe();
+            });
+        }
     }
     fieldTransaction() {
         this.sendValue = this.transactionTrack['amountSend'];
@@ -9293,18 +9357,35 @@ class DataService {
         transaction.id = this.afs.createId();
         return this.afs.collection('/transactions').add(transaction);
     }
+    _addTransaction(transaction) {
+        transaction.id = this.afs.createId();
+        return this.afs.collection('/allTransactions').add(transaction);
+    }
     // get all transactions
     getAlltransactions() {
         return this.afs.collection('/transactions').snapshotChanges();
+    }
+    // get all transactions
+    _getAlltransactions() {
+        return this.afs.collection('/allTransactions').snapshotChanges();
     }
     // delete user
     deleteTransaction(transaction) {
         this.afs.doc('/transactions/' + transaction.id).delete();
     }
+    // delete user
+    _deleteTransaction(transaction) {
+        this.afs.doc('/allTransactions/' + transaction.id).delete();
+    }
     // update user
     updateTransaction(transaction) {
         this.deleteTransaction(transaction);
         this.afs.collection('/transactions').add(transaction);
+    }
+    // update user
+    _updateTransaction(transaction) {
+        this._deleteTransaction(transaction);
+        this.afs.collection('/allTransactions').add(transaction);
     }
 }
 DataService.ɵfac = function DataService_Factory(t) { return new (t || DataService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__["AngularFirestore"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"])); };
@@ -9790,7 +9871,7 @@ class FooterComponent {
     }
 }
 FooterComponent.ɵfac = function FooterComponent_Factory(t) { return new (t || FooterComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_2__["NgxSpinnerService"])); };
-FooterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: FooterComponent, selectors: [["app-footer"]], decls: 95, vars: 0, consts: function () { var i18n_0; if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
+FooterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: FooterComponent, selectors: [["app-footer"]], decls: 100, vars: 0, consts: function () { var i18n_0; if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
         const MSG_EXTERNAL_19019446285609948$$SRC_APP_COMPONENTS_FOOTER_FOOTER_COMPONENT_TS_1 = goog.getMsg("Web design ");
         i18n_0 = MSG_EXTERNAL_19019446285609948$$SRC_APP_COMPONENTS_FOOTER_FOOTER_COMPONENT_TS_1;
     }
@@ -10050,10 +10131,16 @@ FooterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](89, "p", 48);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](90, "\nCopyright \u00A9");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](91, " All rights reserved | made by ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](92, "a", 49);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](93, "Eric Vofack");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](92, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](93, "a", 49);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](94, "Eric Vofack ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](94, ".\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](95, ".\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](96, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](97, "a", 49);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](98, "Serges-michel Doumo ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](99, ".\n");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -11133,7 +11220,11 @@ class CustomizedCellComponentComponent {
             amountSend: '',
             amountReceive: '',
             date: '',
-            status: ''
+            status: '',
+            receiverNumber: '',
+            receivingCountry: '',
+            receivingMethod: '',
+            sendingCountry: ''
         };
     }
     refresh(params) {
@@ -11175,16 +11266,20 @@ class CustomizedCellComponentComponent {
         this.transactionObj.amountSend = this.params.data.amountSend;
         this.transactionObj.amountReceive = this.params.data.amountReceive;
         this.transactionObj.date = this.params.data.date;
+        this.transactionObj.receiverNumber = this.params.data.receiverNumber;
+        this.transactionObj.receivingCountry = this.params.data.receivingCountry;
+        this.transactionObj.receivingMethod = this.params.data.receivingMethod;
+        this.transactionObj.sendingCountry = this.params.data.sendingCountry;
         this.transactionObj.status = this.status;
         this.toastr.success('Modification effectue avec succes', 'Early Transfer', { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000 });
         this.modalRef.hide(); // pour fermer le popup
         setTimeout(() => {
             /** spinner ends after 2 seconds */
-            this.data.updateTransaction(this.transactionObj);
+            this.data._updateTransaction(this.transactionObj);
         }, 3500);
     }
     updateTransaction(transactionObj) {
-        this.data.updateTransaction(transactionObj);
+        this.data._updateTransaction(transactionObj);
     }
 }
 CustomizedCellComponentComponent.ɵfac = function CustomizedCellComponentComponent_Factory(t) { return new (t || CustomizedCellComponentComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_toastr__WEBPACK_IMPORTED_MODULE_1__["ToastrService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_2__["NgxSpinnerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__["BsModalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"])); };

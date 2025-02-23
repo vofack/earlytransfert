@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Beneficiary } from '../models/beneficiary';
-import { Transaction } from '../models/transaction';
+import { allTransaction, Transaction } from '../models/transaction';
 import { User } from '../models/user';
 
 
@@ -74,21 +74,38 @@ export class DataService {
       transaction.id = this.afs.createId();
       return this.afs.collection('/transactions').add(transaction);
   }
+  _addTransaction(transaction : allTransaction) {
+    transaction.id = this.afs.createId();
+    return this.afs.collection('/allTransactions').add(transaction);
+  }
   
      // get all transactions
   getAlltransactions() { 
       return this.afs.collection('/transactions').snapshotChanges();
+  }
+  // get all transactions
+  _getAlltransactions() { 
+        return this.afs.collection('/allTransactions').snapshotChanges();
   }
 
       // delete user
   deleteTransaction(transaction : Transaction) {
         this.afs.doc('/transactions/'+transaction.id).delete();
   }
+      // delete user
+  _deleteTransaction(transaction : allTransaction) {
+        this.afs.doc('/allTransactions/'+transaction.id).delete();
+  }
 
    // update user
    updateTransaction(transaction : Transaction) {
     this.deleteTransaction(transaction);
     this.afs.collection('/transactions').add(transaction);
+  }
+     // update user
+  _updateTransaction(transaction : allTransaction) {
+      this._deleteTransaction(transaction);
+      this.afs.collection('/allTransactions').add(transaction);
   }
     
 }

@@ -208,6 +208,14 @@
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="f77deca26545c47d02e1b3f4935010f4080568ee" datatype="html">
+        <source>is registered with and regulated by FINTRAC as (VOFACK CONSULTING.INC), which is governed by the Government of Canada</source>
+        <target>est enregistrée auprès de FINTRAC comme (VOFACK CONSULTATION.INC) et réglementée par cet organisme, qui relève du gouvernement du Canada.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/about/about.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="c2d0ac9f528bbd5f53fd34269fde8b59e029621b" datatype="html">
         <source>Apply</source>
         <target>Appliquer</target>

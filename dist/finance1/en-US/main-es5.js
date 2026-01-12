@@ -1,5 +1,5 @@
 (function () {
-  var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32, _templateObject33, _templateObject34, _templateObject35, _templateObject36, _templateObject37, _templateObject38, _templateObject39, _templateObject40, _templateObject41, _templateObject42, _templateObject43, _templateObject44, _templateObject45, _templateObject46, _templateObject47, _templateObject48, _templateObject49, _templateObject50, _templateObject51, _templateObject52, _templateObject53, _templateObject54, _templateObject55, _templateObject56, _templateObject57, _templateObject58, _templateObject59, _templateObject60, _templateObject61, _templateObject62, _templateObject63, _templateObject64, _templateObject65, _templateObject66, _templateObject67, _templateObject68, _templateObject69, _templateObject70, _templateObject71, _templateObject72, _templateObject73, _templateObject74, _templateObject75, _templateObject76, _templateObject77, _templateObject78, _templateObject79, _templateObject80, _templateObject81, _templateObject82, _templateObject83, _templateObject84, _templateObject85, _templateObject86, _templateObject87, _templateObject88, _templateObject89, _templateObject90, _templateObject91, _templateObject92, _templateObject93, _templateObject94, _templateObject95, _templateObject96, _templateObject97, _templateObject98, _templateObject99, _templateObject100, _templateObject101, _templateObject102, _templateObject103, _templateObject104, _templateObject105, _templateObject106, _templateObject107, _templateObject108, _templateObject109, _templateObject110, _templateObject111, _templateObject112, _templateObject113, _templateObject114, _templateObject115, _templateObject116, _templateObject117, _templateObject118, _templateObject119, _templateObject120, _templateObject121, _templateObject122, _templateObject123, _templateObject124, _templateObject125, _templateObject126, _templateObject127, _templateObject128, _templateObject129, _templateObject130, _templateObject131, _templateObject132, _templateObject133, _templateObject134, _templateObject135, _templateObject136, _templateObject137, _templateObject138, _templateObject139, _templateObject140, _templateObject141, _templateObject142, _templateObject143, _templateObject144, _templateObject145, _templateObject146, _templateObject147, _templateObject148, _templateObject149, _templateObject150, _templateObject151, _templateObject152, _templateObject153, _templateObject154, _templateObject155, _templateObject156, _templateObject157, _templateObject158, _templateObject159, _templateObject160, _templateObject161, _templateObject162, _templateObject163, _templateObject164, _templateObject165, _templateObject166, _templateObject167, _templateObject168, _templateObject169, _templateObject170, _templateObject171, _templateObject172, _templateObject173, _templateObject174, _templateObject175, _templateObject176, _templateObject177, _templateObject178, _templateObject179, _templateObject180, _templateObject181, _templateObject182, _templateObject183, _templateObject184, _templateObject185, _templateObject186, _templateObject187, _templateObject188, _templateObject189, _templateObject190, _templateObject191, _templateObject192, _templateObject193, _templateObject194, _templateObject195, _templateObject196, _templateObject197, _templateObject198, _templateObject199, _templateObject200, _templateObject201, _templateObject202, _templateObject203, _templateObject204, _templateObject205, _templateObject206, _templateObject207, _templateObject208, _templateObject209, _templateObject210, _templateObject211, _templateObject212, _templateObject213, _templateObject214, _templateObject215, _templateObject216, _templateObject217, _templateObject218, _templateObject219, _templateObject220, _templateObject221, _templateObject222, _templateObject223, _templateObject224, _templateObject225, _templateObject226, _templateObject227, _templateObject228, _templateObject229, _templateObject230, _templateObject231, _templateObject232, _templateObject233, _templateObject234, _templateObject235, _templateObject236, _templateObject237, _templateObject238, _templateObject239, _templateObject240, _templateObject241, _templateObject242, _templateObject243, _templateObject244, _templateObject245, _templateObject246, _templateObject247, _templateObject248, _templateObject249, _templateObject250, _templateObject251, _templateObject252, _templateObject253, _templateObject254, _templateObject255, _templateObject256, _templateObject257, _templateObject258, _templateObject259, _templateObject260, _templateObject261, _templateObject262, _templateObject263, _templateObject264, _templateObject265, _templateObject266, _templateObject267, _templateObject268, _templateObject269, _templateObject270, _templateObject271, _templateObject272, _templateObject273, _templateObject274, _templateObject275, _templateObject276, _templateObject277, _templateObject278, _templateObject279, _templateObject280, _templateObject281, _templateObject282, _templateObject283, _templateObject284, _templateObject285, _templateObject286, _templateObject287, _templateObject288, _templateObject289, _templateObject290, _templateObject291, _templateObject292, _templateObject293, _templateObject294, _templateObject295, _templateObject296, _templateObject297, _templateObject298, _templateObject299, _templateObject300, _templateObject301, _templateObject302, _templateObject303, _templateObject304, _templateObject305, _templateObject306, _templateObject307, _templateObject308, _templateObject309, _templateObject310, _templateObject311, _templateObject312, _templateObject313, _templateObject314, _templateObject315, _templateObject316, _templateObject317, _templateObject318, _templateObject319, _templateObject320, _templateObject321, _templateObject322, _templateObject323, _templateObject324, _templateObject325, _templateObject326, _templateObject327, _templateObject328, _templateObject329, _templateObject330, _templateObject331, _templateObject332, _templateObject333, _templateObject334, _templateObject335, _templateObject336, _templateObject337, _templateObject338, _templateObject339, _templateObject340, _templateObject341, _templateObject342, _templateObject343, _templateObject344, _templateObject345, _templateObject346, _templateObject347, _templateObject348, _templateObject349, _templateObject350, _templateObject351, _templateObject352, _templateObject353, _templateObject354, _templateObject355, _templateObject356, _templateObject357, _templateObject358, _templateObject359, _templateObject360, _templateObject361, _templateObject362, _templateObject363, _templateObject364, _templateObject365, _templateObject366, _templateObject367, _templateObject368, _templateObject369, _templateObject370, _templateObject371, _templateObject372, _templateObject373, _templateObject374, _templateObject375, _templateObject376, _templateObject377, _templateObject378, _templateObject379, _templateObject380, _templateObject381, _templateObject382, _templateObject383, _templateObject384, _templateObject385, _templateObject386, _templateObject387, _templateObject388, _templateObject389, _templateObject390, _templateObject391, _templateObject392, _templateObject393, _templateObject394, _templateObject395, _templateObject396, _templateObject397, _templateObject398, _templateObject399, _templateObject400, _templateObject401, _templateObject402, _templateObject403, _templateObject404, _templateObject405, _templateObject406, _templateObject407, _templateObject408, _templateObject409, _templateObject410, _templateObject411, _templateObject412, _templateObject413, _templateObject414, _templateObject415, _templateObject416, _templateObject417, _templateObject418, _templateObject419, _templateObject420, _templateObject421, _templateObject422, _templateObject423, _templateObject424, _templateObject425, _templateObject426, _templateObject427, _templateObject428, _templateObject429, _templateObject430, _templateObject431, _templateObject432, _templateObject433, _templateObject434, _templateObject435, _templateObject436, _templateObject437, _templateObject438, _templateObject439, _templateObject440, _templateObject441, _templateObject442, _templateObject443, _templateObject444, _templateObject445, _templateObject446, _templateObject447, _templateObject448, _templateObject449, _templateObject450, _templateObject451, _templateObject452, _templateObject453, _templateObject454, _templateObject455, _templateObject456, _templateObject457, _templateObject458, _templateObject459, _templateObject460, _templateObject461, _templateObject462, _templateObject463, _templateObject464, _templateObject465, _templateObject466, _templateObject467, _templateObject468, _templateObject469, _templateObject470, _templateObject471, _templateObject472, _templateObject473, _templateObject474, _templateObject475, _templateObject476, _templateObject477, _templateObject478, _templateObject479, _templateObject480, _templateObject481, _templateObject482, _templateObject483, _templateObject484, _templateObject485, _templateObject486, _templateObject487, _templateObject488, _templateObject489, _templateObject490, _templateObject491, _templateObject492, _templateObject493, _templateObject494, _templateObject495, _templateObject496, _templateObject497, _templateObject498, _templateObject499, _templateObject500, _templateObject501, _templateObject502, _templateObject503, _templateObject504, _templateObject505, _templateObject506, _templateObject507, _templateObject508, _templateObject509, _templateObject510, _templateObject511, _templateObject512, _templateObject513, _templateObject514, _templateObject515, _templateObject516, _templateObject517, _templateObject518, _templateObject519, _templateObject520, _templateObject521, _templateObject522, _templateObject523, _templateObject524, _templateObject525, _templateObject526, _templateObject527, _templateObject528, _templateObject529, _templateObject530, _templateObject531, _templateObject532;
+  var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject0, _templateObject1, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32, _templateObject33, _templateObject34, _templateObject35, _templateObject36, _templateObject37, _templateObject38, _templateObject39, _templateObject40, _templateObject41, _templateObject42, _templateObject43, _templateObject44, _templateObject45, _templateObject46, _templateObject47, _templateObject48, _templateObject49, _templateObject50, _templateObject51, _templateObject52, _templateObject53, _templateObject54, _templateObject55, _templateObject56, _templateObject57, _templateObject58, _templateObject59, _templateObject60, _templateObject61, _templateObject62, _templateObject63, _templateObject64, _templateObject65, _templateObject66, _templateObject67, _templateObject68, _templateObject69, _templateObject70, _templateObject71, _templateObject72, _templateObject73, _templateObject74, _templateObject75, _templateObject76, _templateObject77, _templateObject78, _templateObject79, _templateObject80, _templateObject81, _templateObject82, _templateObject83, _templateObject84, _templateObject85, _templateObject86, _templateObject87, _templateObject88, _templateObject89, _templateObject90, _templateObject91, _templateObject92, _templateObject93, _templateObject94, _templateObject95, _templateObject96, _templateObject97, _templateObject98, _templateObject99, _templateObject100, _templateObject101, _templateObject102, _templateObject103, _templateObject104, _templateObject105, _templateObject106, _templateObject107, _templateObject108, _templateObject109, _templateObject110, _templateObject111, _templateObject112, _templateObject113, _templateObject114, _templateObject115, _templateObject116, _templateObject117, _templateObject118, _templateObject119, _templateObject120, _templateObject121, _templateObject122, _templateObject123, _templateObject124, _templateObject125, _templateObject126, _templateObject127, _templateObject128, _templateObject129, _templateObject130, _templateObject131, _templateObject132, _templateObject133, _templateObject134, _templateObject135, _templateObject136, _templateObject137, _templateObject138, _templateObject139, _templateObject140, _templateObject141, _templateObject142, _templateObject143, _templateObject144, _templateObject145, _templateObject146, _templateObject147, _templateObject148, _templateObject149, _templateObject150, _templateObject151, _templateObject152, _templateObject153, _templateObject154, _templateObject155, _templateObject156, _templateObject157, _templateObject158, _templateObject159, _templateObject160, _templateObject161, _templateObject162, _templateObject163, _templateObject164, _templateObject165, _templateObject166, _templateObject167, _templateObject168, _templateObject169, _templateObject170, _templateObject171, _templateObject172, _templateObject173, _templateObject174, _templateObject175, _templateObject176, _templateObject177, _templateObject178, _templateObject179, _templateObject180, _templateObject181, _templateObject182, _templateObject183, _templateObject184, _templateObject185, _templateObject186, _templateObject187, _templateObject188, _templateObject189, _templateObject190, _templateObject191, _templateObject192, _templateObject193, _templateObject194, _templateObject195, _templateObject196, _templateObject197, _templateObject198, _templateObject199, _templateObject200, _templateObject201, _templateObject202, _templateObject203, _templateObject204, _templateObject205, _templateObject206, _templateObject207, _templateObject208, _templateObject209, _templateObject210, _templateObject211, _templateObject212, _templateObject213, _templateObject214, _templateObject215, _templateObject216, _templateObject217, _templateObject218, _templateObject219, _templateObject220, _templateObject221, _templateObject222, _templateObject223, _templateObject224, _templateObject225, _templateObject226, _templateObject227, _templateObject228, _templateObject229, _templateObject230, _templateObject231, _templateObject232, _templateObject233, _templateObject234, _templateObject235, _templateObject236, _templateObject237, _templateObject238, _templateObject239, _templateObject240, _templateObject241, _templateObject242, _templateObject243, _templateObject244, _templateObject245, _templateObject246, _templateObject247, _templateObject248, _templateObject249, _templateObject250, _templateObject251, _templateObject252, _templateObject253, _templateObject254, _templateObject255, _templateObject256, _templateObject257, _templateObject258, _templateObject259, _templateObject260, _templateObject261, _templateObject262, _templateObject263, _templateObject264, _templateObject265, _templateObject266, _templateObject267, _templateObject268, _templateObject269, _templateObject270, _templateObject271, _templateObject272, _templateObject273, _templateObject274, _templateObject275, _templateObject276, _templateObject277, _templateObject278, _templateObject279, _templateObject280, _templateObject281, _templateObject282, _templateObject283, _templateObject284, _templateObject285, _templateObject286, _templateObject287, _templateObject288, _templateObject289, _templateObject290, _templateObject291, _templateObject292, _templateObject293, _templateObject294, _templateObject295, _templateObject296, _templateObject297, _templateObject298, _templateObject299, _templateObject300, _templateObject301, _templateObject302, _templateObject303, _templateObject304, _templateObject305, _templateObject306, _templateObject307, _templateObject308, _templateObject309, _templateObject310, _templateObject311, _templateObject312, _templateObject313, _templateObject314, _templateObject315, _templateObject316, _templateObject317, _templateObject318, _templateObject319, _templateObject320, _templateObject321, _templateObject322, _templateObject323, _templateObject324, _templateObject325, _templateObject326, _templateObject327, _templateObject328, _templateObject329, _templateObject330, _templateObject331, _templateObject332, _templateObject333, _templateObject334, _templateObject335, _templateObject336, _templateObject337, _templateObject338, _templateObject339, _templateObject340, _templateObject341, _templateObject342, _templateObject343, _templateObject344, _templateObject345, _templateObject346, _templateObject347, _templateObject348, _templateObject349, _templateObject350, _templateObject351, _templateObject352, _templateObject353, _templateObject354, _templateObject355, _templateObject356, _templateObject357, _templateObject358, _templateObject359, _templateObject360, _templateObject361, _templateObject362, _templateObject363, _templateObject364, _templateObject365, _templateObject366, _templateObject367, _templateObject368, _templateObject369, _templateObject370, _templateObject371, _templateObject372, _templateObject373, _templateObject374, _templateObject375, _templateObject376, _templateObject377, _templateObject378, _templateObject379, _templateObject380, _templateObject381, _templateObject382, _templateObject383, _templateObject384, _templateObject385, _templateObject386, _templateObject387, _templateObject388, _templateObject389, _templateObject390, _templateObject391, _templateObject392, _templateObject393, _templateObject394, _templateObject395, _templateObject396, _templateObject397, _templateObject398, _templateObject399, _templateObject400, _templateObject401, _templateObject402, _templateObject403, _templateObject404, _templateObject405, _templateObject406, _templateObject407, _templateObject408, _templateObject409, _templateObject410, _templateObject411, _templateObject412, _templateObject413, _templateObject414, _templateObject415, _templateObject416, _templateObject417, _templateObject418, _templateObject419, _templateObject420, _templateObject421, _templateObject422, _templateObject423, _templateObject424, _templateObject425, _templateObject426, _templateObject427, _templateObject428, _templateObject429, _templateObject430, _templateObject431, _templateObject432, _templateObject433, _templateObject434, _templateObject435, _templateObject436, _templateObject437, _templateObject438, _templateObject439, _templateObject440, _templateObject441, _templateObject442, _templateObject443, _templateObject444, _templateObject445, _templateObject446, _templateObject447, _templateObject448, _templateObject449, _templateObject450, _templateObject451, _templateObject452, _templateObject453, _templateObject454, _templateObject455, _templateObject456, _templateObject457, _templateObject458, _templateObject459, _templateObject460, _templateObject461, _templateObject462, _templateObject463, _templateObject464, _templateObject465, _templateObject466, _templateObject467, _templateObject468, _templateObject469, _templateObject470, _templateObject471, _templateObject472, _templateObject473, _templateObject474, _templateObject475, _templateObject476, _templateObject477, _templateObject478, _templateObject479, _templateObject480, _templateObject481, _templateObject482, _templateObject483, _templateObject484, _templateObject485, _templateObject486, _templateObject487, _templateObject488, _templateObject489, _templateObject490, _templateObject491, _templateObject492, _templateObject493, _templateObject494, _templateObject495, _templateObject496, _templateObject497, _templateObject498, _templateObject499, _templateObject500, _templateObject501, _templateObject502, _templateObject503, _templateObject504, _templateObject505, _templateObject506, _templateObject507, _templateObject508, _templateObject509, _templateObject510, _templateObject511, _templateObject512, _templateObject513, _templateObject514, _templateObject515, _templateObject516, _templateObject517, _templateObject518, _templateObject519, _templateObject520, _templateObject521, _templateObject522, _templateObject523, _templateObject524, _templateObject525, _templateObject526, _templateObject527, _templateObject528, _templateObject529, _templateObject530;
 
   function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 
@@ -15,7 +15,9 @@
 
   function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 
-  function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == typeof h && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(typeof e + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+  function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+
+  function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 
   function _taggedTemplateLiteral(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
 
@@ -1437,7 +1439,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Users/ericanicetkwuningvofack/vsCodeProjects/earlytransfert/src/main.ts */
+      /*! /Volumes/DevSSD/vsCodeProject/earlytransfert/src/main.ts */
       "zUnb");
       /***/
     },
@@ -4539,10 +4541,46 @@
         }, {
           key: "about",
           value: function about() {
-            var _this10 = this;
+            var _this0 = this;
 
             console.log('Vous avez selectionné contact');
             var link = ['/about'];
+            if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
+
+            this.spinner.show();
+            setTimeout(function () {
+              /** spinner ends after 2 seconds */
+              _this0.spinner.hide();
+
+              _this0.router.navigate(link);
+            }, 1000);
+            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
+          }
+        }, {
+          key: "beneficiaire",
+          value: function beneficiaire() {
+            var _this1 = this;
+
+            console.log('Vous avez selectionné beneficiaire');
+            var link = ['/beneficiaire'];
+            if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
+
+            this.spinner.show();
+            setTimeout(function () {
+              /** spinner ends after 2 seconds */
+              _this1.spinner.hide();
+
+              _this1.router.navigate(link);
+            }, 1000);
+            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
+          }
+        }, {
+          key: "transactions",
+          value: function transactions() {
+            var _this10 = this;
+
+            console.log('Vous avez selectionné transactions');
+            var link = ['/transactions'];
             if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
 
             this.spinner.show();
@@ -4555,12 +4593,12 @@
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
-          key: "beneficiaire",
-          value: function beneficiaire() {
+          key: "Managetransactions",
+          value: function Managetransactions() {
             var _this11 = this;
 
-            console.log('Vous avez selectionné beneficiaire');
-            var link = ['/beneficiaire'];
+            console.log('Vous avez selectionné Managetransactions');
+            var link = ['/manageTransaction'];
             if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
 
             this.spinner.show();
@@ -4573,14 +4611,12 @@
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
-          key: "transactions",
-          value: function transactions() {
+          key: "faq",
+          value: function faq() {
             var _this12 = this;
 
-            console.log('Vous avez selectionné transactions');
-            var link = ['/transactions'];
-            if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
-
+            console.log('Vous avez selectionné currency');
+            var link = ['/faq'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
@@ -4591,12 +4627,12 @@
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
-          key: "Managetransactions",
-          value: function Managetransactions() {
+          key: "currency",
+          value: function currency() {
             var _this13 = this;
 
-            console.log('Vous avez selectionné Managetransactions');
-            var link = ['/manageTransaction'];
+            console.log('Vous avez selectionné currency');
+            var link = ['/currency'];
             if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
 
             this.spinner.show();
@@ -4609,43 +4645,9 @@
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
-          key: "faq",
-          value: function faq() {
-            var _this14 = this;
-
-            console.log('Vous avez selectionné currency');
-            var link = ['/faq'];
-            this.spinner.show();
-            setTimeout(function () {
-              /** spinner ends after 2 seconds */
-              _this14.spinner.hide();
-
-              _this14.router.navigate(link);
-            }, 1000);
-            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
-          }
-        }, {
-          key: "currency",
-          value: function currency() {
-            var _this15 = this;
-
-            console.log('Vous avez selectionné currency');
-            var link = ['/currency'];
-            if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
-
-            this.spinner.show();
-            setTimeout(function () {
-              /** spinner ends after 2 seconds */
-              _this15.spinner.hide();
-
-              _this15.router.navigate(link);
-            }, 1000);
-            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
-          }
-        }, {
           key: "Home",
           value: function Home() {
-            var _this16 = this;
+            var _this14 = this;
 
             var link = ['/'];
             if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
@@ -4653,42 +4655,42 @@
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this16.spinner.hide();
+              _this14.spinner.hide();
 
-              _this16.router.navigate(link);
+              _this14.router.navigate(link);
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
           key: "openSpinnerForAccount",
           value: function openSpinnerForAccount($event) {
-            var _this17 = this;
+            var _this15 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this17.spinner.hide();
+              _this15.spinner.hide();
             }, 2000);
           }
         }, {
           key: "openSpinnerForModif",
           value: function openSpinnerForModif($event) {
-            var _this18 = this;
+            var _this16 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this18.spinner.hide();
+              _this16.spinner.hide();
 
-              _this18.modalRef.hide(); // pour fermer le popup
+              _this16.modalRef.hide(); // pour fermer le popup
 
 
-              _this18.showUser = true;
-              _this18.showConnexion = false;
+              _this16.showUser = true;
+              _this16.showConnexion = false;
               swal.fire({
                 title: 'Edit',
                 text: 'Done successfuly',
@@ -4702,29 +4704,29 @@
         }, {
           key: "openSpinner",
           value: function openSpinner($event) {
-            var _this19 = this;
+            var _this17 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this19.spinner.hide();
+              _this17.spinner.hide();
             }, 1000);
             this.modalRef.hide(); // pour fermer le popup
           }
         }, {
           key: "authentification",
           value: function authentification(email, password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee() {
               var email_, password_, link;
-              return _regeneratorRuntime().wrap(function _callee$(_context) {
-                while (1) switch (_context.prev = _context.next) {
+              return _regenerator().w(function (_context) {
+                while (1) switch (_context.n) {
                   case 0:
                     this.reinitialiseError();
 
                     if (!(email.value.length === 0 || password.value.length === 0)) {
-                      _context.next = 9;
+                      _context.n = 1;
                       break;
                     }
 
@@ -4733,29 +4735,29 @@
                     this.showAdminOPtions = false;
                     if (email.value.length === 0) this.enableEmail = true;
                     if (password.value.length === 0) this.enablePassword = true;
-                    _context.next = 21;
+                    _context.n = 4;
                     break;
 
-                  case 9:
+                  case 1:
                     if (!(email.value === "admin" && password.value === "admin")) {
-                      _context.next = 15;
+                      _context.n = 2;
                       break;
                     }
 
                     this.openSpinner("Chargement...");
                     this.showUser = true;
                     this.showConnexion = false;
-                    _context.next = 21;
+                    _context.n = 4;
                     break;
 
-                  case 15:
+                  case 2:
                     email_ = email.value.toString().trim();
                     password_ = password.value.toString().trim();
                     this.spinner.show();
-                    _context.next = 20;
+                    _context.n = 3;
                     return this.firebaseService.signIn(email_, password_);
 
-                  case 20:
+                  case 3:
                     if (this.firebaseService.isLoggedIn) {
                       this.getUser(email_);
                       this.showConnexion = false;
@@ -4769,9 +4771,8 @@
                       this.router.navigate(link);
                     }
 
-                  case 21:
-                  case "end":
-                    return _context.stop();
+                  case 4:
+                    return _context.a(2);
                 }
               }, _callee, this);
             }));
@@ -4779,15 +4780,15 @@
         }, {
           key: "creerCompte",
           value: function creerCompte(Inputnom, Inputprenom, Inputdate, InputCountry, InputProvince, InputTown, Inputadress, Inputemail, Inputpassword, InputConfirmPassword, InputTel) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee2() {
               var indicatif, email_, password_;
-              return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-                while (1) switch (_context2.prev = _context2.next) {
+              return _regenerator().w(function (_context2) {
+                while (1) switch (_context2.n) {
                   case 0:
                     this.reinitialiseError();
 
                     if (!(Inputnom.value.length == 0 || Inputprenom.value.length == 0 || Inputdate.value.length == 0 || InputCountry.value.length == 0 || InputTown.value.length == 0 || Inputadress.value.length == 0 || Inputemail.value.length == 0 || Inputpassword.value.length == 0 || InputConfirmPassword.value.length == 0 || InputTel.value.length == 0 || InputProvince.value.length == 0 || this.indicatifPays === '0')) {
-                      _context2.next = 17;
+                      _context2.n = 1;
                       break;
                     }
 
@@ -4809,10 +4810,10 @@
                       closeButton: true,
                       positionClass: 'toast-bottom-left'
                     });
-                    _context2.next = 41;
+                    _context2.n = 4;
                     break;
 
-                  case 17:
+                  case 1:
                     indicatif = '';
 
                     if (this.indicatifPays === 'CM') {
@@ -4851,17 +4852,17 @@
                     this.userObj.occupation = '';
 
                     if (!(Inputpassword.value === InputConfirmPassword.value)) {
-                      _context2.next = 40;
+                      _context2.n = 3;
                       break;
                     }
 
                     email_ = Inputemail.value.toString().trim();
                     password_ = Inputpassword.value.toString().trim();
                     this.spinner.show();
-                    _context2.next = 37;
+                    _context2.n = 2;
                     return this.firebaseService.signUp(email_, password_);
 
-                  case 37:
+                  case 2:
                     if (this.firebaseService.isLoggedIn) {
                       this.adduser(this.userObj);
                       this.getUser(email_);
@@ -4872,15 +4873,14 @@
                       this.showConnexion = false;
                     }
 
-                    _context2.next = 41;
+                    _context2.n = 4;
                     break;
 
-                  case 40:
+                  case 3:
                     this.enablePasswordMatch = true;
 
-                  case 41:
-                  case "end":
-                    return _context2.stop();
+                  case 4:
+                    return _context2.a(2);
                 }
               }, _callee2, this);
             }));
@@ -4888,10 +4888,10 @@
         }, {
           key: "modifierCompte",
           value: function modifierCompte(Inputnom, Inputprenom, Inputdate, InputCountry, InputProvince, InputTown, Inputadress, InputTel) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee3() {
               var indicatif;
-              return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-                while (1) switch (_context3.prev = _context3.next) {
+              return _regenerator().w(function (_context3) {
+                while (1) switch (_context3.n) {
                   case 0:
                     this.reinitialiseError();
 
@@ -4957,9 +4957,8 @@
                       }
                     }
 
-                  case 2:
-                  case "end":
-                    return _context3.stop();
+                  case 1:
+                    return _context3.a(2);
                 }
               }, _callee3, this);
             }));
@@ -4978,16 +4977,16 @@
         }, {
           key: "forgotPassword",
           value: function forgotPassword(Inputemail) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee4() {
               var email_;
-              return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-                while (1) switch (_context4.prev = _context4.next) {
+              return _regenerator().w(function (_context4) {
+                while (1) switch (_context4.n) {
                   case 0:
                     email_ = Inputemail.value.toString().trim();
-                    _context4.next = 3;
+                    _context4.n = 1;
                     return this.firebaseService.forgotPassword(email_);
 
-                  case 3:
+                  case 1:
                     if (this.firebaseService.emailSend) {
                       swal.fire({
                         title: 'Reset Password',
@@ -5000,9 +4999,8 @@
                       this.openSpinner("Chargement...");
                     }
 
-                  case 4:
-                  case "end":
-                    return _context4.stop();
+                  case 2:
+                    return _context4.a(2);
                 }
               }, _callee4, this);
             }));
@@ -5038,16 +5036,16 @@
         }, {
           key: "getUser",
           value: function getUser(email) {
-            var _this20 = this;
+            var _this18 = this;
 
             this.data.getAllusers().subscribe(function (res) {
-              _this20.usersList = res.map(function (e) {
+              _this18.usersList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
                 return data;
               });
 
-              var _iterator = _createForOfIteratorHelper(_this20.usersList),
+              var _iterator = _createForOfIteratorHelper(_this18.usersList),
                   _step;
 
               try {
@@ -5055,7 +5053,7 @@
                   var user = _step.value;
 
                   if (user.email === email) {
-                    _this20.currentUser = user;
+                    _this18.currentUser = user;
                     break;
                   }
                 }
@@ -5065,15 +5063,15 @@
                 _iterator.f();
               }
 
-              if (_this20.currentUser.first_name === '') {
-                _this20.user = 'Welcome';
+              if (_this18.currentUser.first_name === '') {
+                _this18.user = 'Welcome';
               } else {
-                _this20.user = _this20.currentUser.first_name;
+                _this18.user = _this18.currentUser.first_name;
               }
 
-              localStorage.setItem('last_name', _this20.currentUser.last_name);
-              localStorage.setItem('first_name', _this20.currentUser.first_name);
-              localStorage.setItem('mobile', _this20.currentUser.mobile);
+              localStorage.setItem('last_name', _this18.currentUser.last_name);
+              localStorage.setItem('first_name', _this18.currentUser.first_name);
+              localStorage.setItem('mobile', _this18.currentUser.mobile);
 
               if (localStorage.getItem('user').includes('{')) {
                 localStorage.removeItem('user');
@@ -5682,21 +5680,21 @@
       /*! ag-grid-angular */
       "cWTo");
 
-      function ManageTransactionsComponent_div_27_Template(rf, ctx) {
+      function ManageTransactionsComponent_div_26_Template(rf, ctx) {
         if (rf & 1) {
           var _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 16);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "ag-grid-angular", 18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "ag-grid-angular", 17);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("selectionChanged", function ManageTransactionsComponent_div_27_Template_ag_grid_angular_selectionChanged_1_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("selectionChanged", function ManageTransactionsComponent_div_26_Template_ag_grid_angular_selectionChanged_1_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7);
 
             var ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
             return ctx_r6.onSelectionChanged($event);
-          })("gridReady", function ManageTransactionsComponent_div_27_Template_ag_grid_angular_gridReady_1_listener($event) {
+          })("gridReady", function ManageTransactionsComponent_div_26_Template_ag_grid_angular_gridReady_1_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7);
 
             var ctx_r8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5718,21 +5716,21 @@
         }
       }
 
-      function ManageTransactionsComponent_div_28_Template(rf, ctx) {
+      function ManageTransactionsComponent_div_27_Template(rf, ctx) {
         if (rf & 1) {
           var _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 19);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 18);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "ag-grid-angular", 18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "ag-grid-angular", 17);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("selectionChanged", function ManageTransactionsComponent_div_28_Template_ag_grid_angular_selectionChanged_1_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("selectionChanged", function ManageTransactionsComponent_div_27_Template_ag_grid_angular_selectionChanged_1_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r10);
 
             var ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
             return ctx_r9.onSelectionChanged($event);
-          })("gridReady", function ManageTransactionsComponent_div_28_Template_ag_grid_angular_gridReady_1_listener($event) {
+          })("gridReady", function ManageTransactionsComponent_div_27_Template_ag_grid_angular_gridReady_1_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r10);
 
             var ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5754,9 +5752,19 @@
         }
       }
 
-      function ManageTransactionsComponent_ng_template_29_div_15_Template(rf, ctx) {
+      function ManageTransactionsComponent_ng_template_28_div_15_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 54);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        }
+      }
+
+      function ManageTransactionsComponent_ng_template_28_div_19_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 56);
 
@@ -5764,9 +5772,9 @@
         }
       }
 
-      function ManageTransactionsComponent_ng_template_29_div_19_Template(rf, ctx) {
+      function ManageTransactionsComponent_ng_template_28_div_24_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 57);
 
@@ -5774,9 +5782,9 @@
         }
       }
 
-      function ManageTransactionsComponent_ng_template_29_div_24_Template(rf, ctx) {
+      function ManageTransactionsComponent_ng_template_28_div_28_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 58);
 
@@ -5784,9 +5792,9 @@
         }
       }
 
-      function ManageTransactionsComponent_ng_template_29_div_28_Template(rf, ctx) {
+      function ManageTransactionsComponent_ng_template_28_div_38_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 59);
 
@@ -5794,9 +5802,9 @@
         }
       }
 
-      function ManageTransactionsComponent_ng_template_29_div_38_Template(rf, ctx) {
+      function ManageTransactionsComponent_ng_template_28_div_45_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 60);
 
@@ -5804,31 +5812,21 @@
         }
       }
 
-      function ManageTransactionsComponent_ng_template_29_div_45_Template(rf, ctx) {
-        if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 55);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 61);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        }
-      }
-
-      function ManageTransactionsComponent_ng_template_29_Template(rf, ctx) {
+      function ManageTransactionsComponent_ng_template_28_Template(rf, ctx) {
         if (rf & 1) {
           var _r26 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 20);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 19);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h4", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h4", 20);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](2, 22);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](2, 21);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "button", 23);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "button", 22);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_29_Template_button_click_3_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_28_Template_button_click_3_listener() {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
 
             var ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5836,7 +5834,7 @@
             return ctx_r25.modalRef.hide();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 24);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 23);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "\xD7");
 
@@ -5846,99 +5844,99 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 24);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "form");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 26);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 25);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "label", 27);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "label", 26);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](10, 28);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 29);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 30);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "input", 31, 32);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](15, ManageTransactionsComponent_ng_template_29_div_15_Template, 2, 0, "div", 33);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 30);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](17, "input", 34, 35);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](19, ManageTransactionsComponent_ng_template_29_div_19_Template, 2, 0, "div", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](10, 27);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "div", 29);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 28);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "div", 30);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 29);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "input", 36, 37);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "input", 30, 31);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](24, ManageTransactionsComponent_ng_template_29_div_24_Template, 2, 0, "div", 33);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "div", 30);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](26, "input", 38, 39);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](28, ManageTransactionsComponent_ng_template_29_div_28_Template, 2, 0, "div", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](15, ManageTransactionsComponent_ng_template_28_div_15_Template, 2, 0, "div", 32);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "div", 30);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 29);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](30, "input", 40, 41);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](17, "input", 33, 34);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](19, ManageTransactionsComponent_ng_template_28_div_19_Template, 2, 0, "div", 32);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "div", 42);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "div", 28);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "div", 26);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "div", 29);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "label", 27);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "input", 35, 36);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](35, 43);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](24, ManageTransactionsComponent_ng_template_28_div_24_Template, 2, 0, "div", 32);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "div", 29);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](26, "input", 37, 38);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](28, ManageTransactionsComponent_ng_template_28_div_28_Template, 2, 0, "div", 32);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "div", 29);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](30, "input", 39, 40);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](36, "form", 44, 45);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "div", 41);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](38, ManageTransactionsComponent_ng_template_29_div_38_Template, 2, 0, "div", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "div", 25);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "label", 26);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "div", 42);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "div", 26);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](41, "label", 46);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](42, 47);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](35, 42);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](43, "input", 48, 49);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](36, "form", 43, 44);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](45, ManageTransactionsComponent_ng_template_29_div_45_Template, 2, 0, "div", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](38, ManageTransactionsComponent_ng_template_28_div_38_Template, 2, 0, "div", 32);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "div", 41);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "div", 25);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](41, "label", 45);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](42, 46);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](43, "input", 47, 48);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](45, ManageTransactionsComponent_ng_template_28_div_45_Template, 2, 0, "div", 32);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -5946,11 +5944,11 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](46, "div", 50);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](46, "div", 49);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](47, "button", 51);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](47, "button", 50);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_29_Template_button_click_47_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_28_Template_button_click_47_listener() {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
 
             var _r14 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](18);
@@ -5970,13 +5968,13 @@
             return ctx_r27.ajouter(_r14, _r12, _r16, _r20, _r18, _r23);
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](48, 52);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](48, 51);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](49, "button", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](49, "button", 52);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_29_Template_button_click_49_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_28_Template_button_click_49_listener() {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
 
             var ctx_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5984,7 +5982,7 @@
             return ctx_r28.modalRef.hide();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](50, 54);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](50, 53);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -6024,31 +6022,31 @@
         }
       }
 
-      function ManageTransactionsComponent_ng_template_31_div_14_Template(rf, ctx) {
+      function ManageTransactionsComponent_ng_template_30_div_14_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 54);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 69);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](1, 68);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
       }
 
-      function ManageTransactionsComponent_ng_template_31_Template(rf, ctx) {
+      function ManageTransactionsComponent_ng_template_30_Template(rf, ctx) {
         if (rf & 1) {
           var _r32 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 20);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 19);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h4", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h4", 20);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](2, 62);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](2, 61);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "button", 23);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "button", 22);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_31_Template_button_click_3_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_30_Template_button_click_3_listener() {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r32);
 
             var ctx_r31 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -6056,7 +6054,7 @@
             return ctx_r31.modalRef.hide();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 24);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 23);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "\xD7");
 
@@ -6066,37 +6064,37 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 24);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "form");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 42);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 41);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 26);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 25);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "label", 63);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "label", 62);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](11, 64);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "input", 65, 66);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, ManageTransactionsComponent_ng_template_31_div_14_Template, 2, 0, "div", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](11, 63);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "input", 64, 65);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, ManageTransactionsComponent_ng_template_30_div_14_Template, 2, 0, "div", 32);
+
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "div", 50);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "button", 51);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_31_Template_button_click_16_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "div", 49);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "button", 50);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_30_Template_button_click_16_listener() {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r32);
 
             var _r29 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](13);
@@ -6106,13 +6104,13 @@
             return ctx_r33.modifier(_r29);
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](17, 67);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](17, 66);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "button", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "button", 52);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_31_Template_button_click_18_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_ng_template_30_Template_button_click_18_listener() {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r32);
 
             var ctx_r34 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -6120,7 +6118,7 @@
             return ctx_r34.modalRef.hide();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](19, 68);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵi18n"](19, 67);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -6349,20 +6347,20 @@
         }, {
           key: "getTransactions",
           value: function getTransactions(email) {
-            var _this21 = this;
+            var _this19 = this;
 
             this.data._getAlltransactions().subscribe(function (res) {
               var transactionsList = [];
-              _this21.allTransactionsList = res.map(function (e) {
+              _this19.allTransactionsList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
                 transactionsList.push(data);
                 return data;
               });
 
-              _this21.params.api.setRowData(transactionsList);
+              _this19.params.api.setRowData(transactionsList);
 
-              _this21.rowData = transactionsList;
+              _this19.rowData = transactionsList;
             }, function (err) {
               console.log('Error while fetching Transactions data');
             });
@@ -6393,27 +6391,27 @@
         }, {
           key: "getPay",
           value: function getPay() {
-            var _this22 = this;
+            var _this20 = this;
 
             this.getavailablePaySuscribtions = this.data.getPay().subscribe(function (res) {
-              _this22.amount = '';
+              _this20.amount = '';
               var reverse = res[0]['amount'].toString().split('').reverse().join('');
 
               var chars = _toConsumableArray(reverse.toString());
 
               for (var i = 0; i < chars.length; i++) {
                 if ((i + 1) % 3 === 0 && i + 1 !== 0) {
-                  _this22.amount = chars[i] + _this22.amount;
-                  _this22.amount = ' ' + _this22.amount;
+                  _this20.amount = chars[i] + _this20.amount;
+                  _this20.amount = ' ' + _this20.amount;
                 } else {
-                  _this22.amount = chars[i] + _this22.amount;
+                  _this20.amount = chars[i] + _this20.amount;
                 }
               }
             }, function (err) {
               console.log('Error while fetching pay');
               console.log(err);
 
-              _this22.unsuscribe();
+              _this20.unsuscribe();
             });
           }
         }, {
@@ -6458,7 +6456,7 @@
         }, {
           key: "ajouter",
           value: function ajouter(Inputnom, Inputprenom, InputCountry, InputProvince, InputTown, Inputemail) {
-            var _this23 = this;
+            var _this21 = this;
 
             this.reinitialiseError();
 
@@ -6501,7 +6499,7 @@
 
               setTimeout(function () {
                 /** spinner ends after 2 seconds */
-                _this23.addBeneficiary(_this23.beneficiaryObj);
+                _this21.addBeneficiary(_this21.beneficiaryObj);
               }, 3500);
             }
           }
@@ -6513,14 +6511,14 @@
         }, {
           key: "openSpinner",
           value: function openSpinner($event) {
-            var _this24 = this;
+            var _this22 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this24.spinner.hide();
+              _this22.spinner.hide();
             }, 1000);
             this.modalRef.hide(); // pour fermer le popup
           }
@@ -6532,7 +6530,7 @@
         }, {
           key: "exportAsExcelFile",
           value: function exportAsExcelFile() {
-            var _this25 = this;
+            var _this23 = this;
 
             var excelFileName = 'TransactionsHistory';
             this.toastr.success('Telechargement en cours d\'execution', 'Early Transfer', {
@@ -6555,7 +6553,7 @@
             });
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this25.saveAsExcelFile(excelBuffer, excelFileName);
+              _this23.saveAsExcelFile(excelBuffer, excelFileName);
             }, 3000);
           }
         }, {
@@ -6569,7 +6567,7 @@
         }, {
           key: "modifier",
           value: function modifier(Inputsolde) {
-            var _this26 = this;
+            var _this24 = this;
 
             this.reinitialiseError();
 
@@ -6593,7 +6591,7 @@
               this.modalRef.hide(); // pour fermer le popup
 
               setTimeout(function () {
-                _this26.data.updatePay("mg6GHY8RPYCo7KzHobR2", Number(Inputsolde_));
+                _this24.data.updatePay("mg6GHY8RPYCo7KzHobR2", Number(Inputsolde_));
               }, 3500);
             }
           }
@@ -6614,7 +6612,7 @@
             }, false, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresolveWindow"]);
           }
         },
-        decls: 33,
+        decls: 32,
         vars: 3,
         consts: function consts() {
           var i18n_0;
@@ -6788,7 +6786,7 @@
             i18n_36 = "Balance required please !";
           }
 
-          return [[1, "bradcam_area", "bradcam_bg_2"], [1, "container"], [1, "row"], [1, "col-xl-12"], [1, "bradcam_text"], i18n_0, [1, "container-fluid"], [1, "form-inline", "justify-content-center"], ["for", "exampleInputPrenom1", 2, "padding-right", "5px"], i18n_2, [1, "justify-content-center"], [1, "boxed-btn4-xs", "bg-success", "text-light", 3, "click"], [1, "glyphicon", "glyphicon-edit"], ["class", "container-fluid  justify-content-center", 4, "ngIf"], ["class", "container  justify-content-center", 4, "ngIf"], ["template1", ""], ["templateSolde", ""], [1, "container-fluid", "justify-content-center"], [1, "ag-theme-balham", "custom-class", 2, "width", "100%", "height", "1000px", "padding-top", "10px", 3, "columnDefs", "animateRows", "pagination", "frameworkComponents", "selectionChanged", "gridReady"], [1, "container", "justify-content-center"], [1, "modal-header", 2, "background-color", "#FFD700"], [1, "modal-title", "pull-left", 2, "font-size", "10px !important"], i18n_4, ["type", "button", "aria-label", "Close", 1, "close", "pull-rigth", 3, "click"], ["aria-hidden", "true"], [1, "modal-body"], ["data-aos", "fade-right", "data-aos-duration", "1500"], ["for", "exampleInputPrenom1"], i18n_6, [1, "row", "form-group"], [1, "col"], ["type", "text", "placeholder", "First name", 1, "form-control"], ["Inputprenom", ""], ["style", "color: red;", 4, "ngIf"], ["type", "text", "placeholder", "Name", 1, "form-control"], ["Inputnom", ""], ["type", "text", "placeholder", "Country", 1, "form-control"], ["InputCountry", ""], ["type", "text", "placeholder", "City", 1, "form-control"], ["InputTown", ""], ["type", "text", "placeholder", "Province", 1, "form-control"], ["InputProvince", ""], [1, "form-group"], i18n_8, [3, "formGroup"], ["f", "ngForm"], ["for", "exampleInputEmail1"], i18n_10, ["type", "email", "id", "exampleInputEmail1", "aria-describedby", "emailHelp", "placeholder", "Enter email", "required", "", 1, "form-control"], ["Inputemail", ""], [1, "modal-footer"], ["type", "submit", 1, "boxed-btn4-xs", "h-15", 3, "click"], i18n_12, ["type", "button", 1, "boxed-btn4-red-xs", "pull-rigth", 3, "click"], i18n_14, [2, "color", "red"], i18n_16, i18n_18, i18n_20, i18n_22, i18n_24, i18n_26, i18n_28, ["for", "exampleInputsolde"], i18n_30, ["type", "email", "id", "exampleInputsolde", "aria-describedby", "emailHelp", "placeholder", "Enter pay", "required", "", 1, "form-control"], ["Inputsolde", ""], i18n_32, i18n_34, i18n_36];
+          return [[1, "bradcam_area", "bradcam_bg_2"], [1, "container"], [1, "row"], [1, "col-xl-12"], [1, "bradcam_text"], i18n_0, [1, "container-fluid"], [1, "form-inline", "justify-content-center"], ["for", "exampleInputPrenom1", 2, "padding-right", "5px"], i18n_2, [1, "boxed-btn4-xs", "bg-success", "text-light", 3, "click"], [1, "glyphicon", "glyphicon-edit"], ["class", "container-fluid  justify-content-center", 4, "ngIf"], ["class", "container  justify-content-center", 4, "ngIf"], ["template1", ""], ["templateSolde", ""], [1, "container-fluid", "justify-content-center"], [1, "ag-theme-balham", "custom-class", 2, "width", "100%", "height", "1000px", "padding-top", "10px", 3, "columnDefs", "animateRows", "pagination", "frameworkComponents", "selectionChanged", "gridReady"], [1, "container", "justify-content-center"], [1, "modal-header", 2, "background-color", "#FFD700"], [1, "modal-title", "pull-left", 2, "font-size", "10px !important"], i18n_4, ["type", "button", "aria-label", "Close", 1, "close", "pull-rigth", 3, "click"], ["aria-hidden", "true"], [1, "modal-body"], ["data-aos", "fade-right", "data-aos-duration", "1500"], ["for", "exampleInputPrenom1"], i18n_6, [1, "row", "form-group"], [1, "col"], ["type", "text", "placeholder", "First name", 1, "form-control"], ["Inputprenom", ""], ["style", "color: red;", 4, "ngIf"], ["type", "text", "placeholder", "Name", 1, "form-control"], ["Inputnom", ""], ["type", "text", "placeholder", "Country", 1, "form-control"], ["InputCountry", ""], ["type", "text", "placeholder", "City", 1, "form-control"], ["InputTown", ""], ["type", "text", "placeholder", "Province", 1, "form-control"], ["InputProvince", ""], [1, "form-group"], i18n_8, [3, "formGroup"], ["f", "ngForm"], ["for", "exampleInputEmail1"], i18n_10, ["type", "email", "id", "exampleInputEmail1", "aria-describedby", "emailHelp", "placeholder", "Enter email", "required", "", 1, "form-control"], ["Inputemail", ""], [1, "modal-footer"], ["type", "submit", 1, "boxed-btn4-xs", "h-15", 3, "click"], i18n_12, ["type", "button", 1, "boxed-btn4-red-xs", "pull-rigth", 3, "click"], i18n_14, [2, "color", "red"], i18n_16, i18n_18, i18n_20, i18n_22, i18n_24, i18n_26, i18n_28, ["for", "exampleInputsolde"], i18n_30, ["type", "email", "id", "exampleInputsolde", "aria-describedby", "emailHelp", "placeholder", "Enter pay", "required", "", 1, "form-control"], ["Inputsolde", ""], i18n_32, i18n_34, i18n_36];
         },
         template: function ManageTransactionsComponent_Template(rf, ctx) {
           if (rf & 1) {
@@ -6860,35 +6858,33 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](23, "br");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "div", 7);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "div", 10);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "a", 10);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "a", 11);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_Template_a_click_25_listener() {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ManageTransactionsComponent_Template_a_click_24_listener() {
               _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r35);
 
-              var _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](32);
+              var _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](31);
 
               return ctx.openModal(_r4);
             });
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](26, "span", 12);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](25, "span", 11);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](26, ManageTransactionsComponent_div_26_Template, 2, 4, "div", 12);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](27, ManageTransactionsComponent_div_27_Template, 2, 4, "div", 13);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](28, ManageTransactionsComponent_div_28_Template, 2, 4, "div", 14);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](28, ManageTransactionsComponent_ng_template_28_Template, 51, 7, "ng-template", null, 14, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](29, ManageTransactionsComponent_ng_template_29_Template, 51, 7, "ng-template", null, 15, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](31, ManageTransactionsComponent_ng_template_31_Template, 20, 1, "ng-template", null, 16, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](30, ManageTransactionsComponent_ng_template_30_Template, 20, 1, "ng-template", null, 15, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
           }
 
           if (rf & 2) {
@@ -6896,7 +6892,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.amount, " XAF");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.showXl);
 
@@ -7240,13 +7236,13 @@
         }, {
           key: "Order",
           value: function Order() {
-            var _this27 = this;
+            var _this25 = this;
 
             /** spinner starts on init */
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this27.spinner.hide();
+              _this25.spinner.hide();
 
               swal.fire({
                 title: 'Order',
@@ -7716,15 +7712,15 @@
         }, {
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this28 = this;
+            var _this26 = this;
 
             this.route.queryParams.subscribe(function (params) {
-              _this28.trackingId = params.transaction;
-              localStorage.setItem('messageForTrackingWith', _this28.trackingId);
+              _this26.trackingId = params.transaction;
+              localStorage.setItem('messageForTrackingWith', _this26.trackingId);
             });
             this.getTransaction(this.trackingId);
             this.trackingInterval = setInterval(function () {
-              _this28.getTransaction(_this28.trackingId);
+              _this26.getTransaction(_this26.trackingId);
             }, 5000);
           }
         }, {
@@ -7791,7 +7787,7 @@
         }, {
           key: "Home",
           value: function Home() {
-            var _this29 = this;
+            var _this27 = this;
 
             var link = ['/'];
             this.spinner.show();
@@ -7803,33 +7799,33 @@
               localStorage.removeItem("dropdownList");
               localStorage.removeItem('messageForTracking');
 
-              _this29.spinner.hide();
+              _this27.spinner.hide();
 
-              _this29.router.navigate(link);
+              _this27.router.navigate(link);
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
           key: "getTransaction",
           value: function getTransaction(id) {
-            var _this30 = this;
+            var _this28 = this;
 
             debugger;
             var reponse = true;
             this.getTransactionsSuscribtions = this.data._getAlltransactions().subscribe(function (res) {
-              _this30.spinner.show();
+              _this28.spinner.show();
 
-              _this30.allTransactionsList = res.map(function (e) {
+              _this28.allTransactionsList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
 
                 if (data.id === id || data.transactionCode === id) {
-                  _this30.transactionTrack = data;
+                  _this28.transactionTrack = data;
 
-                  _this30.spinner.hide();
+                  _this28.spinner.hide();
 
                   if (reponse) {
-                    _this30.fieldTransaction();
+                    _this28.fieldTransaction();
 
                     reponse = false;
                   }
@@ -7840,7 +7836,7 @@
             }, function (err) {
               console.log('Error while fetching Transactions data');
 
-              if (_this30.showLoginAlert) {
+              if (_this28.showLoginAlert) {
                 swal.fire({
                   title: 'Early Transfert',
                   text: 'Please you need to login',
@@ -7849,13 +7845,13 @@
                   icon: 'warning',
                   position: 'top-middle'
                 }).then(function (result) {
-                  _this30.openModalCreerCompte(_this30.myTemplateRef);
+                  _this28.openModalCreerCompte(_this28.myTemplateRef);
                 });
-                _this30.showLoginAlert = false;
-                clearInterval(_this30.trackingInterval);
+                _this28.showLoginAlert = false;
+                clearInterval(_this28.trackingInterval);
               }
 
-              _this30.unSuscribe();
+              _this28.unSuscribe();
             }); // if(reponse) {
             //   this.unSuscribe();
             //     this.getTransactionsSuscribtions = this.data._getAlltransactions().subscribe(res => {
@@ -7924,43 +7920,43 @@
         }, {
           key: "authentification",
           value: function authentification(email, password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee5() {
               var email_, password_;
-              return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-                while (1) switch (_context5.prev = _context5.next) {
+              return _regenerator().w(function (_context5) {
+                while (1) switch (_context5.n) {
                   case 0:
                     this.reinitialiseError();
 
                     if (!(email.value.length === 0 || password.value.length === 0)) {
-                      _context5.next = 7;
+                      _context5.n = 1;
                       break;
                     }
 
                     this.showAccountLogin = true;
                     if (email.value.length === 0) this.enableEmail = true;
                     if (password.value.length === 0) this.enablePassword = true;
-                    _context5.next = 18;
+                    _context5.n = 4;
                     break;
 
-                  case 7:
+                  case 1:
                     if (!(email.value === "admin" && password.value === "admin")) {
-                      _context5.next = 11;
+                      _context5.n = 2;
                       break;
                     }
 
                     this.openSpinner("Chargement...");
-                    _context5.next = 18;
+                    _context5.n = 4;
                     break;
 
-                  case 11:
+                  case 2:
                     email_ = email.value.toString().trim();
                     password_ = password.value.toString().trim();
                     this.getUser(email_);
                     this.spinner.show();
-                    _context5.next = 17;
+                    _context5.n = 3;
                     return this.firebaseService.signIn(email_, password_);
 
-                  case 17:
+                  case 3:
                     if (this.firebaseService.isLoggedIn) {
                       this.getUser(email_);
                       this.openSpinnerForAccount("Chargement...");
@@ -7970,9 +7966,8 @@
                       location.reload();
                     }
 
-                  case 18:
-                  case "end":
-                    return _context5.stop();
+                  case 4:
+                    return _context5.a(2);
                 }
               }, _callee5, this);
             }));
@@ -7980,27 +7975,27 @@
         }, {
           key: "openSpinnerForAccount",
           value: function openSpinnerForAccount($event) {
-            var _this31 = this;
+            var _this29 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this31.spinner.hide();
+              _this29.spinner.hide();
             }, 2000);
           }
         }, {
           key: "openSpinner",
           value: function openSpinner($event) {
-            var _this32 = this;
+            var _this30 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this32.spinner.hide();
+              _this30.spinner.hide();
             }, 1000);
             this.modalRef.hide(); // pour fermer le popup
           }
@@ -8023,16 +8018,16 @@
         }, {
           key: "getUser",
           value: function getUser(email) {
-            var _this33 = this;
+            var _this31 = this;
 
             this.data.getAllusers().subscribe(function (res) {
-              _this33.usersList = res.map(function (e) {
+              _this31.usersList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
                 return data;
               });
 
-              var _iterator2 = _createForOfIteratorHelper(_this33.usersList),
+              var _iterator2 = _createForOfIteratorHelper(_this31.usersList),
                   _step2;
 
               try {
@@ -8040,7 +8035,7 @@
                   var user = _step2.value;
 
                   if (user.email === email) {
-                    _this33.currentUser = user;
+                    _this31.currentUser = user;
                     break;
                   }
                 }
@@ -8050,9 +8045,9 @@
                 _iterator2.f();
               }
 
-              localStorage.setItem('last_name', _this33.currentUser.last_name);
-              localStorage.setItem('first_name', _this33.currentUser.first_name);
-              localStorage.setItem('mobile', _this33.currentUser.mobile);
+              localStorage.setItem('last_name', _this31.currentUser.last_name);
+              localStorage.setItem('first_name', _this31.currentUser.first_name);
+              localStorage.setItem('mobile', _this31.currentUser.mobile);
             }, function (err) {
               console.log('Error while fetching user data');
             });
@@ -8060,7 +8055,7 @@
         }, {
           key: "openModalCreerCompte",
           value: function openModalCreerCompte(template) {
-            var _this34 = this;
+            var _this32 = this;
 
             this.indicatifPays = '0';
             if (this.modalRef) this.modalRef.hide();
@@ -8068,7 +8063,7 @@
             this.modalRefArray.push(this.modalRef);
             setTimeout(function () {
               /** spinner ends after 0.5 seconds */
-              _this34.clear();
+              _this32.clear();
             }, 500);
           }
         }, {
@@ -9694,7 +9689,7 @@
         return _createClass(TransactionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this35 = this;
+            var _this33 = this;
 
             if (!(localStorage.getItem('recipientMobile') === 'default message' || localStorage.getItem('recipientMobile') === null || !localStorage.getItem('recipientMobile'))) {
               this.confirmTransaction();
@@ -9703,7 +9698,7 @@
 
             if (localStorage.getItem('user')) {
               this.subscription = this.sendMessage.currentMessage.subscribe(function (message) {
-                return _this35.message = message;
+                return _this33.message = message;
               });
 
               if (localStorage.getItem('messageForTransaction') === 'default message' || localStorage.getItem('messageForTransaction') === null || !localStorage.getItem('messageForTransaction')) {
@@ -9814,7 +9809,7 @@
         }, {
           key: "confirmTransaction",
           value: function confirmTransaction() {
-            var _this36 = this;
+            var _this34 = this;
 
             this.reinitialiseError();
 
@@ -9831,9 +9826,9 @@
                 /** spinner ends after 2 seconds */
                 localStorage.removeItem('messageForTransaction');
 
-                _this36.spinner.hide();
+                _this34.spinner.hide();
 
-                _this36.router.navigate(link);
+                _this34.router.navigate(link);
               }, 2000);
               if (this.modalRef) this.modalRef.hide(); // pour fermer le popup
             }
@@ -9867,7 +9862,7 @@
         }, {
           key: "ajouter",
           value: function ajouter(Inputnom, Inputprenom, InputCountry, InputProvince, InputTown, Inputemail, InputTel) {
-            var _this37 = this;
+            var _this35 = this;
 
             this.reinitialiseError();
 
@@ -9939,13 +9934,13 @@
                 'mobile': this.mobileValue
               });
               setTimeout(function () {
-                _this37.recipient = Inputprenom_ + ' ' + Inputnom_;
-                _this37.recipientMobile = _this37.mobileValue;
-                _this37.saveNewBenef = true;
-                _this37.selectedItems = [{
-                  'item_id': _this37.dropdownList.length + 1,
-                  'item_text': _this37.recipient,
-                  'mobile': _this37.recipientMobile
+                _this35.recipient = Inputprenom_ + ' ' + Inputnom_;
+                _this35.recipientMobile = _this35.mobileValue;
+                _this35.saveNewBenef = true;
+                _this35.selectedItems = [{
+                  'item_id': _this35.dropdownList.length + 1,
+                  'item_text': _this35.recipient,
+                  'mobile': _this35.recipientMobile
                 }];
               }, 3500);
             }
@@ -10779,9 +10774,6 @@
       "wYhF");
 
       var _c0 = ["template"];
-      var _c1 = ["templateLogout"];
-      var _c2 = ["templateNobeneficiary"];
-      var _c3 = ["templateConnexionRequired"];
 
       function HomeComponent_div_7_Template(rf, ctx) {
         if (rf & 1) {
@@ -12236,13 +12228,13 @@
         return _createClass(HomeComponent, [{
           key: "ngAfterViewInit",
           value: function ngAfterViewInit() {
-            var _this38 = this;
+            var _this36 = this;
 
             this.sendMessage.currentMessage.subscribe(function (message) {
               if (message.includes('User Connected from Hamburger1Component')) {
-                _this38.showAccountLogin = false;
+                _this36.showAccountLogin = false;
               } else if (message.includes('User Disconnected from Hamburger1Component')) {
-                _this38.showAccountLogin = true;
+                _this36.showAccountLogin = true;
                 location.reload();
               }
             });
@@ -12303,7 +12295,7 @@
         }, {
           key: "getCurrency",
           value: function getCurrency() {
-            var _this39 = this;
+            var _this37 = this;
 
             var currency = 'CAD';
             var currencySend = 'CAD';
@@ -12324,17 +12316,17 @@
             }
 
             this.getCurrencySuscribtions = this.service.getCurrency(currency).subscribe(function (data) {
-              _this39.available = true;
-              _this39.rate = data.rates['XAF'].toFixed(2);
+              _this37.available = true;
+              _this37.rate = data.rates['XAF'].toFixed(2);
 
-              if (_this39.showCmrCanada) {
-                _this39.rate = data.rates[currencySend].toFixed(3);
+              if (_this37.showCmrCanada) {
+                _this37.rate = data.rates[currencySend].toFixed(3);
               }
             }, function (err) {
-              _this39.available = false;
+              _this37.available = false;
 
               if (err.status === 200) {
-                _this39.unsuscribe();
+                _this37.unsuscribe();
               }
             });
           }
@@ -12373,7 +12365,7 @@
         }, {
           key: "about",
           value: function about() {
-            var _this40 = this;
+            var _this38 = this;
 
             var link = ['/about'];
             if (document.getElementById("menuCheckbox")) document.getElementById("menuCheckbox").click(); // to close the menu
@@ -12381,9 +12373,9 @@
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this40.spinner.hide();
+              _this38.spinner.hide();
 
-              _this40.router.navigate(link); //this.unsuscribe();
+              _this38.router.navigate(link); //this.unsuscribe();
 
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
@@ -12391,15 +12383,15 @@
         }, {
           key: "About",
           value: function About() {
-            var _this41 = this;
+            var _this39 = this;
 
             var link = ['/about'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this41.spinner.hide();
+              _this39.spinner.hide();
 
-              _this41.router.navigate(link); //this.unsuscribe();
+              _this39.router.navigate(link); //this.unsuscribe();
 
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
@@ -12407,7 +12399,7 @@
         }, {
           key: "getVal",
           value: function getVal(item) {
-            var _this42 = this;
+            var _this40 = this;
 
             this.currentValueTosend = Number(item.target.value);
             var currency = 'CAD';
@@ -12435,33 +12427,33 @@
             }
 
             this.getCurrencySuscribtions = this.service.getCurrency(currency).subscribe(function (data) {
-              _this42.available = true;
-              _this42.rate = data.rates['XAF'].toFixed(2);
+              _this40.available = true;
+              _this40.rate = data.rates['XAF'].toFixed(2);
 
-              if (_this42.showCmrCanada) {
-                _this42.rate = data.rates['CAD'].toFixed(3);
+              if (_this40.showCmrCanada) {
+                _this40.rate = data.rates['CAD'].toFixed(3);
               }
 
               var input = document.getElementById("receiveInput");
               input.value = Math.round(Number(item.target.value) * Number(data.rates['XAF']));
 
-              if (_this42.showCmrCanada) {
+              if (_this40.showCmrCanada) {
                 input.value = Math.round(Number(item.target.value) * Number(data.rates['CAD']));
               }
 
-              _this42.currentValueToReceive = input.value;
+              _this40.currentValueToReceive = input.value;
             }, function (err) {
-              _this42.available = false;
+              _this40.available = false;
 
               if (err.status === 200) {
-                _this42.unsuscribe();
+                _this40.unsuscribe();
               }
             });
           }
         }, {
           key: "changeCurrency",
           value: function changeCurrency() {
-            var _this43 = this;
+            var _this41 = this;
 
             if (this.showCanadaCmr) {
               this.showCanadaCmr = false;
@@ -12495,33 +12487,29 @@
             this.showRateSpinner = true;
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this43.showRate = true;
-              _this43.showRateSpinner = false;
+              _this41.showRate = true;
+              _this41.showRateSpinner = false;
               var input = document.getElementById("receiveInput");
-              input.value = Math.round(_this43.currentValueTosend * Number(_this43.rate));
-              _this43.currentValueToReceive = input.value;
+              input.value = Math.round(_this41.currentValueTosend * Number(_this41.rate));
+              _this41.currentValueToReceive = input.value;
             }, 4000);
           }
         }, {
           key: "checkAvailableAmount",
           value: function checkAvailableAmount() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-              var _this44 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee6() {
+              var _this42 = this;
 
-              return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-                while (1) switch (_context6.prev = _context6.next) {
+              return _regenerator().w(function (_context6) {
+                while (1) switch (_context6.n) {
                   case 0:
                     this.data.getPay().subscribe(function (res) {
                       var amount = res[0]['amount'];
-                      return Number(amount) - Number(_this44.currentValueToReceive) > 5000;
+                      return Number(amount) - Number(_this42.currentValueToReceive) > 5000;
                     }, function (err) {
                       console.log('Error while fetching pay');
                     });
-                    return _context6.abrupt("return", 0);
-
-                  case 2:
-                  case "end":
-                    return _context6.stop();
+                    return _context6.a(2, 0);
                 }
               }, _callee6, this);
             }));
@@ -12529,16 +12517,16 @@
         }, {
           key: "asynTransition",
           value: function asynTransition() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-              var _this45 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee7() {
+              var _this43 = this;
 
-              return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-                while (1) switch (_context7.prev = _context7.next) {
+              return _regenerator().w(function (_context7) {
+                while (1) switch (_context7.n) {
                   case 0:
                     localStorage.removeItem('transactionStatus');
 
                     if (!(this.recipientFlag !== 'flag-icon flag-icon-ca')) {
-                      _context7.next = 4;
+                      _context7.n = 1;
                       break;
                     }
 
@@ -12550,27 +12538,26 @@
                       icon: 'info',
                       position: 'top-middle'
                     });
-                    return _context7.abrupt("return");
+                    return _context7.a(2);
 
-                  case 4:
-                    _context7.next = 6;
+                  case 1:
+                    _context7.n = 2;
                     return this.data.getPay().subscribe(function (res) {
-                      _this45.amountAvailable = res[0]['amount'];
+                      _this43.amountAvailable = res[0]['amount'];
 
-                      _this45.transaction();
+                      _this43.transaction();
                     }, function (err) {
                       console.log('Error while fetching pay');
                       console.log(err);
 
-                      _this45.unsuscribe();
+                      _this43.unsuscribe();
                     });
 
-                  case 6:
-                    this.getavailablePaySuscribtions = _context7.sent;
+                  case 2:
+                    this.getavailablePaySuscribtions = _context7.v;
 
-                  case 7:
-                  case "end":
-                    return _context7.stop();
+                  case 3:
+                    return _context7.a(2);
                 }
               }, _callee7, this);
             }));
@@ -12597,52 +12584,52 @@
         }, {
           key: "getBeneficiaries",
           value: function getBeneficiaries(email) {
-            var _this46 = this;
+            var _this44 = this;
 
             this.reinitialiazeAll();
             var respomse = false;
             this.getBeneficiarySuscribtions = this.data.getAllBeneficiary().subscribe(function (res) {
-              _this46.allBeneficiariesList = res.map(function (e) {
+              _this44.allBeneficiariesList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
 
                 if (data.userEmail === email) {
-                  _this46.dropdownList += data.first_name + ' ' + data.last_name + ':' + data.mobile + '*';
+                  _this44.dropdownList += data.first_name + ' ' + data.last_name + ':' + data.mobile + '*';
                 }
 
                 return data;
               });
-              localStorage.setItem("dropdownList", _this46.dropdownList);
-              _this46.sendMessage.changeMessage('Message for transaction:' + _this46.currentValueTosend + '-' + _this46.currentValueToReceive + '-' + _this46.rate + '-' + _this46.currencyToSend + '-' + _this46.currencyToReceive) + '_separeItems_' + _this46.dropdownList;
+              localStorage.setItem("dropdownList", _this44.dropdownList);
+              _this44.sendMessage.changeMessage('Message for transaction:' + _this44.currentValueTosend + '-' + _this44.currentValueToReceive + '-' + _this44.rate + '-' + _this44.currencyToSend + '-' + _this44.currencyToReceive) + '_separeItems_' + _this44.dropdownList;
 
-              if (_this46.currentValueTosend < 5 || _this46.currentValueTosend > 999) {
-                _this46.amountToSendError = true;
+              if (_this44.currentValueTosend < 5 || _this44.currentValueTosend > 999) {
+                _this44.amountToSendError = true;
               } else {
-                _this46.amountToSendError = false;
+                _this44.amountToSendError = false;
                 var link = ['/transaction'];
                 if (!localStorage.getItem('user')) link = ['/transactionWithNoAccount'];
 
                 if (localStorage.getItem('transactionStatus') === 'default message' || localStorage.getItem('transactionStatus') === null || !localStorage.getItem('transactionStatus')) {
-                  _this46.spinner.show();
+                  _this44.spinner.show();
 
                   initParticule();
                   setTimeout(function () {
                     /** spinner ends after 2 seconds */
-                    _this46.spinner.hide();
+                    _this44.spinner.hide();
 
-                    _this46.router.navigate(link);
+                    _this44.router.navigate(link);
                   }, 2000);
                 }
 
-                if (_this46.modalRef) _this46.modalRef.hide(); // pour fermer le popup
+                if (_this44.modalRef) _this44.modalRef.hide(); // pour fermer le popup
               }
 
               return respomse;
             }, function (err) {
               console.log('Error while fetching beneficiary data');
-              localStorage.setItem("dropdownList", _this46.dropdownList);
+              localStorage.setItem("dropdownList", _this44.dropdownList);
 
-              _this46.unsuscribe();
+              _this44.unsuscribe();
             });
             return respomse;
           }
@@ -12656,7 +12643,7 @@
         }, {
           key: "openModalCreerCompte",
           value: function openModalCreerCompte(template) {
-            var _this47 = this;
+            var _this45 = this;
 
             this.indicatifPays = '0';
             if (this.modalRef) this.modalRef.hide();
@@ -12664,7 +12651,7 @@
             this.modalRefArray.push(this.modalRef);
             setTimeout(function () {
               /** spinner ends after 0.5 seconds */
-              _this47.clear();
+              _this45.clear();
             }, 500);
           }
         }, {
@@ -12699,43 +12686,43 @@
         }, {
           key: "authentification",
           value: function authentification(email, password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee8() {
               var email_, password_, link;
-              return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-                while (1) switch (_context8.prev = _context8.next) {
+              return _regenerator().w(function (_context8) {
+                while (1) switch (_context8.n) {
                   case 0:
                     this.reinitialiseError();
 
                     if (!(email.value.length === 0 || password.value.length === 0)) {
-                      _context8.next = 7;
+                      _context8.n = 1;
                       break;
                     }
 
                     this.showAccountLogin = true;
                     if (email.value.length === 0) this.enableEmail = true;
                     if (password.value.length === 0) this.enablePassword = true;
-                    _context8.next = 18;
+                    _context8.n = 4;
                     break;
 
-                  case 7:
+                  case 1:
                     if (!(email.value === "admin" && password.value === "admin")) {
-                      _context8.next = 11;
+                      _context8.n = 2;
                       break;
                     }
 
                     this.openSpinner("Chargement...");
-                    _context8.next = 18;
+                    _context8.n = 4;
                     break;
 
-                  case 11:
+                  case 2:
                     email_ = email.value.toString().trim();
                     password_ = password.value.toString().trim();
                     this.getUser(email_);
                     this.spinner.show();
-                    _context8.next = 17;
+                    _context8.n = 3;
                     return this.firebaseService.signIn(email_, password_);
 
-                  case 17:
+                  case 3:
                     if (this.firebaseService.isLoggedIn) {
                       this.getUser(email_);
                       this.openSpinnerForAccount("Chargement...");
@@ -12748,9 +12735,8 @@
                       this.router.navigate(link);
                     }
 
-                  case 18:
-                  case "end":
-                    return _context8.stop();
+                  case 4:
+                    return _context8.a(2);
                 }
               }, _callee8, this);
             }));
@@ -12758,15 +12744,15 @@
         }, {
           key: "creerCompte",
           value: function creerCompte(Inputnom, Inputprenom, Inputdate, InputCountry, InputProvince, InputTown, Inputadress, Inputemail, Inputpassword, InputConfirmPassword, InputTel) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee9() {
               var indicatif, email_, password_;
-              return _regeneratorRuntime().wrap(function _callee9$(_context9) {
-                while (1) switch (_context9.prev = _context9.next) {
+              return _regenerator().w(function (_context9) {
+                while (1) switch (_context9.n) {
                   case 0:
                     this.reinitialiseError();
 
                     if (!(Inputnom.value.length == 0 || Inputprenom.value.length == 0 || Inputdate.value.length == 0 || InputCountry.value.length == 0 || InputTown.value.length == 0 || Inputadress.value.length == 0 || Inputemail.value.length == 0 || Inputpassword.value.length == 0 || InputConfirmPassword.value.length == 0 || InputTel.value.length == 0 || InputProvince.value.length == 0 || this.indicatifPays === '0')) {
-                      _context9.next = 17;
+                      _context9.n = 1;
                       break;
                     }
 
@@ -12788,10 +12774,10 @@
                       closeButton: true,
                       positionClass: 'toast-bottom-left'
                     });
-                    _context9.next = 41;
+                    _context9.n = 4;
                     break;
 
-                  case 17:
+                  case 1:
                     indicatif = '';
 
                     if (this.indicatifPays === 'CM') {
@@ -12830,17 +12816,17 @@
                     this.userObj.occupation = '';
 
                     if (!(Inputpassword.value === InputConfirmPassword.value)) {
-                      _context9.next = 40;
+                      _context9.n = 3;
                       break;
                     }
 
                     email_ = Inputemail.value.toString().trim();
                     password_ = Inputpassword.value.toString().trim();
                     this.spinner.show();
-                    _context9.next = 37;
+                    _context9.n = 2;
                     return this.firebaseService.signUp(email_, password_);
 
-                  case 37:
+                  case 2:
                     if (this.firebaseService.isLoggedIn) {
                       this.adduser(this.userObj);
                       this.getUser(email_);
@@ -12857,15 +12843,14 @@
                       this.sendMessage.changeMessage('User Connected from homeComponent: ' + this.userObj.first_name); //send message to Hamburger1Component
                     }
 
-                    _context9.next = 41;
+                    _context9.n = 4;
                     break;
 
-                  case 40:
+                  case 3:
                     this.enablePasswordMatch = true;
 
-                  case 41:
-                  case "end":
-                    return _context9.stop();
+                  case 4:
+                    return _context9.a(2);
                 }
               }, _callee9, this);
             }));
@@ -12920,16 +12905,16 @@
         }, {
           key: "forgotPassword",
           value: function forgotPassword(Inputemail) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee0() {
               var email_;
-              return _regeneratorRuntime().wrap(function _callee10$(_context10) {
-                while (1) switch (_context10.prev = _context10.next) {
+              return _regenerator().w(function (_context0) {
+                while (1) switch (_context0.n) {
                   case 0:
                     email_ = Inputemail.value.toString().trim();
-                    _context10.next = 3;
+                    _context0.n = 1;
                     return this.firebaseService.forgotPassword(email_);
 
-                  case 3:
+                  case 1:
                     if (this.firebaseService.emailSend) {
                       swal.fire({
                         title: 'Reset Password',
@@ -12942,11 +12927,10 @@
                       this.openSpinner("Chargement...");
                     }
 
-                  case 4:
-                  case "end":
-                    return _context10.stop();
+                  case 2:
+                    return _context0.a(2);
                 }
-              }, _callee10, this);
+              }, _callee0, this);
             }));
           }
         }, {
@@ -12977,28 +12961,28 @@
         }, {
           key: "openSpinner",
           value: function openSpinner($event) {
-            var _this48 = this;
+            var _this46 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this48.spinner.hide();
+              _this46.spinner.hide();
             }, 1000);
             this.modalRef.hide(); // pour fermer le popup
           }
         }, {
           key: "openSpinnerForAccount",
           value: function openSpinnerForAccount($event) {
-            var _this49 = this;
+            var _this47 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this49.spinner.hide();
+              _this47.spinner.hide();
             }, 2000);
           }
         }, {
@@ -13014,16 +12998,16 @@
         }, {
           key: "getUser",
           value: function getUser(email) {
-            var _this50 = this;
+            var _this48 = this;
 
             this.data.getAllusers().subscribe(function (res) {
-              _this50.usersList = res.map(function (e) {
+              _this48.usersList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
                 return data;
               });
 
-              var _iterator4 = _createForOfIteratorHelper(_this50.usersList),
+              var _iterator4 = _createForOfIteratorHelper(_this48.usersList),
                   _step4;
 
               try {
@@ -13031,7 +13015,7 @@
                   var user = _step4.value;
 
                   if (user.email === email) {
-                    _this50.currentUser = user;
+                    _this48.currentUser = user;
                     break;
                   }
                 }
@@ -13041,9 +13025,9 @@
                 _iterator4.f();
               }
 
-              localStorage.setItem('last_name', _this50.currentUser.last_name);
-              localStorage.setItem('first_name', _this50.currentUser.first_name);
-              localStorage.setItem('mobile', _this50.currentUser.mobile);
+              localStorage.setItem('last_name', _this48.currentUser.last_name);
+              localStorage.setItem('first_name', _this48.currentUser.first_name);
+              localStorage.setItem('mobile', _this48.currentUser.mobile);
             }, function (err) {
               console.log('Error while fetching user data');
             });
@@ -13064,15 +13048,15 @@
         }, {
           key: "beneficiaire",
           value: function beneficiaire() {
-            var _this51 = this;
+            var _this49 = this;
 
             var link = ['/beneficiaire'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this51.spinner.hide();
+              _this49.spinner.hide();
 
-              _this51.router.navigate(link);
+              _this49.router.navigate(link);
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
@@ -13097,15 +13081,15 @@
         }, {
           key: "houseLoan",
           value: function houseLoan() {
-            var _this52 = this;
+            var _this50 = this;
 
             var link = ['/houseLoan'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this52.spinner.hide();
+              _this50.spinner.hide();
 
-              _this52.router.navigate(link); //this.unsuscribe();
+              _this50.router.navigate(link); //this.unsuscribe();
 
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
@@ -13134,7 +13118,7 @@
         }, {
           key: "changeFlag",
           value: function changeFlag(input) {
-            var _this53 = this;
+            var _this51 = this;
 
             this.showRate = false;
             this.showRateSpinner = true;
@@ -13165,43 +13149,43 @@
             }
 
             this.getCurrencySuscribtions = this.service.getCurrency(currency).subscribe(function (data) {
-              _this53.available = true;
-              _this53.rate = data.rates['XAF'].toFixed(2);
+              _this51.available = true;
+              _this51.rate = data.rates['XAF'].toFixed(2);
 
-              if (_this53.showCmrCanada) {
-                _this53.rate = data.rates[_this53.currencyToReceive].toFixed(3);
+              if (_this51.showCmrCanada) {
+                _this51.rate = data.rates[_this51.currencyToReceive].toFixed(3);
               } //let input = document.getElementById("receiveInput") as HTMLFormElement;
 
 
               var inputSend = document.getElementById("sendInput");
-              _this53.currentValueToReceive = Math.round(Number(inputSend.value) * Number(data.rates['XAF']));
+              _this51.currentValueToReceive = Math.round(Number(inputSend.value) * Number(data.rates['XAF']));
 
-              if (_this53.showCmrCanada) {
-                _this53.currentValueToReceive = Math.round(Number(inputSend.value) * Number(data.rates['CAD']));
+              if (_this51.showCmrCanada) {
+                _this51.currentValueToReceive = Math.round(Number(inputSend.value) * Number(data.rates['CAD']));
               } //this.currentValueToReceive = input.value;
 
             }, function (err) {
-              _this53.available = false;
+              _this51.available = false;
 
               if (err.status === 200) {
-                _this53.unsuscribe();
+                _this51.unsuscribe();
               }
             });
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this53.showRateSpinner = false;
-              _this53.showRate = true;
+              _this51.showRateSpinner = false;
+              _this51.showRate = true;
 
               if (input === 'CANADA') {
-                _this53.recipientFlag = 'flag-icon flag-icon-ca';
+                _this51.recipientFlag = 'flag-icon flag-icon-ca';
               } else if (input === 'USA') {
-                _this53.recipientFlag = 'flag-icon flag-icon-us';
+                _this51.recipientFlag = 'flag-icon flag-icon-us';
               } else {
-                _this53.recipientFlag = 'flag-icon flag-icon-fr';
+                _this51.recipientFlag = 'flag-icon flag-icon-fr';
               }
 
               var receiveInput = document.getElementById("receiveInput");
-              receiveInput.value = _this53.currentValueToReceive; // change the value to receive when user click in different flag
+              receiveInput.value = _this51.currentValueToReceive; // change the value to receive when user click in different flag
             }, 2000);
           }
         }, {
@@ -13244,21 +13228,12 @@
         viewQuery: function HomeComponent_Query(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵviewQuery"](_c0, true, _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵviewQuery"](_c1, true, _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵviewQuery"](_c2, true, _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵviewQuery"](_c3, true, _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]);
           }
 
           if (rf & 2) {
             var _t;
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.modalTemplateAuth = _t.first);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.modalTemplate = _t.first);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.modalTemplateNobeneficiary = _t.first);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.modalTemplateConnexionRequired = _t.first);
           }
         },
         hostBindings: function HomeComponent_HostBindings(rf, ctx) {
@@ -13277,1315 +13252,1315 @@
         decls: 430,
         vars: 20,
         consts: function consts() {
-          var i18n_4;
+          var i18n_1;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_5 = goog.getMsg("Send money without paying fees");
-            i18n_4 = MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_5;
+            var MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_2 = goog.getMsg("Send money without paying fees");
+            i18n_1 = MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_2;
           } else {
-            i18n_4 = "Send money without paying fees";
+            i18n_1 = "Send money without paying fees";
           }
 
-          var i18n_6;
+          var i18n_3;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_7 = goog.getMsg("How it Works");
-            i18n_6 = MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_7;
+            var MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_4 = goog.getMsg("How it Works");
+            i18n_3 = MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_4;
           } else {
-            i18n_6 = "How it Works";
+            i18n_3 = "How it Works";
           }
 
-          var i18n_8;
+          var i18n_5;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_9 = goog.getMsg("Send money without paying fees");
-            i18n_8 = MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_9;
+            var MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_6 = goog.getMsg("Send money without paying fees");
+            i18n_5 = MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_6;
           } else {
-            i18n_8 = "Send money without paying fees";
+            i18n_5 = "Send money without paying fees";
           }
 
-          var i18n_10;
+          var i18n_7;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_11 = goog.getMsg("How it Works");
-            i18n_10 = MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_11;
+            var MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_8 = goog.getMsg("How it Works");
+            i18n_7 = MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_8;
           } else {
-            i18n_10 = "How it Works";
+            i18n_7 = "How it Works";
           }
 
-          var i18n_12;
+          var i18n_9;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_13 = goog.getMsg("Send money without paying fees");
-            i18n_12 = MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_13;
+            var MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_10 = goog.getMsg("Send money without paying fees");
+            i18n_9 = MSG_EXTERNAL_7250817660469471991$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_10;
           } else {
-            i18n_12 = "Send money without paying fees";
+            i18n_9 = "Send money without paying fees";
           }
 
-          var i18n_14;
+          var i18n_11;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5907476126990913307$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_15 = goog.getMsg("Create account");
-            i18n_14 = MSG_EXTERNAL_5907476126990913307$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_15;
+            var MSG_EXTERNAL_5907476126990913307$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_12 = goog.getMsg("Create account");
+            i18n_11 = MSG_EXTERNAL_5907476126990913307$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_12;
           } else {
-            i18n_14 = "Create account";
+            i18n_11 = "Create account";
           }
 
-          var i18n_16;
+          var i18n_13;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_17 = goog.getMsg("How much do you want to send ?");
-            i18n_16 = MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_17;
+            var MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_14 = goog.getMsg("How much do you want to send ?");
+            i18n_13 = MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_14;
           } else {
-            i18n_16 = "How much do you want to send ?";
+            i18n_13 = "How much do you want to send ?";
           }
 
-          var i18n_18;
+          var i18n_15;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_755381608634509244$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_19 = goog.getMsg("AMOUNT TO SEND");
-            i18n_18 = MSG_EXTERNAL_755381608634509244$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_19;
+            var MSG_EXTERNAL_755381608634509244$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_16 = goog.getMsg("AMOUNT TO SEND");
+            i18n_15 = MSG_EXTERNAL_755381608634509244$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_16;
           } else {
-            i18n_18 = "AMOUNT TO SEND";
+            i18n_15 = "AMOUNT TO SEND";
           }
 
-          var i18n_20;
+          var i18n_17;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_4595337026289872080$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_21 = goog.getMsg("AMOUNT TO BE RECEIVED");
-            i18n_20 = MSG_EXTERNAL_4595337026289872080$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_21;
+            var MSG_EXTERNAL_4595337026289872080$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_18 = goog.getMsg("AMOUNT TO BE RECEIVED");
+            i18n_17 = MSG_EXTERNAL_4595337026289872080$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_18;
           } else {
-            i18n_20 = "AMOUNT TO BE RECEIVED";
+            i18n_17 = "AMOUNT TO BE RECEIVED";
           }
 
-          var i18n_22;
+          var i18n_19;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_6962699013778688473$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_23 = goog.getMsg("Continue");
-            i18n_22 = MSG_EXTERNAL_6962699013778688473$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_23;
+            var MSG_EXTERNAL_6962699013778688473$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_20 = goog.getMsg("Continue");
+            i18n_19 = MSG_EXTERNAL_6962699013778688473$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_20;
           } else {
-            i18n_22 = "Continue";
+            i18n_19 = "Continue";
           }
 
-          var i18n_24;
+          var i18n_21;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8082950365430734888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_25 = goog.getMsg("What we offer for you");
-            i18n_24 = MSG_EXTERNAL_8082950365430734888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_25;
+            var MSG_EXTERNAL_8082950365430734888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_22 = goog.getMsg("What we offer for you");
+            i18n_21 = MSG_EXTERNAL_8082950365430734888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_22;
           } else {
-            i18n_24 = "What we offer for you";
+            i18n_21 = "What we offer for you";
           }
 
-          var i18n_26;
+          var i18n_23;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3054015905774017271$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_27 = goog.getMsg("We provide online instant transfert with quick approval that suit your term");
-            i18n_26 = MSG_EXTERNAL_3054015905774017271$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_27;
+            var MSG_EXTERNAL_3054015905774017271$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_24 = goog.getMsg("We provide online instant transfert with quick approval that suit your term");
+            i18n_23 = MSG_EXTERNAL_3054015905774017271$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_24;
           } else {
-            i18n_26 = "We provide online instant transfert with quick approval that suit your term";
+            i18n_23 = "We provide online instant transfert with quick approval that suit your term";
           }
 
-          var i18n_28;
+          var i18n_25;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1031576099105634931$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_29 = goog.getMsg("Home Loan");
-            i18n_28 = MSG_EXTERNAL_1031576099105634931$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_29;
+            var MSG_EXTERNAL_1031576099105634931$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_26 = goog.getMsg("Home Loan");
+            i18n_25 = MSG_EXTERNAL_1031576099105634931$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_26;
           } else {
-            i18n_28 = "Home Loan";
+            i18n_25 = "Home Loan";
           }
 
-          var i18n_30;
+          var i18n_27;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1260018290723928698$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_31 = goog.getMsg("$3000-$10000");
-            i18n_30 = MSG_EXTERNAL_1260018290723928698$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_31;
+            var MSG_EXTERNAL_1260018290723928698$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_28 = goog.getMsg("$3000-$10000");
+            i18n_27 = MSG_EXTERNAL_1260018290723928698$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_28;
           } else {
-            i18n_30 = "$3000-$10000";
+            i18n_27 = "$3000-$10000";
           }
 
-          var i18n_32;
+          var i18n_29;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_33 = goog.getMsg(" Borrow - $350 over 3 months ");
-            i18n_32 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_33;
+            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_30 = goog.getMsg(" Borrow - $350 over 3 months ");
+            i18n_29 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_30;
           } else {
-            i18n_32 = " Borrow - $350 over 3 months ";
+            i18n_29 = " Borrow - $350 over 3 months ";
           }
 
-          var i18n_34;
+          var i18n_31;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_35 = goog.getMsg(" Interest rate - 292% pa fixed");
-            i18n_34 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_35;
+            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_32 = goog.getMsg(" Interest rate - 292% pa fixed");
+            i18n_31 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_32;
           } else {
-            i18n_34 = " Interest rate - 292% pa fixed";
+            i18n_31 = " Interest rate - 292% pa fixed";
           }
 
-          var i18n_36;
+          var i18n_33;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_37 = goog.getMsg("Total amount payable - $525.12");
-            i18n_36 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_37;
+            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_34 = goog.getMsg("Total amount payable - $525.12");
+            i18n_33 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_34;
           } else {
-            i18n_36 = "Total amount payable - $525.12";
+            i18n_33 = "Total amount payable - $525.12";
           }
 
-          var i18n_38;
+          var i18n_35;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_39 = goog.getMsg("Representative - 1,286% APR");
-            i18n_38 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_39;
+            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_36 = goog.getMsg("Representative - 1,286% APR");
+            i18n_35 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_36;
           } else {
-            i18n_38 = "Representative - 1,286% APR";
+            i18n_35 = "Representative - 1,286% APR";
           }
 
-          var i18n_40;
+          var i18n_37;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_41 = goog.getMsg("Apply Now");
-            i18n_40 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_41;
+            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_38 = goog.getMsg("Apply Now");
+            i18n_37 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_38;
           } else {
-            i18n_40 = "Apply Now";
+            i18n_37 = "Apply Now";
           }
 
-          var i18n_42;
+          var i18n_39;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1011788431931398101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_43 = goog.getMsg("car Loan");
-            i18n_42 = MSG_EXTERNAL_1011788431931398101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_43;
+            var MSG_EXTERNAL_1011788431931398101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_40 = goog.getMsg("car Loan");
+            i18n_39 = MSG_EXTERNAL_1011788431931398101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_40;
           } else {
-            i18n_42 = "car Loan";
+            i18n_39 = "car Loan";
           }
 
-          var i18n_44;
+          var i18n_41;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_45 = goog.getMsg(" Borrow - $350 over 3 months ");
-            i18n_44 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_45;
+            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_42 = goog.getMsg(" Borrow - $350 over 3 months ");
+            i18n_41 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_42;
           } else {
-            i18n_44 = " Borrow - $350 over 3 months ";
+            i18n_41 = " Borrow - $350 over 3 months ";
           }
 
-          var i18n_46;
+          var i18n_43;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_47 = goog.getMsg(" Interest rate - 292% pa fixed");
-            i18n_46 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_47;
+            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_44 = goog.getMsg(" Interest rate - 292% pa fixed");
+            i18n_43 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_44;
           } else {
-            i18n_46 = " Interest rate - 292% pa fixed";
+            i18n_43 = " Interest rate - 292% pa fixed";
           }
 
-          var i18n_48;
+          var i18n_45;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_49 = goog.getMsg("Total amount payable - $525.12");
-            i18n_48 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_49;
+            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_46 = goog.getMsg("Total amount payable - $525.12");
+            i18n_45 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_46;
           } else {
-            i18n_48 = "Total amount payable - $525.12";
+            i18n_45 = "Total amount payable - $525.12";
           }
 
-          var i18n_50;
+          var i18n_47;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_51 = goog.getMsg("Representative - 1,286% APR");
-            i18n_50 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_51;
+            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_48 = goog.getMsg("Representative - 1,286% APR");
+            i18n_47 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_48;
           } else {
-            i18n_50 = "Representative - 1,286% APR";
+            i18n_47 = "Representative - 1,286% APR";
           }
 
-          var i18n_52;
+          var i18n_49;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_53 = goog.getMsg("Apply Now");
-            i18n_52 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_53;
+            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_50 = goog.getMsg("Apply Now");
+            i18n_49 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_50;
           } else {
-            i18n_52 = "Apply Now";
+            i18n_49 = "Apply Now";
           }
 
-          var i18n_54;
+          var i18n_51;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_4013060476269413412$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_55 = goog.getMsg("Training");
-            i18n_54 = MSG_EXTERNAL_4013060476269413412$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_55;
+            var MSG_EXTERNAL_4013060476269413412$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_52 = goog.getMsg("Training");
+            i18n_51 = MSG_EXTERNAL_4013060476269413412$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_52;
           } else {
-            i18n_54 = "Training";
+            i18n_51 = "Training";
           }
 
-          var i18n_56;
+          var i18n_53;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_57 = goog.getMsg(" Borrow - $350 over 3 months ");
-            i18n_56 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_57;
+            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_54 = goog.getMsg(" Borrow - $350 over 3 months ");
+            i18n_53 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_54;
           } else {
-            i18n_56 = " Borrow - $350 over 3 months ";
+            i18n_53 = " Borrow - $350 over 3 months ";
           }
 
-          var i18n_58;
+          var i18n_55;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_59 = goog.getMsg(" Interest rate - 292% pa fixed");
-            i18n_58 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_59;
+            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_56 = goog.getMsg(" Interest rate - 292% pa fixed");
+            i18n_55 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_56;
           } else {
-            i18n_58 = " Interest rate - 292% pa fixed";
+            i18n_55 = " Interest rate - 292% pa fixed";
           }
 
-          var i18n_60;
+          var i18n_57;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_61 = goog.getMsg("Total amount payable - $525.12");
-            i18n_60 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_61;
+            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_58 = goog.getMsg("Total amount payable - $525.12");
+            i18n_57 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_58;
           } else {
-            i18n_60 = "Total amount payable - $525.12";
+            i18n_57 = "Total amount payable - $525.12";
           }
 
-          var i18n_62;
+          var i18n_59;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_63 = goog.getMsg("Representative - 1,286% APR");
-            i18n_62 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_63;
+            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_60 = goog.getMsg("Representative - 1,286% APR");
+            i18n_59 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_60;
           } else {
-            i18n_62 = "Representative - 1,286% APR";
+            i18n_59 = "Representative - 1,286% APR";
           }
 
-          var i18n_64;
+          var i18n_61;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_65 = goog.getMsg("Apply Now");
-            i18n_64 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_65;
+            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_62 = goog.getMsg("Apply Now");
+            i18n_61 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_62;
           } else {
-            i18n_64 = "Apply Now";
+            i18n_61 = "Apply Now";
           }
 
-          var i18n_66;
+          var i18n_63;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1031576099105634931$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_67 = goog.getMsg("Home Loan");
-            i18n_66 = MSG_EXTERNAL_1031576099105634931$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_67;
+            var MSG_EXTERNAL_1031576099105634931$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_64 = goog.getMsg("Home Loan");
+            i18n_63 = MSG_EXTERNAL_1031576099105634931$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_64;
           } else {
-            i18n_66 = "Home Loan";
+            i18n_63 = "Home Loan";
           }
 
-          var i18n_68;
+          var i18n_65;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_69 = goog.getMsg(" Borrow - $350 over 3 months ");
-            i18n_68 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_69;
+            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_66 = goog.getMsg(" Borrow - $350 over 3 months ");
+            i18n_65 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_66;
           } else {
-            i18n_68 = " Borrow - $350 over 3 months ";
+            i18n_65 = " Borrow - $350 over 3 months ";
           }
 
-          var i18n_70;
+          var i18n_67;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_71 = goog.getMsg(" Interest rate - 292% pa fixed");
-            i18n_70 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_71;
+            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_68 = goog.getMsg(" Interest rate - 292% pa fixed");
+            i18n_67 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_68;
           } else {
-            i18n_70 = " Interest rate - 292% pa fixed";
+            i18n_67 = " Interest rate - 292% pa fixed";
           }
 
-          var i18n_72;
+          var i18n_69;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_73 = goog.getMsg("Total amount payable - $525.12");
-            i18n_72 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_73;
+            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_70 = goog.getMsg("Total amount payable - $525.12");
+            i18n_69 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_70;
           } else {
-            i18n_72 = "Total amount payable - $525.12";
+            i18n_69 = "Total amount payable - $525.12";
           }
 
-          var i18n_74;
+          var i18n_71;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_75 = goog.getMsg("Representative - 1,286% APR");
-            i18n_74 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_75;
+            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_72 = goog.getMsg("Representative - 1,286% APR");
+            i18n_71 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_72;
           } else {
-            i18n_74 = "Representative - 1,286% APR";
+            i18n_71 = "Representative - 1,286% APR";
           }
 
-          var i18n_76;
+          var i18n_73;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_77 = goog.getMsg("Apply Now");
-            i18n_76 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_77;
+            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_74 = goog.getMsg("Apply Now");
+            i18n_73 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_74;
           } else {
-            i18n_76 = "Apply Now";
+            i18n_73 = "Apply Now";
           }
 
-          var i18n_78;
+          var i18n_75;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1011788431931398101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_79 = goog.getMsg("car Loan");
-            i18n_78 = MSG_EXTERNAL_1011788431931398101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_79;
+            var MSG_EXTERNAL_1011788431931398101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_76 = goog.getMsg("car Loan");
+            i18n_75 = MSG_EXTERNAL_1011788431931398101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_76;
           } else {
-            i18n_78 = "car Loan";
+            i18n_75 = "car Loan";
           }
 
-          var i18n_80;
+          var i18n_77;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_81 = goog.getMsg(" Borrow - $350 over 3 months ");
-            i18n_80 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_81;
+            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_78 = goog.getMsg(" Borrow - $350 over 3 months ");
+            i18n_77 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_78;
           } else {
-            i18n_80 = " Borrow - $350 over 3 months ";
+            i18n_77 = " Borrow - $350 over 3 months ";
           }
 
-          var i18n_82;
+          var i18n_79;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_83 = goog.getMsg(" Interest rate - 292% pa fixed");
-            i18n_82 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_83;
+            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_80 = goog.getMsg(" Interest rate - 292% pa fixed");
+            i18n_79 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_80;
           } else {
-            i18n_82 = " Interest rate - 292% pa fixed";
+            i18n_79 = " Interest rate - 292% pa fixed";
           }
 
-          var i18n_84;
+          var i18n_81;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_85 = goog.getMsg("Total amount payable - $525.12");
-            i18n_84 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_85;
+            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_82 = goog.getMsg("Total amount payable - $525.12");
+            i18n_81 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_82;
           } else {
-            i18n_84 = "Total amount payable - $525.12";
+            i18n_81 = "Total amount payable - $525.12";
           }
 
-          var i18n_86;
+          var i18n_83;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_87 = goog.getMsg("Representative - 1,286% APR");
-            i18n_86 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_87;
+            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_84 = goog.getMsg("Representative - 1,286% APR");
+            i18n_83 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_84;
           } else {
-            i18n_86 = "Representative - 1,286% APR";
+            i18n_83 = "Representative - 1,286% APR";
           }
 
-          var i18n_88;
+          var i18n_85;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_89 = goog.getMsg("Apply Now");
-            i18n_88 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_89;
+            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_86 = goog.getMsg("Apply Now");
+            i18n_85 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_86;
           } else {
-            i18n_88 = "Apply Now";
+            i18n_85 = "Apply Now";
           }
 
-          var i18n_90;
+          var i18n_87;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_4013060476269413412$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_91 = goog.getMsg("Training");
-            i18n_90 = MSG_EXTERNAL_4013060476269413412$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_91;
+            var MSG_EXTERNAL_4013060476269413412$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_88 = goog.getMsg("Training");
+            i18n_87 = MSG_EXTERNAL_4013060476269413412$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_88;
           } else {
-            i18n_90 = "Training";
+            i18n_87 = "Training";
           }
 
-          var i18n_92;
+          var i18n_89;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_93 = goog.getMsg(" Borrow - $350 over 3 months ");
-            i18n_92 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_93;
+            var MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_90 = goog.getMsg(" Borrow - $350 over 3 months ");
+            i18n_89 = MSG_EXTERNAL_8888773285063546974$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_90;
           } else {
-            i18n_92 = " Borrow - $350 over 3 months ";
+            i18n_89 = " Borrow - $350 over 3 months ";
           }
 
-          var i18n_94;
+          var i18n_91;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_95 = goog.getMsg(" Interest rate - 292% pa fixed");
-            i18n_94 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_95;
+            var MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_92 = goog.getMsg(" Interest rate - 292% pa fixed");
+            i18n_91 = MSG_EXTERNAL_7534619245687233400$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_92;
           } else {
-            i18n_94 = " Interest rate - 292% pa fixed";
+            i18n_91 = " Interest rate - 292% pa fixed";
           }
 
-          var i18n_96;
+          var i18n_93;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_97 = goog.getMsg("Total amount payable - $525.12");
-            i18n_96 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_97;
+            var MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_94 = goog.getMsg("Total amount payable - $525.12");
+            i18n_93 = MSG_EXTERNAL_2642723207694158879$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_94;
           } else {
-            i18n_96 = "Total amount payable - $525.12";
+            i18n_93 = "Total amount payable - $525.12";
           }
 
-          var i18n_98;
+          var i18n_95;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_99 = goog.getMsg("Representative - 1,286% APR");
-            i18n_98 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_99;
+            var MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_96 = goog.getMsg("Representative - 1,286% APR");
+            i18n_95 = MSG_EXTERNAL_8805571273777607888$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_96;
           } else {
-            i18n_98 = "Representative - 1,286% APR";
+            i18n_95 = "Representative - 1,286% APR";
           }
 
-          var i18n_100;
+          var i18n_97;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_101 = goog.getMsg("Apply Now");
-            i18n_100 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_101;
+            var MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_98 = goog.getMsg("Apply Now");
+            i18n_97 = MSG_EXTERNAL_2896009139461541940$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_98;
           } else {
-            i18n_100 = "Apply Now";
+            i18n_97 = "Apply Now";
           }
 
-          var i18n_102;
+          var i18n_99;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7332871512707001452$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_103 = goog.getMsg("Why Choose Us?");
-            i18n_102 = MSG_EXTERNAL_7332871512707001452$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_103;
+            var MSG_EXTERNAL_7332871512707001452$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_100 = goog.getMsg("Why Choose Us?");
+            i18n_99 = MSG_EXTERNAL_7332871512707001452$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_100;
           } else {
-            i18n_102 = "Why Choose Us?";
+            i18n_99 = "Why Choose Us?";
           }
 
-          var i18n_104;
+          var i18n_101;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_6442833994455428189$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_105 = goog.getMsg("Transfer Money easily in a Secure Way.");
-            i18n_104 = MSG_EXTERNAL_6442833994455428189$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_105;
+            var MSG_EXTERNAL_6442833994455428189$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_102 = goog.getMsg("Transfer Money easily in a Secure Way.");
+            i18n_101 = MSG_EXTERNAL_6442833994455428189$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_102;
           } else {
-            i18n_104 = "Transfer Money easily in a Secure Way.";
+            i18n_101 = "Transfer Money easily in a Secure Way.";
           }
 
-          var i18n_106;
+          var i18n_103;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1410976773766244323$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_107 = goog.getMsg("Customer service : We're here to help that's why our service is available 24/7.");
-            i18n_106 = MSG_EXTERNAL_1410976773766244323$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_107;
+            var MSG_EXTERNAL_1410976773766244323$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_104 = goog.getMsg("Customer service : We're here to help that's why our service is available 24/7.");
+            i18n_103 = MSG_EXTERNAL_1410976773766244323$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_104;
           } else {
-            i18n_106 = "Customer service : We're here to help that's why our service is available 24/7.";
+            i18n_103 = "Customer service : We're here to help that's why our service is available 24/7.";
           }
 
-          var i18n_108;
+          var i18n_105;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2626858695969750741$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_109 = goog.getMsg("Rapid : Your money arrives in minutes.");
-            i18n_108 = MSG_EXTERNAL_2626858695969750741$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_109;
+            var MSG_EXTERNAL_2626858695969750741$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_106 = goog.getMsg("Rapid : Your money arrives in minutes.");
+            i18n_105 = MSG_EXTERNAL_2626858695969750741$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_106;
           } else {
-            i18n_108 = "Rapid : Your money arrives in minutes.";
+            i18n_105 = "Rapid : Your money arrives in minutes.";
           }
 
-          var i18n_110;
+          var i18n_107;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3210238875792338136$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_111 = goog.getMsg("Secured : You can send money directly to a mobile wallet");
-            i18n_110 = MSG_EXTERNAL_3210238875792338136$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_111;
+            var MSG_EXTERNAL_3210238875792338136$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_108 = goog.getMsg("Secured : You can send money directly to a mobile wallet");
+            i18n_107 = MSG_EXTERNAL_3210238875792338136$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_108;
           } else {
-            i18n_110 = "Secured : You can send money directly to a mobile wallet";
+            i18n_107 = "Secured : You can send money directly to a mobile wallet";
           }
 
-          var i18n_112;
+          var i18n_109;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7377167873023499476$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_113 = goog.getMsg("Up to date : Use our system to track the status of your transfer.");
-            i18n_112 = MSG_EXTERNAL_7377167873023499476$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_113;
+            var MSG_EXTERNAL_7377167873023499476$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_110 = goog.getMsg("Up to date : Use our system to track the status of your transfer.");
+            i18n_109 = MSG_EXTERNAL_7377167873023499476$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_110;
           } else {
-            i18n_112 = "Up to date : Use our system to track the status of your transfer.";
+            i18n_109 = "Up to date : Use our system to track the status of your transfer.";
           }
 
-          var i18n_114;
+          var i18n_111;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5736481176444461852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_115 = goog.getMsg("About Us");
-            i18n_114 = MSG_EXTERNAL_5736481176444461852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_115;
+            var MSG_EXTERNAL_5736481176444461852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_112 = goog.getMsg("About Us");
+            i18n_111 = MSG_EXTERNAL_5736481176444461852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_112;
           } else {
-            i18n_114 = "About Us";
+            i18n_111 = "About Us";
           }
 
-          var i18n_116;
+          var i18n_113;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7332871512707001452$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_117 = goog.getMsg("Why Choose Us?");
-            i18n_116 = MSG_EXTERNAL_7332871512707001452$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_117;
+            var MSG_EXTERNAL_7332871512707001452$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_114 = goog.getMsg("Why Choose Us?");
+            i18n_113 = MSG_EXTERNAL_7332871512707001452$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_114;
           } else {
-            i18n_116 = "Why Choose Us?";
+            i18n_113 = "Why Choose Us?";
           }
 
-          var i18n_118;
+          var i18n_115;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_6442833994455428189$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_119 = goog.getMsg("Transfer Money easily in a Secure Way.");
-            i18n_118 = MSG_EXTERNAL_6442833994455428189$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_119;
+            var MSG_EXTERNAL_6442833994455428189$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_116 = goog.getMsg("Transfer Money easily in a Secure Way.");
+            i18n_115 = MSG_EXTERNAL_6442833994455428189$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_116;
           } else {
-            i18n_118 = "Transfer Money easily in a Secure Way.";
+            i18n_115 = "Transfer Money easily in a Secure Way.";
           }
 
-          var i18n_120;
+          var i18n_117;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1410976773766244323$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_121 = goog.getMsg("Customer service : We're here to help that's why our service is available 24/7.");
-            i18n_120 = MSG_EXTERNAL_1410976773766244323$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_121;
+            var MSG_EXTERNAL_1410976773766244323$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_118 = goog.getMsg("Customer service : We're here to help that's why our service is available 24/7.");
+            i18n_117 = MSG_EXTERNAL_1410976773766244323$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_118;
           } else {
-            i18n_120 = "Customer service : We're here to help that's why our service is available 24/7.";
+            i18n_117 = "Customer service : We're here to help that's why our service is available 24/7.";
           }
 
-          var i18n_122;
+          var i18n_119;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2626858695969750741$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_123 = goog.getMsg("Rapid : Your money arrives in minutes.");
-            i18n_122 = MSG_EXTERNAL_2626858695969750741$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_123;
+            var MSG_EXTERNAL_2626858695969750741$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_120 = goog.getMsg("Rapid : Your money arrives in minutes.");
+            i18n_119 = MSG_EXTERNAL_2626858695969750741$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_120;
           } else {
-            i18n_122 = "Rapid : Your money arrives in minutes.";
+            i18n_119 = "Rapid : Your money arrives in minutes.";
           }
 
-          var i18n_124;
+          var i18n_121;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3210238875792338136$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_125 = goog.getMsg("Secured : You can send money directly to a mobile wallet");
-            i18n_124 = MSG_EXTERNAL_3210238875792338136$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_125;
+            var MSG_EXTERNAL_3210238875792338136$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_122 = goog.getMsg("Secured : You can send money directly to a mobile wallet");
+            i18n_121 = MSG_EXTERNAL_3210238875792338136$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_122;
           } else {
-            i18n_124 = "Secured : You can send money directly to a mobile wallet";
+            i18n_121 = "Secured : You can send money directly to a mobile wallet";
           }
 
-          var i18n_126;
+          var i18n_123;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7377167873023499476$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_127 = goog.getMsg("Up to date : Use our system to track the status of your transfer.");
-            i18n_126 = MSG_EXTERNAL_7377167873023499476$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_127;
+            var MSG_EXTERNAL_7377167873023499476$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_124 = goog.getMsg("Up to date : Use our system to track the status of your transfer.");
+            i18n_123 = MSG_EXTERNAL_7377167873023499476$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_124;
           } else {
-            i18n_126 = "Up to date : Use our system to track the status of your transfer.";
+            i18n_123 = "Up to date : Use our system to track the status of your transfer.";
           }
 
-          var i18n_128;
+          var i18n_125;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5736481176444461852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_129 = goog.getMsg("About Us");
-            i18n_128 = MSG_EXTERNAL_5736481176444461852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_129;
+            var MSG_EXTERNAL_5736481176444461852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_126 = goog.getMsg("About Us");
+            i18n_125 = MSG_EXTERNAL_5736481176444461852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_126;
           } else {
-            i18n_128 = "About Us";
+            i18n_125 = "About Us";
           }
 
-          var i18n_130;
+          var i18n_127;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_131 = goog.getMsg("How it Works");
-            i18n_130 = MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_131;
+            var MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_128 = goog.getMsg("How it Works");
+            i18n_127 = MSG_EXTERNAL_5090571465254879484$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_128;
           } else {
-            i18n_130 = "How it Works";
+            i18n_127 = "How it Works";
           }
 
-          var i18n_132;
+          var i18n_129;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3054015905774017271$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_133 = goog.getMsg("We provide online instant transfert with quick approval that suit your term");
-            i18n_132 = MSG_EXTERNAL_3054015905774017271$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_133;
+            var MSG_EXTERNAL_3054015905774017271$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_130 = goog.getMsg("We provide online instant transfert with quick approval that suit your term");
+            i18n_129 = MSG_EXTERNAL_3054015905774017271$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_130;
           } else {
-            i18n_132 = "We provide online instant transfert with quick approval that suit your term";
+            i18n_129 = "We provide online instant transfert with quick approval that suit your term";
           }
 
-          var i18n_134;
+          var i18n_131;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5852851565357724562$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_135 = goog.getMsg("Make your transaction");
-            i18n_134 = MSG_EXTERNAL_5852851565357724562$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_135;
+            var MSG_EXTERNAL_5852851565357724562$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_132 = goog.getMsg("Make your transaction");
+            i18n_131 = MSG_EXTERNAL_5852851565357724562$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_132;
           } else {
-            i18n_134 = "Make your transaction";
+            i18n_131 = "Make your transaction";
           }
 
-          var i18n_136;
+          var i18n_133;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5919857514855860899$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_137 = goog.getMsg("Enter The Amount In The Receiver\u2019s Or Beneficiary\u2019s Currency. Enter The Sender And Receiver\u2019s Information. Choose A Method Of Delivery. Submit The Form. ");
-            i18n_136 = MSG_EXTERNAL_5919857514855860899$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_137;
+            var MSG_EXTERNAL_5919857514855860899$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_134 = goog.getMsg("Enter The Amount In The Receiver\u2019s Or Beneficiary\u2019s Currency. Enter The Sender And Receiver\u2019s Information. Choose A Method Of Delivery. Submit The Form. ");
+            i18n_133 = MSG_EXTERNAL_5919857514855860899$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_134;
           } else {
-            i18n_136 = "Enter The Amount In The Receiver\u2019s Or Beneficiary\u2019s Currency. Enter The Sender And Receiver\u2019s Information. Choose A Method Of Delivery. Submit The Form. ";
+            i18n_133 = "Enter The Amount In The Receiver\u2019s Or Beneficiary\u2019s Currency. Enter The Sender And Receiver\u2019s Information. Choose A Method Of Delivery. Submit The Form. ";
           }
 
-          var i18n_138;
+          var i18n_135;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_4485908963004089373$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_139 = goog.getMsg("Pay the amount to send");
-            i18n_138 = MSG_EXTERNAL_4485908963004089373$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_139;
+            var MSG_EXTERNAL_4485908963004089373$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_136 = goog.getMsg("Pay the amount to send");
+            i18n_135 = MSG_EXTERNAL_4485908963004089373$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_136;
           } else {
-            i18n_138 = "Pay the amount to send";
+            i18n_135 = "Pay the amount to send";
           }
 
-          var i18n_140;
+          var i18n_137;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_635040329033852870$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_141 = goog.getMsg("Via Interac E-Transfer. We're Integrated With All Canadian Banks For Free Interac E-Transfer.");
-            i18n_140 = MSG_EXTERNAL_635040329033852870$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_141;
+            var MSG_EXTERNAL_635040329033852870$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_138 = goog.getMsg("Via Interac E-Transfer. We're Integrated With All Canadian Banks For Free Interac E-Transfer.");
+            i18n_137 = MSG_EXTERNAL_635040329033852870$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_138;
           } else {
-            i18n_140 = "Via Interac E-Transfer. We're Integrated With All Canadian Banks For Free Interac E-Transfer.";
+            i18n_137 = "Via Interac E-Transfer. We're Integrated With All Canadian Banks For Free Interac E-Transfer.";
           }
 
-          var i18n_142;
+          var i18n_139;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7147476369347835717$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_143 = goog.getMsg("Receive the money");
-            i18n_142 = MSG_EXTERNAL_7147476369347835717$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_143;
+            var MSG_EXTERNAL_7147476369347835717$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_140 = goog.getMsg("Receive the money");
+            i18n_139 = MSG_EXTERNAL_7147476369347835717$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_140;
           } else {
-            i18n_142 = "Receive the money";
+            i18n_139 = "Receive the money";
           }
 
-          var i18n_144;
+          var i18n_141;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_4046535751411486933$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_145 = goog.getMsg("Track Your Transaction Using The Code Provided. Both You And Your Recipient Can Be Notified Of Funds Transfer.");
-            i18n_144 = MSG_EXTERNAL_4046535751411486933$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_145;
+            var MSG_EXTERNAL_4046535751411486933$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_142 = goog.getMsg("Track Your Transaction Using The Code Provided. Both You And Your Recipient Can Be Notified Of Funds Transfer.");
+            i18n_141 = MSG_EXTERNAL_4046535751411486933$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_142;
           } else {
-            i18n_144 = "Track Your Transaction Using The Code Provided. Both You And Your Recipient Can Be Notified Of Funds Transfer.";
+            i18n_141 = "Track Your Transaction Using The Code Provided. Both You And Your Recipient Can Be Notified Of Funds Transfer.";
           }
 
-          var i18n_146;
+          var i18n_143;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_900956551472307646$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_147 = goog.getMsg("Frequently ask");
-            i18n_146 = MSG_EXTERNAL_900956551472307646$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_147;
+            var MSG_EXTERNAL_900956551472307646$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_144 = goog.getMsg("Frequently ask");
+            i18n_143 = MSG_EXTERNAL_900956551472307646$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_144;
           } else {
-            i18n_146 = "Frequently ask";
+            i18n_143 = "Frequently ask";
           }
 
-          var i18n_148;
+          var i18n_145;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7369859649084446340$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_149 = goog.getMsg(" What are acceptable ID documents for picking up money? ");
-            i18n_148 = MSG_EXTERNAL_7369859649084446340$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_149;
+            var MSG_EXTERNAL_7369859649084446340$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_146 = goog.getMsg(" What are acceptable ID documents for picking up money? ");
+            i18n_145 = MSG_EXTERNAL_7369859649084446340$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_146;
           } else {
-            i18n_148 = " What are acceptable ID documents for picking up money? ";
+            i18n_145 = " What are acceptable ID documents for picking up money? ";
           }
 
-          var i18n_150;
+          var i18n_147;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_6272230300014674101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_151 = goog.getMsg(" In general passports and national IDs are acceptable. ");
-            i18n_150 = MSG_EXTERNAL_6272230300014674101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_151;
+            var MSG_EXTERNAL_6272230300014674101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_148 = goog.getMsg(" In general passports and national IDs are acceptable. ");
+            i18n_147 = MSG_EXTERNAL_6272230300014674101$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_148;
           } else {
-            i18n_150 = " In general passports and national IDs are acceptable. ";
+            i18n_147 = " In general passports and national IDs are acceptable. ";
           }
 
-          var i18n_152;
+          var i18n_149;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_613266754418563712$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_153 = goog.getMsg(" How do I find out if my money has been sent? ");
-            i18n_152 = MSG_EXTERNAL_613266754418563712$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_153;
+            var MSG_EXTERNAL_613266754418563712$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_150 = goog.getMsg(" How do I find out if my money has been sent? ");
+            i18n_149 = MSG_EXTERNAL_613266754418563712$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_150;
           } else {
-            i18n_152 = " How do I find out if my money has been sent? ";
+            i18n_149 = " How do I find out if my money has been sent? ";
           }
 
-          var i18n_154;
+          var i18n_151;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_876891856116096348$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_155 = goog.getMsg("Any time after sending, you will receive a link that allows you to check the status of your transaction. ");
-            i18n_154 = MSG_EXTERNAL_876891856116096348$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_155;
+            var MSG_EXTERNAL_876891856116096348$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_152 = goog.getMsg("Any time after sending, you will receive a link that allows you to check the status of your transaction. ");
+            i18n_151 = MSG_EXTERNAL_876891856116096348$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_152;
           } else {
-            i18n_154 = "Any time after sending, you will receive a link that allows you to check the status of your transaction. ";
+            i18n_151 = "Any time after sending, you will receive a link that allows you to check the status of your transaction. ";
           }
 
-          var i18n_156;
+          var i18n_153;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_4202794716640523519$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_157 = goog.getMsg(" What rate do you use? ");
-            i18n_156 = MSG_EXTERNAL_4202794716640523519$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_157;
+            var MSG_EXTERNAL_4202794716640523519$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_154 = goog.getMsg(" What rate do you use? ");
+            i18n_153 = MSG_EXTERNAL_4202794716640523519$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_154;
           } else {
-            i18n_156 = " What rate do you use? ";
+            i18n_153 = " What rate do you use? ";
           }
 
-          var i18n_158;
+          var i18n_155;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2694565029723911257$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_159 = goog.getMsg("We use the midmarket rates ");
-            i18n_158 = MSG_EXTERNAL_2694565029723911257$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_159;
+            var MSG_EXTERNAL_2694565029723911257$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_156 = goog.getMsg("We use the midmarket rates ");
+            i18n_155 = MSG_EXTERNAL_2694565029723911257$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_156;
           } else {
-            i18n_158 = "We use the midmarket rates ";
+            i18n_155 = "We use the midmarket rates ";
           }
 
-          var i18n_160;
+          var i18n_157;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2916939894972661154$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_161 = goog.getMsg(" Is there any hidden fees? ");
-            i18n_160 = MSG_EXTERNAL_2916939894972661154$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_161;
+            var MSG_EXTERNAL_2916939894972661154$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_158 = goog.getMsg(" Is there any hidden fees? ");
+            i18n_157 = MSG_EXTERNAL_2916939894972661154$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_158;
           } else {
-            i18n_160 = " Is there any hidden fees? ";
+            i18n_157 = " Is there any hidden fees? ";
           }
 
-          var i18n_162;
+          var i18n_159;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8770981619681007522$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_163 = goog.getMsg("No, we're here to help the community and we do not plan to charge our customers. ");
-            i18n_162 = MSG_EXTERNAL_8770981619681007522$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_163;
+            var MSG_EXTERNAL_8770981619681007522$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_160 = goog.getMsg("No, we're here to help the community and we do not plan to charge our customers. ");
+            i18n_159 = MSG_EXTERNAL_8770981619681007522$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_160;
           } else {
-            i18n_162 = "No, we're here to help the community and we do not plan to charge our customers. ";
+            i18n_159 = "No, we're here to help the community and we do not plan to charge our customers. ";
           }
 
-          var i18n_164;
+          var i18n_161;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_395081197009278658$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_165 = goog.getMsg(" Which banks do you cover? ");
-            i18n_164 = MSG_EXTERNAL_395081197009278658$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_165;
+            var MSG_EXTERNAL_395081197009278658$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_162 = goog.getMsg(" Which banks do you cover? ");
+            i18n_161 = MSG_EXTERNAL_395081197009278658$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_162;
           } else {
-            i18n_164 = " Which banks do you cover? ";
+            i18n_161 = " Which banks do you cover? ";
           }
 
-          var i18n_166;
+          var i18n_163;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3953118003189017146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_167 = goog.getMsg("We deposit money at all the major Cameroon banks. ");
-            i18n_166 = MSG_EXTERNAL_3953118003189017146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_167;
+            var MSG_EXTERNAL_3953118003189017146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_164 = goog.getMsg("We deposit money at all the major Cameroon banks. ");
+            i18n_163 = MSG_EXTERNAL_3953118003189017146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_164;
           } else {
-            i18n_166 = "We deposit money at all the major Cameroon banks. ";
+            i18n_163 = "We deposit money at all the major Cameroon banks. ";
           }
 
-          var i18n_168;
+          var i18n_165;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_169 = goog.getMsg("\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.");
-            i18n_168 = MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_169;
+            var MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_166 = goog.getMsg("\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.");
+            i18n_165 = MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_166;
           } else {
-            i18n_168 = "\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.";
+            i18n_165 = "\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.";
           }
 
-          var i18n_170;
+          var i18n_167;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_171 = goog.getMsg("\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.");
-            i18n_170 = MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_171;
+            var MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_168 = goog.getMsg("\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.");
+            i18n_167 = MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_168;
           } else {
-            i18n_170 = "\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.";
+            i18n_167 = "\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.";
           }
 
-          var i18n_172;
+          var i18n_169;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_173 = goog.getMsg("\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.");
-            i18n_172 = MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_173;
+            var MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_170 = goog.getMsg("\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.");
+            i18n_169 = MSG_EXTERNAL_7699392376523583050$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_170;
           } else {
-            i18n_172 = "\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.";
+            i18n_169 = "\"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering through animal welfare when people might depend on livestock as their only source of income or food.";
           }
 
-          var i18n_174;
+          var i18n_171;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5274015641304744172$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_175 = goog.getMsg("Create your account and, make a transaction");
-            i18n_174 = MSG_EXTERNAL_5274015641304744172$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_175;
+            var MSG_EXTERNAL_5274015641304744172$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_172 = goog.getMsg("Create your account and, make a transaction");
+            i18n_171 = MSG_EXTERNAL_5274015641304744172$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_172;
           } else {
-            i18n_174 = "Create your account and, make a transaction";
+            i18n_171 = "Create your account and, make a transaction";
           }
 
-          var i18n_176;
+          var i18n_173;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5674286808255988565$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_177 = goog.getMsg("Create");
-            i18n_176 = MSG_EXTERNAL_5674286808255988565$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_177;
+            var MSG_EXTERNAL_5674286808255988565$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_174 = goog.getMsg("Create");
+            i18n_173 = MSG_EXTERNAL_5674286808255988565$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS_174;
           } else {
-            i18n_176 = "Create";
+            i18n_173 = "Create";
           }
 
-          var i18n_178;
+          var i18n_175;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__179 = goog.getMsg("How much do you want to send ?");
-            i18n_178 = MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__179;
+            var MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__176 = goog.getMsg("How much do you want to send ?");
+            i18n_175 = MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__176;
           } else {
-            i18n_178 = "How much do you want to send ?";
+            i18n_175 = "How much do you want to send ?";
           }
 
-          var i18n_180;
+          var i18n_177;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__181 = goog.getMsg("How much do you want to send ?");
-            i18n_180 = MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__181;
+            var MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__178 = goog.getMsg("How much do you want to send ?");
+            i18n_177 = MSG_EXTERNAL_534992496905298635$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__178;
           } else {
-            i18n_180 = "How much do you want to send ?";
+            i18n_177 = "How much do you want to send ?";
           }
 
-          var i18n_182;
+          var i18n_179;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5698982416825384070$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__183 = goog.getMsg("You have to pay: {$startTagStrong}$0{$closeTagStrong} for fees", {
+            var MSG_EXTERNAL_5698982416825384070$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__180 = goog.getMsg("You have to pay: {$startTagStrong}$0{$closeTagStrong} for fees", {
               "startTagStrong": "\uFFFD#2\uFFFD",
               "closeTagStrong": "\uFFFD/#2\uFFFD"
             });
-            i18n_182 = MSG_EXTERNAL_5698982416825384070$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__183;
+            i18n_179 = MSG_EXTERNAL_5698982416825384070$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__180;
           } else {
-            i18n_182 = "You have to pay: " + "\uFFFD#2\uFFFD" + "$0" + "\uFFFD/#2\uFFFD" + " for fees";
+            i18n_179 = "You have to pay: " + "\uFFFD#2\uFFFD" + "$0" + "\uFFFD/#2\uFFFD" + " for fees";
           }
 
-          var i18n_184;
+          var i18n_181;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8035271711090635642$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__185 = goog.getMsg("Amount need to be from 5$ to 999$ !");
-            i18n_184 = MSG_EXTERNAL_8035271711090635642$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__185;
+            var MSG_EXTERNAL_8035271711090635642$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__182 = goog.getMsg("Amount need to be from 5$ to 999$ !");
+            i18n_181 = MSG_EXTERNAL_8035271711090635642$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__182;
           } else {
-            i18n_184 = "Amount need to be from 5$ to 999$ !";
+            i18n_181 = "Amount need to be from 5$ to 999$ !";
           }
 
-          var i18n_186;
+          var i18n_183;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8035271711090635642$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__187 = goog.getMsg("Amount need to be from 5$ to 999$ !");
-            i18n_186 = MSG_EXTERNAL_8035271711090635642$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__187;
+            var MSG_EXTERNAL_8035271711090635642$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__184 = goog.getMsg("Amount need to be from 5$ to 999$ !");
+            i18n_183 = MSG_EXTERNAL_8035271711090635642$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__184;
           } else {
-            i18n_186 = "Amount need to be from 5$ to 999$ !";
+            i18n_183 = "Amount need to be from 5$ to 999$ !";
           }
 
-          var i18n_188;
+          var i18n_185;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_9153600226745799902$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__189 = goog.getMsg("RATE : 1 {$interpolation} = {$startTagStrong}{$interpolation_1} {$interpolation_2}{$closeTagStrong}", {
+            var MSG_EXTERNAL_9153600226745799902$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__186 = goog.getMsg("RATE : 1 {$interpolation} = {$startTagStrong}{$interpolation_1} {$interpolation_2}{$closeTagStrong}", {
               "interpolation": "\uFFFD0\uFFFD",
               "startTagStrong": "\uFFFD#3\uFFFD",
               "interpolation_1": "\uFFFD1\uFFFD",
               "interpolation_2": "\uFFFD2\uFFFD",
               "closeTagStrong": "\uFFFD/#3\uFFFD"
             });
-            i18n_188 = MSG_EXTERNAL_9153600226745799902$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__189;
+            i18n_185 = MSG_EXTERNAL_9153600226745799902$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__186;
           } else {
-            i18n_188 = "RATE : 1 " + "\uFFFD0\uFFFD" + " = " + "\uFFFD#3\uFFFD" + "" + "\uFFFD1\uFFFD" + " " + "\uFFFD2\uFFFD" + "" + "\uFFFD/#3\uFFFD" + "";
+            i18n_185 = "RATE : 1 " + "\uFFFD0\uFFFD" + " = " + "\uFFFD#3\uFFFD" + "" + "\uFFFD1\uFFFD" + " " + "\uFFFD2\uFFFD" + "" + "\uFFFD/#3\uFFFD" + "";
           }
 
-          var i18n_190;
+          var i18n_187;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_339948526647889146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__191 = goog.getMsg("Connexion Required");
-            i18n_190 = MSG_EXTERNAL_339948526647889146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__191;
+            var MSG_EXTERNAL_339948526647889146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__188 = goog.getMsg("Connexion Required");
+            i18n_187 = MSG_EXTERNAL_339948526647889146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__188;
           } else {
-            i18n_190 = "Connexion Required";
+            i18n_187 = "Connexion Required";
           }
 
-          var i18n_192;
+          var i18n_189;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_339948526647889146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__193 = goog.getMsg("Connexion Required");
-            i18n_192 = MSG_EXTERNAL_339948526647889146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__193;
+            var MSG_EXTERNAL_339948526647889146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__190 = goog.getMsg("Connexion Required");
+            i18n_189 = MSG_EXTERNAL_339948526647889146$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__190;
           } else {
-            i18n_192 = "Connexion Required";
+            i18n_189 = "Connexion Required";
           }
 
-          var i18n_194;
+          var i18n_191;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_979130327430710273$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__195 = goog.getMsg(" please login first ");
-            i18n_194 = MSG_EXTERNAL_979130327430710273$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__195;
+            var MSG_EXTERNAL_979130327430710273$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__192 = goog.getMsg(" please login first ");
+            i18n_191 = MSG_EXTERNAL_979130327430710273$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__192;
           } else {
-            i18n_194 = " please login first ";
+            i18n_191 = " please login first ";
           }
 
-          var i18n_196;
+          var i18n_193;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__197 = goog.getMsg("Close");
-            i18n_196 = MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__197;
+            var MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__194 = goog.getMsg("Close");
+            i18n_193 = MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__194;
           } else {
-            i18n_196 = "Close";
+            i18n_193 = "Close";
           }
 
-          var i18n_198;
+          var i18n_195;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5907476126990913307$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__199 = goog.getMsg("Create account");
-            i18n_198 = MSG_EXTERNAL_5907476126990913307$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__199;
+            var MSG_EXTERNAL_5907476126990913307$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__196 = goog.getMsg("Create account");
+            i18n_195 = MSG_EXTERNAL_5907476126990913307$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__196;
           } else {
-            i18n_198 = "Create account";
+            i18n_195 = "Create account";
           }
 
-          var i18n_200;
+          var i18n_197;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7890419814061896884$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__201 = goog.getMsg("Date of Birth");
-            i18n_200 = MSG_EXTERNAL_7890419814061896884$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__201;
+            var MSG_EXTERNAL_7890419814061896884$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__198 = goog.getMsg("Date of Birth");
+            i18n_197 = MSG_EXTERNAL_7890419814061896884$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__198;
           } else {
-            i18n_200 = "Date of Birth";
+            i18n_197 = "Date of Birth";
           }
 
-          var i18n_202;
+          var i18n_199;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1815195286714301387$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__203 = goog.getMsg("Adresse");
-            i18n_202 = MSG_EXTERNAL_1815195286714301387$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__203;
+            var MSG_EXTERNAL_1815195286714301387$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__200 = goog.getMsg("Adresse");
+            i18n_199 = MSG_EXTERNAL_1815195286714301387$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__200;
           } else {
-            i18n_202 = "Adresse";
+            i18n_199 = "Adresse";
           }
 
-          var i18n_204;
+          var i18n_201;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3262236020277300799$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__205 = goog.getMsg("Phone");
-            i18n_204 = MSG_EXTERNAL_3262236020277300799$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__205;
+            var MSG_EXTERNAL_3262236020277300799$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__202 = goog.getMsg("Phone");
+            i18n_201 = MSG_EXTERNAL_3262236020277300799$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__202;
           } else {
-            i18n_204 = "Phone";
+            i18n_201 = "Phone";
           }
 
-          var i18n_206;
+          var i18n_203;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__207 = goog.getMsg("Email address");
-            i18n_206 = MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__207;
+            var MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__204 = goog.getMsg("Email address");
+            i18n_203 = MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__204;
           } else {
-            i18n_206 = "Email address";
+            i18n_203 = "Email address";
           }
 
-          var i18n_208;
+          var i18n_205;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1431416938026210429$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__209 = goog.getMsg("Password");
-            i18n_208 = MSG_EXTERNAL_1431416938026210429$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__209;
+            var MSG_EXTERNAL_1431416938026210429$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__206 = goog.getMsg("Password");
+            i18n_205 = MSG_EXTERNAL_1431416938026210429$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__206;
           } else {
-            i18n_208 = "Password";
+            i18n_205 = "Password";
           }
 
-          var i18n_210;
+          var i18n_207;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3782563238994348625$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__211 = goog.getMsg("Confirm password");
-            i18n_210 = MSG_EXTERNAL_3782563238994348625$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__211;
+            var MSG_EXTERNAL_3782563238994348625$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__208 = goog.getMsg("Confirm password");
+            i18n_207 = MSG_EXTERNAL_3782563238994348625$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__208;
           } else {
-            i18n_210 = "Confirm password";
+            i18n_207 = "Confirm password";
           }
 
-          var i18n_212;
+          var i18n_209;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_4771691323816548833$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__213 = goog.getMsg("Already a member ? open a session");
-            i18n_212 = MSG_EXTERNAL_4771691323816548833$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__213;
+            var MSG_EXTERNAL_4771691323816548833$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__210 = goog.getMsg("Already a member ? open a session");
+            i18n_209 = MSG_EXTERNAL_4771691323816548833$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__210;
           } else {
-            i18n_212 = "Already a member ? open a session";
+            i18n_209 = "Already a member ? open a session";
           }
 
-          var i18n_214;
+          var i18n_211;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__215 = goog.getMsg("Close");
-            i18n_214 = MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__215;
+            var MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__212 = goog.getMsg("Close");
+            i18n_211 = MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__212;
           } else {
-            i18n_214 = "Close";
+            i18n_211 = "Close";
           }
 
-          var i18n_216;
+          var i18n_213;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8269790170372775969$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___217 = goog.getMsg("First name required please !");
-            i18n_216 = MSG_EXTERNAL_8269790170372775969$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___217;
+            var MSG_EXTERNAL_8269790170372775969$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___214 = goog.getMsg("First name required please !");
+            i18n_213 = MSG_EXTERNAL_8269790170372775969$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___214;
           } else {
-            i18n_216 = "First name required please !";
+            i18n_213 = "First name required please !";
           }
 
-          var i18n_218;
+          var i18n_215;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1611138682852553672$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___219 = goog.getMsg("Name required please !");
-            i18n_218 = MSG_EXTERNAL_1611138682852553672$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___219;
+            var MSG_EXTERNAL_1611138682852553672$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___216 = goog.getMsg("Name required please !");
+            i18n_215 = MSG_EXTERNAL_1611138682852553672$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___216;
           } else {
-            i18n_218 = "Name required please !";
+            i18n_215 = "Name required please !";
           }
 
-          var i18n_220;
+          var i18n_217;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_9073270086385376569$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___221 = goog.getMsg("Date required please !");
-            i18n_220 = MSG_EXTERNAL_9073270086385376569$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___221;
+            var MSG_EXTERNAL_9073270086385376569$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___218 = goog.getMsg("Date required please !");
+            i18n_217 = MSG_EXTERNAL_9073270086385376569$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___218;
           } else {
-            i18n_220 = "Date required please !";
+            i18n_217 = "Date required please !";
           }
 
-          var i18n_222;
+          var i18n_219;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_8695154725369659432$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___223 = goog.getMsg("Country required please !");
-            i18n_222 = MSG_EXTERNAL_8695154725369659432$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___223;
+            var MSG_EXTERNAL_8695154725369659432$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___220 = goog.getMsg("Country required please !");
+            i18n_219 = MSG_EXTERNAL_8695154725369659432$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___220;
           } else {
-            i18n_222 = "Country required please !";
+            i18n_219 = "Country required please !";
           }
 
-          var i18n_224;
+          var i18n_221;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3620770785212053435$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___225 = goog.getMsg("City required please !");
-            i18n_224 = MSG_EXTERNAL_3620770785212053435$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___225;
+            var MSG_EXTERNAL_3620770785212053435$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___222 = goog.getMsg("City required please !");
+            i18n_221 = MSG_EXTERNAL_3620770785212053435$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___222;
           } else {
-            i18n_224 = "City required please !";
+            i18n_221 = "City required please !";
           }
 
-          var i18n_226;
+          var i18n_223;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_4240386302729979537$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___227 = goog.getMsg("Province required please !");
-            i18n_226 = MSG_EXTERNAL_4240386302729979537$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___227;
+            var MSG_EXTERNAL_4240386302729979537$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___224 = goog.getMsg("Province required please !");
+            i18n_223 = MSG_EXTERNAL_4240386302729979537$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___224;
           } else {
-            i18n_226 = "Province required please !";
+            i18n_223 = "Province required please !";
           }
 
-          var i18n_228;
+          var i18n_225;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3095424241986390227$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___229 = goog.getMsg("Address required please !");
-            i18n_228 = MSG_EXTERNAL_3095424241986390227$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___229;
+            var MSG_EXTERNAL_3095424241986390227$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___226 = goog.getMsg("Address required please !");
+            i18n_225 = MSG_EXTERNAL_3095424241986390227$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___226;
           } else {
-            i18n_228 = "Address required please !";
+            i18n_225 = "Address required please !";
           }
 
-          var i18n_230;
+          var i18n_227;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5313427132981108483$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___231 = goog.getMsg("phone -- required please !");
-            i18n_230 = MSG_EXTERNAL_5313427132981108483$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___231;
+            var MSG_EXTERNAL_5313427132981108483$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___228 = goog.getMsg("phone -- required please !");
+            i18n_227 = MSG_EXTERNAL_5313427132981108483$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___228;
           } else {
-            i18n_230 = "phone -- required please !";
+            i18n_227 = "phone -- required please !";
           }
 
-          var i18n_232;
+          var i18n_229;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___233 = goog.getMsg("Email required please !");
-            i18n_232 = MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___233;
+            var MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___230 = goog.getMsg("Email required please !");
+            i18n_229 = MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___230;
           } else {
-            i18n_232 = "Email required please !";
+            i18n_229 = "Email required please !";
           }
 
-          var i18n_234;
+          var i18n_231;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___235 = goog.getMsg("Password required please !");
-            i18n_234 = MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___235;
+            var MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___232 = goog.getMsg("Password required please !");
+            i18n_231 = MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___232;
           } else {
-            i18n_234 = "Password required please !";
+            i18n_231 = "Password required please !";
           }
 
-          var i18n_236;
+          var i18n_233;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___237 = goog.getMsg("Password required please !");
-            i18n_236 = MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___237;
+            var MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___234 = goog.getMsg("Password required please !");
+            i18n_233 = MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___234;
           } else {
-            i18n_236 = "Password required please !";
+            i18n_233 = "Password required please !";
           }
 
-          var i18n_238;
+          var i18n_235;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_6451269955734195952$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___239 = goog.getMsg("Passwords do not match");
-            i18n_238 = MSG_EXTERNAL_6451269955734195952$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___239;
+            var MSG_EXTERNAL_6451269955734195952$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___236 = goog.getMsg("Passwords do not match");
+            i18n_235 = MSG_EXTERNAL_6451269955734195952$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___236;
           } else {
-            i18n_238 = "Passwords do not match";
+            i18n_235 = "Passwords do not match";
           }
 
-          var i18n_240;
+          var i18n_237;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3797778920049399855$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__241 = goog.getMsg("Logout");
-            i18n_240 = MSG_EXTERNAL_3797778920049399855$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__241;
+            var MSG_EXTERNAL_3797778920049399855$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__238 = goog.getMsg("Logout");
+            i18n_237 = MSG_EXTERNAL_3797778920049399855$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__238;
           } else {
-            i18n_240 = "Logout";
+            i18n_237 = "Logout";
           }
 
-          var i18n_242;
+          var i18n_239;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3797778920049399855$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__243 = goog.getMsg("Logout");
-            i18n_242 = MSG_EXTERNAL_3797778920049399855$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__243;
+            var MSG_EXTERNAL_3797778920049399855$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__240 = goog.getMsg("Logout");
+            i18n_239 = MSG_EXTERNAL_3797778920049399855$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__240;
           } else {
-            i18n_242 = "Logout";
+            i18n_239 = "Logout";
           }
 
-          var i18n_244;
+          var i18n_241;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2217782331989113852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__245 = goog.getMsg("Do you really want to Logout ?");
-            i18n_244 = MSG_EXTERNAL_2217782331989113852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__245;
+            var MSG_EXTERNAL_2217782331989113852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__242 = goog.getMsg("Do you really want to Logout ?");
+            i18n_241 = MSG_EXTERNAL_2217782331989113852$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__242;
           } else {
-            i18n_244 = "Do you really want to Logout ?";
+            i18n_241 = "Do you really want to Logout ?";
           }
 
-          var i18n_246;
+          var i18n_243;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2807800733729323332$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__247 = goog.getMsg("Yes");
-            i18n_246 = MSG_EXTERNAL_2807800733729323332$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__247;
+            var MSG_EXTERNAL_2807800733729323332$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__244 = goog.getMsg("Yes");
+            i18n_243 = MSG_EXTERNAL_2807800733729323332$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__244;
           } else {
-            i18n_246 = "Yes";
+            i18n_243 = "Yes";
           }
 
-          var i18n_248;
+          var i18n_245;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3542042671420335679$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__249 = goog.getMsg("No");
-            i18n_248 = MSG_EXTERNAL_3542042671420335679$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__249;
+            var MSG_EXTERNAL_3542042671420335679$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__246 = goog.getMsg("No");
+            i18n_245 = MSG_EXTERNAL_3542042671420335679$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__246;
           } else {
-            i18n_248 = "No";
+            i18n_245 = "No";
           }
 
-          var i18n_250;
+          var i18n_247;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5710186726699533853$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__251 = goog.getMsg("Add beneficiary");
-            i18n_250 = MSG_EXTERNAL_5710186726699533853$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__251;
+            var MSG_EXTERNAL_5710186726699533853$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__248 = goog.getMsg("Add beneficiary");
+            i18n_247 = MSG_EXTERNAL_5710186726699533853$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__248;
           } else {
-            i18n_250 = "Add beneficiary";
+            i18n_247 = "Add beneficiary";
           }
 
-          var i18n_252;
+          var i18n_249;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5710186726699533853$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__253 = goog.getMsg("Add beneficiary");
-            i18n_252 = MSG_EXTERNAL_5710186726699533853$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__253;
+            var MSG_EXTERNAL_5710186726699533853$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__250 = goog.getMsg("Add beneficiary");
+            i18n_249 = MSG_EXTERNAL_5710186726699533853$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__250;
           } else {
-            i18n_252 = "Add beneficiary";
+            i18n_249 = "Add beneficiary";
           }
 
-          var i18n_254;
+          var i18n_251;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_6431929762604230597$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__255 = goog.getMsg("You don't have beneficiary ! click {$startTagStrong}yes{$closeTagStrong} to create it ", {
+            var MSG_EXTERNAL_6431929762604230597$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__252 = goog.getMsg("You don't have beneficiary ! click {$startTagStrong}yes{$closeTagStrong} to create it ", {
               "startTagStrong": "\uFFFD#11\uFFFD",
               "closeTagStrong": "\uFFFD/#11\uFFFD"
             });
-            i18n_254 = MSG_EXTERNAL_6431929762604230597$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__255;
+            i18n_251 = MSG_EXTERNAL_6431929762604230597$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__252;
           } else {
-            i18n_254 = "You don't have beneficiary ! click " + "\uFFFD#11\uFFFD" + "yes" + "\uFFFD/#11\uFFFD" + " to create it ";
+            i18n_251 = "You don't have beneficiary ! click " + "\uFFFD#11\uFFFD" + "yes" + "\uFFFD/#11\uFFFD" + " to create it ";
           }
 
-          var i18n_256;
+          var i18n_253;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2807800733729323332$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__257 = goog.getMsg("Yes");
-            i18n_256 = MSG_EXTERNAL_2807800733729323332$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__257;
+            var MSG_EXTERNAL_2807800733729323332$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__254 = goog.getMsg("Yes");
+            i18n_253 = MSG_EXTERNAL_2807800733729323332$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__254;
           } else {
-            i18n_256 = "Yes";
+            i18n_253 = "Yes";
           }
 
-          var i18n_258;
+          var i18n_255;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3542042671420335679$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__259 = goog.getMsg("No");
-            i18n_258 = MSG_EXTERNAL_3542042671420335679$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__259;
+            var MSG_EXTERNAL_3542042671420335679$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__256 = goog.getMsg("No");
+            i18n_255 = MSG_EXTERNAL_3542042671420335679$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__256;
           } else {
-            i18n_258 = "No";
+            i18n_255 = "No";
           }
 
-          var i18n_260;
+          var i18n_257;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2619294037655547138$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__261 = goog.getMsg("Authentification");
-            i18n_260 = MSG_EXTERNAL_2619294037655547138$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__261;
+            var MSG_EXTERNAL_2619294037655547138$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__258 = goog.getMsg("Authentification");
+            i18n_257 = MSG_EXTERNAL_2619294037655547138$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__258;
           } else {
-            i18n_260 = "Authentification";
+            i18n_257 = "Authentification";
           }
 
-          var i18n_262;
+          var i18n_259;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__263 = goog.getMsg("Email address");
-            i18n_262 = MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__263;
+            var MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__260 = goog.getMsg("Email address");
+            i18n_259 = MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__260;
           } else {
-            i18n_262 = "Email address";
+            i18n_259 = "Email address";
           }
 
-          var i18n_264;
+          var i18n_261;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1347483290470350402$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__265 = goog.getMsg("We'll never share your email with anyone else.");
-            i18n_264 = MSG_EXTERNAL_1347483290470350402$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__265;
+            var MSG_EXTERNAL_1347483290470350402$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__262 = goog.getMsg("We'll never share your email with anyone else.");
+            i18n_261 = MSG_EXTERNAL_1347483290470350402$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__262;
           } else {
-            i18n_264 = "We'll never share your email with anyone else.";
+            i18n_261 = "We'll never share your email with anyone else.";
           }
 
-          var i18n_266;
+          var i18n_263;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1431416938026210429$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__267 = goog.getMsg("Password");
-            i18n_266 = MSG_EXTERNAL_1431416938026210429$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__267;
+            var MSG_EXTERNAL_1431416938026210429$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__264 = goog.getMsg("Password");
+            i18n_263 = MSG_EXTERNAL_1431416938026210429$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__264;
           } else {
-            i18n_266 = "Password";
+            i18n_263 = "Password";
           }
 
-          var i18n_268;
+          var i18n_265;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_5011900571126906167$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__269 = goog.getMsg("Forgot password ?");
-            i18n_268 = MSG_EXTERNAL_5011900571126906167$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__269;
+            var MSG_EXTERNAL_5011900571126906167$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__266 = goog.getMsg("Forgot password ?");
+            i18n_265 = MSG_EXTERNAL_5011900571126906167$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__266;
           } else {
-            i18n_268 = "Forgot password ?";
+            i18n_265 = "Forgot password ?";
           }
 
-          var i18n_270;
+          var i18n_267;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1993326739509218079$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__271 = goog.getMsg("Not a member yet ? create an account");
-            i18n_270 = MSG_EXTERNAL_1993326739509218079$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__271;
+            var MSG_EXTERNAL_1993326739509218079$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__268 = goog.getMsg("Not a member yet ? create an account");
+            i18n_267 = MSG_EXTERNAL_1993326739509218079$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__268;
           } else {
-            i18n_270 = "Not a member yet ? create an account";
+            i18n_267 = "Not a member yet ? create an account";
           }
 
-          var i18n_272;
+          var i18n_269;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_9010413891924313175$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__273 = goog.getMsg("open");
-            i18n_272 = MSG_EXTERNAL_9010413891924313175$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__273;
+            var MSG_EXTERNAL_9010413891924313175$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__270 = goog.getMsg("open");
+            i18n_269 = MSG_EXTERNAL_9010413891924313175$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__270;
           } else {
-            i18n_272 = "open";
+            i18n_269 = "open";
           }
 
-          var i18n_274;
+          var i18n_271;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__275 = goog.getMsg("Close");
-            i18n_274 = MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__275;
+            var MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__272 = goog.getMsg("Close");
+            i18n_271 = MSG_EXTERNAL_7819314041543176992$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__272;
           } else {
-            i18n_274 = "Close";
+            i18n_271 = "Close";
           }
 
-          var i18n_276;
+          var i18n_273;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___277 = goog.getMsg("Email required please !");
-            i18n_276 = MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___277;
+            var MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___274 = goog.getMsg("Email required please !");
+            i18n_273 = MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___274;
           } else {
-            i18n_276 = "Email required please !";
+            i18n_273 = "Email required please !";
           }
 
-          var i18n_278;
+          var i18n_275;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___279 = goog.getMsg("Password required please !");
-            i18n_278 = MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___279;
+            var MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___276 = goog.getMsg("Password required please !");
+            i18n_275 = MSG_EXTERNAL_7576748259070062740$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___276;
           } else {
-            i18n_278 = "Password required please !";
+            i18n_275 = "Password required please !";
           }
 
-          var i18n_280;
+          var i18n_277;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1636934520301910285$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__281 = goog.getMsg("Reset password");
-            i18n_280 = MSG_EXTERNAL_1636934520301910285$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__281;
+            var MSG_EXTERNAL_1636934520301910285$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__278 = goog.getMsg("Reset password");
+            i18n_277 = MSG_EXTERNAL_1636934520301910285$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__278;
           } else {
-            i18n_280 = "Reset password";
+            i18n_277 = "Reset password";
           }
 
-          var i18n_282;
+          var i18n_279;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__283 = goog.getMsg("Email address");
-            i18n_282 = MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__283;
+            var MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__280 = goog.getMsg("Email address");
+            i18n_279 = MSG_EXTERNAL_3967269098753656610$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__280;
           } else {
-            i18n_282 = "Email address";
+            i18n_279 = "Email address";
           }
 
-          var i18n_284;
+          var i18n_281;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_1347483290470350402$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__285 = goog.getMsg("We'll never share your email with anyone else.");
-            i18n_284 = MSG_EXTERNAL_1347483290470350402$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__285;
+            var MSG_EXTERNAL_1347483290470350402$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__282 = goog.getMsg("We'll never share your email with anyone else.");
+            i18n_281 = MSG_EXTERNAL_1347483290470350402$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__282;
           } else {
-            i18n_284 = "We'll never share your email with anyone else.";
+            i18n_281 = "We'll never share your email with anyone else.";
           }
 
-          var i18n_286;
+          var i18n_283;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_6490688569532630280$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__287 = goog.getMsg("Send");
-            i18n_286 = MSG_EXTERNAL_6490688569532630280$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__287;
+            var MSG_EXTERNAL_6490688569532630280$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__284 = goog.getMsg("Send");
+            i18n_283 = MSG_EXTERNAL_6490688569532630280$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__284;
           } else {
-            i18n_286 = "Send";
+            i18n_283 = "Send";
           }
 
-          var i18n_288;
+          var i18n_285;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_2159130950882492111$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__289 = goog.getMsg("Cancel");
-            i18n_288 = MSG_EXTERNAL_2159130950882492111$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__289;
+            var MSG_EXTERNAL_2159130950882492111$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__286 = goog.getMsg("Cancel");
+            i18n_285 = MSG_EXTERNAL_2159130950882492111$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS__286;
           } else {
-            i18n_288 = "Cancel";
+            i18n_285 = "Cancel";
           }
 
-          var i18n_290;
+          var i18n_287;
 
           if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-            var MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___291 = goog.getMsg("Email required please !");
-            i18n_290 = MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___291;
+            var MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___288 = goog.getMsg("Email required please !");
+            i18n_287 = MSG_EXTERNAL_7549199588588968693$$SRC_APP_COMPONENTS_HOME_HOME_COMPONENT_TS___288;
           } else {
-            i18n_290 = "Email required please !";
+            i18n_287 = "Email required please !";
           }
 
-          return [["href", "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", "rel", "stylesheet", "integrity", "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", "crossorigin", "anonymous"], ["href", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", "rel", "stylesheet"], ["href", "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css", "rel", "stylesheet"], ["id", "goToTop", 1, "slider_area", "welcome-area", "wow", "fadeInUp"], [1, "single_slider", "d-flex", "align-items-center", "slider_bg_1"], [1, "container"], [1, "row", "align-items-center", "justify-content-center"], ["class", "col-lg-7 col-md-6 d-block d-sm-none", 4, "ngIf"], ["class", "col-lg-7 col-md-6 phone_num d-block d-sm-none", "data-aos", "fade-up", "data-aos-duration", "1500", 3, "style", "click", 4, "ngIf"], [1, "col-lg-7", "col-md-6", "d-none", "d-sm-block"], [1, "slider_text"], ["data-wow-duration", "1s", "data-wow-delay", ".1s", 1, "wow", "fadeInRight", "d-none", "d-sm-block"], i18n_4, ["data-aos", "fade-up", "data-aos-duration", "1500", 1, "sldier_btn"], [1, "boxed-btn3", 2, "cursor", "pointer", 3, "click"], i18n_6, [1, "container", "d-block", "d-sm-none"], [1, "row", 2, "padding-top", "50px"], [1, "col"], i18n_8, [1, "boxed-btn10", 2, "cursor", "pointer", 3, "click"], i18n_10, i18n_12, [1, "boxed-btn10", 2, "cursor", "pointer", "float", "right", 3, "click"], i18n_14, [1, "col-lg-5", "col-md-6"], ["data-wow-duration", "1.2s", "data-wow-delay", ".2s", 1, "payment_form", "white-bg", "wow", "fadeInDown"], [1, "d-flex", "justify-content-center", 3, "click"], [1, "d-flex", "justify-content-center", 3, "settings", "data", "ngModel", "ngModelChange", "onSelect", "onSelectAll", "onDeSelect"], [1, "info", "text-center"], [1, "d-none", "d-sm-block"], i18n_16, ["class", "d-block d-sm-none hidden-on-lgScreen", "style", "white-space: nowrap;", 4, "ngIf"], ["class", "d-block d-sm-none hidden-on-lgScreen", 4, "ngIf"], ["style", "animation-duration:2s; animation-delay:2s; animation-iteration-count:infinite;", 4, "ngIf"], ["class", "text-danger d-none d-sm-block", "data-aos", "fade-right", "data-aos-duration", "1500", 4, "ngIf"], ["class", "text-danger d-block d-sm-none", "data-aos", "fade-right", "data-aos-duration", "1500", 4, "ngIf"], ["class", "col-lg-12 justify-content-center text-center", "style", "padding-top: 25px", 4, "ngIf"], ["class", "dots-bars-2", "style", "margin: auto;color:#FFD700;", 4, "ngIf"], [1, "form"], [1, "row"], [1, "col-lg-12"], ["for", "formControlLg", 1, "form-label"], i18n_18, [1, "input-group", "mb-3"], [1, "input-group-prepend"], ["class", "input-group-text", "data-aos", "fade-up", 4, "ngIf"], ["type", "number", "id", "sendInput", "aria-label", "Amount (to the nearest dollar)", 1, "form-control", 2, "height", "50px", "-webkit-border-radius", "5px", "-moz-border-radius", "5px", "border-radius", "5px", "font-size", "16px", 3, "keyup", "click"], [1, "input-group-append"], [1, "input-group-text"], ["data-aos", "fade-up", 3, "class", 4, "ngIf"], [1, "glyphicon", "glyphicon-sort", "justify-content-center", "text-center", 2, "font-size", "24px", "color", "#FFD700", "cursor", "pointer", 3, "click"], i18n_20, ["class", "input-group-text", "data-aos", "fade-down", 4, "ngIf"], ["disabled", "", "id", "receiveInput", "type", "text", "aria-label", "Amount (to the nearest dollar)", 1, "form-control", 2, "height", "50px", "-webkit-border-radius", "5px", "-moz-border-radius", "5px", "border-radius", "5px", "font-weight", "bold", "font-size", "24px"], ["data-aos", "fade-down", 3, "class", 4, "ngIf"], [1, "submit_btn"], ["type", "submit", 1, "boxed-btn3", 3, "click"], i18n_22, [1, "service_area"], [1, "section_title", "text-center", "mb-90"], ["data-wow-duration", "1s", "data-wow-delay", ".1s", 1, "wow", "fadeInUp"], ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "500", 1, "wow", "fadeInUp"], i18n_24, ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "wow", "fadeInUp"], i18n_26, [1, "row", "d-none", "d-sm-block"], [1, "col-lg-4", "col-md-6"], ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", "data-aos", "fade-right", "data-aos-offset", "500", "data-aos-duration", "1500", 1, "single_service", "wow", "fadeInLeft"], [1, "service_icon_wrap", "text-center"], [1, "service_icon"], ["src", "./../../../assets/img/svg_icon/service_1.png", "alt", ""], i18n_28, i18n_30, [1, "service_content"], i18n_32, i18n_34, i18n_36, i18n_38, [1, "apply_btn"], ["type", "submit", 1, "boxed-btn3", "submitZoom", 3, "click"], i18n_40, ["data-wow-duration", "1s", "data-wow-delay", ".3s", "data-aos", "zoom-in", 1, "single_service", "wow", "fadeInUp"], ["src", "./../../../assets/img/svg_icon/service_2.png", "alt", ""], i18n_42, i18n_44, i18n_46, i18n_48, i18n_50, i18n_52, ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", "data-aos", "fade-left", "data-aos-offset", "500", "data-aos-duration", "1500", 1, "single_service", "wow", "fadeInRight"], ["src", "./../../../assets/img/svg_icon/service_3.png", "alt", ""], i18n_54, i18n_56, i18n_58, i18n_60, i18n_62, i18n_64, [1, "row", "d-block", "d-sm-none"], ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", 1, "single_service", "wow", "fadeInLeft"], i18n_66, i18n_68, i18n_70, i18n_72, i18n_74, i18n_76, ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "single_service", "wow", "fadeInUp"], i18n_78, i18n_80, i18n_82, i18n_84, i18n_86, i18n_88, ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", 1, "single_service", "wow", "fadeInRight"], i18n_90, i18n_92, i18n_94, i18n_96, i18n_98, i18n_100, [1, "about_area", "d-none", "d-sm-block"], [1, "row", "align-items-center"], ["data-aos", "fade-right", "data-aos-offset", "250", "data-aos-duration", "1500", 1, "col-lg-6", "col-md-6"], ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "about_img", "wow", "fadeInLeft"], ["alt", "", 1, "about"], ["data-aos", "fade-left", "data-aos-offset", "250", "data-aos-duration", "1500", 1, "col-lg-6", "col-md-6"], [1, "about_info", "pl-68"], ["data-wow-duration", "1.2s", "data-wow-delay", ".3s", 1, "section_title", "wow", "fadeInUp"], ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "500"], i18n_102, ["data-wow-duration", "1.2s", "data-wow-delay", ".4s", 1, "wow", "fadeInUp"], i18n_104, [1, "about_list"], ["data-wow-duration", "1s", "data-wow-delay", ".5s", 1, "wow", "fadeInRight"], i18n_106, ["data-wow-duration", "1s", "data-wow-delay", ".6s", 1, "wow", "fadeInRight"], i18n_108, ["data-wow-duration", "1s", "data-wow-delay", ".7s", 1, "wow", "fadeInRight"], i18n_110, ["data-wow-duration", "1s", "data-wow-delay", ".9s", 1, "wow", "fadeInRight"], i18n_112, ["data-wow-duration", "1.3s", "data-wow-delay", ".5s", 1, "about_btn", "wow", "fadeInRight"], i18n_114, [1, "about_area", "d-block", "d-sm-none"], [1, "col-lg-6", "col-md-6"], ["src", "./../../../assets/img/about/about.png", "alt", ""], i18n_116, i18n_118, i18n_120, i18n_122, i18n_124, i18n_126, i18n_128, [1, "works_area"], ["data-wow-duration", "1s", "data-wow-delay", ".1s", 1, "wow", "lightSpeedIn"], ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "500", "id", "HowItWorks", 1, "wow", "fadeInUp"], i18n_130, i18n_132, [1, "col-md-6", "col-lg-4"], [1, "single_works"], i18n_134, i18n_136, ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "1000"], i18n_138, i18n_140, ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "1500"], i18n_142, i18n_144, [1, "accordion_area"], [1, "row", "justify-content-end"], [1, "col-lg-6"], [1, "faq_ask", "pl-68"], i18n_146, ["id", "accordion"], ["data-wow-duration", "1.1s", "data-wow-delay", ".3s", 1, "card", "wow", "fadeInUp"], ["id", "headingOnee", 1, "card-header"], [1, "mb-0"], ["data-toggle", "collapse", "data-target", "#collapseOnee", "aria-expanded", "true", "aria-controls", "collapseOnee", 1, "btn", "btn-link"], i18n_148, ["id", "collapseOnee", "aria-labelledby", "headingOnee", "data-parent", "#accordion", 1, "collapse", "show"], [1, "card-body"], i18n_150, ["data-wow-duration", "1.2s", "data-wow-delay", ".4s", 1, "card", "wow", "fadeInUp"], ["id", "headingOne", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseOne", "aria-expanded", "false", "aria-controls", "collapseOne", 1, "btn", "btn-link", "collapsed"], i18n_152, ["id", "collapseOne", "aria-labelledby", "headingOne", "data-parent", "#accordion", 1, "collapse"], i18n_154, ["data-wow-duration", "1.3s", "data-wow-delay", ".5s", 1, "card", "wow", "fadeInUp"], ["id", "headingThree", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseThree", "aria-expanded", "false", "aria-controls", "collapseThree", 1, "btn", "btn-link", "collapsed"], i18n_156, ["id", "collapseThree", "aria-labelledby", "headingThree", "data-parent", "#accordion", 1, "collapse"], i18n_158, ["data-wow-duration", "1.4s", "data-wow-delay", ".6s", 1, "card", "wow", "fadeInUp"], ["id", "headingThree4", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseThree4", "aria-expanded", "false", "aria-controls", "collapseThree4", 1, "btn", "btn-link", "collapsed"], i18n_160, ["id", "collapseThree4", "aria-labelledby", "headingThree4", "data-parent", "#accordion", 1, "collapse"], i18n_162, i18n_164, i18n_166, [1, "testimonial_area"], [1, "col-xl-12"], [1, "testmonial_active", "owl-carousel"], [1, "single_carousel"], [1, "col-lg-11"], [1, "single_testmonial", "d-flex", "align-items-center"], [1, "thumb"], ["src", "./../../../assets/img/testmonial/author.png", "alt", ""], [1, "quote_icon"], [1, "Flaticon", "flaticon-quote"], [1, "info"], i18n_168, i18n_170, i18n_172, [1, "apply_loan", "overlay"], [1, "col-lg-8", "col-md-7"], ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "loan_text", "wow", "fadeInLeft"], i18n_174, [1, "col-lg-4", "col-md-5"], ["data-wow-duration", "1.2s", "data-wow-delay", ".4s", 1, "loan_btn", "wow", "fadeInUp"], [1, "boxed-btn3", "submitZoom", 3, "click"], i18n_176, ["templateConnexionRequired", ""], ["template1", ""], ["templateLogout", ""], ["templateNobeneficiary", ""], ["template", ""], ["templateReset", ""], [1, "col-lg-7", "col-md-6", "d-block", "d-sm-none"], ["data-aos", "fade-up", "data-aos-duration", "1500", 1, "sldier_btn", 2, "float", "right", "padding-top", "25px"], [1, "boxed-btn4", 2, "cursor", "pointer", "font-size", "10px", 3, "click"], ["data-aos", "fade-up", "data-aos-duration", "1500", 1, "col-lg-7", "col-md-6", "phone_num", "d-block", "d-sm-none", 3, "click"], [1, "glyphicon", "glyphicon-off", "text-danger"], [1, "d-block", "d-sm-none", "hidden-on-lgScreen", 2, "white-space", "nowrap"], i18n_178, [1, "d-block", "d-sm-none", "hidden-on-lgScreen"], i18n_180, [2, "animation-duration", "2s", "animation-delay", "2s", "animation-iteration-count", "infinite"], i18n_182, ["data-aos", "fade-right", "data-aos-duration", "1500", 1, "text-danger", "d-none", "d-sm-block"], i18n_184, ["data-aos", "fade-right", "data-aos-duration", "1500", 1, "text-danger", "d-block", "d-sm-none"], i18n_186, [1, "col-lg-12", "justify-content-center", "text-center", 2, "padding-top", "25px"], i18n_188, [1, "dots-bars-2", 2, "margin", "auto", "color", "#FFD700"], ["data-aos", "fade-up", 1, "input-group-text"], ["data-aos", "fade-up"], ["data-aos", "fade-down", 1, "input-group-text"], ["data-aos", "fade-down"], [1, "modal-header", 2, "background-color", "#FFD700"], [1, "modal-title", "pull-left", "d-block", "d-sm-none", 2, "font-size", "10px !important"], i18n_190, [1, "modal-title", "pull-left", "d-none", "d-sm-block"], i18n_192, ["type", "button", "aria-label", "Close", 1, "close", "pull-rigth", 3, "click"], ["aria-hidden", "true"], ["href", "", "id", "loginFirst", 1, "modal-body", 3, "click"], i18n_194, [1, "modal-footer"], [1, "boxed-btn4-red-xs", "pull-rigth", "h-15", 3, "click"], i18n_196, [1, "modal-title", "pull-left", 2, "font-size", "10px !important"], i18n_198, [1, "modal-body"], ["id", "myForm"], ["type", "text", "id", "Inputprenom", "placeholder", "First name", 1, "form-control", "inputSize"], ["Inputprenom", ""], ["data-aos", "fade-right", "data-aos-duration", "1500", "style", "color: red;", 4, "ngIf"], ["type", "text", "id", "Inputnom", "placeholder", "Name", 1, "form-control", "inputSize"], ["Inputnom", ""], [1, "form-group"], ["data-aos", "fade-right", "data-aos-duration", "1500"], ["for", "exampleInputPrenom1"], i18n_200, ["data-provide", "datepicker", 1, "input-group", "date"], ["type", "date", "id", "Inputdate", "aria-describedby", "dateHelp", "placeholder", "Entrer date", "required", "", 1, "form-control", "inputSize"], ["Inputdate", ""], ["type", "text", "id", "InputCountry", "placeholder", "Country", 1, "form-control", "inputSize"], ["InputCountry", ""], ["type", "text", "id", "InputTown", "placeholder", "City", 1, "form-control", "inputSize"], ["InputTown", ""], ["type", "text", "id", "InputProvince", "placeholder", "Province", 1, "form-control", "inputSize"], ["InputProvince", ""], i18n_202, ["type", "adress", "id", "Inputadress", "aria-describedby", "adresseHelp", "placeholder", "Entrer adresse", "required", "", 1, "form-control", "inputSize"], ["Inputadress", ""], i18n_204, ["name", "selectId", "id", "selectId", 1, "form-control", 3, "change"], ["value", "0", "label", "Select a country ... ", "selected", "selected"], ["id", "country-optgroup-Africa", "label", "Africa"], ["value", "CM", "label", "Cameroon"], ["value", "CI", "label", "C\xF4te d\u2019Ivoire"], ["id", "country-optgroup-Americas", "label", "Americas"], ["value", "CA", "label", "Canada"], ["value", "US"], ["id", "country-optgroup-Asia", "label", "Asia"], ["value", "CN", "label", "China"], ["id", "country-optgroup-Europe", "label", "Europe"], ["value", "FR", "label", "France"], ["value", "GB", "label", "United Kingdom"], ["type", "tel", "id", "InputTel", "placeholder", "Phone", 1, "form-control", "inputSize"], ["InputTel", ""], ["for", "exampleInputEmail1"], i18n_206, ["type", "email", "id", "Inputemail", "aria-describedby", "emailHelp", "placeholder", "Enter email", "required", "", 1, "form-control", "inputSize"], ["Inputemail", ""], ["for", "exampleInputPassword1"], i18n_208, ["type", "password", "id", "Inputpassword", "placeholder", "Password", "required", "", 1, "form-control", "inputSize"], ["Inputpassword", ""], i18n_210, ["type", "password", "id", "InputConfirmPassword", "placeholder", "Confirm password", "required", "", 1, "form-control", "inputSize"], ["InputConfirmPassword", ""], [1, "form-group", "form-check"], [3, "click"], i18n_212, ["type", "submit", "value", "Verify", 1, "boxed-btn4-xs", "h-15", 3, "click"], ["type", "button", 1, "boxed-btn4-red-xs", "pull-rigth", 3, "click"], i18n_214, ["data-aos", "fade-right", "data-aos-duration", "1500", 2, "color", "red"], i18n_216, i18n_218, i18n_220, i18n_222, i18n_224, i18n_226, i18n_228, i18n_230, i18n_232, i18n_234, i18n_236, i18n_238, i18n_240, i18n_242, i18n_244, [1, "boxed-btn4-xs", "pull-left", "h-15", 3, "click"], i18n_246, i18n_248, i18n_250, i18n_252, i18n_254, i18n_256, i18n_258, i18n_260, i18n_262, ["type", "email", "id", "exampleInputEmail1", "aria-describedby", "emailHelp", "placeholder", "Enter email", "required", "", 1, "form-control", "inputSize"], ["InputEmail", ""], ["id", "emailHelp", 1, "form-text", "text-muted"], i18n_264, i18n_266, ["type", "password", "id", "exampleInputPassword1", "placeholder", "Password", "required", "", 1, "form-control", "inputSize"], ["InputPassword", ""], [1, "text-danger", 3, "click"], i18n_268, i18n_270, [1, "boxed-btn4-xs", "h-15", 3, "click"], i18n_272, i18n_274, i18n_276, i18n_278, i18n_280, i18n_282, i18n_284, i18n_286, i18n_288, i18n_290];
+          return [["href", "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", "rel", "stylesheet", "integrity", "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", "crossorigin", "anonymous"], ["href", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", "rel", "stylesheet"], ["href", "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css", "rel", "stylesheet"], ["id", "goToTop", 1, "slider_area", "welcome-area", "wow", "fadeInUp"], [1, "single_slider", "d-flex", "align-items-center", "slider_bg_1"], [1, "container"], [1, "row", "align-items-center", "justify-content-center"], ["class", "col-lg-7 col-md-6 d-block d-sm-none", 4, "ngIf"], ["class", "col-lg-7 col-md-6 phone_num d-block d-sm-none", "data-aos", "fade-up", "data-aos-duration", "1500", 3, "style", "click", 4, "ngIf"], [1, "col-lg-7", "col-md-6", "d-none", "d-sm-block"], [1, "slider_text"], ["data-wow-duration", "1s", "data-wow-delay", ".1s", 1, "wow", "fadeInRight", "d-none", "d-sm-block"], i18n_1, ["data-aos", "fade-up", "data-aos-duration", "1500", 1, "sldier_btn"], [1, "boxed-btn3", 2, "cursor", "pointer", 3, "click"], i18n_3, [1, "container", "d-block", "d-sm-none"], [1, "row", 2, "padding-top", "50px"], [1, "col"], i18n_5, [1, "boxed-btn10", 2, "cursor", "pointer", 3, "click"], i18n_7, i18n_9, [1, "boxed-btn10", 2, "cursor", "pointer", "float", "right", 3, "click"], i18n_11, [1, "col-lg-5", "col-md-6"], ["data-wow-duration", "1.2s", "data-wow-delay", ".2s", 1, "payment_form", "white-bg", "wow", "fadeInDown"], [1, "d-flex", "justify-content-center", 3, "click"], [1, "d-flex", "justify-content-center", 3, "settings", "data", "ngModel", "ngModelChange", "onSelect", "onSelectAll", "onDeSelect"], [1, "info", "text-center"], [1, "d-none", "d-sm-block"], i18n_13, ["class", "d-block d-sm-none hidden-on-lgScreen", "style", "white-space: nowrap;", 4, "ngIf"], ["class", "d-block d-sm-none hidden-on-lgScreen", 4, "ngIf"], ["style", "animation-duration:2s; animation-delay:2s; animation-iteration-count:infinite;", 4, "ngIf"], ["class", "text-danger d-none d-sm-block", "data-aos", "fade-right", "data-aos-duration", "1500", 4, "ngIf"], ["class", "text-danger d-block d-sm-none", "data-aos", "fade-right", "data-aos-duration", "1500", 4, "ngIf"], ["class", "col-lg-12 justify-content-center text-center", "style", "padding-top: 25px", 4, "ngIf"], ["class", "dots-bars-2", "style", "margin: auto;color:#FFD700;", 4, "ngIf"], [1, "form"], [1, "row"], [1, "col-lg-12"], ["for", "formControlLg", 1, "form-label"], i18n_15, [1, "input-group", "mb-3"], [1, "input-group-prepend"], ["class", "input-group-text", "data-aos", "fade-up", 4, "ngIf"], ["type", "number", "id", "sendInput", "aria-label", "Amount (to the nearest dollar)", 1, "form-control", 2, "height", "50px", "-webkit-border-radius", "5px", "-moz-border-radius", "5px", "border-radius", "5px", "font-size", "16px", 3, "keyup", "click"], [1, "input-group-append"], [1, "input-group-text"], ["data-aos", "fade-up", 3, "class", 4, "ngIf"], [1, "glyphicon", "glyphicon-sort", "justify-content-center", "text-center", 2, "font-size", "24px", "color", "#FFD700", "cursor", "pointer", 3, "click"], i18n_17, ["class", "input-group-text", "data-aos", "fade-down", 4, "ngIf"], ["disabled", "", "id", "receiveInput", "type", "text", "aria-label", "Amount (to the nearest dollar)", 1, "form-control", 2, "height", "50px", "-webkit-border-radius", "5px", "-moz-border-radius", "5px", "border-radius", "5px", "font-weight", "bold", "font-size", "24px"], ["data-aos", "fade-down", 3, "class", 4, "ngIf"], [1, "submit_btn"], ["type", "submit", 1, "boxed-btn3", 3, "click"], i18n_19, [1, "service_area"], [1, "section_title", "text-center", "mb-90"], ["data-wow-duration", "1s", "data-wow-delay", ".1s", 1, "wow", "fadeInUp"], ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "500", 1, "wow", "fadeInUp"], i18n_21, ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "wow", "fadeInUp"], i18n_23, [1, "row", "d-none", "d-sm-block"], [1, "col-lg-4", "col-md-6"], ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", "data-aos", "fade-right", "data-aos-offset", "500", "data-aos-duration", "1500", 1, "single_service", "wow", "fadeInLeft"], [1, "service_icon_wrap", "text-center"], [1, "service_icon"], ["src", "./../../../assets/img/svg_icon/service_1.png", "alt", ""], i18n_25, i18n_27, [1, "service_content"], i18n_29, i18n_31, i18n_33, i18n_35, [1, "apply_btn"], ["type", "submit", 1, "boxed-btn3", "submitZoom", 3, "click"], i18n_37, ["data-wow-duration", "1s", "data-wow-delay", ".3s", "data-aos", "zoom-in", 1, "single_service", "wow", "fadeInUp"], ["src", "./../../../assets/img/svg_icon/service_2.png", "alt", ""], i18n_39, i18n_41, i18n_43, i18n_45, i18n_47, i18n_49, ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", "data-aos", "fade-left", "data-aos-offset", "500", "data-aos-duration", "1500", 1, "single_service", "wow", "fadeInRight"], ["src", "./../../../assets/img/svg_icon/service_3.png", "alt", ""], i18n_51, i18n_53, i18n_55, i18n_57, i18n_59, i18n_61, [1, "row", "d-block", "d-sm-none"], ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", 1, "single_service", "wow", "fadeInLeft"], i18n_63, i18n_65, i18n_67, i18n_69, i18n_71, i18n_73, ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "single_service", "wow", "fadeInUp"], i18n_75, i18n_77, i18n_79, i18n_81, i18n_83, i18n_85, ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", 1, "single_service", "wow", "fadeInRight"], i18n_87, i18n_89, i18n_91, i18n_93, i18n_95, i18n_97, [1, "about_area", "d-none", "d-sm-block"], [1, "row", "align-items-center"], ["data-aos", "fade-right", "data-aos-offset", "250", "data-aos-duration", "1500", 1, "col-lg-6", "col-md-6"], ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "about_img", "wow", "fadeInLeft"], ["alt", "", 1, "about"], ["data-aos", "fade-left", "data-aos-offset", "250", "data-aos-duration", "1500", 1, "col-lg-6", "col-md-6"], [1, "about_info", "pl-68"], ["data-wow-duration", "1.2s", "data-wow-delay", ".3s", 1, "section_title", "wow", "fadeInUp"], ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "500"], i18n_99, ["data-wow-duration", "1.2s", "data-wow-delay", ".4s", 1, "wow", "fadeInUp"], i18n_101, [1, "about_list"], ["data-wow-duration", "1s", "data-wow-delay", ".5s", 1, "wow", "fadeInRight"], i18n_103, ["data-wow-duration", "1s", "data-wow-delay", ".6s", 1, "wow", "fadeInRight"], i18n_105, ["data-wow-duration", "1s", "data-wow-delay", ".7s", 1, "wow", "fadeInRight"], i18n_107, ["data-wow-duration", "1s", "data-wow-delay", ".9s", 1, "wow", "fadeInRight"], i18n_109, ["data-wow-duration", "1.3s", "data-wow-delay", ".5s", 1, "about_btn", "wow", "fadeInRight"], i18n_111, [1, "about_area", "d-block", "d-sm-none"], [1, "col-lg-6", "col-md-6"], ["src", "./../../../assets/img/about/about.png", "alt", ""], i18n_113, i18n_115, i18n_117, i18n_119, i18n_121, i18n_123, i18n_125, [1, "works_area"], ["data-wow-duration", "1s", "data-wow-delay", ".1s", 1, "wow", "lightSpeedIn"], ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "500", "id", "HowItWorks", 1, "wow", "fadeInUp"], i18n_127, i18n_129, [1, "col-md-6", "col-lg-4"], [1, "single_works"], i18n_131, i18n_133, ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "1000"], i18n_135, i18n_137, ["data-aos", "fade-up", "data-aos-offset", "500", "data-aos-duration", "1500"], i18n_139, i18n_141, [1, "accordion_area"], [1, "row", "justify-content-end"], [1, "col-lg-6"], [1, "faq_ask", "pl-68"], i18n_143, ["id", "accordion"], ["data-wow-duration", "1.1s", "data-wow-delay", ".3s", 1, "card", "wow", "fadeInUp"], ["id", "headingOnee", 1, "card-header"], [1, "mb-0"], ["data-toggle", "collapse", "data-target", "#collapseOnee", "aria-expanded", "true", "aria-controls", "collapseOnee", 1, "btn", "btn-link"], i18n_145, ["id", "collapseOnee", "aria-labelledby", "headingOnee", "data-parent", "#accordion", 1, "collapse", "show"], [1, "card-body"], i18n_147, ["data-wow-duration", "1.2s", "data-wow-delay", ".4s", 1, "card", "wow", "fadeInUp"], ["id", "headingOne", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseOne", "aria-expanded", "false", "aria-controls", "collapseOne", 1, "btn", "btn-link", "collapsed"], i18n_149, ["id", "collapseOne", "aria-labelledby", "headingOne", "data-parent", "#accordion", 1, "collapse"], i18n_151, ["data-wow-duration", "1.3s", "data-wow-delay", ".5s", 1, "card", "wow", "fadeInUp"], ["id", "headingThree", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseThree", "aria-expanded", "false", "aria-controls", "collapseThree", 1, "btn", "btn-link", "collapsed"], i18n_153, ["id", "collapseThree", "aria-labelledby", "headingThree", "data-parent", "#accordion", 1, "collapse"], i18n_155, ["data-wow-duration", "1.4s", "data-wow-delay", ".6s", 1, "card", "wow", "fadeInUp"], ["id", "headingThree4", 1, "card-header"], ["data-toggle", "collapse", "data-target", "#collapseThree4", "aria-expanded", "false", "aria-controls", "collapseThree4", 1, "btn", "btn-link", "collapsed"], i18n_157, ["id", "collapseThree4", "aria-labelledby", "headingThree4", "data-parent", "#accordion", 1, "collapse"], i18n_159, i18n_161, i18n_163, [1, "testimonial_area"], [1, "col-xl-12"], [1, "testmonial_active", "owl-carousel"], [1, "single_carousel"], [1, "col-lg-11"], [1, "single_testmonial", "d-flex", "align-items-center"], [1, "thumb"], ["src", "./../../../assets/img/testmonial/author.png", "alt", ""], [1, "quote_icon"], [1, "Flaticon", "flaticon-quote"], [1, "info"], i18n_165, i18n_167, i18n_169, [1, "apply_loan", "overlay"], [1, "col-lg-8", "col-md-7"], ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "loan_text", "wow", "fadeInLeft"], i18n_171, [1, "col-lg-4", "col-md-5"], ["data-wow-duration", "1.2s", "data-wow-delay", ".4s", 1, "loan_btn", "wow", "fadeInUp"], [1, "boxed-btn3", "submitZoom", 3, "click"], i18n_173, ["templateConnexionRequired", ""], ["template1", ""], ["templateLogout", ""], ["templateNobeneficiary", ""], ["template", ""], ["templateReset", ""], [1, "col-lg-7", "col-md-6", "d-block", "d-sm-none"], ["data-aos", "fade-up", "data-aos-duration", "1500", 1, "sldier_btn", 2, "float", "right", "padding-top", "25px"], [1, "boxed-btn4", 2, "cursor", "pointer", "font-size", "10px", 3, "click"], ["data-aos", "fade-up", "data-aos-duration", "1500", 1, "col-lg-7", "col-md-6", "phone_num", "d-block", "d-sm-none", 3, "click"], [1, "glyphicon", "glyphicon-off", "text-danger"], [1, "d-block", "d-sm-none", "hidden-on-lgScreen", 2, "white-space", "nowrap"], i18n_175, [1, "d-block", "d-sm-none", "hidden-on-lgScreen"], i18n_177, [2, "animation-duration", "2s", "animation-delay", "2s", "animation-iteration-count", "infinite"], i18n_179, ["data-aos", "fade-right", "data-aos-duration", "1500", 1, "text-danger", "d-none", "d-sm-block"], i18n_181, ["data-aos", "fade-right", "data-aos-duration", "1500", 1, "text-danger", "d-block", "d-sm-none"], i18n_183, [1, "col-lg-12", "justify-content-center", "text-center", 2, "padding-top", "25px"], i18n_185, [1, "dots-bars-2", 2, "margin", "auto", "color", "#FFD700"], ["data-aos", "fade-up", 1, "input-group-text"], ["data-aos", "fade-up"], ["data-aos", "fade-down", 1, "input-group-text"], ["data-aos", "fade-down"], [1, "modal-header", 2, "background-color", "#FFD700"], [1, "modal-title", "pull-left", "d-block", "d-sm-none", 2, "font-size", "10px !important"], i18n_187, [1, "modal-title", "pull-left", "d-none", "d-sm-block"], i18n_189, ["type", "button", "aria-label", "Close", 1, "close", "pull-rigth", 3, "click"], ["aria-hidden", "true"], ["href", "", "id", "loginFirst", 1, "modal-body", 3, "click"], i18n_191, [1, "modal-footer"], [1, "boxed-btn4-red-xs", "pull-rigth", "h-15", 3, "click"], i18n_193, [1, "modal-title", "pull-left", 2, "font-size", "10px !important"], i18n_195, [1, "modal-body"], ["id", "myForm"], ["type", "text", "id", "Inputprenom", "placeholder", "First name", 1, "form-control", "inputSize"], ["Inputprenom", ""], ["data-aos", "fade-right", "data-aos-duration", "1500", "style", "color: red;", 4, "ngIf"], ["type", "text", "id", "Inputnom", "placeholder", "Name", 1, "form-control", "inputSize"], ["Inputnom", ""], [1, "form-group"], ["data-aos", "fade-right", "data-aos-duration", "1500"], ["for", "exampleInputPrenom1"], i18n_197, ["data-provide", "datepicker", 1, "input-group", "date"], ["type", "date", "id", "Inputdate", "aria-describedby", "dateHelp", "placeholder", "Entrer date", "required", "", 1, "form-control", "inputSize"], ["Inputdate", ""], ["type", "text", "id", "InputCountry", "placeholder", "Country", 1, "form-control", "inputSize"], ["InputCountry", ""], ["type", "text", "id", "InputTown", "placeholder", "City", 1, "form-control", "inputSize"], ["InputTown", ""], ["type", "text", "id", "InputProvince", "placeholder", "Province", 1, "form-control", "inputSize"], ["InputProvince", ""], i18n_199, ["type", "adress", "id", "Inputadress", "aria-describedby", "adresseHelp", "placeholder", "Entrer adresse", "required", "", 1, "form-control", "inputSize"], ["Inputadress", ""], i18n_201, ["name", "selectId", "id", "selectId", 1, "form-control", 3, "change"], ["value", "0", "label", "Select a country ... ", "selected", "selected"], ["id", "country-optgroup-Africa", "label", "Africa"], ["value", "CM", "label", "Cameroon"], ["value", "CI", "label", "C\xF4te d\u2019Ivoire"], ["id", "country-optgroup-Americas", "label", "Americas"], ["value", "CA", "label", "Canada"], ["value", "US"], ["id", "country-optgroup-Asia", "label", "Asia"], ["value", "CN", "label", "China"], ["id", "country-optgroup-Europe", "label", "Europe"], ["value", "FR", "label", "France"], ["value", "GB", "label", "United Kingdom"], ["type", "tel", "id", "InputTel", "placeholder", "Phone", 1, "form-control", "inputSize"], ["InputTel", ""], ["for", "exampleInputEmail1"], i18n_203, ["type", "email", "id", "Inputemail", "aria-describedby", "emailHelp", "placeholder", "Enter email", "required", "", 1, "form-control", "inputSize"], ["Inputemail", ""], ["for", "exampleInputPassword1"], i18n_205, ["type", "password", "id", "Inputpassword", "placeholder", "Password", "required", "", 1, "form-control", "inputSize"], ["Inputpassword", ""], i18n_207, ["type", "password", "id", "InputConfirmPassword", "placeholder", "Confirm password", "required", "", 1, "form-control", "inputSize"], ["InputConfirmPassword", ""], [1, "form-group", "form-check"], [3, "click"], i18n_209, ["type", "submit", "value", "Verify", 1, "boxed-btn4-xs", "h-15", 3, "click"], ["type", "button", 1, "boxed-btn4-red-xs", "pull-rigth", 3, "click"], i18n_211, ["data-aos", "fade-right", "data-aos-duration", "1500", 2, "color", "red"], i18n_213, i18n_215, i18n_217, i18n_219, i18n_221, i18n_223, i18n_225, i18n_227, i18n_229, i18n_231, i18n_233, i18n_235, i18n_237, i18n_239, i18n_241, [1, "boxed-btn4-xs", "pull-left", "h-15", 3, "click"], i18n_243, i18n_245, i18n_247, i18n_249, i18n_251, i18n_253, i18n_255, i18n_257, i18n_259, ["type", "email", "id", "exampleInputEmail1", "aria-describedby", "emailHelp", "placeholder", "Enter email", "required", "", 1, "form-control", "inputSize"], ["InputEmail", ""], ["id", "emailHelp", 1, "form-text", "text-muted"], i18n_261, i18n_263, ["type", "password", "id", "exampleInputPassword1", "placeholder", "Password", "required", "", 1, "form-control", "inputSize"], ["InputPassword", ""], [1, "text-danger", 3, "click"], i18n_265, i18n_267, [1, "boxed-btn4-xs", "h-15", 3, "click"], i18n_269, i18n_271, i18n_273, i18n_275, i18n_277, i18n_279, i18n_281, i18n_283, i18n_285, i18n_287];
         },
         template: function HomeComponent_Template(rf, ctx) {
           if (rf & 1) {
@@ -16206,24 +16181,6 @@
               read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]
             }]
           }],
-          modalTemplate: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"],
-            args: ['templateLogout', {
-              read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]
-            }]
-          }],
-          modalTemplateNobeneficiary: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"],
-            args: ['templateNobeneficiary', {
-              read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]
-            }]
-          }],
-          modalTemplateConnexionRequired: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"],
-            args: ['templateConnexionRequired', {
-              read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]
-            }]
-          }],
           onResize: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"],
             args: ['window:resize', ['$event']]
@@ -16421,23 +16378,23 @@
         }, {
           key: "deleteTransaction",
           value: function deleteTransaction() {
-            var _this54 = this;
+            var _this52 = this;
 
             if (this.modalRef) this.modalRef.hide();
             this.data.getAlltransactions().subscribe(function (res) {
               var transactionsList = [];
               var transaction = null;
               var find = false;
-              _this54.alltransactionsList = res.map(function (e) {
+              _this52.alltransactionsList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
                 transactionsList.push(data);
 
-                if (data.userEmail === _this54.params.data.userEmail && data.id === _this54.params.data.id && !find) {
+                if (data.userEmail === _this52.params.data.userEmail && data.id === _this52.params.data.id && !find) {
                   transaction = data;
                   find = true;
 
-                  _this54.toastr.success('Supression effectue avec succes', 'Early Transfer', {
+                  _this52.toastr.success('Supression effectue avec succes', 'Early Transfer', {
                     progressBar: true,
                     toastClass: 'toast-custom',
                     positionClass: 'toast-bottom-left',
@@ -16452,11 +16409,11 @@
               if (transaction) {
                 setTimeout(function () {
                   /** spinner ends after 2 seconds */
-                  _this54.data.deleteTransaction(transaction);
+                  _this52.data.deleteTransaction(transaction);
                 }, 3000);
               }
 
-              _this54.params.api.setRowData(transactionsList);
+              _this52.params.api.setRowData(transactionsList);
             }, function (err) {
               console.log('Error while fetching transaction data');
             });
@@ -17086,7 +17043,7 @@
         }, {
           key: "sendMessage",
           value: function sendMessage(InputMessage, InputName, InputEmail, InputSubject) {
-            var _this55 = this;
+            var _this53 = this;
 
             this.reinitialiseError();
 
@@ -17113,7 +17070,7 @@
               this.spinner.show();
               setTimeout(function () {
                 /** spinner ends after 2 seconds */
-                _this55.spinner.hide();
+                _this53.spinner.hide();
 
                 swal.fire({
                   title: 'Feedback',
@@ -17637,10 +17594,42 @@
         }, {
           key: "Home",
           value: function Home() {
-            var _this56 = this;
+            var _this54 = this;
 
             console.log('Vous avez selectionné Home');
             var link = ['/'];
+            this.spinner.show();
+            setTimeout(function () {
+              /** spinner ends after 2 seconds */
+              _this54.spinner.hide();
+
+              _this54.router.navigate(link);
+            }, 2000);
+            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
+          }
+        }, {
+          key: "about",
+          value: function about() {
+            var _this55 = this;
+
+            console.log('Vous avez selectionné contact');
+            var link = ['/about'];
+            this.spinner.show();
+            setTimeout(function () {
+              /** spinner ends after 2 seconds */
+              _this55.spinner.hide();
+
+              _this55.router.navigate(link);
+            }, 1000);
+            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
+          }
+        }, {
+          key: "contact",
+          value: function contact() {
+            var _this56 = this;
+
+            console.log('Vous avez selectionné contact');
+            var link = ['/contact'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
@@ -17651,50 +17640,18 @@
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
-          key: "about",
-          value: function about() {
-            var _this57 = this;
-
-            console.log('Vous avez selectionné contact');
-            var link = ['/about'];
-            this.spinner.show();
-            setTimeout(function () {
-              /** spinner ends after 2 seconds */
-              _this57.spinner.hide();
-
-              _this57.router.navigate(link);
-            }, 1000);
-            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
-          }
-        }, {
-          key: "contact",
-          value: function contact() {
-            var _this58 = this;
-
-            console.log('Vous avez selectionné contact');
-            var link = ['/contact'];
-            this.spinner.show();
-            setTimeout(function () {
-              /** spinner ends after 2 seconds */
-              _this58.spinner.hide();
-
-              _this58.router.navigate(link);
-            }, 2000);
-            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
-          }
-        }, {
           key: "faq",
           value: function faq() {
-            var _this59 = this;
+            var _this57 = this;
 
             console.log('Vous avez selectionné currency');
             var link = ['/faq'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this59.spinner.hide();
+              _this57.spinner.hide();
 
-              _this59.router.navigate(link);
+              _this57.router.navigate(link);
             }, 1000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup   
           }
@@ -17713,7 +17670,7 @@
         }, {
           key: "suscribtion",
           value: function suscribtion(email) {
-            var _this60 = this;
+            var _this58 = this;
 
             /** spinner starts on init */
             this.spinner.show();
@@ -17722,7 +17679,7 @@
 
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this60.spinner.hide();
+              _this58.spinner.hide();
 
               swal.fire({
                 title: 'Suscribtion',
@@ -17737,16 +17694,16 @@
         }, {
           key: "houseLoan",
           value: function houseLoan() {
-            var _this61 = this;
+            var _this59 = this;
 
             console.log('Vous avez selectionné homeLoan');
             var link = ['/houseLoan'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this61.spinner.hide();
+              _this59.spinner.hide();
 
-              _this61.router.navigate(link);
+              _this59.router.navigate(link);
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
@@ -19430,15 +19387,15 @@
         }, {
           key: "houseLoan",
           value: function houseLoan() {
-            var _this62 = this;
+            var _this60 = this;
 
             var link = ['/houseDetails'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this62.spinner.hide();
+              _this60.spinner.hide();
 
-              _this62.router.navigate(link);
+              _this60.router.navigate(link);
             }, 2000);
           }
         }]);
@@ -19914,7 +19871,7 @@
 
       var AppComponent = /*#__PURE__*/function () {
         function AppComponent(modalService, firebaseService, messagingService, titleService) {
-          var _this63 = this;
+          var _this61 = this;
 
           _classCallCheck(this, AppComponent);
 
@@ -19927,11 +19884,11 @@
           this.reloadCounter = 0;
 
           this.onMouseMove = function (event) {
-            if (_this63.idleTimer < 59) {
-              _this63.idleTimer = 0;
+            if (_this61.idleTimer < 59) {
+              _this61.idleTimer = 0;
             }
 
-            clearInterval(_this63.reloadInterval);
+            clearInterval(_this61.reloadInterval);
           };
 
           this.titleService.setTitle("" + this.title + "");
@@ -20394,7 +20351,7 @@
         }, {
           key: "modifyTransaction",
           value: function modifyTransaction() {
-            var _this64 = this;
+            var _this62 = this;
 
             this.transactionObj.id = this.params.data.id;
             this.transactionObj.userEmail = this.params.data.userEmail; // current email connected
@@ -20420,7 +20377,7 @@
 
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this64.data._updateTransaction(_this64.transactionObj);
+              _this62.data._updateTransaction(_this62.transactionObj);
             }, 3500);
           }
         }, {
@@ -20840,18 +20797,18 @@
         return _createClass(FirebaseService, [{
           key: "signIn",
           value: function signIn(email, password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
-              var _this65 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee1() {
+              var _this63 = this;
 
-              return _regeneratorRuntime().wrap(function _callee11$(_context11) {
-                while (1) switch (_context11.prev = _context11.next) {
+              return _regenerator().w(function (_context1) {
+                while (1) switch (_context1.n) {
                   case 0:
-                    _context11.next = 2;
+                    _context1.n = 1;
                     return this.firebaseAuth.signInWithEmailAndPassword(email, password).then(function (res) {
-                      _this65.isLoggedIn = true;
+                      _this63.isLoggedIn = true;
                       localStorage.setItem('user', email);
 
-                      _this65.toastr.success('Welcome', 'Early Transfer', {
+                      _this63.toastr.success('Welcome', 'Early Transfer', {
                         progressBar: true,
                         toastClass: 'toast-custom',
                         closeButton: true,
@@ -20859,9 +20816,9 @@
                       }); //const user = firebase.auth().currentUser()
 
                     }, function (err) {
-                      _this65.spinner.hide();
+                      _this63.spinner.hide();
 
-                      _this65.toastr.error(err.message, 'Sign In', {
+                      _this63.toastr.error(err.message, 'Sign In', {
                         progressBar: true,
                         toastClass: 'toast-custom',
                         closeButton: true,
@@ -20869,60 +20826,58 @@
                       });
                     });
 
-                  case 2:
-                  case "end":
-                    return _context11.stop();
+                  case 1:
+                    return _context1.a(2);
                 }
-              }, _callee11, this);
+              }, _callee1, this);
             }));
           }
         }, {
           key: "signInWithNoAccount",
           value: function signInWithNoAccount(email, password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
-              var _this66 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee10() {
+              var _this64 = this;
 
-              return _regeneratorRuntime().wrap(function _callee12$(_context12) {
-                while (1) switch (_context12.prev = _context12.next) {
+              return _regenerator().w(function (_context10) {
+                while (1) switch (_context10.n) {
                   case 0:
-                    _context12.next = 2;
+                    _context10.n = 1;
                     return this.firebaseAuth.signInWithEmailAndPassword(email, password).then(function (res) {
-                      _this66.isLoggedIn = true;
+                      _this64.isLoggedIn = true;
                     }, function (err) {
                       console.log(err.message);
                     });
 
-                  case 2:
-                  case "end":
-                    return _context12.stop();
+                  case 1:
+                    return _context10.a(2);
                 }
-              }, _callee12, this);
+              }, _callee10, this);
             }));
           }
         }, {
           key: "signUp",
           value: function signUp(email, password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
-              var _this67 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee11() {
+              var _this65 = this;
 
-              return _regeneratorRuntime().wrap(function _callee13$(_context13) {
-                while (1) switch (_context13.prev = _context13.next) {
+              return _regenerator().w(function (_context11) {
+                while (1) switch (_context11.n) {
                   case 0:
-                    _context13.next = 2;
+                    _context11.n = 1;
                     return this.firebaseAuth.createUserWithEmailAndPassword(email, password).then(function (res) {
-                      _this67.isLoggedIn = true;
+                      _this65.isLoggedIn = true;
                       localStorage.setItem('user', JSON.stringify(res.user));
 
-                      _this67.toastr.success('Creé avec succès', 'Compte', {
+                      _this65.toastr.success('Creé avec succès', 'Compte', {
                         progressBar: true,
                         toastClass: 'toast-custom',
                         closeButton: true,
                         positionClass: 'toast-bottom-left'
                       });
                     }, function (err) {
-                      _this67.spinner.hide();
+                      _this65.spinner.hide();
 
-                      _this67.toastr.error(err.message, 'Sign Up', {
+                      _this65.toastr.error(err.message, 'Sign Up', {
                         progressBar: true,
                         toastClass: 'toast-custom',
                         closeButton: true,
@@ -20930,28 +20885,27 @@
                       });
                     });
 
-                  case 2:
-                  case "end":
-                    return _context13.stop();
+                  case 1:
+                    return _context11.a(2);
                 }
-              }, _callee13, this);
+              }, _callee11, this);
             }));
           }
         }, {
           key: "logOut",
           value: function logOut() {
-            var _this68 = this;
+            var _this66 = this;
 
             this.firebaseAuth.signOut().then(function () {
               localStorage.removeItem('user');
               localStorage.removeItem('last_name');
               localStorage.removeItem('first_name');
               localStorage.removeItem('mobile');
-              _this68.isLoggedIn = false;
+              _this66.isLoggedIn = false;
             }, function (err) {
-              _this68.spinner.hide();
+              _this66.spinner.hide();
 
-              _this68.toastr.error(err.message, 'logOut', {
+              _this66.toastr.error(err.message, 'logOut', {
                 progressBar: true,
                 toastClass: 'toast-custom',
                 closeButton: true,
@@ -20963,20 +20917,20 @@
         }, {
           key: "forgotPassword",
           value: function forgotPassword(email) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
-              var _this69 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee12() {
+              var _this67 = this;
 
-              return _regeneratorRuntime().wrap(function _callee14$(_context14) {
-                while (1) switch (_context14.prev = _context14.next) {
+              return _regenerator().w(function (_context12) {
+                while (1) switch (_context12.n) {
                   case 0:
-                    _context14.next = 2;
+                    _context12.n = 1;
                     return this.firebaseAuth.sendPasswordResetEmail(email).then(function () {
-                      _this69.emailSend = true;
+                      _this67.emailSend = true;
                     }, function (err) {
                       //lert('Something went wrong');
-                      _this69.spinner.hide();
+                      _this67.spinner.hide();
 
-                      _this69.toastr.error(err.message, 'forgotPassword', {
+                      _this67.toastr.error(err.message, 'forgotPassword', {
                         progressBar: true,
                         toastClass: 'toast-custom',
                         closeButton: true,
@@ -20984,11 +20938,10 @@
                       });
                     });
 
-                  case 2:
-                  case "end":
-                    return _context14.stop();
+                  case 1:
+                    return _context12.a(2);
                 }
-              }, _callee14, this);
+              }, _callee12, this);
             }));
           }
         }]);
@@ -21504,11 +21457,11 @@
         return _createClass(ConfirmTransactionComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this70 = this;
+            var _this68 = this;
 
             if (localStorage.getItem('user')) {
               this.subscription = this.sendMessage.currentMessage.subscribe(function (message) {
-                return _this70.message = message;
+                return _this68.message = message;
               });
 
               if (localStorage.getItem('messageForTracking') === 'default message' || localStorage.getItem('messageForTracking') === null || !localStorage.getItem('messageForTracking')) {
@@ -21528,12 +21481,12 @@
             }
 
             this.getavailablePaySuscribtions = this.data.getPay().subscribe(function (res) {
-              _this70.amount = Number(res[0]['amount']);
+              _this68.amount = Number(res[0]['amount']);
             }, function (err) {
               console.log('Error while fetching pay');
               console.log(err);
 
-              _this70.unsuscribe();
+              _this68.unsuscribe();
             });
           }
         }, {
@@ -21555,20 +21508,20 @@
         }, {
           key: "tracking",
           value: function tracking() {
-            var _this71 = this;
+            var _this69 = this;
 
             this.saveTransaction();
             var link = ['/'];
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this71.spinner.hide();
+              _this69.spinner.hide();
 
-              _this71.data.updatePay("mg6GHY8RPYCo7KzHobR2", Number(_this71.amount - Number(_this71.transactionObj.amountReceive.split('XAF')[0].trim())));
+              _this69.data.updatePay("mg6GHY8RPYCo7KzHobR2", Number(_this69.amount - Number(_this69.transactionObj.amountReceive.split('XAF')[0].trim())));
 
               localStorage.setItem("transactionStatus", 'Done'); // show that transaction is done
 
-              _this71.router.navigate(link);
+              _this69.router.navigate(link);
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup
           }
@@ -21610,13 +21563,13 @@
         }, {
           key: "sendMsg",
           value: function sendMsg(email, id) {
-            var _this72 = this;
+            var _this70 = this;
 
             this.sendMsgSuscribtions = this.service.sendEmail(email, id).subscribe(function (res) {
               console.log(res);
             }, function (err) {
               if (err.status === 200) {
-                _this72.unsuscribe();
+                _this70.unsuscribe();
               }
             });
           }
@@ -21948,10 +21901,10 @@
         }, {
           key: "receiveMessage",
           value: function receiveMessage() {
-            var _this73 = this;
+            var _this71 = this;
 
             this.angularFireMessaging.messages.subscribe(function (payload) {
-              _this73.currentMessage.next(payload);
+              _this71.currentMessage.next(payload);
             });
           }
         }]);
@@ -22966,7 +22919,7 @@
 
       var BeneficiaireComponent = /*#__PURE__*/function () {
         function BeneficiaireComponent(http, modalService, toastr, spinner, data, router, service, sendMessage) {
-          var _this74 = this;
+          var _this72 = this;
 
           _classCallCheck(this, BeneficiaireComponent);
 
@@ -23018,7 +22971,7 @@
 
           this.onGridSizeChanged = function (params) {
             var columnCount = params.columnApi.columnModel.gridColumns.length;
-            _this74.width = params.clientWidth / columnCount;
+            _this72.width = params.clientWidth / columnCount;
             params.api.sizeColumnsToFit();
           };
 
@@ -23194,20 +23147,20 @@
         }, {
           key: "getBeneficiaries",
           value: function getBeneficiaries(email) {
-            var _this75 = this;
+            var _this73 = this;
 
             this.data.getAllBeneficiary().subscribe(function (res) {
               var beneficiariesList = [];
-              _this75.allBeneficiariesList = res.map(function (e) {
+              _this73.allBeneficiariesList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
                 if (data.userEmail === email) beneficiariesList.push(data);
                 return data;
               });
 
-              _this75.params.api.setRowData(beneficiariesList);
+              _this73.params.api.setRowData(beneficiariesList);
 
-              _this75.rowData = beneficiariesList;
+              _this73.rowData = beneficiariesList;
             }, function (err) {
               console.log('Error while fetching beneficiary data');
             });
@@ -23275,7 +23228,7 @@
         }, {
           key: "ajouter",
           value: function ajouter(Inputnom, Inputprenom, InputCountry, InputProvince, InputTown, Inputemail, InputTel) {
-            var _this76 = this;
+            var _this74 = this;
 
             this.reinitialiseError();
 
@@ -23343,7 +23296,7 @@
 
               setTimeout(function () {
                 /** spinner ends after 2 seconds */
-                _this76.addBeneficiary(_this76.beneficiaryObj);
+                _this74.addBeneficiary(_this74.beneficiaryObj);
               }, 3500);
             }
           }
@@ -23356,14 +23309,14 @@
         }, {
           key: "openSpinner",
           value: function openSpinner($event) {
-            var _this77 = this;
+            var _this75 = this;
 
             /** spinner starts on init */
             this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this77.spinner.hide();
+              _this75.spinner.hide();
             }, 1000);
             this.modalRef.hide(); // pour fermer le popup
           }
@@ -23375,32 +23328,31 @@
         }, {
           key: "asynTransition",
           value: function asynTransition() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
-              var _this78 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee13() {
+              var _this76 = this;
 
-              return _regeneratorRuntime().wrap(function _callee15$(_context15) {
-                while (1) switch (_context15.prev = _context15.next) {
+              return _regenerator().w(function (_context13) {
+                while (1) switch (_context13.n) {
                   case 0:
-                    _context15.next = 2;
+                    _context13.n = 1;
                     return this.data.getPay().subscribe(function (res) {
-                      _this78.amountAvailable = res[0]['amount'];
+                      _this76.amountAvailable = res[0]['amount'];
 
-                      _this78.transaction();
+                      _this76.transaction();
                     }, function (err) {
                       console.log('Error while fetching pay');
                       console.log(err);
 
-                      _this78.unsuscribe();
+                      _this76.unsuscribe();
                     });
 
-                  case 2:
-                    this.getavailablePaySuscribtions = _context15.sent;
+                  case 1:
+                    this.getavailablePaySuscribtions = _context13.v;
 
-                  case 3:
-                  case "end":
-                    return _context15.stop();
+                  case 2:
+                    return _context13.a(2);
                 }
-              }, _callee15, this);
+              }, _callee13, this);
             }));
           }
         }, {
@@ -23440,7 +23392,7 @@
         }, {
           key: "getValForTransaction",
           value: function getValForTransaction(item) {
-            var _this79 = this;
+            var _this77 = this;
 
             this.currentValueTosend = Number(item.target.value);
             var currency = 'CAD';
@@ -23456,33 +23408,33 @@
             }
 
             this.getCurrencySuscribtions = this.service.getCurrency(currency).subscribe(function (data) {
-              _this79.available = true;
-              _this79.rate = data.rates['XAF'].toFixed(2);
+              _this77.available = true;
+              _this77.rate = data.rates['XAF'].toFixed(2);
 
-              if (_this79.showCmrCanada) {
-                _this79.rate = data.rates['CAD'].toFixed(3);
+              if (_this77.showCmrCanada) {
+                _this77.rate = data.rates['CAD'].toFixed(3);
               }
 
               var input = document.getElementById("receiveInput");
               input.value = Math.round(Number(item.target.value) * Number(data.rates['XAF']));
 
-              if (_this79.showCmrCanada) {
+              if (_this77.showCmrCanada) {
                 input.value = Math.round(Number(item.target.value) * Number(data.rates['CAD']));
               }
 
-              _this79.currentValueToReceive = input.value;
+              _this77.currentValueToReceive = input.value;
             }, function (err) {
-              _this79.available = false;
+              _this77.available = false;
 
               if (err.status === 200) {
-                _this79.unsuscribe();
+                _this77.unsuscribe();
               }
             });
           }
         }, {
           key: "changeCurrency",
           value: function changeCurrency() {
-            var _this80 = this;
+            var _this78 = this;
 
             if (this.showCanadaCmr) {
               this.showCanadaCmr = false;
@@ -23501,17 +23453,17 @@
             this.showRateSpinner = true;
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this80.showRate = true;
-              _this80.showRateSpinner = false;
+              _this78.showRate = true;
+              _this78.showRateSpinner = false;
               var input = document.getElementById("receiveInput");
-              input.value = Math.round(_this80.currentValueTosend * Number(_this80.rate));
-              _this80.currentValueToReceive = input.value;
+              input.value = Math.round(_this78.currentValueTosend * Number(_this78.rate));
+              _this78.currentValueToReceive = input.value;
             }, 4000);
           }
         }, {
           key: "getCurrency",
           value: function getCurrency() {
-            var _this81 = this;
+            var _this79 = this;
 
             var currency = 'CAD';
 
@@ -23520,17 +23472,17 @@
             }
 
             this.getCurrencySuscribtions = this.service.getCurrency(currency).subscribe(function (currency) {
-              _this81.available = true;
-              _this81.rate = currency.rates['XAF'].toFixed(2);
+              _this79.available = true;
+              _this79.rate = currency.rates['XAF'].toFixed(2);
 
-              if (_this81.showCmrCanada) {
-                _this81.rate = currency.rates['CAD'].toFixed(3);
+              if (_this79.showCmrCanada) {
+                _this79.rate = currency.rates['CAD'].toFixed(3);
               }
             }, function (err) {
-              _this81.available = false;
+              _this79.available = false;
 
               if (err.status === 200) {
-                _this81.unsuscribe();
+                _this79.unsuscribe();
               }
             });
           }
@@ -23549,53 +23501,53 @@
         }, {
           key: "loadTransaction",
           value: function loadTransaction(email) {
-            var _this82 = this;
+            var _this80 = this;
 
             this.reinitialiazeAll();
             var respomse = false;
             this.getBeneficiarySuscribtions = this.data.getAllBeneficiary().subscribe(function (res) {
-              _this82.allBeneficiariesList = res.map(function (e) {
+              _this80.allBeneficiariesList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
 
                 if (data.userEmail === email) {
-                  _this82.dropdownList += data.first_name + ' ' + data.last_name + ':' + data.mobile + '*';
+                  _this80.dropdownList += data.first_name + ' ' + data.last_name + ':' + data.mobile + '*';
                 }
 
                 return data;
               });
               respomse = true;
-              localStorage.setItem("dropdownList", _this82.dropdownList);
-              _this82.sendMessage.changeMessage('Message for transaction:' + _this82.currentValueTosend + '-' + _this82.currentValueToReceive + '-' + _this82.rate + '-' + _this82.currencyToSend + '-' + _this82.currencyToReceive) + '_separeItems_' + _this82.dropdownList;
+              localStorage.setItem("dropdownList", _this80.dropdownList);
+              _this80.sendMessage.changeMessage('Message for transaction:' + _this80.currentValueTosend + '-' + _this80.currentValueToReceive + '-' + _this80.rate + '-' + _this80.currencyToSend + '-' + _this80.currencyToReceive) + '_separeItems_' + _this80.dropdownList;
 
-              if (_this82.currentValueTosend < 5 || _this82.currentValueTosend > 999) {
-                _this82.amountToSendError = true;
+              if (_this80.currentValueTosend < 5 || _this80.currentValueTosend > 999) {
+                _this80.amountToSendError = true;
               } else {
-                _this82.amountToSendError = false;
-                localStorage.setItem("recipient", _this82.recipient);
-                localStorage.setItem("recipientMobile", _this82.recipientMobile);
+                _this80.amountToSendError = false;
+                localStorage.setItem("recipient", _this80.recipient);
+                localStorage.setItem("recipientMobile", _this80.recipientMobile);
                 var link = ['/confirmTransaction'];
 
-                _this82.spinner.show();
+                _this80.spinner.show();
 
                 setTimeout(function () {
                   /** spinner ends after 2 seconds */
                   localStorage.removeItem('messageForTransaction');
 
-                  _this82.spinner.hide();
+                  _this80.spinner.hide();
 
-                  _this82.router.navigate(link); //this.unsuscribe();
+                  _this80.router.navigate(link); //this.unsuscribe();
 
                 }, 2000);
-                if (_this82.modalRef) _this82.modalRef.hide(); // pour fermer le popup
+                if (_this80.modalRef) _this80.modalRef.hide(); // pour fermer le popup
               }
 
               return respomse;
             }, function (err) {
               console.log('Error while fetching beneficiary data');
-              localStorage.setItem("dropdownList", _this82.dropdownList);
+              localStorage.setItem("dropdownList", _this80.dropdownList);
 
-              _this82.unsuscribe();
+              _this80.unsuscribe();
             });
             return respomse;
           }
@@ -24542,7 +24494,7 @@
         }, {
           key: "modifier",
           value: function modifier(Inputnom, Inputprenom, InputCountry, InputProvince, InputTown, Inputemail, InputTel) {
-            var _this83 = this;
+            var _this81 = this;
 
             this.reinitialiseError();
 
@@ -24610,7 +24562,7 @@
 
               setTimeout(function () {
                 /** spinner ends after 4 seconds */
-                _this83.updateBeneficiary(_this83.beneficiaryObj);
+                _this81.updateBeneficiary(_this81.beneficiaryObj);
               }, 4500);
             }
           }
@@ -24896,14 +24848,14 @@
         return _createClass(TrackingComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this84 = this;
+            var _this82 = this;
 
             if (localStorage.getItem('user')) {
               initProgressBar();
               document.getElementById("firstPoint").click(); // to start the tracking 
 
               this.subscription = this.sendMessage.currentMessage.subscribe(function (message) {
-                return _this84.message = message;
+                return _this82.message = message;
               });
 
               if (localStorage.getItem('messageForTracking') === 'default message' || localStorage.getItem('messageForTracking') === null || !localStorage.getItem('messageForTracking')) {
@@ -24992,7 +24944,7 @@
         }, {
           key: "Home",
           value: function Home() {
-            var _this85 = this;
+            var _this83 = this;
 
             var link = ['/'];
             this.spinner.show();
@@ -25004,9 +24956,9 @@
               localStorage.removeItem("dropdownList");
               localStorage.removeItem('messageForTracking');
 
-              _this85.spinner.hide();
+              _this83.spinner.hide();
 
-              _this85.router.navigate(link);
+              _this83.router.navigate(link);
             }, 2000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
@@ -25819,10 +25771,10 @@
         return _createClass(ConfirmTransactionWnaComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this86 = this;
+            var _this84 = this;
 
             this.subscription = this.sendMessage.currentMessage.subscribe(function (message) {
-              return _this86.message = message;
+              return _this84.message = message;
             });
 
             if (localStorage.getItem('messageForTracking') === 'default message' || localStorage.getItem('messageForTracking') === null || !localStorage.getItem('messageForTracking')) {
@@ -25837,12 +25789,12 @@
             }
 
             this.getavailablePaySuscribtions = this.data.getPay().subscribe(function (res) {
-              _this86.amount = Number(res[0]['amount']);
+              _this84.amount = Number(res[0]['amount']);
             }, function (err) {
               console.log('Error while fetching pay');
               console.log(err);
 
-              _this86.unsuscribe();
+              _this84.unsuscribe();
             });
           }
         }, {
@@ -25889,19 +25841,19 @@
         }, {
           key: "tracking",
           value: function tracking() {
-            var _this87 = this;
+            var _this85 = this;
 
             this.saveTransaction();
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this87.spinner.hide();
+              _this85.spinner.hide();
 
-              _this87.data.updatePay("mg6GHY8RPYCo7KzHobR2", Number(_this87.amount - Number(_this87.transactionObj.amountReceive.split('XAF')[0].trim())));
+              _this85.data.updatePay("mg6GHY8RPYCo7KzHobR2", Number(_this85.amount - Number(_this85.transactionObj.amountReceive.split('XAF')[0].trim())));
 
-              _this87.transactionId = _this87.transactionObj.transactionCode;
+              _this85.transactionId = _this85.transactionObj.transactionCode;
 
-              _this87.sendEmail();
+              _this85.sendEmail();
             }, 3000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup
           }
@@ -25941,13 +25893,13 @@
         }, {
           key: "sendMsg",
           value: function sendMsg(email, id) {
-            var _this88 = this;
+            var _this86 = this;
 
             this.sendMsgSuscribtions = this.service.sendEmail(email, id).subscribe(function (res) {
               console.log(res);
             }, function (err) {
               if (err.status === 200) {
-                _this88.unsuscribe();
+                _this86.unsuscribe();
               }
             });
           }
@@ -26016,13 +25968,13 @@
         }, {
           key: "sendWhasap",
           value: function sendWhasap() {
-            var _this89 = this;
+            var _this87 = this;
 
             this.sendWhasapSuscribtions = this.service.sendWhasap('4384042421').subscribe(function (data) {
               console.log(data.status);
             }, function (err) {
               if (err.status === 200) {
-                _this89.unsuscribe();
+                _this87.unsuscribe();
               }
             });
           }
@@ -26588,25 +26540,25 @@
         return _createClass(TransactionWithNoAccountComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
-              var _this90 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee14() {
+              var _this88 = this;
 
               var link, receiveMsg, _link4;
 
-              return _regeneratorRuntime().wrap(function _callee16$(_context16) {
-                while (1) switch (_context16.prev = _context16.next) {
+              return _regenerator().w(function (_context14) {
+                while (1) switch (_context14.n) {
                   case 0:
                     if (localStorage.getItem('recipientEmail') === 'default message' || localStorage.getItem('recipientEmail') === null || !localStorage.getItem('recipientEmail')) {
-                      _context16.next = 3;
+                      _context14.n = 1;
                       break;
                     }
 
                     this.confirmTransaction();
-                    return _context16.abrupt("return");
+                    return _context14.a(2);
 
-                  case 3:
+                  case 1:
                     this.subscription = this.sendMessage.currentMessage.subscribe(function (message) {
-                      return _this90.message = message;
+                      return _this88.message = message;
                     });
 
                     if (localStorage.getItem('messageForTransaction') === 'default message' || localStorage.getItem('messageForTransaction') === null || !localStorage.getItem('messageForTransaction')) {
@@ -26657,11 +26609,10 @@
                       this.router.navigate(_link4);
                     }
 
-                  case 7:
-                  case "end":
-                    return _context16.stop();
+                  case 2:
+                    return _context14.a(2);
                 }
-              }, _callee16, this);
+              }, _callee14, this);
             }));
           }
         }, {
@@ -26716,29 +26667,28 @@
         }, {
           key: "confirm",
           value: function confirm() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
-              return _regeneratorRuntime().wrap(function _callee17$(_context17) {
-                while (1) switch (_context17.prev = _context17.next) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee15() {
+              return _regenerator().w(function (_context15) {
+                while (1) switch (_context15.n) {
                   case 0:
-                    _context17.next = 2;
+                    _context15.n = 1;
                     return this.firebaseService.signInWithNoAccount('guest@gmail.com', 'Shama@16');
 
-                  case 2:
+                  case 1:
                     if (this.firebaseService.isLoggedIn) {
                       this.confirmTransaction();
                     }
 
-                  case 3:
-                  case "end":
-                    return _context17.stop();
+                  case 2:
+                    return _context15.a(2);
                 }
-              }, _callee17, this);
+              }, _callee15, this);
             }));
           }
         }, {
           key: "confirmTransaction",
           value: function confirmTransaction() {
-            var _this91 = this;
+            var _this89 = this;
 
             this.sendMessage.changeMessage(this.message);
             localStorage.setItem("recipient", this.recipient);
@@ -26751,15 +26701,15 @@
               /** spinner ends after 2 seconds */
               localStorage.removeItem('messageForTransaction');
 
-              _this91.spinner.hide();
+              _this89.spinner.hide();
 
-              _this91.router.navigate(link);
+              _this89.router.navigate(link);
             }, 2000);
           }
         }, {
           key: "ajouter",
           value: function ajouter(Inputnom, InputnomDest, Inputprenom, InputprenomDest, InputCountry, InputPostal, InputTown, Inputemail, InputTel, InputTelDest, Inputselect, InputselectDest) {
-            var _this92 = this;
+            var _this90 = this;
 
             this.reinitialiseError();
 
@@ -26850,7 +26800,7 @@
               this.recipient = InputprenomDest_ + ' ' + InputnomDest_;
               this.recipientMobile = this.beneficiaryObj.mobile;
               setTimeout(function () {
-                _this92.confirm();
+                _this90.confirm();
               }, 1500);
             }
           }
@@ -29796,27 +29746,27 @@
         }, {
           key: "ngAfterViewInit",
           value: function ngAfterViewInit() {
-            var _this93 = this;
+            var _this91 = this;
 
             this.ngAfterSuscribtions = this.sendMessage.currentMessage.subscribe(function (message) {
               if (message.includes('User Connected from homeComponent')) {
                 if (localStorage.getItem('user') !== null) {
-                  _this93.showConnexion = false;
-                  _this93.showUser = true;
+                  _this91.showConnexion = false;
+                  _this91.showUser = true;
 
                   if (localStorage.getItem('first_name') && localStorage.getItem('first_name') !== '') {
-                    _this93.user = localStorage.getItem('first_name');
+                    _this91.user = localStorage.getItem('first_name');
                   } else {
-                    _this93.user = 'Welcome';
+                    _this91.user = 'Welcome';
                   }
                 } else {
-                  _this93.showConnexion = true;
-                  _this93.showUser = false;
+                  _this91.showConnexion = true;
+                  _this91.showUser = false;
                 }
               } else if (message.includes('User Disconnected from homeComponent')) {
-                _this93.logOut();
+                _this91.logOut();
               } else if (message.includes('change language')) {
-                _this93.changeLanguage();
+                _this91.changeLanguage();
               }
             });
           }
@@ -29835,14 +29785,14 @@
         }, {
           key: "openModalCreerCompte",
           value: function openModalCreerCompte(template) {
-            var _this94 = this;
+            var _this92 = this;
 
             this.indicatifPays = '0';
             if (this.modalRef) this.modalRef.hide();
             this.modalRef = this.modalService.show(template, this.config);
             setTimeout(function () {
               /** spinner ends after 0.5 seconds */
-              _this94.clear();
+              _this92.clear();
             }, 500);
           }
         }, {
@@ -29864,10 +29814,46 @@
         }, {
           key: "contact",
           value: function contact() {
-            var _this95 = this;
+            var _this93 = this;
 
             console.log('Vous avez selectionné contact');
             var link = ['/contact'];
+            document.getElementById("menuCheckbox").click(); // to close the menu
+
+            this.spinner.show();
+            setTimeout(function () {
+              /** spinner ends after 2 seconds */
+              _this93.spinner.hide();
+
+              _this93.router.navigate(link);
+            }, 2000);
+            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
+          }
+        }, {
+          key: "about",
+          value: function about() {
+            var _this94 = this;
+
+            console.log('Vous avez selectionné contact');
+            var link = ['/about'];
+            document.getElementById("menuCheckbox").click(); // to close the menu
+
+            this.spinner.show();
+            setTimeout(function () {
+              /** spinner ends after 2 seconds */
+              _this94.spinner.hide();
+
+              _this94.router.navigate(link);
+            }, 1000);
+            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
+          }
+        }, {
+          key: "Home",
+          value: function Home() {
+            var _this95 = this;
+
+            console.log('Vous avez selectionné Home');
+            var link = ['/'];
             document.getElementById("menuCheckbox").click(); // to close the menu
 
             this.spinner.show();
@@ -29880,44 +29866,35 @@
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
-          key: "about",
-          value: function about() {
+          key: "openSpinner",
+          value: function openSpinner($event) {
             var _this96 = this;
 
-            console.log('Vous avez selectionné contact');
-            var link = ['/about'];
-            document.getElementById("menuCheckbox").click(); // to close the menu
-
+            /** spinner starts on init */
+            this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
               _this96.spinner.hide();
-
-              _this96.router.navigate(link);
-            }, 1000);
-            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
+            }, 2000);
+            this.modalRef.hide(); // pour fermer le popup
           }
         }, {
-          key: "Home",
-          value: function Home() {
+          key: "openSpinnerForAccount",
+          value: function openSpinnerForAccount($event) {
             var _this97 = this;
 
-            console.log('Vous avez selectionné Home');
-            var link = ['/'];
-            document.getElementById("menuCheckbox").click(); // to close the menu
-
+            /** spinner starts on init */
+            this.load = $event;
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
               _this97.spinner.hide();
-
-              _this97.router.navigate(link);
             }, 2000);
-            if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
-          key: "openSpinner",
-          value: function openSpinner($event) {
+          key: "openSpinnerForModif",
+          value: function openSpinnerForModif($event) {
             var _this98 = this;
 
             /** spinner starts on init */
@@ -29926,39 +29903,12 @@
             setTimeout(function () {
               /** spinner ends after 2 seconds */
               _this98.spinner.hide();
-            }, 2000);
-            this.modalRef.hide(); // pour fermer le popup
-          }
-        }, {
-          key: "openSpinnerForAccount",
-          value: function openSpinnerForAccount($event) {
-            var _this99 = this;
 
-            /** spinner starts on init */
-            this.load = $event;
-            this.spinner.show();
-            setTimeout(function () {
-              /** spinner ends after 2 seconds */
-              _this99.spinner.hide();
-            }, 2000);
-          }
-        }, {
-          key: "openSpinnerForModif",
-          value: function openSpinnerForModif($event) {
-            var _this100 = this;
-
-            /** spinner starts on init */
-            this.load = $event;
-            this.spinner.show();
-            setTimeout(function () {
-              /** spinner ends after 2 seconds */
-              _this100.spinner.hide();
-
-              _this100.modalRef.hide(); // pour fermer le popup
+              _this98.modalRef.hide(); // pour fermer le popup
 
 
-              _this100.showUser = true;
-              _this100.showConnexion = false;
+              _this98.showUser = true;
+              _this98.showConnexion = false;
               swal.fire({
                 title: 'Edit',
                 text: 'Done successfuly',
@@ -29972,15 +29922,15 @@
         }, {
           key: "authentification",
           value: function authentification(email, password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee18() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee16() {
               var email_, password_;
-              return _regeneratorRuntime().wrap(function _callee18$(_context18) {
-                while (1) switch (_context18.prev = _context18.next) {
+              return _regenerator().w(function (_context16) {
+                while (1) switch (_context16.n) {
                   case 0:
                     this.reinitialiseError();
 
                     if (!(email.value.length === 0 || password.value.length === 0)) {
-                      _context18.next = 8;
+                      _context16.n = 1;
                       break;
                     }
 
@@ -29988,40 +29938,39 @@
                     this.showUser = false;
                     if (email.value.length === 0) this.enableEmail = true;
                     if (password.value.length === 0) this.enablePassword = true;
-                    _context18.next = 20;
+                    _context16.n = 4;
                     break;
 
-                  case 8:
+                  case 1:
                     if (!(email.value === "admin" && password.value === "admin")) {
-                      _context18.next = 14;
+                      _context16.n = 2;
                       break;
                     }
 
                     this.openSpinnerForAccount("Chargement...");
                     this.showUser = true;
                     this.showConnexion = false;
-                    _context18.next = 20;
+                    _context16.n = 4;
                     break;
 
-                  case 14:
+                  case 2:
                     email_ = email.value.toString().trim();
                     password_ = password.value.toString().trim();
                     this.spinner.show();
-                    _context18.next = 19;
+                    _context16.n = 3;
                     return this.firebaseService.signIn(email_, password_);
 
-                  case 19:
+                  case 3:
                     if (this.firebaseService.isLoggedIn) {
                       this.getUsers(email_);
                       this.goToHome(email_);
                       this.modalRef.hide(); // pour fermer le popup
                     }
 
-                  case 20:
-                  case "end":
-                    return _context18.stop();
+                  case 4:
+                    return _context16.a(2);
                 }
-              }, _callee18, this);
+              }, _callee16, this);
             }));
           }
         }, {
@@ -30058,15 +30007,15 @@
         }, {
           key: "creerCompte",
           value: function creerCompte(Inputnom, Inputprenom, Inputdate, InputCountry, InputProvince, InputTown, Inputadress, Inputemail, Inputpassword, InputConfirmPassword, InputTel) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee19() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee17() {
               var indicatif, email_, password_;
-              return _regeneratorRuntime().wrap(function _callee19$(_context19) {
-                while (1) switch (_context19.prev = _context19.next) {
+              return _regenerator().w(function (_context17) {
+                while (1) switch (_context17.n) {
                   case 0:
                     this.reinitialiseError();
 
                     if (!(Inputnom.value.length == 0 || Inputprenom.value.length == 0 || Inputdate.value.length == 0 || InputCountry.value.length == 0 || InputTown.value.length == 0 || Inputadress.value.length == 0 || Inputemail.value.length == 0 || Inputpassword.value.length == 0 || InputConfirmPassword.value.length == 0 || InputTel.value.length == 0 || InputProvince.value.length == 0 || this.indicatifPays === '0')) {
-                      _context19.next = 17;
+                      _context17.n = 1;
                       break;
                     }
 
@@ -30088,10 +30037,10 @@
                       closeButton: true,
                       positionClass: 'toast-bottom-left'
                     });
-                    _context19.next = 41;
+                    _context17.n = 4;
                     break;
 
-                  case 17:
+                  case 1:
                     indicatif = '';
 
                     if (this.indicatifPays === 'CM') {
@@ -30130,17 +30079,17 @@
                     this.userObj.occupation = '';
 
                     if (!(Inputpassword.value === InputConfirmPassword.value)) {
-                      _context19.next = 40;
+                      _context17.n = 3;
                       break;
                     }
 
                     this.spinner.show();
                     email_ = Inputemail.value.toString().trim();
                     password_ = Inputpassword.value.toString().trim();
-                    _context19.next = 37;
+                    _context17.n = 2;
                     return this.firebaseService.signUp(email_, password_);
 
-                  case 37:
+                  case 2:
                     if (this.firebaseService.isLoggedIn) {
                       this.adduser(this.userObj);
                       this.getUsers(email_);
@@ -30148,26 +30097,25 @@
                       this.modalRef.hide(); // pour fermer le popup
                     }
 
-                    _context19.next = 41;
+                    _context17.n = 4;
                     break;
 
-                  case 40:
+                  case 3:
                     this.enablePasswordMatch = true;
 
-                  case 41:
-                  case "end":
-                    return _context19.stop();
+                  case 4:
+                    return _context17.a(2);
                 }
-              }, _callee19, this);
+              }, _callee17, this);
             }));
           }
         }, {
           key: "modifierCompte",
           value: function modifierCompte(Inputnom, Inputprenom, Inputdate, InputCountry, InputProvince, InputTown, Inputadress, InputTel) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee20() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee18() {
               var indicatif;
-              return _regeneratorRuntime().wrap(function _callee20$(_context20) {
-                while (1) switch (_context20.prev = _context20.next) {
+              return _regenerator().w(function (_context18) {
+                while (1) switch (_context18.n) {
                   case 0:
                     this.reinitialiseError();
 
@@ -30233,11 +30181,10 @@
                       }
                     }
 
-                  case 2:
-                  case "end":
-                    return _context20.stop();
+                  case 1:
+                    return _context18.a(2);
                 }
-              }, _callee20, this);
+              }, _callee18, this);
             }));
           }
         }, {
@@ -30256,7 +30203,7 @@
         }, {
           key: "beneficiaire",
           value: function beneficiaire() {
-            var _this101 = this;
+            var _this99 = this;
 
             console.log('Vous avez selectionné beneficiaire');
             var link = ['/beneficiaire'];
@@ -30265,16 +30212,16 @@
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this101.spinner.hide();
+              _this99.spinner.hide();
 
-              _this101.router.navigate(link);
+              _this99.router.navigate(link);
             }, 1000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
           key: "Transactions",
           value: function Transactions() {
-            var _this102 = this;
+            var _this100 = this;
 
             console.log('Vous avez selectionné transactions');
             var link = ['/transactions'];
@@ -30283,25 +30230,25 @@
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this102.spinner.hide();
+              _this100.spinner.hide();
 
-              _this102.router.navigate(link);
+              _this100.router.navigate(link);
             }, 1000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }
         }, {
           key: "forgotPassword",
           value: function forgotPassword(Inputemail) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee21() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/_regenerator().m(function _callee19() {
               var email_;
-              return _regeneratorRuntime().wrap(function _callee21$(_context21) {
-                while (1) switch (_context21.prev = _context21.next) {
+              return _regenerator().w(function (_context19) {
+                while (1) switch (_context19.n) {
                   case 0:
                     email_ = Inputemail.value.toString().trim();
-                    _context21.next = 3;
+                    _context19.n = 1;
                     return this.firebaseService.forgotPassword(email_);
 
-                  case 3:
+                  case 1:
                     if (this.firebaseService.emailSend) {
                       swal.fire({
                         title: 'Reset Password',
@@ -30314,11 +30261,10 @@
                       this.openSpinner("Chargement...");
                     }
 
-                  case 4:
-                  case "end":
-                    return _context21.stop();
+                  case 2:
+                    return _context19.a(2);
                 }
-              }, _callee21, this);
+              }, _callee19, this);
             }));
           }
         }, {
@@ -30353,16 +30299,16 @@
         }, {
           key: "getUsers",
           value: function getUsers(email) {
-            var _this103 = this;
+            var _this101 = this;
 
             this.data.getAllusers().subscribe(function (res) {
-              _this103.usersList = res.map(function (e) {
+              _this101.usersList = res.map(function (e) {
                 var data = e.payload.doc.data();
                 data.id = e.payload.doc.id;
                 return data;
               });
 
-              var _iterator5 = _createForOfIteratorHelper(_this103.usersList),
+              var _iterator5 = _createForOfIteratorHelper(_this101.usersList),
                   _step5;
 
               try {
@@ -30370,7 +30316,7 @@
                   var user = _step5.value;
 
                   if (user.email === email) {
-                    _this103.currentUser = user;
+                    _this101.currentUser = user;
                     break;
                   }
                 }
@@ -30380,15 +30326,15 @@
                 _iterator5.f();
               }
 
-              if (_this103.currentUser.first_name === '') {
-                _this103.user = 'Welcome';
+              if (_this101.currentUser.first_name === '') {
+                _this101.user = 'Welcome';
               } else {
-                _this103.user = _this103.currentUser.first_name;
+                _this101.user = _this101.currentUser.first_name;
               }
 
-              localStorage.setItem('last_name', _this103.currentUser.last_name);
-              localStorage.setItem('first_name', _this103.currentUser.first_name);
-              localStorage.setItem('mobile', _this103.currentUser.mobile);
+              localStorage.setItem('last_name', _this101.currentUser.last_name);
+              localStorage.setItem('first_name', _this101.currentUser.first_name);
+              localStorage.setItem('mobile', _this101.currentUser.mobile);
 
               if (localStorage.getItem('user').includes('{')) {
                 localStorage.removeItem('user');
@@ -30401,7 +30347,7 @@
         }, {
           key: "faq",
           value: function faq() {
-            var _this104 = this;
+            var _this102 = this;
 
             // this.loader.start();
             console.log('Vous avez selectionné faq');
@@ -30411,9 +30357,9 @@
             this.spinner.show();
             setTimeout(function () {
               /** spinner ends after 2 seconds */
-              _this104.spinner.hide();
+              _this102.spinner.hide();
 
-              _this104.router.navigate(link);
+              _this102.router.navigate(link);
             }, 1000);
             if (this.modalRef) this.modalRef.hide(); // pour fermer le popup  
           }

@@ -111,9 +111,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   margingLeftSize = 0;
   paddinLeftSizeForLogOut = 0;
   @ViewChild('template', {read: TemplateRef}) modalTemplateAuth: TemplateRef<any>;
-  @ViewChild('templateLogout', {read: TemplateRef}) modalTemplate: TemplateRef<any>;
-  @ViewChild('templateNobeneficiary', {read: TemplateRef}) modalTemplateNobeneficiary: TemplateRef<any>;
-  @ViewChild('templateConnexionRequired', {read: TemplateRef}) modalTemplateConnexionRequired: TemplateRef<any>;
+  // @ViewChild('templateLogout', {read: TemplateRef}) modalTemplate: TemplateRef<any>;
+  // @ViewChild('templateNobeneficiary', {read: TemplateRef}) modalTemplateNobeneficiary: TemplateRef<any>;
+  // @ViewChild('templateConnexionRequired', {read: TemplateRef}) modalTemplateConnexionRequired: TemplateRef<any>;
   allModalTemplate: TemplateRef<any>[];
   modalRefArray: any[];
   enableEmail: boolean;

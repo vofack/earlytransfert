@@ -38,3 +38,17 @@ git remote set-url origin https://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@githu
 and while cloning
 git clone https://<username>:<githubtoken>@github.com/<username>/<repositoryname>.git
 git push --set-upstream origin master
+
+- install nvm on local directory : curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+- nvm install v18.20.4    
+
+- ericanicetkwuningvofack@Erics-MacBook-Pro earlytransfert % firebase logout                              
+- ericanicetkwuningvofack@Erics-MacBook-Pro earlytransfert % nvm use v18.20.4    
+- npm i 
+- npm install -g firebase-tools@13.22.1                        
+- ericanicetkwuningvofack@Erics-MacBook-Pro earlytransfert % firebase login      
+- ericanicetkwuningvofack@Erics-MacBook-Pro earlytransfert % export NODE_OPTIONS=--openssl-legacy-provider  
+- npm install -g @angular/cli@16
+- ng serve --open --configuration=fr   
+- ericanicetkwuningvofack@Erics-MacBook-Pro earlytransfert % ng build      
+- ericanicetkwuningvofack@Erics-MacBook-Pro earlytransfert % firebase deploy  

@@ -28,7 +28,7 @@
     "ag-grid-community": "^24.1.0",
     "bootstrap": "4.1.1",
     "file-saver": "^2.0.5",
-    "firebase": "^7.0 || ^8.0",
+    "firebase": "^8.10.1",
     "google-libphonenumber": "^3.2.32",
     "intl-tel-input": "^18.1.5",
     "ng-multiselect-dropdown9": "^2.13.0",

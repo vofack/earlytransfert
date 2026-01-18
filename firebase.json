@@ -7,6 +7,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "site": "earlytransfert",
     "public": "dist/finance1",
     "ignore": [
       "firebase.json",
@@ -26,7 +27,7 @@
         "source": "/fr/**",
         "destination": "/fr/index.html"
       }
-    ], 
+    ],
     "redirects": [
       {
         "source": "/",
@@ -34,6 +35,5 @@
         "type": 301
       }
     ]
-
   }
 }

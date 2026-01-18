@@ -180,7 +180,7 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
         let message = this.transactionObj.userEmail + '*' + this.transactionObj.receiver + '*' 
                       + this.transactionObj.amountSend + '*' + this.transactionObj.amountReceive + '*' 
                       + this.transactionObj.date + '*' + this.transactionObj.status + '*' + 'sender : ' + sender + 'recipient : ' + recipient + '*' 
-                      + 'Link :  https://dashboard-33d8e.web.app/trackingWithId?transaction=' + this.transactionId;
+                      + 'Link :  https://earlytransfert.web.app/trackingWithId?transaction=' + this.transactionId;
         
         
                       this.sendMsg(this.transactionObj.userEmail, this.transactionId)// initEmail(message);

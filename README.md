@@ -52,3 +52,55 @@ git push --set-upstream origin master
 - ng serve --open --configuration=fr   
 - ericanicetkwuningvofack@Erics-MacBook-Pro earlytransfert % ng build      
 - ericanicetkwuningvofack@Erics-MacBook-Pro earlytransfert % firebase deploy  
+
+npm uninstall firebase @angular/fire --legacy-peer-deps
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install --legacy-peer-deps
+
+npm uninstall firebase @angular/fire
+npm uninstall firebase @angular/fire --legacy-peer-deps
+npm install @angular/fire@6.1.5 firebase@8.10.1 --legacy-peer-deps
+
+ng build
+firebase deploy --only hosting:earlytransfert
+
+
+
+<!-- 
+npm install firebase
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCzJh0WcQo14hMB149ajVKtNKS8DZK88OA",
+  authDomain: "dashboard-33d8e.firebaseapp.com",
+  databaseURL: "https://dashboard-33d8e-default-rtdb.firebaseio.com",
+  projectId: "dashboard-33d8e",
+  storageBucket: "dashboard-33d8e.firebasestorage.app",
+  messagingSenderId: "82198380910",
+  appId: "1:82198380910:web:af7fe3d73b2bc9e84b817f"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+npm install -g firebase-tools
+firebase login
+firebase init
+
+{
+  "hosting": {
+    "site": "earlytransfert",
+
+    "public": "public",
+    ...
+  }
+}
+
+firebase deploy --only hosting:earlytransfert -->
+

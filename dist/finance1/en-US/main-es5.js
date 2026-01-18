@@ -8880,13 +8880,13 @@
         production: false,
         serverURL: 'https://api.exchangerate-api.com/v4/latest/',
         firebase: {
-          apiKey: "AIzaSyCHus9wv4ZgmqvxbGYFI0ZyGD6qO2knSBM",
+          apiKey: "AIzaSyCzJh0WcQo14hMB149ajVKtNKS8DZK88OA",
           authDomain: "dashboard-33d8e.firebaseapp.com",
           databaseURL: "https://dashboard-33d8e-default-rtdb.firebaseio.com",
           projectId: "dashboard-33d8e",
-          storageBucket: "dashboard-33d8e.appspot.com",
+          storageBucket: "dashboard-33d8e.firebasestorage.app",
           messagingSenderId: "82198380910",
-          appId: "1:82198380910:web:55ea48f2a281b88a4b817f"
+          appId: "1:82198380910:web:af7fe3d73b2bc9e84b817f"
         }
       };
       /*
@@ -17717,7 +17717,7 @@
       FooterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
         type: FooterComponent,
         selectors: [["app-footer"]],
-        decls: 96,
+        decls: 95,
         vars: 0,
         consts: function consts() {
           var i18n_0;
@@ -17864,7 +17864,7 @@
             i18n_30 = "Subscribe";
           }
 
-          return [["rel", "stylesheet", "href", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css", "integrity", "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO", "crossorigin", "anonymous"], [1, "footer"], [1, "footer_top"], [1, "container"], [1, "row"], [1, "col-xl-4", "col-md-6", "col-lg-3"], ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "footer_widget", "wow", "fadeInUp"], [1, "socail_links"], ["href", "#"], ["alt", "", 1, "logo"], [1, "ti-facebook"], [1, "fa", "fa-google-plus"], [1, "fa", "fa-twitter"], [1, "fa", "fa-instagram"], [1, "col-xl-2", "col-md-6", "col-lg-3", "d-none", "d-lg-block"], ["data-wow-duration", "1.1s", "data-wow-delay", ".4s", 1, "footer_widget", "wow", "fadeInUp"], [1, "footer_title"], [2, "cursor", "pointer", 3, "click"], i18n_0, i18n_2, i18n_4, i18n_6, [1, "col-xl-2", "col-md-6", "col-lg-2", "d-none", "d-lg-block"], ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", 1, "footer_widget", "wow", "fadeInUp"], i18n_8, i18n_10, i18n_12, i18n_14, i18n_16, [1, "d-block", "d-sm-none", 2, "text-align", "center"], [1, "footer_title", 2, "font-size", "24px!important"], i18n_18, [2, "cursor", "pointer", "font-size", "18px!important", 3, "click"], i18n_20, i18n_22, i18n_24, i18n_26, [1, "col-xl-4", "col-md-6", "col-lg-4"], ["data-wow-duration", "1.3s", "data-wow-delay", ".6s", 1, "footer_widget", "wow", "fadeInUp"], i18n_28, ["action", "#", 1, "newsletter_form"], ["type", "text", "placeholder", "Enter your mail"], ["InputEmail", ""], ["type", "submit", 1, "submitZoom", 2, "background-color", "#FFD700", 3, "click"], i18n_30, ["data-wow-duration", "1.4s", "data-wow-delay", ".3s", 1, "copy-right_text", "wow", "fadeInUp"], [1, "footer_border"], [1, "col-xl-12"], [1, "copy_right", "text-center"], ["href", "#", "target", "_blank", 2, "color", "#FFD700"]];
+          return [["rel", "stylesheet", "href", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css", "integrity", "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO", "crossorigin", "anonymous"], [1, "footer"], [1, "footer_top"], [1, "container"], [1, "row"], [1, "col-xl-4", "col-md-6", "col-lg-3"], ["data-wow-duration", "1s", "data-wow-delay", ".3s", 1, "footer_widget", "wow", "fadeInUp"], [1, "socail_links"], ["href", "#"], ["alt", "", 1, "logo"], [1, "ti-facebook"], [1, "fa", "fa-google-plus"], [1, "fa", "fa-twitter"], [1, "fa", "fa-instagram"], [1, "col-xl-2", "col-md-6", "col-lg-3", "d-none", "d-lg-block"], ["data-wow-duration", "1.1s", "data-wow-delay", ".4s", 1, "footer_widget", "wow", "fadeInUp"], [1, "footer_title"], [2, "cursor", "pointer", 3, "click"], i18n_0, i18n_2, i18n_4, i18n_6, [1, "col-xl-2", "col-md-6", "col-lg-2", "d-none", "d-lg-block"], ["data-wow-duration", "1.2s", "data-wow-delay", ".5s", 1, "footer_widget", "wow", "fadeInUp"], i18n_8, i18n_10, i18n_12, i18n_14, i18n_16, [1, "d-block", "d-sm-none", 2, "text-align", "center"], [1, "footer_title", 2, "font-size", "24px!important"], i18n_18, [2, "cursor", "pointer", "font-size", "18px!important", 3, "click"], i18n_20, i18n_22, i18n_24, i18n_26, [1, "col-xl-4", "col-md-6", "col-lg-4"], ["data-wow-duration", "1.3s", "data-wow-delay", ".6s", 1, "footer_widget", "wow", "fadeInUp"], i18n_28, ["action", "#", 1, "newsletter_form"], ["type", "text", "placeholder", "Enter your mail"], ["InputEmail", ""], ["type", "submit", 1, "submitZoom", 2, "background-color", "#FFD700", 3, "click"], i18n_30, ["data-wow-duration", "1.4s", "data-wow-delay", ".3s", 1, "copy-right_text", "wow", "fadeInUp"], [1, "footer_border"], [1, "col-xl-12"], [1, "copy_right", "text-center"], ["href", "#", "target", "_blank", 2, "color", "#00c8ff"]];
         },
         template: function FooterComponent_Template(rf, ctx) {
           if (rf & 1) {
@@ -18224,15 +18224,13 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](91, " All rights reserved | made by ");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](92, "br");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](92, "a", 49);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](93, "a", 49);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](94, "Eric Vofack ");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](93, "Eric Vofack ");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](95, ".\n");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](94, ". ");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -25909,7 +25907,7 @@
             var Message = this.transactionObj.userEmail + '-' + this.transactionObj.transactionCode + '-' + this.transactionObj.receiver + '-' + this.transactionObj.amountSend + '-' + this.transactionObj.amountReceive + '-' + this.transactionObj.date + '-' + this.transactionObj.status;
             var sender = localStorage.getItem('last_name') + ' ' + localStorage.getItem('mobile');
             var recipient = localStorage.getItem('recipient') + ' ' + localStorage.getItem('recipientMobile');
-            var message = this.transactionObj.userEmail + '*' + this.transactionObj.receiver + '*' + this.transactionObj.amountSend + '*' + this.transactionObj.amountReceive + '*' + this.transactionObj.date + '*' + this.transactionObj.status + '*' + 'sender : ' + sender + 'recipient : ' + recipient + '*' + 'Link :  https://dashboard-33d8e.web.app/trackingWithId?transaction=' + this.transactionId;
+            var message = this.transactionObj.userEmail + '*' + this.transactionObj.receiver + '*' + this.transactionObj.amountSend + '*' + this.transactionObj.amountReceive + '*' + this.transactionObj.date + '*' + this.transactionObj.status + '*' + 'sender : ' + sender + 'recipient : ' + recipient + '*' + 'Link :  https://earlytransfert.web.app/trackingWithId?transaction=' + this.transactionId;
             this.sendMsg(this.transactionObj.userEmail, this.transactionId); // initEmail(message);
 
             Email.send({

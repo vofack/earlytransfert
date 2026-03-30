@@ -28,16 +28,19 @@ export class CustomizedCellComponentComponent implements OnInit, ICellRendererAn
     id: '',
     userEmail: '',
     transactionCode: '',
+    sendingCountry: '',
+    receivingCountry: '',
+    receivingMethod: '',
+    receiverNumber: '',
+    senderNumber: '',
     receiver: '',
     amountSend: '',
     amountReceive : '',
     date : '',
     status : '',
-    receiverNumber: '',
-    receivingCountry: '',
-    receivingMethod: '',
-    sendingCountry: ''
-
+    isPostWoner: false,
+    isMarketPlace: false,
+    expires_at: ''
   };
 
   constructor(private toastr: ToastrService, private  spinner: NgxSpinnerService,
@@ -79,15 +82,19 @@ export class CustomizedCellComponentComponent implements OnInit, ICellRendererAn
     this.transactionObj.id = this.params.data.id;
     this.transactionObj.userEmail = this.params.data.userEmail; // current email connected
     this.transactionObj.transactionCode = this.params.data.transactionCode;
+    this.transactionObj.sendingCountry = this.params.data.sendingCountry;
+    this.transactionObj.receivingCountry = this.params.data.receivingCountry;
+    this.transactionObj.receivingMethod = this.params.data.receivingMethod;
+    this.transactionObj.receiverNumber = this.params.data.receiverNumber;
+    this.transactionObj.senderNumber = this.params.data.senderNumber;
     this.transactionObj.receiver = this.params.data.receiver;
     this.transactionObj.amountSend = this.params.data.amountSend;
     this.transactionObj.amountReceive = this.params.data.amountReceive;
     this.transactionObj.date = this.params.data.date;
-    this.transactionObj.receiverNumber = this.params.data.receiverNumber;
-    this.transactionObj.receivingCountry = this.params.data.receivingCountry;
-    this.transactionObj.receivingMethod = this.params.data.receivingMethod;
-    this.transactionObj.sendingCountry = this.params.data.sendingCountry;
     this.transactionObj.status = this.status;
+    this.transactionObj.isPostWoner = this.params.data.isPostWoner;
+    this.transactionObj.isMarketPlace = this.params.data.isMarketPlace;
+    this.transactionObj.expires_at = this.params.data.expires_at;
             
     this.toastr.success('Modification effectue avec succes','Early Transfer', {progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000});
           this.modalRef.hide(); // pour fermer le popup

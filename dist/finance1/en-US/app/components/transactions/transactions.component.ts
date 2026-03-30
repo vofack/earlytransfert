@@ -120,9 +120,39 @@ export class TransactionsComponent implements OnInit {
                     field: "date",
                     filter: "agTextColumnFilter",
                     width: 186
+                  },
+                  {
+                    headerName: "Sending Country",
+                    field: "sendingCountry",
+                    filter: "agTextColumnFilter",
+                    width: 186
+                  },
+                  {
+                    headerName: "Receiving Country",
+                    field: "receivingCountry",
+                    filter: "agTextColumnFilter",
+                    width: 186
+                  },
+                  {
+                    headerName: "Receiving Method",
+                    field: "receivingMethod",
+                    filter: "agTextColumnFilter",
+                    width: 186
+                  },
+                  {
+                    headerName: "Receiver Number",
+                    field: "receiverNumber",
+                    filter: "agTextColumnFilter",
+                    width: 186
+                  },
+                  {
+                    headerName: "Sender Number",
+                    field: "senderNumber",
+                    filter: "agTextColumnFilter",
+                    width: 186
                   }
                 ];
-            
+
                 this.columnDefsXs = [
                   {
                     headerName: "Status",
@@ -163,6 +193,18 @@ export class TransactionsComponent implements OnInit {
                   {
                     headerName: "Date",
                     field: "date",
+                    filter: "agTextColumnFilter",
+                    width: 125
+                  },
+                  {
+                    headerName: "Sending Country",
+                    field: "sendingCountry",
+                    filter: "agTextColumnFilter",
+                    width: 125
+                  },
+                  {
+                    headerName: "Receiving Country",
+                    field: "receivingCountry",
                     filter: "agTextColumnFilter",
                     width: 125
                   }

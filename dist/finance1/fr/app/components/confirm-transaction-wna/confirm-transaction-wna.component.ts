@@ -28,11 +28,19 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
     id: '',
     userEmail: '',
     transactionCode: '',
+    sendingCountry: '',
+    receivingCountry: '',
+    receivingMethod: '',
+    receiverNumber: '',
+    senderNumber: '',
     receiver: '',
     amountSend: '',
     amountReceive : '',
     date : '',
-    status : '' 
+    status : '',
+    isPostWoner: false,
+    isMarketPlace: false,
+    expires_at: ''
   };
   amount: any;
   transactionId = '';
@@ -141,11 +149,19 @@ export class ConfirmTransactionWnaComponent implements OnInit, AfterViewInit {
           if(!localStorage.getItem('user')) this.transactionObj.userEmail = localStorage.getItem('recipientEmail');
           else this.transactionObj.userEmail = localStorage.getItem('user'); // current email connected
           this.transactionObj.transactionCode = this.afs.createId();
+          this.transactionObj.sendingCountry = localStorage.getItem('sendingCountry') || '';
+          this.transactionObj.receivingCountry = localStorage.getItem('receivingCountry') || '';
+          this.transactionObj.receivingMethod = localStorage.getItem('receivingMethod') || '';
+          this.transactionObj.receiverNumber = localStorage.getItem('recipientMobile') || '';
+          this.transactionObj.senderNumber = localStorage.getItem('mobile') || '';
           this.transactionObj.receiver = localStorage.getItem('recipient');
           this.transactionObj.amountSend = sendValue + ' ' + currencyToSend;
           this.transactionObj.amountReceive = receiveValue + ' ' + currencyToReceive;
           this.transactionObj.date = today_;
           this.transactionObj.status = 'PENDING';
+          this.transactionObj.isPostWoner = false;
+          this.transactionObj.isMarketPlace = false;
+          this.transactionObj.expires_at = '';
                          
           this.addTransaction(this.transactionObj);
           

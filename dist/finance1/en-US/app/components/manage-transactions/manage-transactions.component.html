@@ -22,58 +22,137 @@
 <br>
 
 <div class="container-fluid">
-         
+
   <form class="form-inline justify-content-center">
     <label for="exampleInputPrenom1" style="padding-right: 5px;"><h4 i18n>Solde disponible :  </h4></label>
           <h4>{{amount}} XAF</h4>
-  </form>  
+  </form>
   <div class="form-inline justify-content-center">
       <a class="boxed-btn4-xs bg-success text-light"  (click)="openModal(templateSolde)">
-          <span class="glyphicon glyphicon-edit"></span> 
+          <span class="glyphicon glyphicon-edit"></span>
       </a>
-  </div>         
+  </div>
 </div>
-    
-        <div *ngIf="showXl" class="container-fluid  justify-content-center">
-                    <ag-grid-angular
-                    style="width: 100%; height: 1000px;padding-top: 10px;"
-                    class="ag-theme-balham custom-class"
-                    [columnDefs]="columnDefs"
-                    [animateRows]="true"
-                    [pagination]="true"    
-                    [frameworkComponents]="frameworkComponents"
-                    (selectionChanged)="onSelectionChanged($event)"
-                    (gridReady)="onGridReady($event)"
-                    >
-                    </ag-grid-angular>    
-        </div>
-            
-        <div *ngIf="showXs" class="container  justify-content-center">
-                    <ag-grid-angular
-                    style="width: 100%; height: 1000px;padding-top: 10px;"
-                    class="ag-theme-balham custom-class"
-                    [columnDefs]="columnDefsXs"
-                    [animateRows]="true"
-                    [pagination]="true" 
-                    [frameworkComponents]="frameworkComponents"
-                    (selectionChanged)="onSelectionChanged($event)"
-                    (gridReady)="onGridReady($event)"
-                    >
-                    </ag-grid-angular>  
-        </div>
 
-          
-          
+<!-- ── TAB BUTTONS ── -->
+<div class="container-fluid" style="padding-top: 20px;">
+  <div class="d-flex justify-content-center">
+    <button class="tab-btn" [class.active]="activeTab === 'transactions'" (click)="switchTab('transactions')">
+      Transactions
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'kyc'" (click)="switchTab('kyc')">
+      KYC Verifications
+      <span *ngIf="pendingKycCount > 0" class="kyc-badge">{{pendingKycCount}}</span>
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'messages'" (click)="switchTab('messages')">
+      Messages
+    </button>
+  </div>
+</div>
+
+<!-- ── TRANSACTIONS TAB ── -->
+<div *ngIf="activeTab === 'transactions'">
+    <div *ngIf="showXl" class="container-fluid  justify-content-center">
+                <ag-grid-angular
+                style="width: 100%; height: 1000px;padding-top: 10px;"
+                class="ag-theme-balham custom-class"
+                [columnDefs]="columnDefs"
+                [animateRows]="true"
+                [pagination]="true"
+                [frameworkComponents]="frameworkComponents"
+                (selectionChanged)="onSelectionChanged($event)"
+                (gridReady)="onGridReady($event)"
+                >
+                </ag-grid-angular>
+    </div>
+
+    <div *ngIf="showXs" class="container  justify-content-center">
+                <ag-grid-angular
+                style="width: 100%; height: 1000px;padding-top: 10px;"
+                class="ag-theme-balham custom-class"
+                [columnDefs]="columnDefsXs"
+                [animateRows]="true"
+                [pagination]="true"
+                [frameworkComponents]="frameworkComponents"
+                (selectionChanged)="onSelectionChanged($event)"
+                (gridReady)="onGridReady($event)"
+                >
+                </ag-grid-angular>
+    </div>
+</div>
+
+<!-- ── KYC VERIFICATIONS TAB ── -->
+<div *ngIf="activeTab === 'kyc'">
+
+    <!-- KYC ACTION TOOLBAR -->
+    <div class="container-fluid" style="padding: 15px 0;">
+      <div class="d-flex justify-content-center" style="gap: 10px;">
+        <button class="btn btn-primary" (click)="openKycDetailModal(templateKycDetail, selectedKyc)"
+                [disabled]="!selectedKyc">
+          View Details
+        </button>
+        <button class="btn btn-success" (click)="approveKyc(selectedKyc)"
+                [disabled]="!selectedKyc || selectedKyc?.status !== 'pending'">
+          Approve
+        </button>
+        <button class="btn btn-danger" (click)="openRejectModal(templateReject, selectedKyc)"
+                [disabled]="!selectedKyc || selectedKyc?.status !== 'pending'">
+          Reject
+        </button>
+        <button class="btn btn-warning" (click)="setKycPending(selectedKyc)"
+                [disabled]="!selectedKyc || selectedKyc?.status === 'pending'">
+          Back to Pending
+        </button>
+      </div>
+      <p class="text-center text-muted" style="margin-top: 8px; font-size: 13px;">
+        <span *ngIf="!selectedKyc">Click a row to select a KYC verification</span>
+        <span *ngIf="selectedKyc">Selected: {{selectedKyc.userEmail}} ({{selectedKyc.status | uppercase}})</span>
+      </p>
+    </div>
+
+    <div *ngIf="showXl" class="container-fluid justify-content-center">
+                <ag-grid-angular
+                style="width: 100%; height: 800px; padding-top: 10px;"
+                class="ag-theme-balham custom-class"
+                [columnDefs]="kycColumnDefs"
+                [animateRows]="true"
+                [pagination]="true"
+                [rowSelection]="'single'"
+                (rowClicked)="onKycRowClicked($event)"
+                (rowDoubleClicked)="onKycRowDoubleClicked($event)"
+                (gridReady)="onKycGridReady($event)"
+                >
+                </ag-grid-angular>
+    </div>
+
+    <div *ngIf="showXs" class="container justify-content-center">
+                <ag-grid-angular
+                style="width: 100%; height: 800px; padding-top: 10px;"
+                class="ag-theme-balham custom-class"
+                [columnDefs]="kycColumnDefsXs"
+                [animateRows]="true"
+                [pagination]="true"
+                [rowSelection]="'single'"
+                (rowClicked)="onKycRowClicked($event)"
+                (rowDoubleClicked)="onKycRowDoubleClicked($event)"
+                (gridReady)="onKycGridReady($event)"
+                >
+                </ag-grid-angular>
+    </div>
+</div>
+
+
+
  <!-- Ajouter beneficiare -->
 <ng-template #template1>
-    
-        <div class="modal-header" style="background-color: #FFD700;">   
+
+        <div class="modal-header" style="background-color: #FFD700;">
           <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>Edit</h4>
           <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-      
+
         <div class="modal-body">
           <form>
             <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputPrenom1" i18n>Identification</label></div>
@@ -82,7 +161,7 @@
                 <input type="text" class="form-control" #Inputprenom placeholder="First name">
                 <div *ngIf="enablePrenom" style="color: red;" i18n>First name required please !</div>
               </div>
-              <div class="col"> 
+              <div class="col">
                 <input type="text" class="form-control" #Inputnom placeholder="Name">
                 <div *ngIf="enableNom"  style="color: red;" i18n>Name required please !</div>
               </div>
@@ -117,28 +196,28 @@
               </div> -->
             </form>
             <div  *ngIf="enableTelephone"  style="color: red;" i18n>Phone-- required please !</div>
-          </div> 
+          </div>
           <div class="form-group">
               <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputEmail1" i18n>Email address</label></div>
               <input type="email" class="form-control" id="exampleInputEmail1" #Inputemail aria-describedby="emailHelp" placeholder="Enter email" required>
               <div  *ngIf="enableEmail"  style="color: red;" i18n>Email required please !</div>
-          </div>    
+          </div>
           </form>
         </div>
-      
+
         <div class="modal-footer">
         <button type="submit" class="boxed-btn4-xs h-15"  (click)="ajouter(Inputnom,Inputprenom,InputCountry,InputProvince,InputTown,Inputemail)" i18n>Create</button>
         <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()" i18n>Close</button>
-        
+
         </div>
-      
+
 </ng-template>
 <!-- / Ajouter beneficiare  -->
 
  <!-- Changer de solde -->
  <ng-template #templateSolde>
-    
-  <div class="modal-header" style="background-color: #FFD700;">   
+
+  <div class="modal-header" style="background-color: #FFD700;">
     <h4 class="modal-title pull-left" style="font-size: 10px !important;" i18n>Edit</h4>
     <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
@@ -151,17 +230,211 @@
         <div data-aos="fade-right" data-aos-duration="1500"><label for="exampleInputsolde" i18n>New Balance</label></div>
         <input type="email" class="form-control" id="exampleInputsolde" #Inputsolde aria-describedby="emailHelp" placeholder="Enter pay" required>
         <div  *ngIf="enableAmount"  style="color: red;" i18n>Balance required please !</div>
-    </div>    
+    </div>
     </form>
   </div>
 
   <div class="modal-footer">
   <button type="submit" class="boxed-btn4-xs h-15"  (click)="modifier(Inputsolde)" i18n>Change</button>
   <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()" i18n>Close</button>
-  
+
   </div>
 
 </ng-template>
 <!-- / Changer de solde  -->
 
+<!-- ── KYC DETAIL MODAL ── -->
+<ng-template #templateKycDetail>
+
+  <div class="modal-header" style="background-color: #FFD700;">
+    <h4 class="modal-title pull-left" style="font-size: 14px !important;">KYC Verification Details</h4>
+    <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="selectedKyc">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>ID Document</h5>
+        <img *ngIf="selectedKyc.idPhotoUrl" [src]="selectedKyc.idPhotoUrl" class="kyc-photo" alt="ID Document">
+        <div *ngIf="!selectedKyc.idPhotoUrl" class="kyc-photo-placeholder">No image available</div>
+      </div>
+      <div class="col-md-6">
+        <h5>Selfie</h5>
+        <img *ngIf="selectedKyc.selfieUrl" [src]="selectedKyc.selfieUrl" class="kyc-photo" alt="Selfie">
+        <div *ngIf="!selectedKyc.selfieUrl" class="kyc-photo-placeholder">No image available</div>
+      </div>
+    </div>
+    <hr>
+    <div class="row" style="padding-top: 10px;">
+      <div class="col-md-6">
+        <p><strong>Email:</strong> {{selectedKyc.userEmail}}</p>
+        <p><strong>Extracted Name:</strong> {{selectedKyc.extractedName || 'N/A'}}</p>
+        <p><strong>Document #:</strong> {{selectedKyc.extractedDocumentNumber || 'N/A'}}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Status:</strong>
+          <span [ngClass]="{
+            'text-success': selectedKyc.status === 'verified',
+            'text-danger': selectedKyc.status === 'rejected',
+            'text-warning': selectedKyc.status === 'pending'
+          }">
+            {{selectedKyc.status | uppercase}}
+          </span>
+        </p>
+        <p><strong>Submitted:</strong> {{selectedKyc.submittedAt}}</p>
+        <p *ngIf="selectedKyc.verifiedAt"><strong>Verified:</strong> {{selectedKyc.verifiedAt}}</p>
+        <p *ngIf="selectedKyc.rejectionReason"><strong>Rejection Reason:</strong> {{selectedKyc.rejectionReason}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer" *ngIf="selectedKyc?.status === 'pending'">
+    <button type="button" class="boxed-btn4-xs h-15 bg-success text-light" (click)="approveKyc(selectedKyc)">Approve</button>
+    <button type="button" class="boxed-btn4-xs h-15 bg-danger text-light" (click)="openRejectModal(templateReject, selectedKyc)">Reject</button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Close</button>
+  </div>
+  <div class="modal-footer" *ngIf="selectedKyc?.status !== 'pending'">
+    <button type="button" class="boxed-btn4-xs h-15 bg-warning" (click)="setKycPending(selectedKyc)">Back to Pending</button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Close</button>
+  </div>
+
+</ng-template>
+<!-- / KYC DETAIL MODAL -->
+
+<!-- ── MESSAGES TAB ── -->
+<div *ngIf="activeTab === 'messages'">
+
+  <!-- MESSAGES ACTION TOOLBAR -->
+  <div class="container-fluid" style="padding: 15px 0;">
+    <div class="d-flex justify-content-center" style="gap: 10px;">
+      <button class="btn btn-success" (click)="openAddMessageModal(templateAddMessage)">
+        + Add Message
+      </button>
+      <button class="btn btn-primary" (click)="openAddMessageModal(templateAddMessage, selectedMessage)"
+              [disabled]="!selectedMessage">
+        Edit
+      </button>
+      <button class="btn btn-danger" (click)="deleteMessage()"
+              [disabled]="!selectedMessage">
+        Delete
+      </button>
+      <button class="btn btn-warning" (click)="toggleMessageActive()"
+              [disabled]="!selectedMessage">
+        Toggle Active
+      </button>
+    </div>
+    <p class="text-center text-muted" style="margin-top: 8px; font-size: 13px;">
+      <span *ngIf="!selectedMessage">Click a row to select a message</span>
+      <span *ngIf="selectedMessage">Selected: "{{selectedMessage.messageEn | slice:0:40}}..." ({{selectedMessage.isActive ? 'Active' : 'Inactive'}}) → {{selectedMessage.targetUserEmail || 'All users'}}</span>
+    </p>
+  </div>
+
+  <div class="container-fluid justify-content-center">
+    <ag-grid-angular
+      style="width: 100%; height: 700px; padding-top: 10px;"
+      class="ag-theme-balham custom-class"
+      [columnDefs]="messagesColumnDefs"
+      [animateRows]="true"
+      [pagination]="true"
+      [rowSelection]="'single'"
+      (rowClicked)="onMessagesRowClicked($event)"
+      (gridReady)="onMessagesGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
+<!-- ── ADD/EDIT MESSAGE MODAL ── -->
+<ng-template #templateAddMessage>
+
+  <div class="modal-header" style="background-color: #FFD700;">
+    <h4 class="modal-title pull-left" style="font-size: 14px !important;">
+      {{isEditingMessage ? 'Edit Message' : 'Add New Message'}}
+    </h4>
+    <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Message in English *</label>
+      <textarea class="form-control" rows="3" [(ngModel)]="messageForm.messageEn"
+                placeholder="Enter the message in English..."></textarea>
+    </div>
+    <div class="form-group" style="margin-top: 12px;">
+      <label>Message en Français *</label>
+      <textarea class="form-control" rows="3" [(ngModel)]="messageForm.messageFr"
+                placeholder="Entrez le message en français..."></textarea>
+    </div>
+    <div class="row" style="margin-top: 12px;">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Type</label>
+          <select class="form-control" [(ngModel)]="messageForm.type">
+            <option value="info">Info</option>
+            <option value="warning">Warning</option>
+            <option value="error">Error</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Active</label>
+          <div class="custom-control custom-switch" style="margin-top: 8px;">
+            <input type="checkbox" class="custom-control-input" id="isActiveSwitch"
+                   [(ngModel)]="messageForm.isActive">
+            <label class="custom-control-label" for="isActiveSwitch">
+              {{messageForm.isActive ? 'Yes (visible to users)' : 'No (hidden)'}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" style="margin-top: 12px;">
+      <label>Target User (optional)</label>
+      <input type="email" class="form-control" [(ngModel)]="messageForm.targetUserEmail"
+             placeholder="Leave empty to show to all users">
+      <small class="text-muted">Enter a user email to send this message only to that specific user.</small>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="boxed-btn4-xs h-15 bg-success text-light" (click)="saveMessage()">
+      {{isEditingMessage ? 'Update' : 'Save'}}
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Cancel</button>
+  </div>
+
+</ng-template>
+<!-- / ADD/EDIT MESSAGE MODAL -->
+
+<!-- ── KYC REJECT MODAL ── -->
+<ng-template #templateReject>
+
+  <div class="modal-header" style="background-color: #f44336;">
+    <h4 class="modal-title pull-left text-light" style="font-size: 14px !important;">Reject KYC Verification</h4>
+    <button type="button" class="close pull-rigth text-light" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p><strong>User:</strong> {{selectedKyc?.userEmail}}</p>
+    <div class="form-group">
+      <label for="rejectionReason">Reason for rejection:</label>
+      <textarea class="form-control" id="rejectionReason" rows="3"
+                [(ngModel)]="rejectionReason"
+                placeholder="Enter the reason for rejecting this KYC verification..."></textarea>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="boxed-btn4-xs h-15 bg-danger text-light" (click)="rejectKyc()">Confirm Rejection</button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Cancel</button>
+  </div>
+
+</ng-template>
+<!-- / KYC REJECT MODAL -->
 

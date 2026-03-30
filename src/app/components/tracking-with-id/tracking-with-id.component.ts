@@ -51,9 +51,17 @@ export class TrackingWithIdComponent implements OnInit, AfterViewInit {
     transactionCode: '',
     receiver: '',
     amountSend: '',
-    amountReceive : '',
-    date : '',
-    status : '' 
+    amountReceive: '',
+    date: '',
+    status: '',
+    sendingCountry: '',
+    receivingCountry: '',
+    receivingMethod: '',
+    receiverNumber: '',
+    senderNumber: '',
+    isPostWoner: false,
+    isMarketPlace: false,
+    expires_at: ''
   };
   allTransactionsList: Beneficiary[] = [];
   transactionTrack: any[];

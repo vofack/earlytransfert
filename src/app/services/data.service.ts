@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AdminMessage } from '../models/admin-message';
 import { Beneficiary } from '../models/beneficiary';
 import { allTransaction, Transaction } from '../models/transaction';
 import { User } from '../models/user';
@@ -107,5 +108,72 @@ export class DataService {
       this._deleteTransaction(transaction);
       this.afs.collection('/allTransactions').add(transaction);
   }
-    
+
+  // ── KYC VERIFICATIONS ──
+
+  // get all kyc verifications
+  getAllKycVerifications() {
+    return this.afs.collection('/kyc_verifications').snapshotChanges();
+  }
+
+  // approve kyc verification
+  approveKyc(docId: string) {
+    return this.afs.collection('/kyc_verifications').doc(docId).update({
+      status: 'verified',
+      verifiedAt: new Date().toISOString()
+    });
+  }
+
+  // set kyc verification back to pending
+  setKycPending(docId: string) {
+    return this.afs.collection('/kyc_verifications').doc(docId).update({
+      status: 'pending',
+      verifiedAt: '',
+      rejectionReason: ''
+    });
+  }
+
+  // reject kyc verification
+  rejectKyc(docId: string, rejectionReason: string) {
+    return this.afs.collection('/kyc_verifications').doc(docId).update({
+      status: 'rejected',
+      rejectionReason: rejectionReason
+    });
+  }
+
+  // ── ADMIN MESSAGES ──
+
+  // get all admin messages
+  getAllAdminMessages() {
+    return this.afs.collection('/admin_messages').snapshotChanges();
+  }
+
+  // add admin message
+  addAdminMessage(msg: AdminMessage) {
+    msg.createdAt = new Date().toISOString();
+    msg.updatedAt = new Date().toISOString();
+    return this.afs.collection('/admin_messages').add(msg);
+  }
+
+  // update admin message
+  updateAdminMessage(id: string, msg: Partial<AdminMessage>) {
+    msg.updatedAt = new Date().toISOString();
+    return this.afs.collection('/admin_messages').doc(id).update(msg);
+  }
+
+  // delete admin message
+  deleteAdminMessage(id: string) {
+    return this.afs.collection('/admin_messages').doc(id).delete();
+  }
+
+  // sync user's kycStatus in the users collection
+  updateUserKycStatus(userEmail: string, status: string) {
+    return this.afs.collection('/users', ref => ref.where('email', '==', userEmail).limit(1))
+      .get().toPromise().then(snapshot => {
+        if (!snapshot.empty) {
+          snapshot.docs[0].ref.update({ kycStatus: status });
+        }
+      });
+  }
+
 }

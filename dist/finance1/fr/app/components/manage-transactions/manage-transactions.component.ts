@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Beneficiary } from 'src/app/models/beneficiary';
 import { AdminMessage } from 'src/app/models/admin-message';
+import { WalletAccount } from 'src/app/models/wallet-account';
 import { KycVerification } from 'src/app/models/kyc-verification';
 import { DataService } from 'src/app/services/data.service';
 import { CustomizedCellComponentComponent } from '../customized-cell-component/customized-cell-component.component';
@@ -70,7 +71,7 @@ export class ManageTransactionsComponent implements OnInit {
   amount = '';
 
   // ── KYC TAB ──
-  activeTab: 'transactions' | 'kyc' | 'messages' = 'transactions';
+  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' = 'transactions';
   kycColumnDefs: any;
   kycColumnDefsXs: any;
   kycRowData: KycVerification[] = [];
@@ -91,6 +92,18 @@ export class ManageTransactionsComponent implements OnInit {
   messageForm: AdminMessage = { messageEn: '', messageFr: '', isActive: true, type: 'info', targetUserEmail: '' };
   isEditingMessage = false;
   @ViewChild('templateAddMessage', { read: TemplateRef }) templateAddMessage: TemplateRef<any>;
+
+  // ── WALLETS TAB ──
+  walletColumnDefs: any;
+  walletRowData: WalletAccount[] = [];
+  walletGridParams: any;
+  selectedWallet: WalletAccount = null;
+  private walletSubscription: Subscription;
+  walletNewAmount: number = 0;
+  @ViewChild('templateEditWallet', { read: TemplateRef }) templateEditWallet: TemplateRef<any>;
+
+  // ── EMAIL FILTER ──
+  emailFilter = '';
 
   constructor(private http: HttpClient, private modalService:BsModalService,
               private toastr: ToastrService, private  spinner: NgxSpinnerService,
@@ -445,6 +458,55 @@ export class ManageTransactionsComponent implements OnInit {
                   }
                 ];
 
+                // ── WALLETS COLUMN DEFS ──
+                this.walletColumnDefs = [
+                  {
+                    headerName: "User Email",
+                    field: "usersEmail",
+                    width: 240,
+                    filter: "agTextColumnFilter",
+                    sortingOrder: ["asc", "desc"]
+                  },
+                  {
+                    headerName: "Currency",
+                    field: "currency",
+                    width: 100,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Country",
+                    field: "countryCode",
+                    width: 100,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Balance",
+                    field: "amount",
+                    width: 130,
+                    filter: "agNumberColumnFilter",
+                    sortingOrder: ["desc", "asc"],
+                    valueFormatter: (params) => {
+                      const val = params.value ?? 0;
+                      return Number(val).toLocaleString('fr-FR', { minimumFractionDigits: 2 });
+                    }
+                  },
+                  {
+                    headerName: "Interac / Mobile Money",
+                    field: "interacEmail",
+                    width: 220,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => {
+                      return params.value || params.data?.mobileMoney || '—';
+                    }
+                  },
+                  {
+                    headerName: "Label",
+                    field: "label",
+                    width: 120,
+                    filter: "agTextColumnFilter"
+                  }
+                ];
+
   }
 
   onClickEdit(params) {
@@ -473,6 +535,9 @@ export class ManageTransactionsComponent implements OnInit {
     }
     if(this.messagesSubscription) {
       this.messagesSubscription.unsubscribe();
+    }
+    if(this.walletSubscription) {
+      this.walletSubscription.unsubscribe();
     }
   }
 
@@ -699,10 +764,66 @@ export class ManageTransactionsComponent implements OnInit {
 
   // ── KYC MANAGEMENT ──
 
-  switchTab(tab: 'transactions' | 'kyc' | 'messages') {
+  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets') {
     this.activeTab = tab;
     this.selectedKyc = null;
     this.selectedMessage = null;
+    this.selectedWallet = null;
+    this.emailFilter = '';
+    this.clearEmailFilter();
+  }
+
+  filterByEmail() {
+    const gridApi = this.getActiveGridApi();
+    const emailField = this.getActiveEmailField();
+    if (!gridApi || !emailField) return;
+
+    const filterInstance = gridApi.getFilterInstance(emailField);
+    if (filterInstance) {
+      if (this.emailFilter.trim()) {
+        filterInstance.setModel({
+          type: 'contains',
+          filter: this.emailFilter.trim()
+        });
+      } else {
+        filterInstance.setModel(null);
+      }
+      gridApi.onFilterChanged();
+    }
+  }
+
+  private clearEmailFilter() {
+    // Clear filter on all grids
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api]
+      .filter(api => !!api)
+      .forEach(api => {
+        const fields = ['userEmail', 'targetUserEmail', 'usersEmail'];
+        fields.forEach(f => {
+          const fi = api.getFilterInstance(f);
+          if (fi) {
+            fi.setModel(null);
+          }
+        });
+        api.onFilterChanged();
+      });
+  }
+
+  private getActiveGridApi() {
+    switch (this.activeTab) {
+      case 'transactions': return this.gridApi;
+      case 'kyc': return this.kycGridParams?.api;
+      case 'messages': return this.messagesGridParams?.api;
+      case 'wallets': return this.walletGridParams?.api;
+    }
+  }
+
+  private getActiveEmailField(): string {
+    switch (this.activeTab) {
+      case 'transactions': return 'userEmail';
+      case 'kyc': return 'userEmail';
+      case 'messages': return 'targetUserEmail';
+      case 'wallets': return 'usersEmail';
+    }
   }
 
   onKycRowClicked(event) {
@@ -933,6 +1054,66 @@ export class ManageTransactionsComponent implements OnInit {
         positionClass: 'toast-bottom-left', closeButton: true
       });
       console.log('Toggle message error:', err);
+    });
+  }
+
+  // ── WALLETS MANAGEMENT ──
+
+  onWalletGridReady(params) {
+    this.walletGridParams = params;
+    this.getWalletAccounts();
+  }
+
+  onWalletRowClicked(event) {
+    this.selectedWallet = event.data as WalletAccount;
+  }
+
+  getWalletAccounts() {
+    this.walletSubscription = this.data.getAllWalletAccounts().subscribe(res => {
+      const list: WalletAccount[] = res.map((e: any) => {
+        const d = e.payload.doc.data();
+        d.id = e.payload.doc.id;
+        return d as WalletAccount;
+      });
+      this.walletRowData = list;
+      if (this.walletGridParams) {
+        this.walletGridParams.api.setRowData(list);
+      }
+    }, err => {
+      console.log('Error fetching wallet accounts', err);
+    });
+  }
+
+  openEditWalletModal(template: TemplateRef<any>, wallet: WalletAccount) {
+    this.selectedWallet = wallet;
+    this.walletNewAmount = wallet.amount;
+    this.modalRef = this.modalService.show(template);
+  }
+
+  saveWalletAmount() {
+    if (this.walletNewAmount == null || isNaN(this.walletNewAmount) || this.walletNewAmount < 0) {
+      this.toastr.error('Please enter a valid amount', 'Validation', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      return;
+    }
+    this.spinner.show();
+    this.data.updateWalletAmount(this.selectedWallet.id, Number(this.walletNewAmount)).then(() => {
+      this.spinner.hide();
+      this.modalRef.hide();
+      this.selectedWallet = null;
+      this.toastr.success('Wallet balance updated', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update balance', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Update wallet error:', err);
     });
   }
 

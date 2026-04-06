@@ -47,6 +47,17 @@
     <button class="tab-btn" [class.active]="activeTab === 'messages'" (click)="switchTab('messages')">
       Messages
     </button>
+    <button class="tab-btn" [class.active]="activeTab === 'wallets'" (click)="switchTab('wallets')">
+      Wallets
+    </button>
+  </div>
+
+  <!-- ── EMAIL FILTER ── -->
+  <div class="d-flex justify-content-center" style="margin-top: 12px;">
+    <input type="text" class="form-control" style="max-width: 400px;"
+           [(ngModel)]="emailFilter"
+           (ngModelChange)="filterByEmail()"
+           placeholder="Filter by email...">
   </div>
 </div>
 
@@ -344,6 +355,71 @@
     </ag-grid-angular>
   </div>
 </div>
+
+<!-- ── WALLETS TAB ── -->
+<div *ngIf="activeTab === 'wallets'">
+
+  <!-- WALLET ACTION TOOLBAR -->
+  <div class="container-fluid" style="padding: 15px 0;">
+    <div class="d-flex justify-content-center" style="gap: 10px;">
+      <button class="btn btn-primary" (click)="openEditWalletModal(templateEditWallet, selectedWallet)"
+              [disabled]="!selectedWallet">
+        Edit Balance
+      </button>
+    </div>
+    <p class="text-center text-muted" style="margin-top: 8px; font-size: 13px;">
+      <span *ngIf="!selectedWallet">Click a row to select a wallet</span>
+      <span *ngIf="selectedWallet">
+        Selected: {{selectedWallet.usersEmail}} — {{selectedWallet.currency}}
+        (Balance: {{selectedWallet.amount | number:'1.2-2'}})
+      </span>
+    </p>
+  </div>
+
+  <div class="container-fluid justify-content-center">
+    <ag-grid-angular
+      style="width: 100%; height: 700px; padding-top: 10px;"
+      class="ag-theme-balham custom-class"
+      [columnDefs]="walletColumnDefs"
+      [animateRows]="true"
+      [pagination]="true"
+      [rowSelection]="'single'"
+      (rowClicked)="onWalletRowClicked($event)"
+      (rowDoubleClicked)="openEditWalletModal(templateEditWallet, $event.data)"
+      (gridReady)="onWalletGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
+<!-- ── EDIT WALLET MODAL ── -->
+<ng-template #templateEditWallet>
+
+  <div class="modal-header" style="background-color: #FFD700;">
+    <h4 class="modal-title pull-left" style="font-size: 14px !important;">Edit Wallet Balance</h4>
+    <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="selectedWallet">
+    <p><strong>User:</strong> {{selectedWallet.usersEmail}}</p>
+    <p><strong>Currency:</strong> {{selectedWallet.currency}} ({{selectedWallet.countryCode}})</p>
+    <p *ngIf="selectedWallet.interacEmail"><strong>Interac Email:</strong> {{selectedWallet.interacEmail}}</p>
+    <p *ngIf="selectedWallet.mobileMoney"><strong>Mobile Money:</strong> {{selectedWallet.mobileMoney}}</p>
+    <div class="form-group" style="margin-top: 16px;">
+      <label for="walletAmount"><strong>New Balance ({{selectedWallet.currency}})</strong></label>
+      <input type="number" class="form-control" id="walletAmount" min="0" step="0.01"
+             [(ngModel)]="walletNewAmount" placeholder="Enter new balance">
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="boxed-btn4-xs h-15 bg-success text-light" (click)="saveWalletAmount()">Save</button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Cancel</button>
+  </div>
+
+</ng-template>
+<!-- / EDIT WALLET MODAL -->
 
 <!-- ── ADD/EDIT MESSAGE MODAL ── -->
 <ng-template #templateAddMessage>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AdminMessage } from '../models/admin-message';
+import { WalletAccount } from '../models/wallet-account';
 import { Beneficiary } from '../models/beneficiary';
 import { allTransaction, Transaction } from '../models/transaction';
 import { User } from '../models/user';
@@ -164,6 +165,16 @@ export class DataService {
   // delete admin message
   deleteAdminMessage(id: string) {
     return this.afs.collection('/admin_messages').doc(id).delete();
+  }
+
+  // ── Wallet Accounts ──────────────────────────────────────────────────────
+
+  getAllWalletAccounts() {
+    return this.afs.collection('/walletAccount').snapshotChanges();
+  }
+
+  updateWalletAmount(id: string, amount: number) {
+    return this.afs.collection('/walletAccount').doc(id).update({ amount });
   }
 
   // sync user's kycStatus in the users collection

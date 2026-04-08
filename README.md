@@ -104,3 +104,31 @@ firebase init
 
 firebase deploy --only hosting:earlytransfert -->
 
+cd functions && npm install
+
+# Configure with YOUR email provider's IMAP settings:
+firebase functions:config:set \
+  email.user="earlytransfert@gmail.com" \
+  email.password="wirq nvws vquj olme" \
+  email.host="imap.gmail.com" \
+  email.port="993"
+
+firebase deploy --only functions
+
+When you switch to a professional email, just update the config:
+
+firebase functions:config:set \
+  email.user="contact@yourdomain.com" \
+  email.password="your-password" \
+  email.host="imap.yourhostprovider.com" \
+  email.port="993"
+
+firebase deploy --only functions
+No code changes needed — just swap the credentials and IMAP host.
+
+For Gmail specifically: you'll need to generate an App Password (Google Account → Security → 2-Step Verification → App passwords) since Google blocks plain password IMAP login.
+ 
+firebase functions:secrets:set EMAIL_USER
+firebase functions:secrets:set EMAIL_PASSWORD
+firebase functions:secrets:set EMAIL_HOST
+firebase functions:secrets:set EMAIL_PORT

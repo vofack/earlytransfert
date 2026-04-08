@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Beneficiary } from 'src/app/models/beneficiary';
 import { AdminMessage } from 'src/app/models/admin-message';
 import { WalletAccount } from 'src/app/models/wallet-account';
+import { InteracEmail } from 'src/app/models/interac-email';
 import { KycVerification } from 'src/app/models/kyc-verification';
 import { DataService } from 'src/app/services/data.service';
 import { CustomizedCellComponentComponent } from '../customized-cell-component/customized-cell-component.component';
@@ -71,7 +72,7 @@ export class ManageTransactionsComponent implements OnInit {
   amount = '';
 
   // ── KYC TAB ──
-  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' = 'transactions';
+  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' = 'transactions';
   kycColumnDefs: any;
   kycColumnDefsXs: any;
   kycRowData: KycVerification[] = [];
@@ -102,8 +103,20 @@ export class ManageTransactionsComponent implements OnInit {
   walletNewAmount: number = 0;
   @ViewChild('templateEditWallet', { read: TemplateRef }) templateEditWallet: TemplateRef<any>;
 
-  // ── EMAIL FILTER ──
+  // ── INTERAC EMAILS TAB ──
+  interacColumnDefs: any;
+  interacRowData: InteracEmail[] = [];
+  interacGridParams: any;
+  selectedInteracEmail: InteracEmail = null;
+  private interacSubscription: Subscription;
+  newInteracCount = 0;
+  interacChecking = false;
+
+  // ── FILTERS ──
   emailFilter = '';
+  dateFrom = '';
+  dateTo = '';
+  @ViewChild('templateInteracBody', { read: TemplateRef }) templateInteracBody: TemplateRef<any>;
 
   constructor(private http: HttpClient, private modalService:BsModalService,
               private toastr: ToastrService, private  spinner: NgxSpinnerService,
@@ -507,6 +520,69 @@ export class ManageTransactionsComponent implements OnInit {
                   }
                 ];
 
+                // ── INTERAC EMAILS COLUMN DEFS ──
+                const interacStatusCellClassRules = {
+                  "cell-pass": params => params.value === 'processed',
+                  "cell-fail": params => params.value === 'ignored',
+                  "cell-pending": params => params.value === 'new'
+                };
+
+                this.interacColumnDefs = [
+                  {
+                    headerName: "From",
+                    field: "from",
+                    width: 220,
+                    filter: "agTextColumnFilter",
+                    sortingOrder: ["asc", "desc"]
+                  },
+                  {
+                    headerName: "Sender Name",
+                    field: "senderName",
+                    width: 160,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Subject",
+                    field: "subject",
+                    width: 300,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Amount",
+                    field: "amount",
+                    width: 120,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Date",
+                    field: "date",
+                    width: 180,
+                    filter: "agTextColumnFilter",
+                    sort: 'desc',
+                    valueFormatter: (params) => {
+                      if (!params.value) return '';
+                      return new Date(params.value).toLocaleDateString('fr-FR', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                      });
+                    }
+                  },
+                  {
+                    headerName: "Status",
+                    field: "status",
+                    cellClassRules: interacStatusCellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 120,
+                    valueFormatter: params => (params.value || '').toUpperCase()
+                  },
+                  {
+                    headerName: "Snippet",
+                    field: "snippet",
+                    width: 300,
+                    filter: "agTextColumnFilter"
+                  }
+                ];
+
   }
 
   onClickEdit(params) {
@@ -538,6 +614,9 @@ export class ManageTransactionsComponent implements OnInit {
     }
     if(this.walletSubscription) {
       this.walletSubscription.unsubscribe();
+    }
+    if(this.interacSubscription) {
+      this.interacSubscription.unsubscribe();
     }
   }
 
@@ -764,13 +843,15 @@ export class ManageTransactionsComponent implements OnInit {
 
   // ── KYC MANAGEMENT ──
 
-  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets') {
+  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac') {
     this.activeTab = tab;
     this.selectedKyc = null;
     this.selectedMessage = null;
     this.selectedWallet = null;
+    this.selectedInteracEmail = null;
     this.emailFilter = '';
     this.clearEmailFilter();
+    this.clearDateFilter();
   }
 
   filterByEmail() {
@@ -794,10 +875,10 @@ export class ManageTransactionsComponent implements OnInit {
 
   private clearEmailFilter() {
     // Clear filter on all grids
-    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api]
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api]
       .filter(api => !!api)
       .forEach(api => {
-        const fields = ['userEmail', 'targetUserEmail', 'usersEmail'];
+        const fields = ['userEmail', 'targetUserEmail', 'usersEmail', 'from'];
         fields.forEach(f => {
           const fi = api.getFilterInstance(f);
           if (fi) {
@@ -814,6 +895,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'kyc': return this.kycGridParams?.api;
       case 'messages': return this.messagesGridParams?.api;
       case 'wallets': return this.walletGridParams?.api;
+      case 'interac': return this.interacGridParams?.api;
     }
   }
 
@@ -823,7 +905,61 @@ export class ManageTransactionsComponent implements OnInit {
       case 'kyc': return 'userEmail';
       case 'messages': return 'targetUserEmail';
       case 'wallets': return 'usersEmail';
+      case 'interac': return 'from';
     }
+  }
+
+  private getActiveDateField(): string {
+    switch (this.activeTab) {
+      case 'transactions': return 'date';
+      case 'kyc': return 'submittedAt';
+      case 'messages': return 'createdAt';
+      case 'wallets': return null;
+      case 'interac': return 'date';
+    }
+  }
+
+  // Bound callbacks for ag-grid external filtering (date range)
+  isExternalFilterPresent = (): boolean => {
+    return !!(this.dateFrom || this.dateTo);
+  }
+
+  doesExternalFilterPass = (node): boolean => {
+    if (!this.dateFrom && !this.dateTo) return true;
+
+    // Try all known date fields on the row
+    const dateFields = ['date', 'submittedAt', 'createdAt'];
+    let val = null;
+    for (const f of dateFields) {
+      if (node.data[f]) { val = node.data[f]; break; }
+    }
+    if (!val) return true;
+
+    const rowDate = new Date(val).getTime();
+    if (isNaN(rowDate)) return true;
+
+    if (this.dateFrom) {
+      const from = new Date(this.dateFrom).getTime();
+      if (rowDate < from) return false;
+    }
+    if (this.dateTo) {
+      const to = new Date(this.dateTo + 'T23:59:59').getTime();
+      if (rowDate > to) return false;
+    }
+    return true;
+  }
+
+  filterByDate() {
+    // Notify all initialized grids that external filter changed
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api]
+      .filter(api => !!api)
+      .forEach(api => api.onFilterChanged());
+  }
+
+  clearDateFilter() {
+    this.dateFrom = '';
+    this.dateTo = '';
+    this.filterByDate();
   }
 
   onKycRowClicked(event) {
@@ -1115,6 +1251,126 @@ export class ManageTransactionsComponent implements OnInit {
       });
       console.log('Update wallet error:', err);
     });
+  }
+
+  // ── INTERAC EMAILS MANAGEMENT ──
+
+  onInteracGridReady(params) {
+    this.interacGridParams = params;
+    this.getInteracEmails();
+  }
+
+  onInteracRowClicked(event) {
+    this.selectedInteracEmail = event.data as InteracEmail;
+  }
+
+  onInteracRowDoubleClicked(event) {
+    this.selectedInteracEmail = event.data as InteracEmail;
+    this.openInteracBodyModal(this.templateInteracBody);
+  }
+
+  openInteracBodyModal(template: TemplateRef<any>) {
+    if (!this.selectedInteracEmail) return;
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
+  }
+
+  getInteracEmails() {
+    this.interacSubscription = this.data.getAllInteracEmails().subscribe(res => {
+      const list: InteracEmail[] = res.map((e: any) => {
+        const d = e.payload.doc.data();
+        d.id = e.payload.doc.id;
+        return d as InteracEmail;
+      });
+      this.interacRowData = list;
+      this.newInteracCount = list.filter(e => e.status === 'new').length;
+      if (this.interacGridParams) {
+        this.interacGridParams.api.setRowData(list);
+      }
+    }, err => {
+      console.log('Error fetching interac emails', err);
+    });
+  }
+
+  markInteracProcessed() {
+    if (!this.selectedInteracEmail) return;
+    this.spinner.show();
+    this.data.updateInteracEmailStatus(this.selectedInteracEmail.id, 'processed').then(() => {
+      this.spinner.hide();
+      this.selectedInteracEmail = null;
+      this.toastr.success('Email marked as processed', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update email status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark interac processed error:', err);
+    });
+  }
+
+  markInteracIgnored() {
+    if (!this.selectedInteracEmail) return;
+    this.spinner.show();
+    this.data.updateInteracEmailStatus(this.selectedInteracEmail.id, 'ignored').then(() => {
+      this.spinner.hide();
+      this.selectedInteracEmail = null;
+      this.toastr.success('Email marked as ignored', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update email status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark interac ignored error:', err);
+    });
+  }
+
+  markInteracNew() {
+    if (!this.selectedInteracEmail) return;
+    this.spinner.show();
+    this.data.updateInteracEmailStatus(this.selectedInteracEmail.id, 'new').then(() => {
+      this.spinner.hide();
+      this.selectedInteracEmail = null;
+      this.toastr.success('Email set back to new', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update email status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark interac new error:', err);
+    });
+  }
+
+  checkInteracEmails() {
+    this.interacChecking = true;
+    this.http.get(`https://us-central1-dashboard-33d8e.cloudfunctions.net/checkInteracEmails`).subscribe(
+      (res: any) => {
+        this.interacChecking = false;
+        const count = res?.newCount || 0;
+        this.toastr.success(`Check complete. ${count} new email(s) found.`, 'Interac Emails', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true, timeOut: 5000
+        });
+      },
+      err => {
+        this.interacChecking = false;
+        this.toastr.error('Failed to check emails. Make sure the Cloud Function is deployed.', 'Error', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true
+        });
+        console.log('Check interac emails error:', err);
+      }
+    );
   }
 
 }

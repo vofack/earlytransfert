@@ -22,15 +22,12 @@
 <br>
 
 <div class="container-fluid">
-
-  <form class="form-inline justify-content-center">
-    <label for="exampleInputPrenom1" style="padding-right: 5px;"><h4 i18n>Solde disponible :  </h4></label>
-          <h4>{{amount}} XAF</h4>
-  </form>
-  <div class="form-inline justify-content-center">
-      <a class="boxed-btn4-xs bg-success text-light"  (click)="openModal(templateSolde)">
-          <span class="glyphicon glyphicon-edit"></span>
-      </a>
+  <div class="d-flex align-items-center justify-content-center" style="gap: 10px;">
+    <h4 style="margin: 0;" i18n>Solde disponible :</h4>
+    <h4 style="margin: 0;">{{amount}} XAF</h4>
+    <a class="boxed-btn4-xs bg-success text-light" style="cursor: pointer;" (click)="openModal(templateSolde)">
+      <span class="glyphicon glyphicon-edit"></span>
+    </a>
   </div>
 </div>
 
@@ -50,14 +47,34 @@
     <button class="tab-btn" [class.active]="activeTab === 'wallets'" (click)="switchTab('wallets')">
       Wallets
     </button>
+    <button class="tab-btn" [class.active]="activeTab === 'interac'" (click)="switchTab('interac')">
+      Interac Emails
+      <span *ngIf="newInteracCount > 0" class="kyc-badge">{{newInteracCount}}</span>
+    </button>
   </div>
 
-  <!-- ── EMAIL FILTER ── -->
-  <div class="d-flex justify-content-center" style="margin-top: 12px;">
-    <input type="text" class="form-control" style="max-width: 400px;"
+  <!-- ── FILTERS ── -->
+  <div class="d-flex justify-content-center flex-wrap" style="margin-top: 12px; gap: 10px;">
+    <input type="text" class="form-control" style="max-width: 300px;"
            [(ngModel)]="emailFilter"
            (ngModelChange)="filterByEmail()"
            placeholder="Filter by email...">
+    <div class="d-flex align-items-center" style="gap: 5px;">
+      <label style="margin: 0; white-space: nowrap; font-size: 13px;">From:</label>
+      <input type="date" class="form-control" style="max-width: 160px;"
+             [(ngModel)]="dateFrom"
+             (ngModelChange)="filterByDate()">
+    </div>
+    <div class="d-flex align-items-center" style="gap: 5px;">
+      <label style="margin: 0; white-space: nowrap; font-size: 13px;">To:</label>
+      <input type="date" class="form-control" style="max-width: 160px;"
+             [(ngModel)]="dateTo"
+             (ngModelChange)="filterByDate()">
+    </div>
+    <button class="btn btn-sm btn-outline-secondary" (click)="clearDateFilter()"
+            *ngIf="dateFrom || dateTo">
+      Clear dates
+    </button>
   </div>
 </div>
 
@@ -65,12 +82,16 @@
 <div *ngIf="activeTab === 'transactions'">
     <div *ngIf="showXl" class="container-fluid  justify-content-center">
                 <ag-grid-angular
+                [enableCellTextSelection]="true"
+                [ensureDomOrder]="true"
                 style="width: 100%; height: 1000px;padding-top: 10px;"
                 class="ag-theme-balham custom-class"
                 [columnDefs]="columnDefs"
                 [animateRows]="true"
                 [pagination]="true"
                 [frameworkComponents]="frameworkComponents"
+                [isExternalFilterPresent]="isExternalFilterPresent"
+                [doesExternalFilterPass]="doesExternalFilterPass"
                 (selectionChanged)="onSelectionChanged($event)"
                 (gridReady)="onGridReady($event)"
                 >
@@ -79,12 +100,16 @@
 
     <div *ngIf="showXs" class="container  justify-content-center">
                 <ag-grid-angular
+                [enableCellTextSelection]="true"
+                [ensureDomOrder]="true"
                 style="width: 100%; height: 1000px;padding-top: 10px;"
                 class="ag-theme-balham custom-class"
                 [columnDefs]="columnDefsXs"
                 [animateRows]="true"
                 [pagination]="true"
                 [frameworkComponents]="frameworkComponents"
+                [isExternalFilterPresent]="isExternalFilterPresent"
+                [doesExternalFilterPass]="doesExternalFilterPass"
                 (selectionChanged)="onSelectionChanged($event)"
                 (gridReady)="onGridReady($event)"
                 >
@@ -123,12 +148,16 @@
 
     <div *ngIf="showXl" class="container-fluid justify-content-center">
                 <ag-grid-angular
+                [enableCellTextSelection]="true"
+                [ensureDomOrder]="true"
                 style="width: 100%; height: 800px; padding-top: 10px;"
                 class="ag-theme-balham custom-class"
                 [columnDefs]="kycColumnDefs"
                 [animateRows]="true"
                 [pagination]="true"
                 [rowSelection]="'single'"
+                [isExternalFilterPresent]="isExternalFilterPresent"
+                [doesExternalFilterPass]="doesExternalFilterPass"
                 (rowClicked)="onKycRowClicked($event)"
                 (rowDoubleClicked)="onKycRowDoubleClicked($event)"
                 (gridReady)="onKycGridReady($event)"
@@ -138,12 +167,16 @@
 
     <div *ngIf="showXs" class="container justify-content-center">
                 <ag-grid-angular
+                [enableCellTextSelection]="true"
+                [ensureDomOrder]="true"
                 style="width: 100%; height: 800px; padding-top: 10px;"
                 class="ag-theme-balham custom-class"
                 [columnDefs]="kycColumnDefsXs"
                 [animateRows]="true"
                 [pagination]="true"
                 [rowSelection]="'single'"
+                [isExternalFilterPresent]="isExternalFilterPresent"
+                [doesExternalFilterPass]="doesExternalFilterPass"
                 (rowClicked)="onKycRowClicked($event)"
                 (rowDoubleClicked)="onKycRowDoubleClicked($event)"
                 (gridReady)="onKycGridReady($event)"
@@ -344,12 +377,16 @@
 
   <div class="container-fluid justify-content-center">
     <ag-grid-angular
+                [enableCellTextSelection]="true"
+                [ensureDomOrder]="true"
       style="width: 100%; height: 700px; padding-top: 10px;"
       class="ag-theme-balham custom-class"
       [columnDefs]="messagesColumnDefs"
       [animateRows]="true"
       [pagination]="true"
       [rowSelection]="'single'"
+      [isExternalFilterPresent]="isExternalFilterPresent"
+      [doesExternalFilterPass]="doesExternalFilterPass"
       (rowClicked)="onMessagesRowClicked($event)"
       (gridReady)="onMessagesGridReady($event)">
     </ag-grid-angular>
@@ -378,15 +415,78 @@
 
   <div class="container-fluid justify-content-center">
     <ag-grid-angular
+                [enableCellTextSelection]="true"
+                [ensureDomOrder]="true"
       style="width: 100%; height: 700px; padding-top: 10px;"
       class="ag-theme-balham custom-class"
       [columnDefs]="walletColumnDefs"
       [animateRows]="true"
       [pagination]="true"
       [rowSelection]="'single'"
+      [isExternalFilterPresent]="isExternalFilterPresent"
+      [doesExternalFilterPass]="doesExternalFilterPass"
       (rowClicked)="onWalletRowClicked($event)"
       (rowDoubleClicked)="openEditWalletModal(templateEditWallet, $event.data)"
       (gridReady)="onWalletGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
+<!-- ── INTERAC EMAILS TAB ── -->
+<div *ngIf="activeTab === 'interac'">
+
+  <!-- INTERAC ACTION TOOLBAR -->
+  <div class="container-fluid" style="padding: 15px 0;">
+    <div class="d-flex justify-content-center" style="gap: 10px;">
+      <button class="btn btn-info" (click)="checkInteracEmails()"
+              [disabled]="interacChecking">
+        <span *ngIf="!interacChecking">Check Emails Now</span>
+        <span *ngIf="interacChecking">Checking...</span>
+      </button>
+      <button class="btn btn-primary" (click)="openInteracBodyModal(templateInteracBody)"
+              [disabled]="!selectedInteracEmail">
+        View Email
+      </button>
+      <button class="btn btn-success" (click)="markInteracProcessed()"
+              [disabled]="!selectedInteracEmail || selectedInteracEmail?.status === 'processed'">
+        Mark Processed
+      </button>
+      <button class="btn btn-secondary" (click)="markInteracIgnored()"
+              [disabled]="!selectedInteracEmail || selectedInteracEmail?.status === 'ignored'">
+        Ignore
+      </button>
+      <button class="btn btn-warning" (click)="markInteracNew()"
+              [disabled]="!selectedInteracEmail || selectedInteracEmail?.status === 'new'">
+        Back to New
+      </button>
+    </div>
+    <p class="text-center text-muted" style="margin-top: 8px; font-size: 13px;">
+      <span *ngIf="!selectedInteracEmail">Click a row to select an Interac email</span>
+      <span *ngIf="selectedInteracEmail">
+        Selected: {{selectedInteracEmail.from}} — "{{selectedInteracEmail.subject | slice:0:50}}"
+        ({{selectedInteracEmail.status | uppercase}})
+      </span>
+    </p>
+    <p class="text-center" style="font-size: 12px; color: #888;">
+      Monitoring: <strong>earlytransfert@gmail.com</strong> — Filtering subjects containing "interac"
+    </p>
+  </div>
+
+  <div class="container-fluid justify-content-center">
+    <ag-grid-angular
+                [enableCellTextSelection]="true"
+                [ensureDomOrder]="true"
+      style="width: 100%; height: 700px; padding-top: 10px;"
+      class="ag-theme-balham custom-class"
+      [columnDefs]="interacColumnDefs"
+      [animateRows]="true"
+      [pagination]="true"
+      [rowSelection]="'single'"
+      [isExternalFilterPresent]="isExternalFilterPresent"
+      [doesExternalFilterPass]="doesExternalFilterPass"
+      (rowClicked)="onInteracRowClicked($event)"
+      (rowDoubleClicked)="onInteracRowDoubleClicked($event)"
+      (gridReady)="onInteracGridReady($event)">
     </ag-grid-angular>
   </div>
 </div>
@@ -513,4 +613,49 @@
 
 </ng-template>
 <!-- / KYC REJECT MODAL -->
+
+<!-- ── INTERAC EMAIL BODY MODAL ── -->
+<ng-template #templateInteracBody>
+
+  <div class="modal-header" style="background-color: #17a2b8;">
+    <h4 class="modal-title pull-left text-light" style="font-size: 14px !important;">Interac Email Details</h4>
+    <button type="button" class="close pull-rigth text-light" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="selectedInteracEmail">
+    <div class="row" style="margin-bottom: 12px;">
+      <div class="col-md-6">
+        <p><strong>From:</strong> {{selectedInteracEmail.senderName}} &lt;{{selectedInteracEmail.from}}&gt;</p>
+        <p><strong>Subject:</strong> {{selectedInteracEmail.subject}}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Date:</strong> {{selectedInteracEmail.date | date:'medium'}}</p>
+        <p><strong>Amount:</strong> {{selectedInteracEmail.amount || 'N/A'}}</p>
+        <p><strong>Status:</strong>
+          <span [ngClass]="{
+            'text-success': selectedInteracEmail.status === 'processed',
+            'text-danger': selectedInteracEmail.status === 'ignored',
+            'text-warning': selectedInteracEmail.status === 'new'
+          }">
+            {{selectedInteracEmail.status | uppercase}}
+          </span>
+        </p>
+      </div>
+    </div>
+    <hr>
+    <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 12px; background: #fafafa; border-radius: 4px; white-space: pre-wrap; font-size: 13px;">{{selectedInteracEmail.body}}</div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="markInteracProcessed(); modalRef.hide();"
+            *ngIf="selectedInteracEmail?.status !== 'processed'">
+      Mark Processed
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Close</button>
+  </div>
+
+</ng-template>
+<!-- / INTERAC EMAIL BODY MODAL -->
 

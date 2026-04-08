@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AdminMessage } from '../models/admin-message';
 import { WalletAccount } from '../models/wallet-account';
+import { InteracEmail } from '../models/interac-email';
 import { Beneficiary } from '../models/beneficiary';
 import { allTransaction, Transaction } from '../models/transaction';
 import { User } from '../models/user';
@@ -175,6 +176,20 @@ export class DataService {
 
   updateWalletAmount(id: string, amount: number) {
     return this.afs.collection('/walletAccount').doc(id).update({ amount });
+  }
+
+  // ── Interac Emails ──────────────────────────────────────────────────────
+
+  getAllInteracEmails() {
+    return this.afs.collection('/interac_emails', ref => ref.orderBy('date', 'desc')).snapshotChanges();
+  }
+
+  updateInteracEmailStatus(id: string, status: 'new' | 'processed' | 'ignored') {
+    const update: any = { status };
+    if (status === 'processed') {
+      update.processedAt = new Date().toISOString();
+    }
+    return this.afs.collection('/interac_emails').doc(id).update(update);
   }
 
   // sync user's kycStatus in the users collection

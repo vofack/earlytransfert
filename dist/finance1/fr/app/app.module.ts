@@ -15,6 +15,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ChatboxComponent } from './components/chatbox/chatbox.component';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {ToastrModule} from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -104,6 +105,7 @@ import { WhasapAppointmentComponent } from './components/whasap-appointment/whas
     BrowserAnimationsModule,
     NgMultiSelect9DropDownModule.forRoot(),
     ModalModule.forRoot(),
+    TypeaheadModule.forRoot(),
     ToastrModule.forRoot(),
     AngularFireDatabaseModule,
       AngularFireAuthModule,

@@ -37,7 +37,8 @@
               "src/favicon.png",
               "src/assets",
               "src/firebase-messaging-sw.js",
-              "src/manifest.json"
+              "src/manifest.json",
+              { "glob": "**/*", "input": "src/.well-known", "output": ".well-known" }
             ],
 
             "styles": [
@@ -129,7 +130,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/firebase-messaging-sw.js",
-              "src/manifest.json"
+              "src/manifest.json",
+              { "glob": "**/*", "input": "src/.well-known", "output": ".well-known" }
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",

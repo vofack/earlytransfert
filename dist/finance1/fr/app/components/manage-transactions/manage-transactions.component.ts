@@ -9,6 +9,7 @@ import { Beneficiary } from 'src/app/models/beneficiary';
 import { AdminMessage } from 'src/app/models/admin-message';
 import { WalletAccount } from 'src/app/models/wallet-account';
 import { InteracEmail } from 'src/app/models/interac-email';
+import { IssueReport } from 'src/app/models/issue-report';
 import { KycVerification } from 'src/app/models/kyc-verification';
 import { DataService } from 'src/app/services/data.service';
 import { CustomizedCellComponentComponent } from '../customized-cell-component/customized-cell-component.component';
@@ -18,6 +19,7 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { CheckboxCellComponent } from '../checkbox-cell/checkbox-cell.component';
 import { Transaction } from 'src/app/models/transaction';
+import { PushNotification } from 'src/app/models/push-notification';
 import { DeleteTransactionComponent } from '../delete-transaction/delete-transaction.component';
 import { Subscription } from 'rxjs';
 import { SelectionChangedEvent } from 'ag-grid-community';
@@ -72,7 +74,7 @@ export class ManageTransactionsComponent implements OnInit {
   amount = '';
 
   // ── KYC TAB ──
-  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' = 'transactions';
+  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'notifications' = 'transactions';
   kycColumnDefs: any;
   kycColumnDefsXs: any;
   kycRowData: KycVerification[] = [];
@@ -111,6 +113,29 @@ export class ManageTransactionsComponent implements OnInit {
   private interacSubscription: Subscription;
   newInteracCount = 0;
   interacChecking = false;
+
+  // ── ISSUES TAB ──
+  issuesColumnDefs: any;
+  issuesRowData: IssueReport[] = [];
+  issuesGridParams: any;
+  selectedIssue: IssueReport = null;
+  private issuesSubscription: Subscription;
+  newIssuesCount = 0;
+  issuesChecking = false;
+  @ViewChild('templateIssueBody', { read: TemplateRef }) templateIssueBody: TemplateRef<any>;
+
+  // ── NOTIFICATIONS TAB ──
+  notificationColumnDefs: any;
+  notificationRowData: PushNotification[] = [];
+  notificationGridParams: any;
+  private notificationSubscription: Subscription;
+  notificationForm: PushNotification = { title: '', body: '', targetEmail: '' };
+  notificationTargetType: 'all' | 'specific' = 'all';
+  notificationSending = false;
+  userEmails: string[] = [];
+  selectedTargetEmails: string[] = [];
+  emailTypeaheadInput = '';
+  private usersSubscription: Subscription;
 
   // ── FILTERS ──
   emailFilter = '';
@@ -583,6 +608,115 @@ export class ManageTransactionsComponent implements OnInit {
                   }
                 ];
 
+                // ── ISSUES COLUMN DEFS ──
+                const issueStatusCellClassRules = {
+                  "cell-pass": params => params.value === 'resolved',
+                  "cell-fail": params => params.value === 'ignored',
+                  "cell-pending": params => params.value === 'new'
+                };
+
+                this.issuesColumnDefs = [
+                  {
+                    headerName: "From",
+                    field: "from",
+                    width: 220,
+                    filter: "agTextColumnFilter",
+                    sortingOrder: ["asc", "desc"]
+                  },
+                  {
+                    headerName: "Sender Name",
+                    field: "senderName",
+                    width: 160,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Subject",
+                    field: "subject",
+                    width: 300,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Date",
+                    field: "date",
+                    width: 180,
+                    filter: "agTextColumnFilter",
+                    sort: 'desc',
+                    valueFormatter: (params) => {
+                      if (!params.value) return '';
+                      return new Date(params.value).toLocaleDateString('fr-FR', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                      });
+                    }
+                  },
+                  {
+                    headerName: "Status",
+                    field: "status",
+                    cellClassRules: issueStatusCellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 120,
+                    valueFormatter: params => (params.value || '').toUpperCase()
+                  },
+                  {
+                    headerName: "Snippet",
+                    field: "snippet",
+                    width: 300,
+                    filter: "agTextColumnFilter"
+                  }
+                ];
+
+                // ── NOTIFICATIONS COLUMN DEFS ──
+                this.notificationColumnDefs = [
+                  {
+                    headerName: "Title",
+                    field: "title",
+                    width: 220,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Message",
+                    field: "body",
+                    width: 300,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Target",
+                    field: "targetEmail",
+                    width: 220,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: params => params.value === 'all' ? 'All Users' : params.value
+                  },
+                  {
+                    headerName: "Sent At",
+                    field: "sentAt",
+                    width: 180,
+                    filter: "agTextColumnFilter",
+                    sort: 'desc',
+                    valueFormatter: (params) => {
+                      if (!params.value) return '';
+                      return new Date(params.value).toLocaleDateString('fr-FR', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                      });
+                    }
+                  },
+                  {
+                    headerName: "Success",
+                    field: "successCount",
+                    width: 100
+                  },
+                  {
+                    headerName: "Failed",
+                    field: "failureCount",
+                    width: 100
+                  },
+                  {
+                    headerName: "Total",
+                    field: "totalTokens",
+                    width: 100
+                  }
+                ];
+
   }
 
   onClickEdit(params) {
@@ -617,6 +751,15 @@ export class ManageTransactionsComponent implements OnInit {
     }
     if(this.interacSubscription) {
       this.interacSubscription.unsubscribe();
+    }
+    if(this.issuesSubscription) {
+      this.issuesSubscription.unsubscribe();
+    }
+    if(this.notificationSubscription) {
+      this.notificationSubscription.unsubscribe();
+    }
+    if(this.usersSubscription) {
+      this.usersSubscription.unsubscribe();
     }
   }
 
@@ -843,12 +986,13 @@ export class ManageTransactionsComponent implements OnInit {
 
   // ── KYC MANAGEMENT ──
 
-  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac') {
+  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'notifications') {
     this.activeTab = tab;
     this.selectedKyc = null;
     this.selectedMessage = null;
     this.selectedWallet = null;
     this.selectedInteracEmail = null;
+    this.selectedIssue = null;
     this.emailFilter = '';
     this.clearEmailFilter();
     this.clearDateFilter();
@@ -875,10 +1019,10 @@ export class ManageTransactionsComponent implements OnInit {
 
   private clearEmailFilter() {
     // Clear filter on all grids
-    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api]
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.notificationGridParams?.api]
       .filter(api => !!api)
       .forEach(api => {
-        const fields = ['userEmail', 'targetUserEmail', 'usersEmail', 'from'];
+        const fields = ['userEmail', 'targetUserEmail', 'usersEmail', 'from', 'targetEmail'];
         fields.forEach(f => {
           const fi = api.getFilterInstance(f);
           if (fi) {
@@ -896,6 +1040,8 @@ export class ManageTransactionsComponent implements OnInit {
       case 'messages': return this.messagesGridParams?.api;
       case 'wallets': return this.walletGridParams?.api;
       case 'interac': return this.interacGridParams?.api;
+      case 'issues': return this.issuesGridParams?.api;
+      case 'notifications': return this.notificationGridParams?.api;
     }
   }
 
@@ -906,6 +1052,8 @@ export class ManageTransactionsComponent implements OnInit {
       case 'messages': return 'targetUserEmail';
       case 'wallets': return 'usersEmail';
       case 'interac': return 'from';
+      case 'issues': return 'from';
+      case 'notifications': return 'targetEmail';
     }
   }
 
@@ -916,6 +1064,8 @@ export class ManageTransactionsComponent implements OnInit {
       case 'messages': return 'createdAt';
       case 'wallets': return null;
       case 'interac': return 'date';
+      case 'issues': return 'date';
+      case 'notifications': return 'sentAt';
     }
   }
 
@@ -951,7 +1101,7 @@ export class ManageTransactionsComponent implements OnInit {
 
   filterByDate() {
     // Notify all initialized grids that external filter changed
-    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api]
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.notificationGridParams?.api]
       .filter(api => !!api)
       .forEach(api => api.onFilterChanged());
   }
@@ -1371,6 +1521,228 @@ export class ManageTransactionsComponent implements OnInit {
         console.log('Check interac emails error:', err);
       }
     );
+  }
+
+  // ── ISSUES MANAGEMENT ──
+
+  onIssuesGridReady(params) {
+    this.issuesGridParams = params;
+    this.getIssueReports();
+  }
+
+  onIssueRowClicked(event) {
+    this.selectedIssue = event.data as IssueReport;
+  }
+
+  onIssueRowDoubleClicked(event) {
+    this.selectedIssue = event.data as IssueReport;
+    this.openIssueBodyModal(this.templateIssueBody);
+  }
+
+  openIssueBodyModal(template: TemplateRef<any>) {
+    if (!this.selectedIssue) return;
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
+  }
+
+  getIssueReports() {
+    this.issuesSubscription = this.data.getAllIssueReportEmails().subscribe(res => {
+      const list: IssueReport[] = res.map((e: any) => {
+        const d = e.payload.doc.data();
+        d.id = e.payload.doc.id;
+        return d as IssueReport;
+      });
+      this.issuesRowData = list;
+      this.newIssuesCount = list.filter(e => e.status === 'new').length;
+      if (this.issuesGridParams) {
+        this.issuesGridParams.api.setRowData(list);
+      }
+    }, err => {
+      console.log('Error fetching issue reports', err);
+    });
+  }
+
+  markIssueResolved() {
+    if (!this.selectedIssue) return;
+    this.spinner.show();
+    this.data.updateIssueReportStatus(this.selectedIssue.id, 'resolved').then(() => {
+      this.spinner.hide();
+      this.selectedIssue = null;
+      this.toastr.success('Issue marked as resolved', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update issue status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark issue resolved error:', err);
+    });
+  }
+
+  markIssueIgnored() {
+    if (!this.selectedIssue) return;
+    this.spinner.show();
+    this.data.updateIssueReportStatus(this.selectedIssue.id, 'ignored').then(() => {
+      this.spinner.hide();
+      this.selectedIssue = null;
+      this.toastr.success('Issue marked as ignored', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update issue status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark issue ignored error:', err);
+    });
+  }
+
+  markIssueNew() {
+    if (!this.selectedIssue) return;
+    this.spinner.show();
+    this.data.updateIssueReportStatus(this.selectedIssue.id, 'new').then(() => {
+      this.spinner.hide();
+      this.selectedIssue = null;
+      this.toastr.success('Issue set back to new', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update issue status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark issue new error:', err);
+    });
+  }
+
+  checkIssueReportEmails() {
+    this.issuesChecking = true;
+    this.http.get(`https://us-central1-dashboard-33d8e.cloudfunctions.net/checkIssueReportEmails`).subscribe(
+      (res: any) => {
+        this.issuesChecking = false;
+        const count = res?.newCount || 0;
+        this.toastr.success(`Check complete. ${count} new issue(s) found.`, 'Issue Reports', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true, timeOut: 5000
+        });
+      },
+      err => {
+        this.issuesChecking = false;
+        this.toastr.error('Failed to check issue report emails. Make sure the Cloud Function is deployed.', 'Error', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true
+        });
+        console.log('Check issue report emails error:', err);
+      }
+    );
+  }
+
+  // ── NOTIFICATIONS MANAGEMENT ──
+
+  onNotificationGridReady(params) {
+    this.notificationGridParams = params;
+    this.getNotifications();
+    this.loadUserEmails();
+  }
+
+  getNotifications() {
+    this.notificationSubscription = this.data.getAllNotifications().subscribe(res => {
+      const list: PushNotification[] = res.map((e: any) => {
+        const d = e.payload.doc.data();
+        d.id = e.payload.doc.id;
+        return d as PushNotification;
+      });
+      this.notificationRowData = list;
+      if (this.notificationGridParams) {
+        this.notificationGridParams.api.setRowData(list);
+      }
+    }, err => {
+      console.log('Error fetching notifications', err);
+    });
+  }
+
+  loadUserEmails() {
+    this.usersSubscription = this.data.getAllUsers().subscribe(res => {
+      this.userEmails = res.map((e: any) => {
+        const data = e.payload.doc.data();
+        return data.email;
+      }).filter(email => !!email).sort();
+    }, err => {
+      console.log('Error fetching user emails', err);
+    });
+  }
+
+  sendNotification() {
+    if (!this.notificationForm.title.trim() || !this.notificationForm.body.trim()) {
+      this.toastr.error('Title and message are required', 'Validation', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      return;
+    }
+
+    if (this.notificationTargetType === 'specific' && this.selectedTargetEmails.length === 0) {
+      this.toastr.error('Please select at least one target user', 'Validation', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      return;
+    }
+
+    this.notificationSending = true;
+    const targetEmails = this.notificationTargetType === 'all' ? ['all'] : [...this.selectedTargetEmails];
+
+    // Send to each selected email (or 'all' once)
+    const requests = targetEmails.map(email => {
+      const payload = {
+        title: this.notificationForm.title.trim(),
+        body: this.notificationForm.body.trim(),
+        targetEmail: email
+      };
+      return this.http.post('https://us-central1-dashboard-33d8e.cloudfunctions.net/sendNotification', payload).toPromise();
+    });
+
+    Promise.all(requests).then((results: any[]) => {
+      this.notificationSending = false;
+      const totalSuccess = results.reduce((sum, r) => sum + (r?.successCount || 0), 0);
+      const totalFail = results.reduce((sum, r) => sum + (r?.failureCount || 0), 0);
+      this.notificationForm = { title: '', body: '', targetEmail: '' };
+      this.selectedTargetEmails = [];
+      this.emailTypeaheadInput = '';
+      this.notificationTargetType = 'all';
+      this.toastr.success(
+        `Notification sent! ${totalSuccess} delivered, ${totalFail} failed.`,
+        'Early Transfer',
+        { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 5000 }
+      );
+    }).catch(err => {
+      this.notificationSending = false;
+      const errMsg = err?.error?.error || 'Failed to send notification. Make sure the Cloud Function is deployed.';
+      this.toastr.error(errMsg, 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Send notification error:', err);
+    });
+  }
+
+  onEmailTypeaheadSelect(match) {
+    const email = match.item;
+    if (email && !this.selectedTargetEmails.includes(email)) {
+      this.selectedTargetEmails.push(email);
+    }
+    // Clear input after selection (setTimeout to let typeahead finish its cycle)
+    setTimeout(() => { this.emailTypeaheadInput = ''; }, 0);
+  }
+
+  removeTargetEmail(email: string) {
+    this.selectedTargetEmails = this.selectedTargetEmails.filter(e => e !== email);
   }
 
 }

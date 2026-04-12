@@ -51,6 +51,17 @@
       Interac Emails
       <span *ngIf="newInteracCount > 0" class="kyc-badge">{{newInteracCount}}</span>
     </button>
+    <button class="tab-btn" [class.active]="activeTab === 'issues'" (click)="switchTab('issues')">
+      Issues
+      <span *ngIf="newIssuesCount > 0" class="kyc-badge">{{newIssuesCount}}</span>
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'deposit_issues'" (click)="switchTab('deposit_issues')">
+      Deposit Issues
+      <span *ngIf="newDepositIssuesCount > 0" class="kyc-badge">{{newDepositIssuesCount}}</span>
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'notifications'" (click)="switchTab('notifications')">
+      Notifications
+    </button>
   </div>
 
   <!-- ── FILTERS ── -->
@@ -468,7 +479,7 @@
       </span>
     </p>
     <p class="text-center" style="font-size: 12px; color: #888;">
-      Monitoring: <strong>earlytransfert@gmail.com</strong> — Filtering subjects containing "interac"
+      Monitoring: <strong>info@earlytransfert.com</strong> — Filtering subjects containing "interac"
     </p>
   </div>
 
@@ -487,6 +498,219 @@
       (rowClicked)="onInteracRowClicked($event)"
       (rowDoubleClicked)="onInteracRowDoubleClicked($event)"
       (gridReady)="onInteracGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
+<!-- ── ISSUES TAB ── -->
+<div *ngIf="activeTab === 'issues'">
+
+  <!-- ISSUES ACTION TOOLBAR -->
+  <div class="container-fluid" style="padding: 15px 0;">
+    <div class="d-flex justify-content-center" style="gap: 10px;">
+      <button class="btn btn-info" (click)="checkIssueReportEmails()"
+              [disabled]="issuesChecking">
+        <span *ngIf="!issuesChecking">Check Issues Now</span>
+        <span *ngIf="issuesChecking">Checking...</span>
+      </button>
+      <button class="btn btn-primary" (click)="openIssueBodyModal(templateIssueBody)"
+              [disabled]="!selectedIssue">
+        View Issue
+      </button>
+      <button class="btn btn-success" (click)="markIssueResolved()"
+              [disabled]="!selectedIssue || selectedIssue?.status === 'resolved'">
+        Mark Resolved
+      </button>
+      <button class="btn btn-secondary" (click)="markIssueIgnored()"
+              [disabled]="!selectedIssue || selectedIssue?.status === 'ignored'">
+        Ignore
+      </button>
+      <button class="btn btn-warning" (click)="markIssueNew()"
+              [disabled]="!selectedIssue || selectedIssue?.status === 'new'">
+        Back to New
+      </button>
+    </div>
+    <p class="text-center text-muted" style="margin-top: 8px; font-size: 13px;">
+      <span *ngIf="!selectedIssue">Click a row to select an issue report</span>
+      <span *ngIf="selectedIssue">
+        Selected: {{selectedIssue.from}} — "{{selectedIssue.subject | slice:0:50}}"
+        ({{selectedIssue.status | uppercase}})
+      </span>
+    </p>
+    <p class="text-center" style="font-size: 12px; color: #888;">
+      Monitoring: <strong>info@earlytransfert.com</strong> — Filtering subjects containing "Issue Report from"
+    </p>
+  </div>
+
+  <div class="container-fluid justify-content-center">
+    <ag-grid-angular
+                [enableCellTextSelection]="true"
+                [ensureDomOrder]="true"
+      style="width: 100%; height: 700px; padding-top: 10px;"
+      class="ag-theme-balham custom-class"
+      [columnDefs]="issuesColumnDefs"
+      [animateRows]="true"
+      [pagination]="true"
+      [rowSelection]="'single'"
+      [isExternalFilterPresent]="isExternalFilterPresent"
+      [doesExternalFilterPass]="doesExternalFilterPass"
+      (rowClicked)="onIssueRowClicked($event)"
+      (rowDoubleClicked)="onIssueRowDoubleClicked($event)"
+      (gridReady)="onIssuesGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
+<!-- ── DEPOSIT ISSUES TAB (Interac / Mobile Money) ── -->
+<div *ngIf="activeTab === 'deposit_issues'">
+
+  <!-- DEPOSIT ISSUES ACTION TOOLBAR -->
+  <div class="container-fluid" style="padding: 15px 0;">
+    <div class="d-flex justify-content-center flex-wrap" style="gap: 10px;">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+                [class.active]="depositTypeFilter === 'all'"
+                (click)="setDepositTypeFilter('all')">All</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+                [class.active]="depositTypeFilter === 'interac'"
+                (click)="setDepositTypeFilter('interac')">Interac</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+                [class.active]="depositTypeFilter === 'mobile_money'"
+                (click)="setDepositTypeFilter('mobile_money')">Mobile Money</button>
+      </div>
+      <button class="btn btn-primary" (click)="openDepositIssueBodyModal(templateDepositIssueBody)"
+              [disabled]="!selectedDepositIssue">
+        View Issue
+      </button>
+      <button class="btn btn-success" (click)="markDepositIssueResolved()"
+              [disabled]="!selectedDepositIssue || selectedDepositIssue?.status === 'resolved'">
+        Mark Resolved
+      </button>
+      <button class="btn btn-secondary" (click)="markDepositIssueIgnored()"
+              [disabled]="!selectedDepositIssue || selectedDepositIssue?.status === 'ignored'">
+        Ignore
+      </button>
+      <button class="btn btn-warning" (click)="markDepositIssueNew()"
+              [disabled]="!selectedDepositIssue || selectedDepositIssue?.status === 'new'">
+        Back to New
+      </button>
+    </div>
+    <p class="text-center text-muted" style="margin-top: 8px; font-size: 13px;">
+      <span *ngIf="!selectedDepositIssue">Click a row to select a deposit issue report</span>
+      <span *ngIf="selectedDepositIssue">
+        Selected: {{selectedDepositIssue.userEmail}} —
+        {{selectedDepositIssue.depositType === 'interac' ? 'INTERAC' : 'Mobile Money'}}
+        ({{selectedDepositIssue.status | uppercase}})
+      </span>
+    </p>
+    <p class="text-center" style="font-size: 12px; color: #888;">
+      Reports sent by users from the mobile app when they can't find an Interac payment or Mobile Money deposit.
+      Attachments are delivered to <strong>info@earlytransfert.com</strong>.
+    </p>
+  </div>
+
+  <div class="container-fluid justify-content-center">
+    <ag-grid-angular
+      [enableCellTextSelection]="true"
+      [ensureDomOrder]="true"
+      style="width: 100%; height: 700px; padding-top: 10px;"
+      class="ag-theme-balham custom-class"
+      [columnDefs]="depositIssuesColumnDefs"
+      [animateRows]="true"
+      [pagination]="true"
+      [rowSelection]="'single'"
+      [isExternalFilterPresent]="isExternalFilterPresent"
+      [doesExternalFilterPass]="doesExternalFilterPass"
+      (rowClicked)="onDepositIssueRowClicked($event)"
+      (rowDoubleClicked)="onDepositIssueRowDoubleClicked($event)"
+      (gridReady)="onDepositIssuesGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
+<!-- ── NOTIFICATIONS TAB ── -->
+<div *ngIf="activeTab === 'notifications'">
+
+  <!-- SEND NOTIFICATION FORM -->
+  <div class="container" style="padding: 20px 0; max-width: 700px;">
+    <div class="card">
+      <div class="card-header" style="background-color: #FFD700;">
+        <h5 style="margin: 0;">Send Push Notification</h5>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label>Title *</label>
+          <input type="text" class="form-control" [(ngModel)]="notificationForm.title"
+                 placeholder="Notification title...">
+        </div>
+        <div class="form-group" style="margin-top: 12px;">
+          <label>Message *</label>
+          <textarea class="form-control" rows="3" [(ngModel)]="notificationForm.body"
+                    placeholder="Notification message..."></textarea>
+        </div>
+        <div class="form-group" style="margin-top: 12px;">
+          <label>Target</label>
+          <div class="d-flex align-items-center" style="gap: 10px; margin-top: 6px;">
+            <div class="custom-control custom-radio">
+              <input type="radio" id="targetAll" name="targetType" class="custom-control-input"
+                     [checked]="notificationTargetType === 'all'"
+                     (change)="notificationTargetType = 'all'; notificationForm.targetEmail = ''">
+              <label class="custom-control-label" for="targetAll">All Users</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="targetSpecific" name="targetType" class="custom-control-input"
+                     [checked]="notificationTargetType === 'specific'"
+                     (change)="notificationTargetType = 'specific'">
+              <label class="custom-control-label" for="targetSpecific">Specific User</label>
+            </div>
+          </div>
+          <div *ngIf="notificationTargetType === 'specific'" style="margin-top: 8px;">
+            <!-- Selected emails as chips -->
+            <div *ngIf="selectedTargetEmails.length > 0" style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <span *ngFor="let email of selectedTargetEmails"
+                    style="display: inline-flex; align-items: center; background: #FFD700; color: #333; padding: 4px 10px; border-radius: 16px; font-size: 13px;">
+                {{email}}
+                <button type="button" (click)="removeTargetEmail(email)"
+                        style="background: none; border: none; margin-left: 6px; cursor: pointer; font-size: 16px; line-height: 1; color: #333; padding: 0;">
+                  &times;
+                </button>
+              </span>
+            </div>
+            <!-- Typeahead input -->
+            <input type="text" class="form-control"
+                   [(ngModel)]="emailTypeaheadInput"
+                   [typeahead]="userEmails"
+                   [typeaheadMinLength]="0"
+                   [typeaheadOptionsLimit]="10"
+                   [typeaheadScrollable]="true"
+                   [typeaheadOptionsInScrollableView]="6"
+                   (typeaheadOnSelect)="onEmailTypeaheadSelect($event)"
+                   placeholder="Type to search and select users...">
+            <small class="text-muted">Search by email, click to add. You can select multiple users.</small>
+          </div>
+        </div>
+        <div style="margin-top: 16px;">
+          <button class="btn btn-success" (click)="sendNotification()" [disabled]="notificationSending">
+            <span *ngIf="!notificationSending">Send Notification</span>
+            <span *ngIf="notificationSending">Sending...</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION HISTORY -->
+  <div class="container-fluid" style="padding-top: 10px;">
+    <h5 class="text-center" style="margin-bottom: 10px;">Notification History</h5>
+    <ag-grid-angular
+      [enableCellTextSelection]="true"
+      [ensureDomOrder]="true"
+      style="width: 100%; height: 500px;"
+      class="ag-theme-balham custom-class"
+      [columnDefs]="notificationColumnDefs"
+      [animateRows]="true"
+      [pagination]="true"
+      (gridReady)="onNotificationGridReady($event)">
     </ag-grid-angular>
   </div>
 </div>
@@ -658,4 +882,104 @@
 
 </ng-template>
 <!-- / INTERAC EMAIL BODY MODAL -->
+
+<!-- ISSUE REPORT BODY MODAL -->
+<ng-template #templateIssueBody>
+
+  <div class="modal-header" style="background-color: #dc3545;">
+    <h4 class="modal-title pull-left text-light" style="font-size: 14px !important;">Issue Report Details</h4>
+    <button type="button" class="close pull-rigth text-light" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="selectedIssue">
+    <div class="row" style="margin-bottom: 12px;">
+      <div class="col-md-6">
+        <p><strong>From:</strong> {{selectedIssue.senderName}} &lt;{{selectedIssue.from}}&gt;</p>
+        <p><strong>Subject:</strong> {{selectedIssue.subject}}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Date:</strong> {{selectedIssue.date | date:'medium'}}</p>
+        <p><strong>Status:</strong>
+          <span [ngClass]="{
+            'text-success': selectedIssue.status === 'resolved',
+            'text-danger': selectedIssue.status === 'ignored',
+            'text-warning': selectedIssue.status === 'new'
+          }">
+            {{selectedIssue.status | uppercase}}
+          </span>
+        </p>
+      </div>
+    </div>
+    <hr>
+    <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 12px; background: #fafafa; border-radius: 4px; white-space: pre-wrap; font-size: 13px;">{{selectedIssue.body}}</div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="markIssueResolved(); modalRef.hide();"
+            *ngIf="selectedIssue?.status !== 'resolved'">
+      Mark Resolved
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Close</button>
+  </div>
+
+</ng-template>
+<!-- / ISSUE REPORT BODY MODAL -->
+
+<!-- DEPOSIT ISSUE REPORT BODY MODAL -->
+<ng-template #templateDepositIssueBody>
+
+  <div class="modal-header" style="background-color: #5330D1;">
+    <h4 class="modal-title pull-left text-light" style="font-size: 14px !important;">Deposit Issue Report</h4>
+    <button type="button" class="close pull-rigth text-light" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="selectedDepositIssue">
+    <div class="row" style="margin-bottom: 12px;">
+      <div class="col-md-6">
+        <p><strong>User:</strong> {{selectedDepositIssue.userEmail}}</p>
+        <p><strong>Type:</strong>
+          {{selectedDepositIssue.depositType === 'interac' ? 'INTERAC e-Transfer' : 'Mobile Money'}}
+          ({{selectedDepositIssue.countryCode}})
+        </p>
+        <p><strong>Sender contact:</strong>
+          {{selectedDepositIssue.senderContact || '(not set)'}}
+        </p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Date:</strong> {{selectedDepositIssue.date | date:'medium'}}</p>
+        <p><strong>Attachments:</strong> {{selectedDepositIssue.attachmentCount}} (check support inbox)</p>
+        <p><strong>Status:</strong>
+          <span [ngClass]="{
+            'text-success': selectedDepositIssue.status === 'resolved',
+            'text-danger': selectedDepositIssue.status === 'ignored',
+            'text-warning': selectedDepositIssue.status === 'new'
+          }">
+            {{selectedDepositIssue.status | uppercase}}
+          </span>
+        </p>
+      </div>
+    </div>
+    <hr>
+    <h6 style="margin-bottom: 8px;">Message</h6>
+    <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 12px; background: #fafafa; border-radius: 4px; white-space: pre-wrap; font-size: 13px;">{{selectedDepositIssue.message}}</div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="markDepositIssueResolved(); modalRef.hide();"
+            *ngIf="selectedDepositIssue?.status !== 'resolved'">
+      Mark Resolved
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="markDepositIssueIgnored(); modalRef.hide();"
+            *ngIf="selectedDepositIssue?.status !== 'ignored'">
+      Ignore
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Close</button>
+  </div>
+
+</ng-template>
+<!-- / DEPOSIT ISSUE REPORT BODY MODAL -->
 

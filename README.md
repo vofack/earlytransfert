@@ -132,3 +132,70 @@ firebase functions:secrets:set EMAIL_USER
 firebase functions:secrets:set EMAIL_PASSWORD
 firebase functions:secrets:set EMAIL_HOST
 firebase functions:secrets:set EMAIL_PORT
+
+
+All tasks are complete. Here's a summary of everything implemented:
+
+Firebase Cloud Messaging Implementation
+Flutter App (earlyTransfertFlutter)
+pubspec.yaml - Added firebase_messaging: ^14.7.10 dependency
+
+lib/services/fcm_service.dart - New FCM service that:
+
+Requests notification permissions (iOS + Android 13+)
+Handles foreground messages (shows as local notifications)
+Handles background messages via top-level handler
+Retrieves and saves FCM tokens to Firestore (users/{doc}.fcmToken)
+Auto-refreshes tokens when they change
+lib/main.dart - Initializes FCM on app startup
+
+lib/controllers/auth/signin_controller.dart - Saves FCM token after: email sign-in, sign-in after sign-up, Google sign-in, and Face ID sign-in
+
+lib/controllers/auth/signup_controller.dart - Saves FCM token after account creation
+
+Cloud Function (functions/)
+functions/index.js - New sendNotification HTTP function that:
+Accepts title, body, targetEmail via POST
+Sends to a specific user (by email) or all users with FCM tokens
+Uses admin.messaging().sendEachForMulticast() for delivery
+Logs every notification to notifications Firestore collection
+Angular Admin (earlytransfert)
+src/app/models/push-notification.ts - PushNotification interface
+
+src/app/services/data.service.ts - Added getAllNotifications() and getAllUsers() methods
+
+manage-transactions.component.html - New Notifications tab with:
+
+Send form: title, message, target (all users / specific user dropdown)
+Notification history ag-Grid table
+manage-transactions.component.ts - Notification tab logic: send via Cloud Function, load history, load user list for targeting
+
+Before deploying, you need to:
+Flutter: Run flutter pub get in the Flutter project
+Cloud Function: Run firebase deploy --only functions from the Angular project root
+Angular: The admin app will work once the Cloud Function is deployed
+
+
+https://email.ionos.com/appsuite/#!!&app=io.ox/mail&folder=default0/INBOX
+earlytransfert.com
+oltz jkyb abwh dfcp
+
+firebase functions:secrets:set EMAIL_HOST   # enter: imap.ionos.com
+firebase functions:secrets:set EMAIL_PORT   # enter: 993
+firebase functions:secrets:set EMAIL_USER   # enter: info@earlytransfert.com
+firebase functions:secrets:set EMAIL_PASSWORD   # enter: Jesussauveur@26
+
+
+EMAIL_USER=info@earlytransfert.com
+EMAIL_PASSWORD=Jesussauveur@26
+
+
+pour les fonctions utilisant ionos comme eamil (jai juste change les config dans en.local pour le le local) pis pour le prod jai fait :
+firebase functions:secrets:set EMAIL_HOST   # enter: imap.ionos.com
+firebase functions:secrets:set EMAIL_PORT   # enter: 993
+firebase functions:secrets:set EMAIL_USER   # enter: info@earlytransfert.com
+firebase functions:secrets:set EMAIL_PASSWORD   # enter: Jesussauveur@26
+
+NB: pas besoin de password apps(with 2 step verifiction) comme avec gmail on utilise le mp tel que
+
+https://claude.ai/share/07918f22-1f58-4486-881f-d481e0d88e65

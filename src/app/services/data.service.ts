@@ -4,6 +4,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AdminMessage } from '../models/admin-message';
 import { WalletAccount } from '../models/wallet-account';
 import { InteracEmail } from '../models/interac-email';
+import { IssueReport } from '../models/issue-report';
+import { DepositIssueReport } from '../models/deposit-issue-report';
 import { Beneficiary } from '../models/beneficiary';
 import { allTransaction, Transaction } from '../models/transaction';
 import { User } from '../models/user';
@@ -190,6 +192,44 @@ export class DataService {
       update.processedAt = new Date().toISOString();
     }
     return this.afs.collection('/interac_emails').doc(id).update(update);
+  }
+
+  // ── Issue Report Emails ─────────────────────────────────────────────────
+
+  getAllIssueReportEmails() {
+    return this.afs.collection('/issue_report_emails', ref => ref.orderBy('date', 'desc')).snapshotChanges();
+  }
+
+  updateIssueReportStatus(id: string, status: 'new' | 'resolved' | 'ignored') {
+    const update: any = { status };
+    if (status === 'resolved') {
+      update.resolvedAt = new Date().toISOString();
+    }
+    return this.afs.collection('/issue_report_emails').doc(id).update(update);
+  }
+
+  // ── Deposit Issue Reports (Interac / Mobile Money) ──────────────────────
+
+  getAllDepositIssueReports() {
+    return this.afs.collection('/deposit_issue_reports', ref => ref.orderBy('date', 'desc')).snapshotChanges();
+  }
+
+  updateDepositIssueReportStatus(id: string, status: 'new' | 'resolved' | 'ignored') {
+    const update: any = { status };
+    if (status === 'resolved') {
+      update.resolvedAt = new Date().toISOString();
+    }
+    return this.afs.collection('/deposit_issue_reports').doc(id).update(update);
+  }
+
+  // ── Push Notifications ──────────────────────────────────────────────────
+
+  getAllNotifications() {
+    return this.afs.collection('/notifications', ref => ref.orderBy('sentAt', 'desc')).snapshotChanges();
+  }
+
+  getAllUsers() {
+    return this.afs.collection('/users').snapshotChanges();
   }
 
   // sync user's kycStatus in the users collection

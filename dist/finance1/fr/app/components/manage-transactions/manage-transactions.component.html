@@ -55,6 +55,10 @@
       Issues
       <span *ngIf="newIssuesCount > 0" class="kyc-badge">{{newIssuesCount}}</span>
     </button>
+    <button class="tab-btn" [class.active]="activeTab === 'deposit_issues'" (click)="switchTab('deposit_issues')">
+      Deposit Issues
+      <span *ngIf="newDepositIssuesCount > 0" class="kyc-badge">{{newDepositIssuesCount}}</span>
+    </button>
     <button class="tab-btn" [class.active]="activeTab === 'notifications'" (click)="switchTab('notifications')">
       Notifications
     </button>
@@ -87,6 +91,18 @@
 
 <!-- ── TRANSACTIONS TAB ── -->
 <div *ngIf="activeTab === 'transactions'">
+    <div class="d-flex justify-content-end" style="padding: 8px 16px 0;">
+      <button type="button"
+              class="btn btn-sm"
+              [class.btn-primary]="groupByPost"
+              [class.btn-outline-primary]="!groupByPost"
+              (click)="toggleGroupByPost()"
+              title="Cluster marketplace transactions that share the same Post">
+        <i class="fa fa-layer-group" style="margin-right: 4px;"></i>
+        {{ groupByPost ? 'Ungroup' : 'Group by Post' }}
+      </button>
+    </div>
+
     <div *ngIf="showXl" class="container-fluid  justify-content-center">
                 <ag-grid-angular
                 [enableCellTextSelection]="true"
@@ -94,6 +110,9 @@
                 style="width: 100%; height: 1000px;padding-top: 10px;"
                 class="ag-theme-balham custom-class"
                 [columnDefs]="columnDefs"
+                [getRowStyle]="getTransactionRowStyle"
+                [isFullWidthCell]="isFullWidthCell"
+                [fullWidthCellRenderer]="fullWidthCellRenderer"
                 [animateRows]="true"
                 [pagination]="true"
                 [frameworkComponents]="frameworkComponents"
@@ -112,6 +131,9 @@
                 style="width: 100%; height: 1000px;padding-top: 10px;"
                 class="ag-theme-balham custom-class"
                 [columnDefs]="columnDefsXs"
+                [getRowStyle]="getTransactionRowStyle"
+                [isFullWidthCell]="isFullWidthCell"
+                [fullWidthCellRenderer]="fullWidthCellRenderer"
                 [animateRows]="true"
                 [pagination]="true"
                 [frameworkComponents]="frameworkComponents"
@@ -557,6 +579,73 @@
   </div>
 </div>
 
+<!-- ── DEPOSIT ISSUES TAB (Interac / Mobile Money) ── -->
+<div *ngIf="activeTab === 'deposit_issues'">
+
+  <!-- DEPOSIT ISSUES ACTION TOOLBAR -->
+  <div class="container-fluid" style="padding: 15px 0;">
+    <div class="d-flex justify-content-center flex-wrap" style="gap: 10px;">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+                [class.active]="depositTypeFilter === 'all'"
+                (click)="setDepositTypeFilter('all')">All</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+                [class.active]="depositTypeFilter === 'interac'"
+                (click)="setDepositTypeFilter('interac')">Interac</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+                [class.active]="depositTypeFilter === 'mobile_money'"
+                (click)="setDepositTypeFilter('mobile_money')">Mobile Money</button>
+      </div>
+      <button class="btn btn-primary" (click)="openDepositIssueBodyModal(templateDepositIssueBody)"
+              [disabled]="!selectedDepositIssue">
+        View Issue
+      </button>
+      <button class="btn btn-success" (click)="markDepositIssueResolved()"
+              [disabled]="!selectedDepositIssue || selectedDepositIssue?.status === 'resolved'">
+        Mark Resolved
+      </button>
+      <button class="btn btn-secondary" (click)="markDepositIssueIgnored()"
+              [disabled]="!selectedDepositIssue || selectedDepositIssue?.status === 'ignored'">
+        Ignore
+      </button>
+      <button class="btn btn-warning" (click)="markDepositIssueNew()"
+              [disabled]="!selectedDepositIssue || selectedDepositIssue?.status === 'new'">
+        Back to New
+      </button>
+    </div>
+    <p class="text-center text-muted" style="margin-top: 8px; font-size: 13px;">
+      <span *ngIf="!selectedDepositIssue">Click a row to select a deposit issue report</span>
+      <span *ngIf="selectedDepositIssue">
+        Selected: {{selectedDepositIssue.userEmail}} —
+        {{selectedDepositIssue.depositType === 'interac' ? 'INTERAC' : 'Mobile Money'}}
+        ({{selectedDepositIssue.status | uppercase}})
+      </span>
+    </p>
+    <p class="text-center" style="font-size: 12px; color: #888;">
+      Reports sent by users from the mobile app when they can't find an Interac payment or Mobile Money deposit.
+      Attachments are delivered to <strong>info@earlytransfert.com</strong>.
+    </p>
+  </div>
+
+  <div class="container-fluid justify-content-center">
+    <ag-grid-angular
+      [enableCellTextSelection]="true"
+      [ensureDomOrder]="true"
+      style="width: 100%; height: 700px; padding-top: 10px;"
+      class="ag-theme-balham custom-class"
+      [columnDefs]="depositIssuesColumnDefs"
+      [animateRows]="true"
+      [pagination]="true"
+      [rowSelection]="'single'"
+      [isExternalFilterPresent]="isExternalFilterPresent"
+      [doesExternalFilterPass]="doesExternalFilterPass"
+      (rowClicked)="onDepositIssueRowClicked($event)"
+      (rowDoubleClicked)="onDepositIssueRowDoubleClicked($event)"
+      (gridReady)="onDepositIssuesGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
 <!-- ── NOTIFICATIONS TAB ── -->
 <div *ngIf="activeTab === 'notifications'">
 
@@ -855,4 +944,159 @@
 
 </ng-template>
 <!-- / ISSUE REPORT BODY MODAL -->
+
+<!-- DEPOSIT ISSUE REPORT BODY MODAL -->
+<ng-template #templateDepositIssueBody>
+
+  <div class="modal-header" style="background-color: #5330D1;">
+    <h4 class="modal-title pull-left text-light" style="font-size: 14px !important;">Deposit Issue Report</h4>
+    <button type="button" class="close pull-rigth text-light" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="selectedDepositIssue">
+    <div class="row" style="margin-bottom: 12px;">
+      <div class="col-md-6">
+        <p><strong>User:</strong> {{selectedDepositIssue.userEmail}}</p>
+        <p><strong>Type:</strong>
+          {{selectedDepositIssue.depositType === 'interac' ? 'INTERAC e-Transfer' : 'Mobile Money'}}
+          ({{selectedDepositIssue.countryCode}})
+        </p>
+        <p><strong>Sender contact:</strong>
+          {{selectedDepositIssue.senderContact || '(not set)'}}
+        </p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Date:</strong> {{selectedDepositIssue.date | date:'medium'}}</p>
+        <p><strong>Attachments:</strong> {{selectedDepositIssue.attachmentCount}} (check support inbox)</p>
+        <p><strong>Status:</strong>
+          <span [ngClass]="{
+            'text-success': selectedDepositIssue.status === 'resolved',
+            'text-danger': selectedDepositIssue.status === 'ignored',
+            'text-warning': selectedDepositIssue.status === 'new'
+          }">
+            {{selectedDepositIssue.status | uppercase}}
+          </span>
+        </p>
+      </div>
+    </div>
+    <hr>
+    <h6 style="margin-bottom: 8px;">Message</h6>
+    <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 12px; background: #fafafa; border-radius: 4px; white-space: pre-wrap; font-size: 13px;">{{selectedDepositIssue.message}}</div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="markDepositIssueResolved(); modalRef.hide();"
+            *ngIf="selectedDepositIssue?.status !== 'resolved'">
+      Mark Resolved
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="markDepositIssueIgnored(); modalRef.hide();"
+            *ngIf="selectedDepositIssue?.status !== 'ignored'">
+      Ignore
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Close</button>
+  </div>
+
+</ng-template>
+<!-- / DEPOSIT ISSUE REPORT BODY MODAL -->
+
+<!-- MARKETPLACE POST DETAIL MODAL -->
+<ng-template #templatePostDetail>
+
+  <div class="modal-header" style="background-color: #5330D1;">
+    <h4 class="modal-title pull-left text-light" style="font-size: 14px !important;">Marketplace Post &amp; Proposition</h4>
+    <button type="button" class="close pull-rigth text-light" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div *ngIf="loadingMarketplacePost" style="padding: 20px; text-align: center;">
+      Loading linked post…
+    </div>
+
+    <div *ngIf="!loadingMarketplacePost && selectedMarketplacePost">
+      <!-- POST -->
+      <h6 style="color:#5330D1; margin-bottom: 10px;">Post</h6>
+      <div class="row" style="margin-bottom: 12px;">
+        <div class="col-md-6">
+          <p style="margin:0;"><strong>Post owner:</strong> {{ selectedMarketplacePost.userEmail }}</p>
+          <p style="margin:0;"><strong>Name:</strong> {{ selectedMarketplacePost.name }}</p>
+          <p style="margin:0;"><strong>Phone:</strong> {{ selectedMarketplacePost.telephone }}</p>
+        </div>
+        <div class="col-md-6">
+          <p style="margin:0;"><strong>Sender flag:</strong> {{ selectedMarketplacePost.senderFlag }}</p>
+          <p style="margin:0;"><strong>Receiver flag:</strong> {{ selectedMarketplacePost.receiverFlag }}</p>
+          <p style="margin:0;"><strong>Rate:</strong>
+            <ng-container *ngFor="let kv of selectedMarketplacePost.rate | keyvalue">
+              {{ kv.key }} → {{ kv.value }}
+            </ng-container>
+          </p>
+          <p style="margin:0;"><strong>Status:</strong> {{ selectedMarketplacePost.status ? 'Closed' : 'Open' }}</p>
+        </div>
+      </div>
+      <div style="background:#fafafa; border:1px solid #eee; border-radius:4px; padding:10px; font-size:13px; white-space: pre-wrap; margin-bottom: 18px;">
+        {{ selectedMarketplacePost.message }}
+      </div>
+
+      <!-- ACCEPTED PROPOSITION -->
+      <h6 style="color:#5330D1; margin-bottom: 10px;">Accepted proposition</h6>
+      <div *ngIf="selectedMarketplaceProposition" class="row" style="margin-bottom: 18px;">
+        <div class="col-md-6">
+          <p style="margin:0;"><strong>Proposer:</strong> {{ selectedMarketplaceProposition.propositionEmail }}</p>
+          <p style="margin:0;"><strong>Amount:</strong> {{ selectedMarketplaceProposition.amount }}</p>
+          <p style="margin:0;"><strong>Send:</strong> {{ selectedMarketplaceProposition.amountSend }}</p>
+          <p style="margin:0;"><strong>Received:</strong> {{ selectedMarketplaceProposition.amountReceived }}</p>
+        </div>
+        <div class="col-md-6">
+          <p style="margin:0;"><strong>Status:</strong> {{ selectedMarketplaceProposition.status ? 'Accepted' : 'Pending' }}</p>
+          <p style="margin:0;"><strong>Progress:</strong> {{ selectedMarketplaceProposition.progressBarStatus || '—' }}</p>
+          <p style="margin:0;"><strong>Post-side txn:</strong> {{ selectedMarketplaceProposition.idPostTransaction || '—' }}</p>
+          <p style="margin:0;"><strong>Proposition-side txn:</strong> {{ selectedMarketplaceProposition.idPropositionTransaction || '—' }}</p>
+        </div>
+      </div>
+      <div *ngIf="!selectedMarketplaceProposition" style="color:#999; font-size: 13px; margin-bottom: 18px;">
+        Could not match the proposition on this post (it may have been removed).
+      </div>
+
+      <!-- LINKED TRANSACTIONS -->
+      <h6 style="color:#5330D1; margin-bottom: 10px;">Linked transactions</h6>
+      <div class="row">
+        <div class="col-md-6">
+          <div style="border:1px solid #eee; border-radius:4px; padding:10px; font-size:13px;">
+            <p style="margin:0;"><strong>Post owner's transaction</strong></p>
+            <ng-container *ngIf="selectedMarketplaceTransactions.postSide; else noPostSide">
+              <p style="margin:4px 0 0;">Id: {{ selectedMarketplaceTransactions.postSide.id }}</p>
+              <p style="margin:0;">User: {{ selectedMarketplaceTransactions.postSide.userEmail }}</p>
+              <p style="margin:0;">Status: {{ selectedMarketplaceTransactions.postSide.status }}</p>
+              <p style="margin:0;">Send: {{ selectedMarketplaceTransactions.postSide.amountSend }}</p>
+              <p style="margin:0;">Receive: {{ selectedMarketplaceTransactions.postSide.amountReceive }}</p>
+            </ng-container>
+            <ng-template #noPostSide><p style="margin:4px 0 0; color:#999;">Not found in current list.</p></ng-template>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div style="border:1px solid #eee; border-radius:4px; padding:10px; font-size:13px;">
+            <p style="margin:0;"><strong>Proposition owner's transaction</strong></p>
+            <ng-container *ngIf="selectedMarketplaceTransactions.propositionSide; else noPropSide">
+              <p style="margin:4px 0 0;">Id: {{ selectedMarketplaceTransactions.propositionSide.id }}</p>
+              <p style="margin:0;">User: {{ selectedMarketplaceTransactions.propositionSide.userEmail }}</p>
+              <p style="margin:0;">Status: {{ selectedMarketplaceTransactions.propositionSide.status }}</p>
+              <p style="margin:0;">Send: {{ selectedMarketplaceTransactions.propositionSide.amountSend }}</p>
+              <p style="margin:0;">Receive: {{ selectedMarketplaceTransactions.propositionSide.amountReceive }}</p>
+            </ng-container>
+            <ng-template #noPropSide><p style="margin:4px 0 0; color:#999;">Not found in current list.</p></ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Close</button>
+  </div>
+
+</ng-template>
+<!-- / MARKETPLACE POST DETAIL MODAL -->
 

@@ -5,9 +5,11 @@ import { AdminMessage } from '../models/admin-message';
 import { WalletAccount } from '../models/wallet-account';
 import { InteracEmail } from '../models/interac-email';
 import { IssueReport } from '../models/issue-report';
+import { DepositIssueReport } from '../models/deposit-issue-report';
 import { Beneficiary } from '../models/beneficiary';
 import { allTransaction, Transaction } from '../models/transaction';
 import { User } from '../models/user';
+import { Post } from '../models/post';
 
 
 @Injectable({
@@ -207,6 +209,20 @@ export class DataService {
     return this.afs.collection('/issue_report_emails').doc(id).update(update);
   }
 
+  // ── Deposit Issue Reports (Interac / Mobile Money) ──────────────────────
+
+  getAllDepositIssueReports() {
+    return this.afs.collection('/deposit_issue_reports', ref => ref.orderBy('date', 'desc')).snapshotChanges();
+  }
+
+  updateDepositIssueReportStatus(id: string, status: 'new' | 'resolved' | 'ignored') {
+    const update: any = { status };
+    if (status === 'resolved') {
+      update.resolvedAt = new Date().toISOString();
+    }
+    return this.afs.collection('/deposit_issue_reports').doc(id).update(update);
+  }
+
   // ── Push Notifications ──────────────────────────────────────────────────
 
   getAllNotifications() {
@@ -225,6 +241,29 @@ export class DataService {
           snapshot.docs[0].ref.update({ kycStatus: status });
         }
       });
+  }
+
+  // look up the FCM token for a user by email. Returns null when missing.
+  getUserFcmToken(userEmail: string): Promise<string | null> {
+    return this.afs.collection('/users', ref => ref.where('email', '==', userEmail).limit(1))
+      .get().toPromise().then(snapshot => {
+        if (snapshot.empty) return null;
+        const data: any = snapshot.docs[0].data();
+        return data && data.fcmToken ? data.fcmToken : null;
+      });
+  }
+
+  // ── Marketplace Posts ───────────────────────────────────────────────────
+
+  // Fetch a single Post by document id. Returns null when not found.
+  // Used by the admin transactions grid to show the Post + Proposition that
+  // spawned a marketplace transaction pair.
+  getPostById(postId: string): Promise<Post | null> {
+    return this.afs.collection('/posts').doc(postId).get().toPromise().then(snap => {
+      if (!snap.exists) return null;
+      const data: any = snap.data();
+      return { ...data, docId: snap.id } as Post;
+    });
   }
 
 }

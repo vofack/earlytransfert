@@ -10,6 +10,7 @@ import { AdminMessage } from 'src/app/models/admin-message';
 import { WalletAccount } from 'src/app/models/wallet-account';
 import { InteracEmail } from 'src/app/models/interac-email';
 import { IssueReport } from 'src/app/models/issue-report';
+import { DepositIssueReport } from 'src/app/models/deposit-issue-report';
 import { KycVerification } from 'src/app/models/kyc-verification';
 import { DataService } from 'src/app/services/data.service';
 import { CustomizedCellComponentComponent } from '../customized-cell-component/customized-cell-component.component';
@@ -74,7 +75,7 @@ export class ManageTransactionsComponent implements OnInit {
   amount = '';
 
   // ── KYC TAB ──
-  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'notifications' = 'transactions';
+  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'deposit_issues' | 'notifications' = 'transactions';
   kycColumnDefs: any;
   kycColumnDefsXs: any;
   kycRowData: KycVerification[] = [];
@@ -124,6 +125,16 @@ export class ManageTransactionsComponent implements OnInit {
   issuesChecking = false;
   @ViewChild('templateIssueBody', { read: TemplateRef }) templateIssueBody: TemplateRef<any>;
 
+  // ── DEPOSIT ISSUES TAB (Interac / Mobile Money) ──
+  depositIssuesColumnDefs: any;
+  depositIssuesRowData: DepositIssueReport[] = [];
+  depositIssuesGridParams: any;
+  selectedDepositIssue: DepositIssueReport = null;
+  private depositIssuesSubscription: Subscription;
+  newDepositIssuesCount = 0;
+  depositTypeFilter: 'all' | 'interac' | 'mobile_money' = 'all';
+  @ViewChild('templateDepositIssueBody', { read: TemplateRef }) templateDepositIssueBody: TemplateRef<any>;
+
   // ── NOTIFICATIONS TAB ──
   notificationColumnDefs: any;
   notificationRowData: PushNotification[] = [];
@@ -142,6 +153,65 @@ export class ManageTransactionsComponent implements OnInit {
   dateFrom = '';
   dateTo = '';
   @ViewChild('templateInteracBody', { read: TemplateRef }) templateInteracBody: TemplateRef<any>;
+
+  // ── MARKETPLACE POST DETAIL MODAL ──
+  // Populated when the admin clicks "View" on a marketplace transaction row
+  // so the modal can show the Post, the accepted Proposition, and both linked
+  // transactions.
+  selectedMarketplacePost: any = null;
+  selectedMarketplaceProposition: any = null;
+  selectedMarketplaceTransactions: { postSide: any; propositionSide: any } = { postSide: null, propositionSide: null };
+  loadingMarketplacePost = false;
+  @ViewChild('templatePostDetail', { read: TemplateRef }) templatePostDetail: TemplateRef<any>;
+
+  // ── GROUP-BY-POST (Transactions tab) ──
+  // ag-grid Community doesn't support true row grouping, so we emulate it by
+  // re-sorting marketplace rows into post-bucketed clusters and painting each
+  // cluster with an alternating pastel band via getRowStyle.
+  groupByPost = false;
+  private _postGroupColors = new Map<string, string>();
+  private readonly _postGroupPalette = ['#EEF2FF', '#FFF7ED', '#ECFDF5', '#FDF2F8'];
+
+  // Tells ag-grid which rows should render as a single full-width cell.
+  isFullWidthCell = (rowNode: any) => !!(rowNode && rowNode.data && rowNode.data.__isGroupHeader);
+
+  // Plain-JS cell renderer for the synthetic "Post XYZ — N transactions"
+  // header rows injected at the top of each marketplace cluster.
+  fullWidthCellRenderer = class {
+    private eGui: HTMLElement;
+    private btn: HTMLButtonElement | null = null;
+    private onClick: (() => void) | null = null;
+    init(params: any) {
+      const data = params && params.data ? params.data : {};
+      const color = data.__bgColor || '#EEF2FF';
+      const postId = data.postId || '';
+      const count = data.__count || 0;
+      this.eGui = document.createElement('div');
+      this.eGui.className = 'post-group-header-row';
+      this.eGui.style.cssText =
+        'display:flex;align-items:center;gap:10px;width:100%;height:100%;' +
+        'padding:0 14px;background:' + color + ';' +
+        'border-left:4px solid #4F46E5;font-weight:600;box-sizing:border-box;';
+      this.eGui.innerHTML =
+        '<i class="fa fa-layer-group" style="color:#4F46E5;"></i>' +
+        '<span>Post <code style="background:rgba(79,70,229,0.12);padding:2px 6px;border-radius:4px;font-weight:600;">' +
+          postId +
+        '</code></span>' +
+        '<span style="color:#6B7280;font-weight:500;">' + count + ' transaction' + (count === 1 ? '' : 's') + '</span>' +
+        '<button type="button" class="btn btn-sm btn-outline-primary" style="padding:2px 10px;margin-left:auto;">View Post</button>';
+      this.btn = this.eGui.querySelector('button');
+      if (this.btn && typeof data.__openPostDetail === 'function' && data.__refTransaction) {
+        this.onClick = () => data.__openPostDetail(data.__refTransaction);
+        this.btn.addEventListener('click', this.onClick);
+      }
+    }
+    getGui() { return this.eGui; }
+    destroy() {
+      if (this.btn && this.onClick) {
+        this.btn.removeEventListener('click', this.onClick);
+      }
+    }
+  };
 
   constructor(private http: HttpClient, private modalService:BsModalService,
               private toastr: ToastrService, private  spinner: NgxSpinnerService,
@@ -269,9 +339,25 @@ export class ManageTransactionsComponent implements OnInit {
                     field: "expires_at",
                     filter: "agTextColumnFilter",
                     width: 150
+                  },
+                  {
+                    headerName: "Post",
+                    field: "postId",
+                    width: 110,
+                    filter: false,
+                    sortable: false,
+                    cellRenderer: (params: any) => {
+                      if (!params.data?.isMarketPlace || !params.data?.postId) return '';
+                      return '<button class="btn btn-sm btn-outline-primary" style="padding: 2px 10px;">View Post</button>';
+                    },
+                    onCellClicked: (params: any) => {
+                      if (params.data?.isMarketPlace && params.data?.postId) {
+                        this.openPostDetailModal(params.data);
+                      }
+                    }
                   }
                 ];
-            
+
                 this.columnDefsXs = [
             
                   {
@@ -336,6 +422,22 @@ export class ManageTransactionsComponent implements OnInit {
                     field: "senderNumber",
                     filter: "agTextColumnFilter",
                     width: 150
+                  },
+                  {
+                    headerName: "Post",
+                    field: "postId",
+                    width: 110,
+                    filter: false,
+                    sortable: false,
+                    cellRenderer: (params: any) => {
+                      if (!params.data?.isMarketPlace || !params.data?.postId) return '';
+                      return '<button class="btn btn-sm btn-outline-primary" style="padding: 2px 10px;">View</button>';
+                    },
+                    onCellClicked: (params: any) => {
+                      if (params.data?.isMarketPlace && params.data?.postId) {
+                        this.openPostDetailModal(params.data);
+                      }
+                    }
                   }
                 ];
                 this.sortingOrder = ["desc", "asc", null];
@@ -665,6 +767,80 @@ export class ManageTransactionsComponent implements OnInit {
                   }
                 ];
 
+                // ── DEPOSIT ISSUES COLUMN DEFS ──
+                const depositIssueStatusCellClassRules = {
+                  "cell-pass": params => params.value === 'resolved',
+                  "cell-fail": params => params.value === 'ignored',
+                  "cell-pending": params => params.value === 'new'
+                };
+
+                this.depositIssuesColumnDefs = [
+                  {
+                    headerName: "User",
+                    field: "userEmail",
+                    width: 220,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Type",
+                    field: "depositType",
+                    width: 140,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: params =>
+                      params.value === 'interac' ? 'INTERAC' :
+                      params.value === 'mobile_money' ? 'Mobile Money' : (params.value || '')
+                  },
+                  {
+                    headerName: "Country",
+                    field: "countryCode",
+                    width: 100,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Sender Contact",
+                    field: "senderContact",
+                    width: 220,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Message",
+                    field: "message",
+                    width: 300,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: params => {
+                      const v = params.value || '';
+                      return v.length > 80 ? v.slice(0, 80) + '…' : v;
+                    }
+                  },
+                  {
+                    headerName: "Attachments",
+                    field: "attachmentCount",
+                    width: 110
+                  },
+                  {
+                    headerName: "Date",
+                    field: "date",
+                    width: 180,
+                    filter: "agTextColumnFilter",
+                    sort: 'desc',
+                    valueFormatter: (params) => {
+                      if (!params.value) return '';
+                      return new Date(params.value).toLocaleDateString('fr-FR', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                      });
+                    }
+                  },
+                  {
+                    headerName: "Status",
+                    field: "status",
+                    cellClassRules: depositIssueStatusCellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 120,
+                    valueFormatter: params => (params.value || '').toUpperCase()
+                  }
+                ];
+
                 // ── NOTIFICATIONS COLUMN DEFS ──
                 this.notificationColumnDefs = [
                   {
@@ -755,6 +931,9 @@ export class ManageTransactionsComponent implements OnInit {
     if(this.issuesSubscription) {
       this.issuesSubscription.unsubscribe();
     }
+    if(this.depositIssuesSubscription) {
+      this.depositIssuesSubscription.unsubscribe();
+    }
     if(this.notificationSubscription) {
       this.notificationSubscription.unsubscribe();
     }
@@ -772,7 +951,7 @@ export class ManageTransactionsComponent implements OnInit {
   }
 
   getTransactions(email: string) {
-  
+
     this.data._getAlltransactions().subscribe(res => {
       let transactionsList = [];
       this.allTransactionsList = res.map((e: any) => {
@@ -781,12 +960,110 @@ export class ManageTransactionsComponent implements OnInit {
         transactionsList.push(data);
         return data;
       });
-      this.params.api.setRowData( transactionsList);
-      this.rowData =  transactionsList;
+      this._applyTransactionRowData(transactionsList);
     }, err => {
       console.log('Error while fetching Transactions data');
     })
-  
+  }
+
+  // ── GROUP-BY-POST helpers ─────────────────────────────────────────────
+
+  // Toggles the group-by-post view. Keeps the original rowData shape —
+  // only the order of rows changes, plus a getRowStyle that bands groups
+  // with alternating background colors.
+  toggleGroupByPost() {
+    this.groupByPost = !this.groupByPost;
+    this._applyTransactionRowData(this.allTransactionsList || []);
+  }
+
+  // Sort rows so marketplace transactions sharing a postId are adjacent and
+  // prepend a synthetic full-width header row to each cluster. The header
+  // carries enough context (__refTransaction, __openPostDetail) for its
+  // "View Post" button to reuse the existing modal flow.
+  private _sortRowsGroupedByPost(rows: any[]): any[] {
+    const marketplace = rows.filter(r => r && r.isMarketPlace && r.postId);
+    const others = rows.filter(r => !(r && r.isMarketPlace && r.postId));
+
+    const buckets = new Map<string, any[]>();
+    const order: string[] = [];
+    for (const r of marketplace) {
+      if (!buckets.has(r.postId)) {
+        buckets.set(r.postId, []);
+        order.push(r.postId);
+      }
+      buckets.get(r.postId).push(r);
+    }
+    for (const pid of order) {
+      buckets.get(pid).sort((a, b) => {
+        if (a.isPostWoner === b.isPostWoner) return 0;
+        return a.isPostWoner ? -1 : 1;
+      });
+    }
+    const openPostDetail = (t: any) => this.openPostDetailModal(t);
+    const grouped: any[] = [];
+    for (const pid of order) {
+      const bucket = buckets.get(pid);
+      const refTxn = bucket.find(t => t.isPostWoner) || bucket[0];
+      grouped.push({
+        __isGroupHeader: true,
+        postId: pid,
+        __count: bucket.length,
+        __refTransaction: refTxn,
+        __openPostDetail: openPostDetail,
+      });
+      grouped.push(...bucket);
+    }
+    return [...grouped, ...others];
+  }
+
+  // Assign a deterministic band color to each postId in display order so
+  // adjacent groups are visually distinct. Also stamp the resolved color onto
+  // the synthetic header rows so the full-width renderer can paint itself
+  // without reading the component state.
+  private _refreshPostGroupColors(rows: any[]) {
+    this._postGroupColors.clear();
+    let idx = 0;
+    for (const r of rows) {
+      const pid = r && r.postId;
+      const isGroupRow = r && (r.__isGroupHeader || (r.isMarketPlace && pid));
+      if (isGroupRow && pid && !this._postGroupColors.has(pid)) {
+        this._postGroupColors.set(pid, this._postGroupPalette[idx % this._postGroupPalette.length]);
+        idx++;
+      }
+    }
+    for (const r of rows) {
+      if (r && r.__isGroupHeader && r.postId) {
+        r.__bgColor = this._postGroupColors.get(r.postId);
+      }
+    }
+  }
+
+  // Pipe all rowData updates for the transactions grid through here so the
+  // grouping state is honored even when the Firestore snapshot re-emits.
+  private _applyTransactionRowData(rows: any[]) {
+    const list = this.groupByPost ? this._sortRowsGroupedByPost(rows) : rows;
+    if (this.groupByPost) {
+      this._refreshPostGroupColors(list);
+    } else {
+      this._postGroupColors.clear();
+    }
+    this.rowData = list;
+    if (this.params && this.params.api) {
+      this.params.api.setRowData(list);
+    }
+  }
+
+  // Bound to [getRowStyle] on the transactions ag-grid. Returns a background
+  // color per marketplace-post cluster while grouping is active.
+  getTransactionRowStyle = (params: any) => {
+    if (!this.groupByPost) return null;
+    const d = params && params.data;
+    if (!d) return null;
+    // Header rows paint themselves via the full-width renderer.
+    if (d.__isGroupHeader) return null;
+    if (!d.isMarketPlace || !d.postId) return null;
+    const color = this._postGroupColors.get(d.postId);
+    return color ? { background: color } : null;
   }
 
   ngOnDestroy() {
@@ -839,7 +1116,8 @@ export class ManageTransactionsComponent implements OnInit {
   getVal(item){
     var rowData_temp = [];
     for (let i = 0; i < this.rowData.length; i++) {
-        if ((this.rowData[i].last_name).includes(item.target.value)) rowData_temp.push(this.rowData[i]);
+        const row = this.rowData[i];
+        if (row && !row.__isGroupHeader && row.last_name && row.last_name.includes(item.target.value)) rowData_temp.push(row);
     }
     this.params.api.setRowData(rowData_temp);
   }
@@ -944,7 +1222,8 @@ export class ManageTransactionsComponent implements OnInit {
     let excelFileName = 'TransactionsHistory';
     this.toastr.success('Telechargement en cours d\'execution','Early Transfer', {progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000});
 
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.rowData);
+    const exportRows = (this.rowData || []).filter((r: any) => !(r && r.__isGroupHeader));
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(exportRows);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
 
@@ -986,13 +1265,14 @@ export class ManageTransactionsComponent implements OnInit {
 
   // ── KYC MANAGEMENT ──
 
-  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'notifications') {
+  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'deposit_issues' | 'notifications') {
     this.activeTab = tab;
     this.selectedKyc = null;
     this.selectedMessage = null;
     this.selectedWallet = null;
     this.selectedInteracEmail = null;
     this.selectedIssue = null;
+    this.selectedDepositIssue = null;
     this.emailFilter = '';
     this.clearEmailFilter();
     this.clearDateFilter();
@@ -1019,7 +1299,7 @@ export class ManageTransactionsComponent implements OnInit {
 
   private clearEmailFilter() {
     // Clear filter on all grids
-    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.notificationGridParams?.api]
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.depositIssuesGridParams?.api, this.notificationGridParams?.api]
       .filter(api => !!api)
       .forEach(api => {
         const fields = ['userEmail', 'targetUserEmail', 'usersEmail', 'from', 'targetEmail'];
@@ -1041,6 +1321,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'wallets': return this.walletGridParams?.api;
       case 'interac': return this.interacGridParams?.api;
       case 'issues': return this.issuesGridParams?.api;
+      case 'deposit_issues': return this.depositIssuesGridParams?.api;
       case 'notifications': return this.notificationGridParams?.api;
     }
   }
@@ -1053,6 +1334,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'wallets': return 'usersEmail';
       case 'interac': return 'from';
       case 'issues': return 'from';
+      case 'deposit_issues': return 'userEmail';
       case 'notifications': return 'targetEmail';
     }
   }
@@ -1065,6 +1347,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'wallets': return null;
       case 'interac': return 'date';
       case 'issues': return 'date';
+      case 'deposit_issues': return 'date';
       case 'notifications': return 'sentAt';
     }
   }
@@ -1101,7 +1384,7 @@ export class ManageTransactionsComponent implements OnInit {
 
   filterByDate() {
     // Notify all initialized grids that external filter changed
-    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.notificationGridParams?.api]
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.depositIssuesGridParams?.api, this.notificationGridParams?.api]
       .filter(api => !!api)
       .forEach(api => api.onFilterChanged());
   }
@@ -1544,6 +1827,62 @@ export class ManageTransactionsComponent implements OnInit {
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
   }
 
+  // ── MARKETPLACE POST DETAIL ─────────────────────────────────────────────
+
+  // Opens a modal showing the Post, the accepted Proposition, and both
+  // linked transactions for a marketplace transaction row.
+  openPostDetailModal(transaction: any) {
+    if (!transaction?.postId) return;
+
+    this.selectedMarketplacePost = null;
+    this.selectedMarketplaceProposition = null;
+    this.selectedMarketplaceTransactions = { postSide: null, propositionSide: null };
+    this.loadingMarketplacePost = true;
+
+    // Open the modal immediately so the admin sees a loading state.
+    this.modalRef = this.modalService.show(this.templatePostDetail, { class: 'modal-lg' });
+
+    this.data.getPostById(transaction.postId).then(post => {
+      this.loadingMarketplacePost = false;
+      if (!post) {
+        this.toastr.warning('The linked post no longer exists.', 'Post not found', {
+          progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true
+        });
+        return;
+      }
+      this.selectedMarketplacePost = post;
+
+      const propositions: any[] = Array.isArray(post.propositions) ? post.propositions : [];
+      // Match the proposition that spawned this transaction. Older records
+      // may have been written without `propositionId` — fall back to matching
+      // by the accepted proposition's transaction ids.
+      this.selectedMarketplaceProposition = propositions.find(p =>
+        (transaction.propositionId && p.docId === transaction.propositionId) ||
+        (p.idPostTransaction && p.idPostTransaction === transaction.id) ||
+        (p.idPropositionTransaction && p.idPropositionTransaction === transaction.id)
+      ) || null;
+
+      // Locate both sides of the pair in the already-loaded transaction list
+      // so the admin can see the postOwner's and the proposition owner's
+      // transactions side by side without another round-trip.
+      const all = this.allTransactionsList || [];
+      const prop = this.selectedMarketplaceProposition;
+      const postTxnId = prop?.idPostTransaction || (transaction.isPostWoner ? transaction.id : '');
+      const propTxnId = prop?.idPropositionTransaction || (!transaction.isPostWoner ? transaction.id : '');
+
+      this.selectedMarketplaceTransactions = {
+        postSide: all.find(t => t.id === postTxnId) || null,
+        propositionSide: all.find(t => t.id === propTxnId) || null,
+      };
+    }).catch(err => {
+      this.loadingMarketplacePost = false;
+      console.log('Failed to load linked post:', err);
+      this.toastr.error('Could not load linked post.', 'Error', {
+        progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true
+      });
+    });
+  }
+
   getIssueReports() {
     this.issuesSubscription = this.data.getAllIssueReportEmails().subscribe(res => {
       const list: IssueReport[] = res.map((e: any) => {
@@ -1698,37 +2037,75 @@ export class ManageTransactionsComponent implements OnInit {
     this.notificationSending = true;
     const targetEmails = this.notificationTargetType === 'all' ? ['all'] : [...this.selectedTargetEmails];
 
-    // Send to each selected email (or 'all' once)
+    // Send to each selected email (or 'all' once). Use allSettled so a single
+    // recipient without an FCM token (common for iOS users who haven't
+    // provisioned APNS yet) doesn't abort the whole batch.
     const requests = targetEmails.map(email => {
       const payload = {
         title: this.notificationForm.title.trim(),
         body: this.notificationForm.body.trim(),
         targetEmail: email
       };
-      return this.http.post('https://us-central1-dashboard-33d8e.cloudfunctions.net/sendNotification', payload).toPromise();
+      return this.http.post('https://us-central1-dashboard-33d8e.cloudfunctions.net/sendNotification', payload)
+        .toPromise()
+        .then(res => ({ email, res }));
     });
 
-    Promise.all(requests).then((results: any[]) => {
+    Promise.allSettled(requests).then(outcomes => {
       this.notificationSending = false;
-      const totalSuccess = results.reduce((sum, r) => sum + (r?.successCount || 0), 0);
-      const totalFail = results.reduce((sum, r) => sum + (r?.failureCount || 0), 0);
+
+      let totalSuccess = 0;
+      let totalFail = 0;
+      const noTokenEmails: string[] = [];
+      const errorMessages: string[] = [];
+
+      outcomes.forEach((outcome, idx) => {
+        if (outcome.status === 'fulfilled') {
+          const r: any = outcome.value.res;
+          totalSuccess += r?.successCount || 0;
+          totalFail += r?.failureCount || 0;
+        } else {
+          const email = targetEmails[idx];
+          const reason: any = outcome.reason;
+          const errMsg: string = reason?.error?.error || reason?.message || 'Unknown error';
+          if (/no FCM token/i.test(errMsg)) {
+            noTokenEmails.push(email);
+          } else {
+            errorMessages.push(`${email}: ${errMsg}`);
+          }
+          totalFail += 1;
+        }
+      });
+
       this.notificationForm = { title: '', body: '', targetEmail: '' };
       this.selectedTargetEmails = [];
       this.emailTypeaheadInput = '';
       this.notificationTargetType = 'all';
-      this.toastr.success(
-        `Notification sent! ${totalSuccess} delivered, ${totalFail} failed.`,
-        'Early Transfer',
-        { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 5000 }
-      );
-    }).catch(err => {
-      this.notificationSending = false;
-      const errMsg = err?.error?.error || 'Failed to send notification. Make sure the Cloud Function is deployed.';
-      this.toastr.error(errMsg, 'Error', {
-        progressBar: true, toastClass: 'toast-custom',
-        positionClass: 'toast-bottom-left', closeButton: true
-      });
-      console.log('Send notification error:', err);
+
+      const toastOpts = { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 6000 };
+
+      if (totalSuccess > 0) {
+        let msg = `${totalSuccess} delivered, ${totalFail} failed.`;
+        if (noTokenEmails.length) {
+          msg += ` ${noTokenEmails.length} user(s) not reachable (no device token yet).`;
+        }
+        this.toastr.success(msg, 'Notification sent', toastOpts);
+      } else if (noTokenEmails.length && errorMessages.length === 0) {
+        this.toastr.warning(
+          `Recipient(s) not reachable: ${noTokenEmails.join(', ')}. They need to open the mobile app and allow notifications.`,
+          'No device token',
+          toastOpts
+        );
+      } else {
+        const msg = errorMessages.length
+          ? errorMessages.join(' | ')
+          : 'Failed to send notification. Make sure the Cloud Function is deployed.';
+        this.toastr.error(msg, 'Error', toastOpts);
+      }
+
+      if (errorMessages.length || noTokenEmails.length) {
+        console.log('Send notification issues:', { errorMessages, noTokenEmails });
+      }
     });
   }
 
@@ -1743,6 +2120,115 @@ export class ManageTransactionsComponent implements OnInit {
 
   removeTargetEmail(email: string) {
     this.selectedTargetEmails = this.selectedTargetEmails.filter(e => e !== email);
+  }
+
+  // ── DEPOSIT ISSUES MANAGEMENT (Interac / Mobile Money) ──
+
+  onDepositIssuesGridReady(params) {
+    this.depositIssuesGridParams = params;
+    this.getDepositIssueReports();
+  }
+
+  onDepositIssueRowClicked(event) {
+    this.selectedDepositIssue = event.data as DepositIssueReport;
+  }
+
+  onDepositIssueRowDoubleClicked(event) {
+    this.selectedDepositIssue = event.data as DepositIssueReport;
+    this.openDepositIssueBodyModal(this.templateDepositIssueBody);
+  }
+
+  openDepositIssueBodyModal(template: TemplateRef<any>) {
+    if (!this.selectedDepositIssue) return;
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
+  }
+
+  getDepositIssueReports() {
+    this.depositIssuesSubscription = this.data.getAllDepositIssueReports().subscribe(res => {
+      const list: DepositIssueReport[] = res.map((e: any) => {
+        const d = e.payload.doc.data();
+        d.id = e.payload.doc.id;
+        return d as DepositIssueReport;
+      });
+      this.depositIssuesRowData = list;
+      this.newDepositIssuesCount = list.filter(e => e.status === 'new').length;
+      this.applyDepositIssuesGrid();
+    }, err => {
+      console.log('Error fetching deposit issue reports', err);
+    });
+  }
+
+  private applyDepositIssuesGrid() {
+    if (!this.depositIssuesGridParams) return;
+    const rows = this.depositTypeFilter === 'all'
+      ? this.depositIssuesRowData
+      : this.depositIssuesRowData.filter(r => r.depositType === this.depositTypeFilter);
+    this.depositIssuesGridParams.api.setRowData(rows);
+  }
+
+  setDepositTypeFilter(value: 'all' | 'interac' | 'mobile_money') {
+    this.depositTypeFilter = value;
+    this.applyDepositIssuesGrid();
+  }
+
+  markDepositIssueResolved() {
+    if (!this.selectedDepositIssue) return;
+    this.spinner.show();
+    this.data.updateDepositIssueReportStatus(this.selectedDepositIssue.id, 'resolved').then(() => {
+      this.spinner.hide();
+      this.selectedDepositIssue = null;
+      this.toastr.success('Issue marked as resolved', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update issue status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark deposit issue resolved error:', err);
+    });
+  }
+
+  markDepositIssueIgnored() {
+    if (!this.selectedDepositIssue) return;
+    this.spinner.show();
+    this.data.updateDepositIssueReportStatus(this.selectedDepositIssue.id, 'ignored').then(() => {
+      this.spinner.hide();
+      this.selectedDepositIssue = null;
+      this.toastr.success('Issue marked as ignored', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update issue status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark deposit issue ignored error:', err);
+    });
+  }
+
+  markDepositIssueNew() {
+    if (!this.selectedDepositIssue) return;
+    this.spinner.show();
+    this.data.updateDepositIssueReportStatus(this.selectedDepositIssue.id, 'new').then(() => {
+      this.spinner.hide();
+      this.selectedDepositIssue = null;
+      this.toastr.success('Issue set back to new', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update issue status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark deposit issue new error:', err);
+    });
   }
 
 }

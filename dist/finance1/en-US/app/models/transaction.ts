@@ -14,7 +14,12 @@ export interface Transaction {
     status : string,
     isPostWoner : boolean,
     isMarketPlace : boolean,
-    expires_at : string
+    expires_at : string,
+    // Marketplace back-references (present only when isMarketPlace is true and
+    // the transaction was spawned from a Post + Proposition acceptance).
+    postId? : string,
+    propositionId? : string,
+    counterpartyEmail? : string
 }
 
 export interface allTransaction {
@@ -33,5 +38,8 @@ export interface allTransaction {
     status : string,
     isPostWoner : boolean,
     isMarketPlace : boolean,
-    expires_at : string
+    expires_at : string,
+    postId? : string,
+    propositionId? : string,
+    counterpartyEmail? : string
 }

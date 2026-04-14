@@ -9,6 +9,7 @@ import { DepositIssueReport } from '../models/deposit-issue-report';
 import { Beneficiary } from '../models/beneficiary';
 import { allTransaction, Transaction } from '../models/transaction';
 import { User } from '../models/user';
+import { Post } from '../models/post';
 
 
 @Injectable({
@@ -240,6 +241,29 @@ export class DataService {
           snapshot.docs[0].ref.update({ kycStatus: status });
         }
       });
+  }
+
+  // look up the FCM token for a user by email. Returns null when missing.
+  getUserFcmToken(userEmail: string): Promise<string | null> {
+    return this.afs.collection('/users', ref => ref.where('email', '==', userEmail).limit(1))
+      .get().toPromise().then(snapshot => {
+        if (snapshot.empty) return null;
+        const data: any = snapshot.docs[0].data();
+        return data && data.fcmToken ? data.fcmToken : null;
+      });
+  }
+
+  // ── Marketplace Posts ───────────────────────────────────────────────────
+
+  // Fetch a single Post by document id. Returns null when not found.
+  // Used by the admin transactions grid to show the Post + Proposition that
+  // spawned a marketplace transaction pair.
+  getPostById(postId: string): Promise<Post | null> {
+    return this.afs.collection('/posts').doc(postId).get().toPromise().then(snap => {
+      if (!snap.exists) return null;
+      const data: any = snap.data();
+      return { ...data, docId: snap.id } as Post;
+    });
   }
 
 }

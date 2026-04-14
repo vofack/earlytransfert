@@ -1,0 +1,10 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.linkservicesarl.early",
+      "sha256_cert_fingerprints": [
+        "A6:5F:D4:54:10:8B:71:82:A2:67:60:9E:D1:DB:08:7E:D5:A6:3F:18:40:97:97:60:68:97:B0:8D:6B:F5:D9:28"
+      ]
+    }
+  }]

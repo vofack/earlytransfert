@@ -12,6 +12,7 @@ import { InteracEmail } from 'src/app/models/interac-email';
 import { IssueReport } from 'src/app/models/issue-report';
 import { DepositIssueReport } from 'src/app/models/deposit-issue-report';
 import { KycVerification } from 'src/app/models/kyc-verification';
+import { ForeignBillPaymentRequest } from 'src/app/models/foreign-bill-payment-request';
 import { DataService } from 'src/app/services/data.service';
 import { CustomizedCellComponentComponent } from '../customized-cell-component/customized-cell-component.component';
 import { DeleteRendererComponent } from '../delete-renderer/delete-renderer.component';
@@ -75,7 +76,7 @@ export class ManageTransactionsComponent implements OnInit {
   amount = '';
 
   // ── KYC TAB ──
-  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'deposit_issues' | 'notifications' = 'transactions';
+  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'deposit_issues' | 'notifications' | 'foreign_bills' = 'transactions';
   kycColumnDefs: any;
   kycColumnDefsXs: any;
   kycRowData: KycVerification[] = [];
@@ -147,6 +148,22 @@ export class ManageTransactionsComponent implements OnInit {
   selectedTargetEmails: string[] = [];
   emailTypeaheadInput = '';
   private usersSubscription: Subscription;
+
+  // ── FOREIGN BILL PAYMENT REQUESTS TAB ──
+  // Requests from users abroad asking a Canada-based agent to pay a local bill.
+  foreignBillsColumnDefs: any;
+  foreignBillsRowData: ForeignBillPaymentRequest[] = [];
+  foreignBillsGridParams: any;
+  selectedForeignBill: ForeignBillPaymentRequest = null;
+  pendingForeignBillsCount = 0;
+  foreignBillRejectionReason = '';
+  foreignBillPaidForm = { reference: '', proofUrl: '', note: '' };
+  foreignBillUserMessageDraft = '';
+  foreignBillUserMessageSaving = false;
+  private foreignBillsSubscription: Subscription;
+  @ViewChild('templateForeignBillDetail', { read: TemplateRef }) templateForeignBillDetail: TemplateRef<any>;
+  @ViewChild('templateForeignBillReject', { read: TemplateRef }) templateForeignBillReject: TemplateRef<any>;
+  @ViewChild('templateForeignBillPaid', { read: TemplateRef }) templateForeignBillPaid: TemplateRef<any>;
 
   // ── FILTERS ──
   emailFilter = '';
@@ -841,6 +858,106 @@ export class ManageTransactionsComponent implements OnInit {
                   }
                 ];
 
+                // ── FOREIGN BILL PAYMENT REQUESTS COLUMN DEFS ──
+                const foreignBillCellClassRules = {
+                  "cell-pending": params => params.value === 'pending',
+                  "cell-verified": params => params.value === 'paid' || params.value === 'reimbursed',
+                  "cell-rejected": params => params.value === 'rejected',
+                };
+
+                this.foreignBillsColumnDefs = [
+                  {
+                    headerName: "User Email",
+                    field: "userEmail",
+                    width: 220,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Bill Type",
+                    field: "billType",
+                    width: 130,
+                    valueFormatter: params => {
+                      switch ((params.value || '').toString()) {
+                        case 'tuition': return 'Tuition';
+                        case 'subscription': return 'Subscription';
+                        case 'service': return 'Service';
+                        case 'other': return 'Other';
+                        default: return params.value;
+                      }
+                    }
+                  },
+                  {
+                    headerName: "Provider",
+                    field: "providerName",
+                    width: 200,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Reference",
+                    field: "accountReference",
+                    width: 160
+                  },
+                  {
+                    headerName: "Amount",
+                    field: "amount",
+                    width: 120,
+                    valueFormatter: params => params.value != null ? `${Number(params.value).toFixed(2)} CAD` : ''
+                  },
+                  {
+                    headerName: "Commission",
+                    field: "commission",
+                    width: 130,
+                    valueFormatter: params => params.value != null ? `${Number(params.value).toFixed(2)} CAD` : ''
+                  },
+                  {
+                    headerName: "Total",
+                    field: "estimatedTotal",
+                    width: 120,
+                    valueFormatter: params => params.value != null ? `${Number(params.value).toFixed(2)} CAD` : ''
+                  },
+                  {
+                    headerName: "Reimburse via",
+                    field: "reimbursementMethod",
+                    width: 140,
+                    valueFormatter: params => {
+                      switch ((params.value || '').toString()) {
+                        case 'mobile_money': return 'Mobile Money';
+                        case 'interac': return 'Interac';
+                        case 'cash': return 'Cash';
+                        default: return params.value;
+                      }
+                    }
+                  },
+                  {
+                    headerName: "Due",
+                    field: "dueDate",
+                    width: 120
+                  },
+                  {
+                    headerName: "Status",
+                    field: "status",
+                    cellClassRules: foreignBillCellClassRules,
+                    width: 130
+                  },
+                  {
+                    headerName: "Created",
+                    field: "createdAt",
+                    width: 170,
+                    sort: 'desc',
+                    valueFormatter: (params) => {
+                      const v = params.value;
+                      if (!v) return '';
+                      // Firestore Timestamp or ISO string
+                      const d = v && typeof v.toDate === 'function' ? v.toDate() : new Date(v);
+                      if (isNaN(d.getTime())) return '';
+                      return d.toLocaleDateString('fr-FR', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                      });
+                    }
+                  }
+                ];
+
                 // ── NOTIFICATIONS COLUMN DEFS ──
                 this.notificationColumnDefs = [
                   {
@@ -939,6 +1056,9 @@ export class ManageTransactionsComponent implements OnInit {
     }
     if(this.usersSubscription) {
       this.usersSubscription.unsubscribe();
+    }
+    if(this.foreignBillsSubscription) {
+      this.foreignBillsSubscription.unsubscribe();
     }
   }
 
@@ -1265,7 +1385,7 @@ export class ManageTransactionsComponent implements OnInit {
 
   // ── KYC MANAGEMENT ──
 
-  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'deposit_issues' | 'notifications') {
+  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'deposit_issues' | 'notifications' | 'foreign_bills') {
     this.activeTab = tab;
     this.selectedKyc = null;
     this.selectedMessage = null;
@@ -1273,6 +1393,7 @@ export class ManageTransactionsComponent implements OnInit {
     this.selectedInteracEmail = null;
     this.selectedIssue = null;
     this.selectedDepositIssue = null;
+    this.selectedForeignBill = null;
     this.emailFilter = '';
     this.clearEmailFilter();
     this.clearDateFilter();
@@ -1299,7 +1420,7 @@ export class ManageTransactionsComponent implements OnInit {
 
   private clearEmailFilter() {
     // Clear filter on all grids
-    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.depositIssuesGridParams?.api, this.notificationGridParams?.api]
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.depositIssuesGridParams?.api, this.notificationGridParams?.api, this.foreignBillsGridParams?.api]
       .filter(api => !!api)
       .forEach(api => {
         const fields = ['userEmail', 'targetUserEmail', 'usersEmail', 'from', 'targetEmail'];
@@ -1323,6 +1444,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'issues': return this.issuesGridParams?.api;
       case 'deposit_issues': return this.depositIssuesGridParams?.api;
       case 'notifications': return this.notificationGridParams?.api;
+      case 'foreign_bills': return this.foreignBillsGridParams?.api;
     }
   }
 
@@ -1336,6 +1458,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'issues': return 'from';
       case 'deposit_issues': return 'userEmail';
       case 'notifications': return 'targetEmail';
+      case 'foreign_bills': return 'userEmail';
     }
   }
 
@@ -1349,6 +1472,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'issues': return 'date';
       case 'deposit_issues': return 'date';
       case 'notifications': return 'sentAt';
+      case 'foreign_bills': return 'createdAt';
     }
   }
 
@@ -1384,7 +1508,7 @@ export class ManageTransactionsComponent implements OnInit {
 
   filterByDate() {
     // Notify all initialized grids that external filter changed
-    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.depositIssuesGridParams?.api, this.notificationGridParams?.api]
+    [this.gridApi, this.kycGridParams?.api, this.messagesGridParams?.api, this.walletGridParams?.api, this.interacGridParams?.api, this.issuesGridParams?.api, this.depositIssuesGridParams?.api, this.notificationGridParams?.api, this.foreignBillsGridParams?.api]
       .filter(api => !!api)
       .forEach(api => api.onFilterChanged());
   }
@@ -2229,6 +2353,204 @@ export class ManageTransactionsComponent implements OnInit {
       });
       console.log('Mark deposit issue new error:', err);
     });
+  }
+
+  // ── FOREIGN BILL PAYMENT REQUESTS MANAGEMENT ─────────────────────────────
+
+  onForeignBillsGridReady(params) {
+    this.foreignBillsGridParams = params;
+    this.getForeignBillPaymentRequests();
+  }
+
+  onForeignBillRowClicked(event) {
+    this.selectedForeignBill = event.data as ForeignBillPaymentRequest;
+  }
+
+  onForeignBillRowDoubleClicked(event) {
+    this.selectedForeignBill = event.data as ForeignBillPaymentRequest;
+    this.openForeignBillDetailModal(this.templateForeignBillDetail);
+  }
+
+  getForeignBillPaymentRequests() {
+    this.foreignBillsSubscription = this.data.getAllForeignBillPaymentRequests().subscribe(res => {
+      const list: ForeignBillPaymentRequest[] = res.map((e: any) => {
+        const d = e.payload.doc.data();
+        d.id = e.payload.doc.id;
+        return d as ForeignBillPaymentRequest;
+      });
+      // Order: pending first, then in_progress, then paid, reimbursed, rejected.
+      const statusRank: { [key: string]: number } = {
+        pending: 0, in_progress: 1, paid: 2, reimbursed: 3, rejected: 4,
+      };
+      list.sort((a, b) => (statusRank[a.status] ?? 99) - (statusRank[b.status] ?? 99));
+      this.foreignBillsRowData = list;
+      this.pendingForeignBillsCount = list.filter(r => r.status === 'pending').length;
+      if (this.foreignBillsGridParams) {
+        this.foreignBillsGridParams.api.setRowData(list);
+      }
+    }, err => {
+      console.log('Error fetching foreign bill payment requests', err);
+    });
+  }
+
+  openForeignBillDetailModal(template: TemplateRef<any>) {
+    if (!this.selectedForeignBill) return;
+    this.foreignBillUserMessageDraft = this.selectedForeignBill.userMessage || '';
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
+  }
+
+  saveForeignBillUserMessage() {
+    if (!this.selectedForeignBill) return;
+    const message = (this.foreignBillUserMessageDraft || '').trim();
+    this.foreignBillUserMessageSaving = true;
+    this.spinner.show();
+    this.data.setForeignBillUserMessage(this.selectedForeignBill.id, message).then(() => {
+      this.spinner.hide();
+      this.foreignBillUserMessageSaving = false;
+      this.selectedForeignBill.userMessage = message;
+      this.toastr.success(
+        message ? 'Message sent to user' : 'Message cleared',
+        'Early Transfer',
+        { progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000 }
+      );
+    }).catch(err => {
+      this.spinner.hide();
+      this.foreignBillUserMessageSaving = false;
+      this.toastr.error('Failed to send message to user', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Save foreign bill user message error:', err);
+    });
+  }
+
+  clearForeignBillUserMessageDraft() {
+    this.foreignBillUserMessageDraft = '';
+  }
+
+  pickUpForeignBill() {
+    if (!this.selectedForeignBill) return;
+    this.spinner.show();
+    this.data.markForeignBillPaymentInProgress(this.selectedForeignBill.id).then(() => {
+      this.spinner.hide();
+      this.toastr.success('Request picked up', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+      if (this.modalRef) this.modalRef.hide();
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Could not pick up the request', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Pickup foreign bill error:', err);
+    });
+  }
+
+  openMarkPaidModal(template: TemplateRef<any>) {
+    if (!this.selectedForeignBill) return;
+    this.foreignBillPaidForm = { reference: '', proofUrl: '', note: '' };
+    if (this.modalRef) this.modalRef.hide();
+    this.modalRef = this.modalService.show(template);
+  }
+
+  confirmMarkPaid() {
+    if (!this.selectedForeignBill) return;
+    this.spinner.show();
+    this.data.markForeignBillPaymentPaid(this.selectedForeignBill.id, {
+      reference: this.foreignBillPaidForm.reference.trim(),
+      proofUrl: this.foreignBillPaidForm.proofUrl.trim(),
+      note: this.foreignBillPaidForm.note.trim(),
+    }).then(() => {
+      this.spinner.hide();
+      this.modalRef.hide();
+      this.toastr.success('Bill marked as paid', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to mark as paid', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark foreign bill paid error:', err);
+    });
+  }
+
+  markForeignBillReimbursed() {
+    if (!this.selectedForeignBill) return;
+    this.spinner.show();
+    this.data.markForeignBillPaymentReimbursed(this.selectedForeignBill.id).then(() => {
+      this.spinner.hide();
+      this.toastr.success('Request closed as reimbursed', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+      if (this.modalRef) this.modalRef.hide();
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to update status', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Mark foreign bill reimbursed error:', err);
+    });
+  }
+
+  openRejectForeignBillModal(template: TemplateRef<any>) {
+    if (!this.selectedForeignBill) return;
+    this.foreignBillRejectionReason = '';
+    if (this.modalRef) this.modalRef.hide();
+    this.modalRef = this.modalService.show(template);
+  }
+
+  confirmRejectForeignBill() {
+    if (!this.selectedForeignBill) return;
+    if (!this.foreignBillRejectionReason.trim()) {
+      this.toastr.error('Please provide a rejection reason', 'Validation', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      return;
+    }
+    this.spinner.show();
+    this.data.rejectForeignBillPayment(this.selectedForeignBill.id, this.foreignBillRejectionReason.trim()).then(() => {
+      this.spinner.hide();
+      this.modalRef.hide();
+      this.toastr.success('Request rejected', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+      });
+    }).catch(err => {
+      this.spinner.hide();
+      this.toastr.error('Failed to reject request', 'Error', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      console.log('Reject foreign bill error:', err);
+    });
+  }
+
+  formatForeignBillType(value: string): string {
+    switch (value) {
+      case 'tuition': return 'Tuition fees';
+      case 'subscription': return 'Subscription';
+      case 'service': return 'Service fees';
+      case 'other': return 'Other';
+      default: return value || '-';
+    }
+  }
+
+  formatReimbursementMethod(value: string): string {
+    switch (value) {
+      case 'mobile_money': return 'Mobile Money';
+      case 'interac': return 'Interac (Canada)';
+      case 'cash': return 'Cash / In person';
+      default: return value || '-';
+    }
   }
 
 }

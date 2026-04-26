@@ -253,6 +253,60 @@ export class DataService {
       });
   }
 
+  // ── Foreign Client Bill Payment Requests ───────────────────────────────
+  // Requests from users (typically in Africa) asking an agent in Canada to
+  // pay a bill on their behalf. User reimburses the amount plus a commission.
+
+  getAllForeignBillPaymentRequests() {
+    return this.afs.collection('/foreignBillPaymentRequests').snapshotChanges();
+  }
+
+  markForeignBillPaymentInProgress(id: string) {
+    return this.afs.collection('/foreignBillPaymentRequests').doc(id).update({
+      status: 'in_progress',
+      pickedUpAt: new Date().toISOString(),
+    });
+  }
+
+  markForeignBillPaymentPaid(id: string, receipt?: { proofUrl?: string; reference?: string; note?: string }) {
+    const update: any = {
+      status: 'paid',
+      paidAt: new Date().toISOString(),
+    };
+    if (receipt) {
+      if (receipt.proofUrl !== undefined) update.proofUrl = receipt.proofUrl;
+      if (receipt.reference !== undefined) update.paymentReference = receipt.reference;
+      if (receipt.note !== undefined) update.adminNote = receipt.note;
+    }
+    return this.afs.collection('/foreignBillPaymentRequests').doc(id).update(update);
+  }
+
+  markForeignBillPaymentReimbursed(id: string) {
+    return this.afs.collection('/foreignBillPaymentRequests').doc(id).update({
+      status: 'reimbursed',
+      reimbursedAt: new Date().toISOString(),
+    });
+  }
+
+  rejectForeignBillPayment(id: string, reason: string) {
+    return this.afs.collection('/foreignBillPaymentRequests').doc(id).update({
+      status: 'rejected',
+      rejectionReason: reason,
+      rejectedAt: new Date().toISOString(),
+    });
+  }
+
+  setForeignBillUserMessage(id: string, messageEn: string, messageFr: string) {
+    return this.afs.collection('/foreignBillPaymentRequests').doc(id).update({
+      userMessageEn: messageEn,
+      userMessageFr: messageFr,
+      userMessageUpdatedAt: new Date().toISOString(),
+      // Clear the deprecated single-language field so the user app no longer
+      // falls back to stale content once the admin saves a bilingual message.
+      userMessage: '',
+    });
+  }
+
   // ── Marketplace Posts ───────────────────────────────────────────────────
 
   // Fetch a single Post by document id. Returns null when not found.

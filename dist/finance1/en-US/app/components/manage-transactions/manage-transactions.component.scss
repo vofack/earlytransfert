@@ -145,3 +145,198 @@
     color: #999;
     font-style: italic;
   }
+
+  // ── FOREIGN BILL PAYMENT REQUESTS TAB ──
+  .foreign-bill-intro {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(83, 48, 209, 0.08), rgba(122, 90, 248, 0.08));
+    border: 1px solid rgba(83, 48, 209, 0.15);
+
+    &__icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #5330D1, #7A5AF8);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    &__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1F2937;
+    }
+
+    &__subtitle {
+      font-size: 12.5px;
+      color: #6B7280;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+  }
+
+  .foreign-bill-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+
+    &--pending { background: #FEF3C7; color: #92400E; }
+    &--in_progress { background: #DBEAFE; color: #1E40AF; }
+    &--paid { background: #D1FAE5; color: #065F46; }
+    &--reimbursed { background: #E0E7FF; color: #3730A3; }
+    &--rejected { background: #FEE2E2; color: #991B1B; }
+  }
+
+  .foreign-bill-modal {
+    &__header {
+      background: linear-gradient(135deg, #5330D1, #7A5AF8) !important;
+      border-bottom: none;
+    }
+
+    &__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+  }
+
+  .foreign-bill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+
+    &__item {
+      padding: 10px 12px;
+      background: #F9FAFB;
+      border-radius: 10px;
+      border: 1px solid #E5E7EB;
+    }
+
+    &__label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6B7280;
+      margin-bottom: 4px;
+    }
+
+    &__value {
+      font-size: 13px;
+      color: #1F2937;
+      font-weight: 500;
+      word-break: break-word;
+
+      a {
+        color: #5330D1;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .foreign-bill-amounts {
+    background: linear-gradient(135deg, #5330D1, #7A5AF8);
+    color: #fff;
+    padding: 16px 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 6px;
+
+      strong {
+        color: #fff;
+        font-weight: 600;
+      }
+    }
+
+    &__total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      margin-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 14px;
+      font-weight: 600;
+
+      strong {
+        font-size: 18px;
+        font-weight: 800;
+      }
+    }
+  }
+
+  .foreign-bill-notes {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    margin-bottom: 12px;
+
+    &__body {
+      font-size: 13px;
+      color: #374151;
+      margin-top: 4px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    &--admin {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+      font-size: 13px;
+      color: #1E3A8A;
+
+      a {
+        color: #1D4ED8;
+        word-break: break-all;
+      }
+    }
+
+    &--rejected {
+      background: #FEF2F2;
+      border-color: #FECACA;
+      color: #991B1B;
+    }
+  }
+
+  .foreign-bill-user-message {
+    background: #FFFBEB;
+    border-color: #FDE68A;
+
+    textarea {
+      margin-top: 6px;
+      resize: vertical;
+    }
+  }

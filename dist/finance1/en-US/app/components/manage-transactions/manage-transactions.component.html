@@ -62,6 +62,10 @@
     <button class="tab-btn" [class.active]="activeTab === 'notifications'" (click)="switchTab('notifications')">
       Notifications
     </button>
+    <button class="tab-btn" [class.active]="activeTab === 'foreign_bills'" (click)="switchTab('foreign_bills')">
+      Foreign Bills
+      <span *ngIf="pendingForeignBillsCount > 0" class="kyc-badge">{{pendingForeignBillsCount}}</span>
+    </button>
   </div>
 
   <!-- ── FILTERS ── -->
@@ -732,6 +736,302 @@
     </ag-grid-angular>
   </div>
 </div>
+
+<!-- ── FOREIGN BILL PAYMENT REQUESTS TAB ── -->
+<div *ngIf="activeTab === 'foreign_bills'">
+
+  <div class="container-fluid" style="padding: 15px 0;">
+    <div class="foreign-bill-intro">
+      <div class="foreign-bill-intro__icon">
+        <i class="fa fa-file-invoice"></i>
+      </div>
+      <div class="foreign-bill-intro__body">
+        <div class="foreign-bill-intro__title">Foreign client bill payments</div>
+        <div class="foreign-bill-intro__subtitle">
+          Users abroad ask an agent in Canada to pay a bill (tuition, subscription, service).
+          The agent pays, the user reimburses the amount + commission.
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION TOOLBAR -->
+    <div class="d-flex justify-content-center flex-wrap" style="gap: 10px; margin-top: 16px;">
+      <button class="btn btn-primary" (click)="openForeignBillDetailModal(templateForeignBillDetail)"
+              [disabled]="!selectedForeignBill">
+        <i class="fa fa-eye" style="margin-right:5px;"></i> View details
+      </button>
+      <button class="btn btn-info" (click)="pickUpForeignBill()"
+              [disabled]="!selectedForeignBill || selectedForeignBill?.status !== 'pending'">
+        <i class="fa fa-hand-paper" style="margin-right:5px;"></i> Pick up
+      </button>
+      <button class="btn btn-success" (click)="openMarkPaidModal(templateForeignBillPaid)"
+              [disabled]="!selectedForeignBill || (selectedForeignBill?.status !== 'pending' && selectedForeignBill?.status !== 'in_progress')">
+        <i class="fa fa-check-circle" style="margin-right:5px;"></i> Mark as paid
+      </button>
+      <button class="btn btn-warning" (click)="markForeignBillReimbursed()"
+              [disabled]="!selectedForeignBill || selectedForeignBill?.status !== 'paid'">
+        <i class="fa fa-coins" style="margin-right:5px;"></i> Mark reimbursed
+      </button>
+      <button class="btn btn-danger" (click)="openRejectForeignBillModal(templateForeignBillReject)"
+              [disabled]="!selectedForeignBill || selectedForeignBill?.status === 'rejected' || selectedForeignBill?.status === 'reimbursed'">
+        <i class="fa fa-ban" style="margin-right:5px;"></i> Reject
+      </button>
+    </div>
+    <p class="text-center text-muted" style="margin-top: 8px; font-size: 13px;">
+      <span *ngIf="!selectedForeignBill">Click a row to select a bill payment request</span>
+      <span *ngIf="selectedForeignBill">
+        Selected: <strong>{{selectedForeignBill.userEmail}}</strong> —
+        {{formatForeignBillType(selectedForeignBill.billType)}} ·
+        {{selectedForeignBill.amount | number:'1.2-2'}} CAD
+        ({{selectedForeignBill.status | uppercase}})
+      </span>
+    </p>
+  </div>
+
+  <div class="container-fluid justify-content-center">
+    <ag-grid-angular
+      [enableCellTextSelection]="true"
+      [ensureDomOrder]="true"
+      style="width: 100%; height: 700px; padding-top: 10px;"
+      class="ag-theme-balham custom-class"
+      [columnDefs]="foreignBillsColumnDefs"
+      [animateRows]="true"
+      [pagination]="true"
+      [rowSelection]="'single'"
+      [isExternalFilterPresent]="isExternalFilterPresent"
+      [doesExternalFilterPass]="doesExternalFilterPass"
+      (rowClicked)="onForeignBillRowClicked($event)"
+      (rowDoubleClicked)="onForeignBillRowDoubleClicked($event)"
+      (gridReady)="onForeignBillsGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
+<!-- ── FOREIGN BILL DETAIL MODAL ── -->
+<ng-template #templateForeignBillDetail>
+  <div class="modal-header foreign-bill-modal__header">
+    <div class="d-flex align-items-center" style="gap: 10px;">
+      <div class="foreign-bill-modal__icon">
+        <i class="fa fa-file-invoice"></i>
+      </div>
+      <div>
+        <h4 class="modal-title" style="margin: 0; font-size: 16px; color: white;">
+          Foreign bill payment request
+        </h4>
+        <small style="color: rgba(255,255,255,0.8);" *ngIf="selectedForeignBill">
+          {{selectedForeignBill.userEmail}}
+        </small>
+      </div>
+    </div>
+    <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()" style="color: white; opacity: 0.9;">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="selectedForeignBill">
+    <span class="foreign-bill-status" [ngClass]="'foreign-bill-status--' + selectedForeignBill.status">
+      {{selectedForeignBill.status | uppercase}}
+    </span>
+
+    <div class="foreign-bill-grid">
+      <div class="foreign-bill-grid__item">
+        <div class="foreign-bill-grid__label">Bill type</div>
+        <div class="foreign-bill-grid__value">{{formatForeignBillType(selectedForeignBill.billType)}}</div>
+      </div>
+      <div class="foreign-bill-grid__item">
+        <div class="foreign-bill-grid__label">Provider</div>
+        <div class="foreign-bill-grid__value">{{selectedForeignBill.providerName || '-'}}</div>
+      </div>
+      <div class="foreign-bill-grid__item">
+        <div class="foreign-bill-grid__label">Reference</div>
+        <div class="foreign-bill-grid__value">{{selectedForeignBill.accountReference || '-'}}</div>
+      </div>
+      <div class="foreign-bill-grid__item">
+        <div class="foreign-bill-grid__label">Website</div>
+        <div class="foreign-bill-grid__value">
+          <a *ngIf="selectedForeignBill.providerWebsite" [href]="selectedForeignBill.providerWebsite" target="_blank">
+            {{selectedForeignBill.providerWebsite}}
+          </a>
+          <span *ngIf="!selectedForeignBill.providerWebsite">-</span>
+        </div>
+      </div>
+      <div class="foreign-bill-grid__item">
+        <div class="foreign-bill-grid__label">Due date</div>
+        <div class="foreign-bill-grid__value">{{selectedForeignBill.dueDate || '-'}}</div>
+      </div>
+      <div class="foreign-bill-grid__item">
+        <div class="foreign-bill-grid__label">Reimbursement</div>
+        <div class="foreign-bill-grid__value">{{formatReimbursementMethod(selectedForeignBill.reimbursementMethod)}}</div>
+      </div>
+      <div class="foreign-bill-grid__item">
+        <div class="foreign-bill-grid__label">Contact phone</div>
+        <div class="foreign-bill-grid__value">{{selectedForeignBill.contactPhone || '-'}}</div>
+      </div>
+      <div class="foreign-bill-grid__item">
+        <div class="foreign-bill-grid__label">Destination</div>
+        <div class="foreign-bill-grid__value">{{selectedForeignBill.destinationCountry || 'Canada'}}</div>
+      </div>
+    </div>
+
+    <div class="foreign-bill-amounts">
+      <div class="foreign-bill-amounts__row">
+        <span>Bill amount</span>
+        <strong>{{selectedForeignBill.amount | number:'1.2-2'}} CAD</strong>
+      </div>
+      <div class="foreign-bill-amounts__row">
+        <span>Commission</span>
+        <strong>+ {{selectedForeignBill.commission | number:'1.2-2'}} CAD</strong>
+      </div>
+      <div class="foreign-bill-amounts__total">
+        <span>Estimated reimbursement</span>
+        <strong>{{selectedForeignBill.estimatedTotal | number:'1.2-2'}} CAD</strong>
+      </div>
+    </div>
+
+    <div *ngIf="selectedForeignBill.notes" class="foreign-bill-notes">
+      <div class="foreign-bill-grid__label">User notes</div>
+      <div class="foreign-bill-notes__body">{{selectedForeignBill.notes}}</div>
+    </div>
+
+    <div *ngIf="selectedForeignBill.paymentReference || selectedForeignBill.proofUrl || selectedForeignBill.adminNote"
+         class="foreign-bill-notes foreign-bill-notes--admin">
+      <div class="foreign-bill-grid__label">Admin receipt</div>
+      <div *ngIf="selectedForeignBill.paymentReference"><strong>Reference:</strong> {{selectedForeignBill.paymentReference}}</div>
+      <div *ngIf="selectedForeignBill.proofUrl">
+        <strong>Proof:</strong>
+        <a [href]="selectedForeignBill.proofUrl" target="_blank">{{selectedForeignBill.proofUrl}}</a>
+      </div>
+      <div *ngIf="selectedForeignBill.adminNote"><strong>Note:</strong> {{selectedForeignBill.adminNote}}</div>
+    </div>
+
+    <div *ngIf="selectedForeignBill.rejectionReason" class="foreign-bill-notes foreign-bill-notes--rejected">
+      <div class="foreign-bill-grid__label">Rejection reason</div>
+      <div class="foreign-bill-notes__body">{{selectedForeignBill.rejectionReason}}</div>
+    </div>
+
+    <div class="foreign-bill-notes foreign-bill-user-message">
+      <div class="foreign-bill-grid__label">Message to user (visible in their app — both languages required)</div>
+
+      <div style="margin-top: 6px;">
+        <label style="font-size: 12px; font-weight: 600; color: #92400E;">English</label>
+        <textarea class="form-control" rows="3"
+                  [(ngModel)]="foreignBillUserMessageEnDraft"
+                  placeholder="E.g. Please send a clearer photo of the invoice, or confirm the account number..."></textarea>
+      </div>
+
+      <div style="margin-top: 10px;">
+        <label style="font-size: 12px; font-weight: 600; color: #92400E;">Français</label>
+        <textarea class="form-control" rows="3"
+                  [(ngModel)]="foreignBillUserMessageFrDraft"
+                  placeholder="Ex. Merci d'envoyer une photo plus nette de la facture, ou de confirmer le numéro de compte..."></textarea>
+      </div>
+
+      <small class="text-muted" *ngIf="selectedForeignBill.userMessageEn || selectedForeignBill.userMessageFr || selectedForeignBill.userMessage">
+        Currently visible to user (shown in their app's language).
+      </small>
+      <small class="text-muted" *ngIf="!selectedForeignBill.userMessageEn && !selectedForeignBill.userMessageFr && !selectedForeignBill.userMessage">
+        No message currently visible to user.
+      </small>
+      <div style="margin-top: 8px; display: flex; gap: 8px;">
+        <button type="button" class="btn btn-primary btn-sm"
+                (click)="saveForeignBillUserMessage()"
+                [disabled]="foreignBillUserMessageSaving || !hasForeignBillUserMessageChanges()">
+          {{ ((foreignBillUserMessageEnDraft || '').trim() || (foreignBillUserMessageFrDraft || '').trim()) ? 'Send to user' : 'Clear message' }}
+        </button>
+        <button type="button" class="btn btn-default btn-sm"
+                (click)="clearForeignBillUserMessageDraft()"
+                [disabled]="foreignBillUserMessageSaving || (!foreignBillUserMessageEnDraft && !foreignBillUserMessageFrDraft)">
+          Reset draft
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info" (click)="pickUpForeignBill()"
+            [disabled]="!selectedForeignBill || selectedForeignBill?.status !== 'pending'">
+      Pick up
+    </button>
+    <button type="button" class="btn btn-success" (click)="openMarkPaidModal(templateForeignBillPaid)"
+            [disabled]="!selectedForeignBill || (selectedForeignBill?.status !== 'pending' && selectedForeignBill?.status !== 'in_progress')">
+      Mark as paid
+    </button>
+    <button type="button" class="btn btn-warning" (click)="markForeignBillReimbursed()"
+            [disabled]="!selectedForeignBill || selectedForeignBill?.status !== 'paid'">
+      Mark reimbursed
+    </button>
+    <button type="button" class="btn btn-danger" (click)="openRejectForeignBillModal(templateForeignBillReject)"
+            [disabled]="!selectedForeignBill || selectedForeignBill?.status === 'rejected' || selectedForeignBill?.status === 'reimbursed'">
+      Reject
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Close</button>
+  </div>
+</ng-template>
+
+<!-- ── FOREIGN BILL MARK-PAID MODAL ── -->
+<ng-template #templateForeignBillPaid>
+  <div class="modal-header" style="background-color: #5330D1; color: white;">
+    <h4 class="modal-title pull-left" style="font-size: 14px !important; color: white;">
+      Mark bill as paid
+    </h4>
+    <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()" style="color: white;">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Payment reference (optional)</label>
+      <input type="text" class="form-control" [(ngModel)]="foreignBillPaidForm.reference"
+             placeholder="Transaction ID, receipt number...">
+    </div>
+    <div class="form-group" style="margin-top: 12px;">
+      <label>Proof URL (optional)</label>
+      <input type="url" class="form-control" [(ngModel)]="foreignBillPaidForm.proofUrl"
+             placeholder="https://...">
+      <small class="text-muted">A link to the receipt, screenshot, or confirmation.</small>
+    </div>
+    <div class="form-group" style="margin-top: 12px;">
+      <label>Admin note (optional)</label>
+      <textarea class="form-control" rows="3" [(ngModel)]="foreignBillPaidForm.note"
+                placeholder="Anything else to record for this payment..."></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="boxed-btn4-xs h-15 bg-success text-light" (click)="confirmMarkPaid()">
+      Confirm payment
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Cancel</button>
+  </div>
+</ng-template>
+
+<!-- ── FOREIGN BILL REJECT MODAL ── -->
+<ng-template #templateForeignBillReject>
+  <div class="modal-header" style="background-color: #E73B3B; color: white;">
+    <h4 class="modal-title pull-left" style="font-size: 14px !important; color: white;">
+      Reject request
+    </h4>
+    <button type="button" class="close pull-rigth" aria-label="Close" (click)="modalRef.hide()" style="color: white;">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p style="font-size: 13px; color: #6B7280;">
+      The user will see this reason in their app. Be specific so they can resubmit
+      a corrected request if needed.
+    </p>
+    <div class="form-group">
+      <label>Reason *</label>
+      <textarea class="form-control" rows="4" [(ngModel)]="foreignBillRejectionReason"
+                placeholder="e.g. The provider is outside Canada, reference number incorrect..."></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="confirmRejectForeignBill()">
+      Reject request
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="modalRef.hide()">Cancel</button>
+  </div>
+</ng-template>
 
 <!-- ── EDIT WALLET MODAL ── -->
 <ng-template #templateEditWallet>

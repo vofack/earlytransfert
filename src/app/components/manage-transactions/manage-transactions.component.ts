@@ -158,7 +158,8 @@ export class ManageTransactionsComponent implements OnInit {
   pendingForeignBillsCount = 0;
   foreignBillRejectionReason = '';
   foreignBillPaidForm = { reference: '', proofUrl: '', note: '' };
-  foreignBillUserMessageDraft = '';
+  foreignBillUserMessageEnDraft = '';
+  foreignBillUserMessageFrDraft = '';
   foreignBillUserMessageSaving = false;
   private foreignBillsSubscription: Subscription;
   @ViewChild('templateForeignBillDetail', { read: TemplateRef }) templateForeignBillDetail: TemplateRef<any>;
@@ -2395,21 +2396,39 @@ export class ManageTransactionsComponent implements OnInit {
 
   openForeignBillDetailModal(template: TemplateRef<any>) {
     if (!this.selectedForeignBill) return;
-    this.foreignBillUserMessageDraft = this.selectedForeignBill.userMessage || '';
+    // Preload the bilingual fields, falling back to the deprecated single-
+    // language field so legacy records remain editable in either textarea.
+    const legacy = this.selectedForeignBill.userMessage || '';
+    this.foreignBillUserMessageEnDraft =
+      this.selectedForeignBill.userMessageEn || legacy || '';
+    this.foreignBillUserMessageFrDraft =
+      this.selectedForeignBill.userMessageFr || legacy || '';
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
   }
 
   saveForeignBillUserMessage() {
     if (!this.selectedForeignBill) return;
-    const message = (this.foreignBillUserMessageDraft || '').trim();
+    const messageEn = (this.foreignBillUserMessageEnDraft || '').trim();
+    const messageFr = (this.foreignBillUserMessageFrDraft || '').trim();
+    if ((messageEn === '') !== (messageFr === '')) {
+      this.toastr.error(
+        'Please provide the message in both English and French (or clear both)',
+        'Validation',
+        { progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true }
+      );
+      return;
+    }
     this.foreignBillUserMessageSaving = true;
     this.spinner.show();
-    this.data.setForeignBillUserMessage(this.selectedForeignBill.id, message).then(() => {
+    this.data.setForeignBillUserMessage(this.selectedForeignBill.id, messageEn, messageFr).then(() => {
       this.spinner.hide();
       this.foreignBillUserMessageSaving = false;
-      this.selectedForeignBill.userMessage = message;
+      this.selectedForeignBill.userMessageEn = messageEn;
+      this.selectedForeignBill.userMessageFr = messageFr;
+      this.selectedForeignBill.userMessage = '';
       this.toastr.success(
-        message ? 'Message sent to user' : 'Message cleared',
+        messageEn ? 'Message sent to user' : 'Message cleared',
         'Early Transfer',
         { progressBar: true, toastClass: 'toast-custom',
           positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000 }
@@ -2426,7 +2445,17 @@ export class ManageTransactionsComponent implements OnInit {
   }
 
   clearForeignBillUserMessageDraft() {
-    this.foreignBillUserMessageDraft = '';
+    this.foreignBillUserMessageEnDraft = '';
+    this.foreignBillUserMessageFrDraft = '';
+  }
+
+  hasForeignBillUserMessageChanges(): boolean {
+    if (!this.selectedForeignBill) return false;
+    const enNow = (this.foreignBillUserMessageEnDraft || '').trim();
+    const frNow = (this.foreignBillUserMessageFrDraft || '').trim();
+    const enSaved = (this.selectedForeignBill.userMessageEn || '').trim();
+    const frSaved = (this.selectedForeignBill.userMessageFr || '').trim();
+    return enNow !== enSaved || frNow !== frSaved;
   }
 
   pickUpForeignBill() {

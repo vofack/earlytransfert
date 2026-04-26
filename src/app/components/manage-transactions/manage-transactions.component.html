@@ -910,26 +910,37 @@
     </div>
 
     <div class="foreign-bill-notes foreign-bill-user-message">
-      <div class="foreign-bill-grid__label">Message to user (visible in their app)</div>
-      <textarea class="form-control" rows="3"
-                [(ngModel)]="foreignBillUserMessageDraft"
-                placeholder="E.g. Please send a clearer photo of the invoice, or confirm the account number..."></textarea>
-      <small class="text-muted" *ngIf="selectedForeignBill.userMessage">
-        Currently visible to user.
+      <div class="foreign-bill-grid__label">Message to user (visible in their app — both languages required)</div>
+
+      <div style="margin-top: 6px;">
+        <label style="font-size: 12px; font-weight: 600; color: #92400E;">English</label>
+        <textarea class="form-control" rows="3"
+                  [(ngModel)]="foreignBillUserMessageEnDraft"
+                  placeholder="E.g. Please send a clearer photo of the invoice, or confirm the account number..."></textarea>
+      </div>
+
+      <div style="margin-top: 10px;">
+        <label style="font-size: 12px; font-weight: 600; color: #92400E;">Français</label>
+        <textarea class="form-control" rows="3"
+                  [(ngModel)]="foreignBillUserMessageFrDraft"
+                  placeholder="Ex. Merci d'envoyer une photo plus nette de la facture, ou de confirmer le numéro de compte..."></textarea>
+      </div>
+
+      <small class="text-muted" *ngIf="selectedForeignBill.userMessageEn || selectedForeignBill.userMessageFr || selectedForeignBill.userMessage">
+        Currently visible to user (shown in their app's language).
       </small>
-      <small class="text-muted" *ngIf="!selectedForeignBill.userMessage">
+      <small class="text-muted" *ngIf="!selectedForeignBill.userMessageEn && !selectedForeignBill.userMessageFr && !selectedForeignBill.userMessage">
         No message currently visible to user.
       </small>
       <div style="margin-top: 8px; display: flex; gap: 8px;">
         <button type="button" class="btn btn-primary btn-sm"
                 (click)="saveForeignBillUserMessage()"
-                [disabled]="foreignBillUserMessageSaving
-                  || (foreignBillUserMessageDraft || '').trim() === (selectedForeignBill.userMessage || '')">
-          {{ (foreignBillUserMessageDraft || '').trim() ? 'Send to user' : 'Clear message' }}
+                [disabled]="foreignBillUserMessageSaving || !hasForeignBillUserMessageChanges()">
+          {{ ((foreignBillUserMessageEnDraft || '').trim() || (foreignBillUserMessageFrDraft || '').trim()) ? 'Send to user' : 'Clear message' }}
         </button>
         <button type="button" class="btn btn-default btn-sm"
                 (click)="clearForeignBillUserMessageDraft()"
-                [disabled]="foreignBillUserMessageSaving || !foreignBillUserMessageDraft">
+                [disabled]="foreignBillUserMessageSaving || (!foreignBillUserMessageEnDraft && !foreignBillUserMessageFrDraft)">
           Reset draft
         </button>
       </div>

@@ -296,10 +296,14 @@ export class DataService {
     });
   }
 
-  setForeignBillUserMessage(id: string, message: string) {
+  setForeignBillUserMessage(id: string, messageEn: string, messageFr: string) {
     return this.afs.collection('/foreignBillPaymentRequests').doc(id).update({
-      userMessage: message,
+      userMessageEn: messageEn,
+      userMessageFr: messageFr,
       userMessageUpdatedAt: new Date().toISOString(),
+      // Clear the deprecated single-language field so the user app no longer
+      // falls back to stale content once the admin saves a bilingual message.
+      userMessage: '',
     });
   }
 

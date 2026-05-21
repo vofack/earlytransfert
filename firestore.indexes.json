@@ -1,4 +1,55 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "lifecycle", "order": "ASCENDING"},
+        {"fieldPath": "createdAt", "order": "DESCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "userEmail", "order": "ASCENDING"},
+        {"fieldPath": "lifecycle", "order": "ASCENDING"},
+        {"fieldPath": "createdAt", "order": "DESCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "userEmail", "order": "ASCENDING"},
+        {"fieldPath": "lifecycle", "order": "ASCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "propositions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "idOfPost", "order": "ASCENDING"},
+        {"fieldPath": "lifecycle", "order": "ASCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "propositions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "propositionEmail", "order": "ASCENDING"},
+        {"fieldPath": "lifecycle", "order": "ASCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "marketplaceNotifications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "targetUserEmail", "order": "ASCENDING"},
+        {"fieldPath": "read", "order": "ASCENDING"},
+        {"fieldPath": "createdAt", "order": "DESCENDING"}
+      ]
+    }
+  ],
   "fieldOverrides": []
 }

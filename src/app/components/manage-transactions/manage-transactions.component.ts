@@ -115,6 +115,14 @@ export class ManageTransactionsComponent implements OnInit {
   private interacSubscription: Subscription;
   newInteracCount = 0;
   interacChecking = false;
+  // State for the "Mark Processed" → credit-wallet confirmation flow.
+  pendingInteracCredit: { wallet: WalletAccount; amount: number; amountStr: string; newBalance: number } | null = null;
+  // State for the symmetric reversal flow when an email leaves the 'processed'
+  // state (Back to New / Mark Ignored): debits the previously credited amount
+  // from the wallet.
+  pendingInteracReversal: { wallet: WalletAccount; amount: number; amountStr: string; newBalance: number; targetStatus: 'new' | 'ignored' } | null = null;
+  @ViewChild('templateInteracCreditConfirm', { read: TemplateRef }) templateInteracCreditConfirm: TemplateRef<any>;
+  @ViewChild('templateInteracReversalConfirm', { read: TemplateRef }) templateInteracReversalConfirm: TemplateRef<any>;
 
   // ── ISSUES TAB ──
   issuesColumnDefs: any;
@@ -679,6 +687,12 @@ export class ManageTransactionsComponent implements OnInit {
                     width: 220,
                     filter: "agTextColumnFilter",
                     sortingOrder: ["asc", "desc"]
+                  },
+                  {
+                    headerName: "User Email",
+                    field: "userEmail",
+                    width: 220,
+                    filter: "agTextColumnFilter"
                   },
                   {
                     headerName: "Sender Name",
@@ -1755,7 +1769,13 @@ export class ManageTransactionsComponent implements OnInit {
 
   onWalletGridReady(params) {
     this.walletGridParams = params;
-    this.getWalletAccounts();
+    if (!this.walletSubscription) {
+      this.getWalletAccounts();
+    } else if (this.walletRowData) {
+      // Subscription already active (e.g., started by the Interac tab);
+      // just push the current data into the grid.
+      params.api.setRowData(this.walletRowData);
+    }
   }
 
   onWalletRowClicked(event) {
@@ -1772,6 +1792,12 @@ export class ManageTransactionsComponent implements OnInit {
       this.walletRowData = list;
       if (this.walletGridParams) {
         this.walletGridParams.api.setRowData(list);
+      }
+      // Wallets feed the "User Email" column on the Interac grid; re-enrich
+      // and refresh whenever wallets update.
+      this.enrichInteracRowsWithUserEmail();
+      if (this.interacGridParams && this.interacRowData) {
+        this.interacGridParams.api.setRowData(this.interacRowData);
       }
     }, err => {
       console.log('Error fetching wallet accounts', err);
@@ -1816,6 +1842,12 @@ export class ManageTransactionsComponent implements OnInit {
   onInteracGridReady(params) {
     this.interacGridParams = params;
     this.getInteracEmails();
+    // Wallets are needed to resolve userEmail per row. Load them if the
+    // wallets tab hasn't been opened yet (otherwise the subscription is
+    // already live and will keep enrichment in sync).
+    if (!this.walletSubscription) {
+      this.getWalletAccounts();
+    }
   }
 
   onInteracRowClicked(event) {
@@ -1841,61 +1873,209 @@ export class ManageTransactionsComponent implements OnInit {
       });
       this.interacRowData = list;
       this.newInteracCount = list.filter(e => e.status === 'new').length;
+      this.enrichInteracRowsWithUserEmail();
       if (this.interacGridParams) {
-        this.interacGridParams.api.setRowData(list);
+        this.interacGridParams.api.setRowData(this.interacRowData);
       }
     }, err => {
       console.log('Error fetching interac emails', err);
     });
   }
 
+  // Builds two case-normalized indexes over the loaded wallets so we can
+  // look up a wallet by interacEmail or usersEmail in O(1).
+  private buildWalletIndexes(): { byInterac: Map<string, WalletAccount>; byUserEmail: Map<string, WalletAccount> } {
+    const byInterac = new Map<string, WalletAccount>();
+    const byUserEmail = new Map<string, WalletAccount>();
+    for (const w of (this.walletRowData || [])) {
+      if (w.interacEmail) byInterac.set(w.interacEmail.toLowerCase().trim(), w);
+      if (w.usersEmail) byUserEmail.set(w.usersEmail.toLowerCase().trim(), w);
+    }
+    return { byInterac, byUserEmail };
+  }
+
+  // Bank notifications often have a `from` that's the bank itself (or a
+  // forwarder), not the actual sender — so we first try matching `from`
+  // against walletAccount.interacEmail/usersEmail, then fall back to scanning
+  // the subject + snippet + body for any email address that matches a wallet.
+  private lookupInteracWallet(
+    e: InteracEmail,
+    byInterac: Map<string, WalletAccount>,
+    byUserEmail: Map<string, WalletAccount>
+  ): WalletAccount | null {
+    const from = (e.from || '').toLowerCase().trim();
+    const direct = byInterac.get(from) || byUserEmail.get(from);
+    if (direct) return direct;
+
+    const haystack = `${e.subject || ''}\n${e.snippet || ''}\n${e.body || ''}`.toLowerCase();
+    const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;
+    const candidates = haystack.match(emailRegex) || [];
+    for (const candidate of candidates) {
+      const w = byInterac.get(candidate.trim()) || byUserEmail.get(candidate.trim());
+      if (w) return w;
+    }
+    return null;
+  }
+
+  // Called both when interac rows arrive and when wallets reload, so the
+  // "User Email" column stays in sync regardless of which finishes first.
+  private enrichInteracRowsWithUserEmail() {
+    if (!this.interacRowData || !this.walletRowData) return;
+    const { byInterac, byUserEmail } = this.buildWalletIndexes();
+    for (const e of this.interacRowData) {
+      const wallet = this.lookupInteracWallet(e, byInterac, byUserEmail);
+      (e as any).userEmail = wallet ? wallet.usersEmail : '';
+    }
+  }
+
+  // Resolves the wallet for the currently selected Interac email using the
+  // same matching rules as the column. Used by the Mark Processed / Back to
+  // New flows so they stay consistent with what the admin sees.
+  private resolveWalletForSelectedInterac(): WalletAccount | null {
+    if (!this.selectedInteracEmail) return null;
+    const { byInterac, byUserEmail } = this.buildWalletIndexes();
+    return this.lookupInteracWallet(this.selectedInteracEmail, byInterac, byUserEmail);
+  }
+
   markInteracProcessed() {
     if (!this.selectedInteracEmail) return;
-    this.spinner.show();
-    this.data.updateInteracEmailStatus(this.selectedInteracEmail.id, 'processed').then(() => {
-      this.spinner.hide();
-      this.selectedInteracEmail = null;
-      this.toastr.success('Email marked as processed', 'Early Transfer', {
-        progressBar: true, toastClass: 'toast-custom',
-        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
-      });
-    }).catch(err => {
-      this.spinner.hide();
-      this.toastr.error('Failed to update email status', 'Error', {
+
+    // Re-extract the dollar amount from the email subject (with body fallback,
+    // then the value the cloud function pre-extracted at ingest time).
+    const amountStr = this.extractInteracAmountString(
+      this.selectedInteracEmail.subject,
+      this.selectedInteracEmail.body
+    ) || (this.selectedInteracEmail.amount || '');
+    const amount = this.parseInteracAmount(amountStr);
+
+    if (!amount || amount <= 0) {
+      this.toastr.error('Could not extract a dollar amount from the email subject', 'Validation', {
         progressBar: true, toastClass: 'toast-custom',
         positionClass: 'toast-bottom-left', closeButton: true
       });
-      console.log('Mark interac processed error:', err);
-    });
+      return;
+    }
+
+    const wallet = this.resolveWalletForSelectedInterac();
+    if (!wallet) {
+      this.toastr.error(
+        `No wallet found for ${this.selectedInteracEmail.from}`,
+        'Validation',
+        { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true }
+      );
+      return;
+    }
+
+    const currentBalance = Number(wallet.amount) || 0;
+    const newBalance = +(currentBalance + amount).toFixed(2);
+    this.pendingInteracCredit = { wallet, amount, amountStr, newBalance };
+    this.modalRef = this.modalService.show(this.templateInteracCreditConfirm);
+  }
+
+  confirmInteracCredit() {
+    if (!this.selectedInteracEmail || !this.pendingInteracCredit) return;
+    const { wallet, amount, newBalance } = this.pendingInteracCredit;
+    const emailId = this.selectedInteracEmail.id;
+    const senderEmail = wallet.usersEmail || this.selectedInteracEmail.from;
+
+    this.spinner.show();
+    this.data.updateWalletAmount(wallet.id, newBalance)
+      .then(() => this.data.updateInteracEmailStatus(emailId, 'processed'))
+      .then(() => {
+        this.spinner.hide();
+        if (this.modalRef) this.modalRef.hide();
+        this.selectedInteracEmail = null;
+        this.pendingInteracCredit = null;
+        this.toastr.success(
+          `$${amount.toFixed(2)} credited to ${senderEmail} (new balance: $${newBalance.toFixed(2)})`,
+          'Early Transfer',
+          { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 4000 }
+        );
+      })
+      .catch(err => {
+        this.spinner.hide();
+        this.toastr.error('Failed to process Interac email', 'Error', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true
+        });
+        console.log('Confirm interac credit error:', err);
+      });
+  }
+
+  cancelInteracCredit() {
+    this.pendingInteracCredit = null;
+    if (this.modalRef) this.modalRef.hide();
+  }
+
+  // Matches both English ("$70.00", "$1,000.00") and French-Canadian
+  // ("70,00 $", "1 250,00 $") amount formats. Scans the subject first, falls
+  // back to the body. Mirrors the regex used by checkInteracEmails Cloud
+  // Function so admin re-extraction stays consistent with ingest.
+  private extractInteracAmountString(subject: string, body?: string): string {
+    const regex = /\$\s*\d{1,3}(?:[,\s]\d{3})*(?:[.,]\d{1,2})?|\d{1,3}(?:[\s.,]\d{3})*(?:[.,]\d{1,2})?\s*\$/;
+    const subjectMatch = (subject || '').match(regex);
+    if (subjectMatch) return subjectMatch[0].trim();
+    const bodyMatch = (body || '').match(regex);
+    return bodyMatch ? bodyMatch[0].trim() : '';
+  }
+
+  // Normalizes an amount string to a Number, handling both decimal conventions:
+  //   "$1,000.50" → 1000.5   "1 000,50 $" → 1000.5   "70,00 $" → 70
+  // When both "," and "." appear, the rightmost is the decimal separator.
+  // When only one appears with 1-2 trailing digits, it's the decimal separator.
+  private parseInteracAmount(amountStr: string): number {
+    if (!amountStr) return 0;
+    let cleaned = amountStr.replace(/\$/g, '').trim();
+    const hasComma = cleaned.includes(',');
+    const hasDot = cleaned.includes('.');
+
+    if (hasComma && hasDot) {
+      if (cleaned.lastIndexOf(',') > cleaned.lastIndexOf('.')) {
+        cleaned = cleaned.replace(/\./g, '').replace(',', '.');
+      } else {
+        cleaned = cleaned.replace(/,/g, '');
+      }
+    } else if (hasComma) {
+      const lastIdx = cleaned.lastIndexOf(',');
+      const trailing = cleaned.length - lastIdx - 1;
+      if (trailing === 1 || trailing === 2) {
+        cleaned = cleaned.replace(',', '.');
+      } else {
+        cleaned = cleaned.replace(/,/g, '');
+      }
+    }
+    cleaned = cleaned.replace(/\s/g, '');
+    const n = parseFloat(cleaned);
+    return isNaN(n) ? 0 : n;
   }
 
   markInteracIgnored() {
     if (!this.selectedInteracEmail) return;
-    this.spinner.show();
-    this.data.updateInteracEmailStatus(this.selectedInteracEmail.id, 'ignored').then(() => {
-      this.spinner.hide();
-      this.selectedInteracEmail = null;
-      this.toastr.success('Email marked as ignored', 'Early Transfer', {
-        progressBar: true, toastClass: 'toast-custom',
-        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
-      });
-    }).catch(err => {
-      this.spinner.hide();
-      this.toastr.error('Failed to update email status', 'Error', {
-        progressBar: true, toastClass: 'toast-custom',
-        positionClass: 'toast-bottom-left', closeButton: true
-      });
-      console.log('Mark interac ignored error:', err);
-    });
+    if (this.selectedInteracEmail.status === 'processed') {
+      this.openInteracReversalFlow('ignored');
+    } else {
+      this.justUpdateInteracStatus('ignored', 'Email marked as ignored');
+    }
   }
 
   markInteracNew() {
     if (!this.selectedInteracEmail) return;
+    if (this.selectedInteracEmail.status === 'processed') {
+      this.openInteracReversalFlow('new');
+    } else {
+      this.justUpdateInteracStatus('new', 'Email set back to new');
+    }
+  }
+
+  // Used when no wallet reversal is needed (transitions between non-processed
+  // states). Same shape as the original updateStatus flow before the debit
+  // logic was added.
+  private justUpdateInteracStatus(status: 'new' | 'ignored', successMessage: string) {
     this.spinner.show();
-    this.data.updateInteracEmailStatus(this.selectedInteracEmail.id, 'new').then(() => {
+    this.data.updateInteracEmailStatus(this.selectedInteracEmail.id, status).then(() => {
       this.spinner.hide();
       this.selectedInteracEmail = null;
-      this.toastr.success('Email set back to new', 'Early Transfer', {
+      this.toastr.success(successMessage, 'Early Transfer', {
         progressBar: true, toastClass: 'toast-custom',
         positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
       });
@@ -1905,8 +2085,82 @@ export class ManageTransactionsComponent implements OnInit {
         progressBar: true, toastClass: 'toast-custom',
         positionClass: 'toast-bottom-left', closeButton: true
       });
-      console.log('Mark interac new error:', err);
+      console.log('Update interac status error:', err);
     });
+  }
+
+  // Leaving 'processed' must reverse the previous debit. Re-extracts the
+  // amount from the subject and looks up the original wallet, then opens the
+  // reversal confirmation modal. If the amount or wallet can't be resolved
+  // (e.g. wallet was deleted) the admin is offered a status change without
+  // the credit and warned that no reversal happened.
+  private openInteracReversalFlow(targetStatus: 'new' | 'ignored') {
+    const amountStr = this.extractInteracAmountString(
+      this.selectedInteracEmail.subject,
+      this.selectedInteracEmail.body
+    ) || (this.selectedInteracEmail.amount || '');
+    const amount = this.parseInteracAmount(amountStr);
+
+    if (!amount || amount <= 0) {
+      this.toastr.warning(
+        'No amount could be extracted; status will change but no wallet credit will occur',
+        'Validation',
+        { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 4000 }
+      );
+      this.justUpdateInteracStatus(targetStatus, targetStatus === 'new' ? 'Email set back to new' : 'Email marked as ignored');
+      return;
+    }
+
+    const wallet = this.resolveWalletForSelectedInterac();
+    if (!wallet) {
+      this.toastr.warning(
+        `No wallet found for ${this.selectedInteracEmail.from}; status will change but no debit will occur`,
+        'Validation',
+        { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 4000 }
+      );
+      this.justUpdateInteracStatus(targetStatus, targetStatus === 'new' ? 'Email set back to new' : 'Email marked as ignored');
+      return;
+    }
+
+    const currentBalance = Number(wallet.amount) || 0;
+    const newBalance = +(currentBalance - amount).toFixed(2);
+    this.pendingInteracReversal = { wallet, amount, amountStr, newBalance, targetStatus };
+    this.modalRef = this.modalService.show(this.templateInteracReversalConfirm);
+  }
+
+  confirmInteracReversal() {
+    if (!this.selectedInteracEmail || !this.pendingInteracReversal) return;
+    const { wallet, amount, newBalance, targetStatus } = this.pendingInteracReversal;
+    const emailId = this.selectedInteracEmail.id;
+    const senderEmail = wallet.usersEmail || this.selectedInteracEmail.from;
+
+    this.spinner.show();
+    this.data.updateWalletAmount(wallet.id, newBalance)
+      .then(() => this.data.updateInteracEmailStatus(emailId, targetStatus))
+      .then(() => {
+        this.spinner.hide();
+        if (this.modalRef) this.modalRef.hide();
+        this.selectedInteracEmail = null;
+        this.pendingInteracReversal = null;
+        this.toastr.success(
+          `$${amount.toFixed(2)} debited from ${senderEmail} (new balance: $${newBalance.toFixed(2)})`,
+          'Early Transfer',
+          { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 4000 }
+        );
+      })
+      .catch(err => {
+        this.spinner.hide();
+        this.toastr.error('Failed to reverse Interac email', 'Error', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true
+        });
+        console.log('Confirm interac reversal error:', err);
+      });
+  }
+
+  cancelInteracReversal() {
+    this.pendingInteracReversal = null;
+    if (this.modalRef) this.modalRef.hide();
   }
 
   checkInteracEmails() {

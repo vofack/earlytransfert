@@ -61,16 +61,18 @@ function getImapConfig() {
 }
 
 /**
- * Extracts dollar amount from subject or body text.
- * Checks subject first, then falls back to body.
- * e.g. "INTERAC e-Transfer: John sent you $150.00" → "$150.00"
+ * Extracts a dollar amount from subject or body text.
+ * Handles both English ("$150.00", "$1,000.00") and French-Canadian
+ * ("70,00 $", "1 250,00 $") formats. Subject is checked first, then body.
+ *   "INTERAC e-Transfer: John sent you $150.00" → "$150.00"
+ *   "Virement Interac : Vous avez reçu 70,00 $ de …" → "70,00 $"
  */
 function extractAmount(subject, body) {
-  const regex = /\$[\d,]+\.?\d*/;
+  const regex = /\$\s*\d{1,3}(?:[,\s]\d{3})*(?:[.,]\d{1,2})?|\d{1,3}(?:[\s.,]\d{3})*(?:[.,]\d{1,2})?\s*\$/;
   const subjectMatch = (subject || "").match(regex);
-  if (subjectMatch) return subjectMatch[0];
+  if (subjectMatch) return subjectMatch[0].trim();
   const bodyMatch = (body || "").match(regex);
-  return bodyMatch ? bodyMatch[0] : "";
+  return bodyMatch ? bodyMatch[0].trim() : "";
 }
 
 /**
@@ -576,4 +578,198 @@ exports.scheduledIssueReportCheck = functions
       console.error("scheduledIssueReportCheck error:", error);
       return null;
     }
+  });
+
+// ─── Marketplace lifecycle: push notifications ──────────────────────────────
+//
+// Triggered for every new doc written to `marketplaceNotifications/{notifId}`
+// by the Flutter `MarketplaceLifecycleService` (cancellation cascade) so the
+// targeted bidder gets a push even if the app is closed. The same doc is
+// also rendered as an in-app banner by the Flutter home_page listener — the
+// push and the banner are two complementary surfaces for the same event.
+//
+// Doc shape (written by the lifecycle service):
+//   { targetUserEmail, type, postId, fromEmail,
+//     messageEn, messageFr, read, createdAt }
+//
+// On send failures, a stale token is cleared on the user doc so the next
+// sign-in writes a fresh one and we don't keep retrying the same broken
+// destination forever.
+const MARKETPLACE_NOTIF_TITLES_EN = {
+  post_cancelled: "Post cancelled",
+};
+const MARKETPLACE_NOTIF_TITLES_FR = {
+  post_cancelled: "Annonce annulée",
+};
+
+// ─── ONE-SHOT: backfill `lifecycle` on legacy posts/propositions ────────────
+//
+// Reads every doc in `posts` and `propositions`, stamps `lifecycle: 'active'`
+// on those that don't already have the field, and reports the count. Safe to
+// re-run (idempotent: docs with a `lifecycle` value are skipped).
+//
+// USAGE:
+//   1. Deploy this function:
+//        firebase deploy --only functions:backfillMarketplaceLifecycle
+//   2. Call it once (URL printed in deploy output, or visible in console):
+//        curl https://us-central1-dashboard-33d8e.cloudfunctions.net/backfillMarketplaceLifecycle
+//      Response: { "success": true, "posts": <N>, "propositions": <M> }
+//   3. Verify in Firestore console that legacy docs now have lifecycle:"active".
+//   4. DELETE this function after use — leaving an unauthenticated bulk-write
+//      endpoint in prod is bad hygiene:
+//        firebase functions:delete backfillMarketplaceLifecycle
+
+
+// Procédure de backfill — étape par étape
+// 1. Déployer la fonction
+
+// cd /Volumes/DevSSD/vsCodeProject/earlytransfert
+// firebase deploy --only functions:backfillMarketplaceLifecycle
+// À la fin du déploiement, Firebase affiche l'URL dans le terminal :
+
+
+// Function URL (backfillMarketplaceLifecycle): https://us-central1-dashboard-33d8e.cloudfunctions.net/backfillMarketplaceLifecycle
+// (la région exacte peut différer — us-central1 par défaut, mais c'est dans la sortie de la commande).
+
+// 2. L'appeler une fois
+
+// curl https://us-central1-dashboard-33d8e.cloudfunctions.net/backfillMarketplaceLifecycle
+// Ou directement dans ton navigateur en collant l'URL — c'est juste un GET. Réponse attendue :
+
+
+// {
+//   "success": true,
+//   "posts": { "scanned": 234, "updated": 230 },
+//   "propositions": { "scanned": 891, "updated": 884 }
+// }
+// scanned = nombre total de docs lus
+// updated = nombre stampés avec lifecycle: "active" (les 4-7 docs de différence ont été créés par une nouvelle version du Flutter en cours de rollout, donc déjà stampés → skip)
+// Si tu vois {"success":false,...}, recoller le message d'erreur ici.
+
+// 3. Vérifier en console
+// Ouvrir la console Firestore, choisir n'importe quel doc dans posts ou propositions, et confirmer que lifecycle: "active" est bien présent.
+
+// 4. Supprimer la fonction (très important)
+// C'est un endpoint non-authentifié qui fait des écritures en bulk — ne pas le laisser traîner.
+
+
+// firebase functions:delete backfillMarketplaceLifecycle
+// Confirmer Y quand Firebase demande.
+
+
+//
+// Security note: this endpoint is intentionally unauthenticated to keep the
+// one-shot operation simple, but the operation itself is bounded — it only
+// adds a constant string to docs missing the field, never overwrites existing
+// values, never touches money. Worst case if abused: the same idempotent
+// no-op runs again.
+exports.backfillMarketplaceLifecycle = functions
+  .runWith({ timeoutSeconds: 540, memory: "512MB" })
+  .https.onRequest((req, res) => {
+    cors(req, res, async () => {
+      try {
+        async function backfillCollection(name) {
+          const snap = await db.collection(name).get();
+          let updated = 0;
+          let batch = db.batch();
+          let inBatch = 0;
+          for (const doc of snap.docs) {
+            if (doc.get("lifecycle")) continue; // already stamped
+            batch.update(doc.ref, { lifecycle: "active" });
+            inBatch++;
+            updated++;
+            if (inBatch >= 400) {
+              await batch.commit();
+              batch = db.batch();
+              inBatch = 0;
+            }
+          }
+          if (inBatch > 0) await batch.commit();
+          return { scanned: snap.size, updated };
+        }
+
+        const posts = await backfillCollection("posts");
+        const propositions = await backfillCollection("propositions");
+        console.log("Backfill complete:", { posts, propositions });
+        res.json({ success: true, posts, propositions });
+      } catch (error) {
+        console.error("backfillMarketplaceLifecycle error:", error);
+        res.status(500).json({ success: false, error: error.message });
+      }
+    });
+  });
+
+exports.onMarketplaceNotificationCreated = functions.firestore
+  .document("marketplaceNotifications/{notifId}")
+  .onCreate(async (snap, context) => {
+    const data = snap.data();
+    if (!data) return null;
+
+    const targetEmail = data.targetUserEmail;
+    if (!targetEmail) {
+      console.warn("marketplace notif missing targetUserEmail", context.params.notifId);
+      return null;
+    }
+
+    const userSnap = await db
+      .collection("users")
+      .where("email", "==", targetEmail)
+      .limit(1)
+      .get();
+    if (userSnap.empty) {
+      console.warn("marketplace notif: no user doc for", targetEmail);
+      return null;
+    }
+
+    const userDoc = userSnap.docs[0];
+    const token = userDoc.get("fcmToken");
+    if (!token) {
+      console.log("marketplace notif: user has no fcmToken yet, skipping push:", targetEmail);
+      return null;
+    }
+
+    // `preferredLang` is optional on the user doc — defaults to EN. The
+    // in-app banner localises itself client-side from `Get.locale`, so the
+    // only thing this push gets wrong if `preferredLang` is missing is the
+    // translation of the banner shown by the OS while the app is closed.
+    const lang = (userDoc.get("preferredLang") || "en").toString();
+    const isFr = lang.toLowerCase().startsWith("fr");
+    const type = data.type || "";
+    const title = isFr
+      ? (MARKETPLACE_NOTIF_TITLES_FR[type] || "Notification")
+      : (MARKETPLACE_NOTIF_TITLES_EN[type] || "Notification");
+    const body = isFr
+      ? (data.messageFr || data.messageEn || "")
+      : (data.messageEn || data.messageFr || "");
+
+    const message = {
+      token,
+      notification: { title, body },
+      data: {
+        notifId: context.params.notifId,
+        type,
+        postId: data.postId || "",
+        // Flutter side reads this and routes to the right screen on tap.
+        route: "marketplaceNotification",
+      },
+      android: {
+        priority: "high",
+        notification: { channelId: "high_importance_channel" },
+      },
+      apns: {
+        payload: { aps: { sound: "default" } },
+      },
+    };
+
+    try {
+      await admin.messaging().send(message);
+    } catch (err) {
+      // Stale token: drop it so the next sign-in re-registers cleanly.
+      if (err && err.code === "messaging/registration-token-not-registered") {
+        await userDoc.ref.update({ fcmToken: "" });
+      } else {
+        console.error("marketplace notif FCM send failed", err);
+      }
+    }
+    return null;
   });

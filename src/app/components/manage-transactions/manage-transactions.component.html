@@ -1201,6 +1201,99 @@
 </ng-template>
 <!-- / INTERAC EMAIL BODY MODAL -->
 
+<!-- ── INTERAC CREDIT CONFIRMATION MODAL ── -->
+<ng-template #templateInteracCreditConfirm>
+  <div class="modal-header" style="background-color: #28a745;">
+    <h4 class="modal-title pull-left text-light" style="font-size: 14px !important;">
+      Confirm Interac Credit
+    </h4>
+    <button type="button" class="close pull-rigth text-light" aria-label="Close" (click)="cancelInteracCredit()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="pendingInteracCredit">
+    <p>The following operation will be performed:</p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Sender:</strong> {{selectedInteracEmail?.from}}</li>
+      <li><strong>Subject:</strong> {{selectedInteracEmail?.subject}}</li>
+      <li><strong>Extracted amount:</strong> {{pendingInteracCredit.amountStr}}</li>
+      <li><strong>Wallet:</strong> {{pendingInteracCredit.wallet.usersEmail}}
+        <span *ngIf="pendingInteracCredit.wallet.interacEmail">
+          (interac: {{pendingInteracCredit.wallet.interacEmail}})
+        </span>
+      </li>
+      <li><strong>Currency:</strong> {{pendingInteracCredit.wallet.currency}}</li>
+      <li><strong>Current balance:</strong> {{pendingInteracCredit.wallet.amount}}</li>
+      <li>
+        <strong>New balance after credit:</strong>
+        {{pendingInteracCredit.newBalance}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="confirmInteracCredit()">
+      Confirm &amp; Credit
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="cancelInteracCredit()">
+      Cancel
+    </button>
+  </div>
+</ng-template>
+<!-- / INTERAC CREDIT CONFIRMATION MODAL -->
+
+<!-- ── INTERAC REVERSAL (DEBIT) CONFIRMATION MODAL ── -->
+<ng-template #templateInteracReversalConfirm>
+  <div class="modal-header" style="background-color: #ffc107;">
+    <h4 class="modal-title pull-left text-dark" style="font-size: 14px !important;">
+      Reverse Interac Credit
+    </h4>
+    <button type="button" class="close pull-rigth text-dark" aria-label="Close" (click)="cancelInteracReversal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" *ngIf="pendingInteracReversal">
+    <p>
+      The email is currently <strong>processed</strong>. Moving it to
+      <strong>{{pendingInteracReversal.targetStatus | uppercase}}</strong> will
+      debit the previously credited amount from the wallet.
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Sender:</strong> {{selectedInteracEmail?.from}}</li>
+      <li><strong>Subject:</strong> {{selectedInteracEmail?.subject}}</li>
+      <li><strong>Extracted amount:</strong> {{pendingInteracReversal.amountStr}}</li>
+      <li><strong>Wallet:</strong> {{pendingInteracReversal.wallet.usersEmail}}
+        <span *ngIf="pendingInteracReversal.wallet.interacEmail">
+          (interac: {{pendingInteracReversal.wallet.interacEmail}})
+        </span>
+      </li>
+      <li><strong>Currency:</strong> {{pendingInteracReversal.wallet.currency}}</li>
+      <li><strong>Current balance:</strong> {{pendingInteracReversal.wallet.amount}}</li>
+      <li>
+        <strong>New balance after debit:</strong>
+        <span [ngClass]="{ 'text-danger': pendingInteracReversal.newBalance < 0 }">
+          {{pendingInteracReversal.newBalance}}
+        </span>
+      </li>
+    </ul>
+    <div class="alert alert-warning" *ngIf="pendingInteracReversal.newBalance < 0" style="margin-top: 8px;">
+      Warning: this will leave the wallet with a negative balance.
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-warning" (click)="confirmInteracReversal()">
+      Confirm &amp; Debit
+    </button>
+    <button type="button" class="boxed-btn4-red-xs pull-rigth" (click)="cancelInteracReversal()">
+      Cancel
+    </button>
+  </div>
+</ng-template>
+<!-- / INTERAC REVERSAL (DEBIT) CONFIRMATION MODAL -->
+
 <!-- ISSUE REPORT BODY MODAL -->
 <ng-template #templateIssueBody>
 

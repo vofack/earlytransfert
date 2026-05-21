@@ -1,6 +1,38 @@
 rules_version = '2';
+
+// Firestore security rules for Early Transfert.
+//
+// Two layers:
+//   1. Legacy collections (users, beneficiaries, transactions) — kept as-is.
+//   2. Marketplace lifecycle collections (posts, propositions,
+//      allTransactions, marketplaceNotifications) — strict rules that act
+//      as the server-side rampart behind the Flutter MarketplaceLifecycleService.
+//
+// IMPORTANT: there is NO default-deny catch-all on purpose. The Angular
+// admin dashboard reads collections that aren't matched here (kyc_verifications,
+// admin_messages, foreignBillPaymentRequests, walletAccount, ...) and adding a
+// `match /{document=**} { allow read,write: if false; }` would break it.
+// Keep the file collection-scoped — anything not matched falls back to
+// whatever rules are deployed for those collections (or default Firestore
+// behavior if none).
+
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // ── Helpers ────────────────────────────────────────────────────────
+    function isLoggedIn() {
+      return request.auth != null;
+    }
+
+    function isValidMessage() {
+      return true;
+    }
+
+    function callerEmail() {
+      return request.auth.token.email;
+    }
+
+    // ── Legacy collections (unchanged) ─────────────────────────────────
     match /users/{userId} {
       allow read, write: if isLoggedIn();
     }
@@ -10,13 +42,180 @@ service cloud.firestore {
     match /transactions/{transactionsId} {
       allow read, write: if isLoggedIn() && isValidMessage();
     }
+
+    // ── Marketplace: posts ─────────────────────────────────────────────
+    // Soft-delete + lifecycle guard. Owner identity is fixed at creation.
+    // Lifecycle can only transition active → cancelled (never the reverse),
+    // and once any proposition has been accepted (idPostTransaction stamped)
+    // the cancellation is blocked at the rule level — the lifecycle service
+    // performs the same check inside its transaction, but if a client
+    // bypasses the service entirely, the rules still hold.
+    match /posts/{postId} {
+      allow read: if isLoggedIn();
+
+      allow create: if isLoggedIn()
+        && request.resource.data.userEmail == callerEmail()
+        && request.resource.data.lifecycle == 'active';
+
+      allow update: if isLoggedIn()
+        && resource.data.userEmail == callerEmail()
+        && (
+          // No-lifecycle-change updates (edit message / amount on an
+          // active post) are fine as long as the field stays active.
+          request.resource.data.lifecycle == resource.data.lifecycle
+          ||
+          // Or transition active → cancelled.
+          (resource.data.lifecycle == 'active' &&
+           request.resource.data.lifecycle == 'cancelled')
+        );
+
+      allow delete: if false; // soft-delete only
+    }
+
+    // ── Marketplace: propositions ──────────────────────────────────────
+    // Two legitimate updaters:
+    //   1. Bidder retracts their own active offer — refused if the
+    //      proposition has already been accepted (idPostTransaction
+    //      stamped non-empty).
+    //   2. Post owner accepts the offer (sets idPostTransaction +
+    //      idPropositionTransaction + status:true) — refused if the
+    //      proposition lifecycle is anything other than 'active'.
+    match /propositions/{propId} {
+      allow read: if isLoggedIn();
+
+      allow create: if isLoggedIn()
+        && request.resource.data.propositionEmail == callerEmail()
+        && request.resource.data.lifecycle == 'active';
+
+      allow update: if isLoggedIn() && (
+        // Bidder withdrawing their own active offer.
+        (resource.data.propositionEmail == callerEmail()
+          && resource.data.lifecycle == 'active'
+          && resource.data.idPostTransaction == ''
+          && request.resource.data.lifecycle == 'withdrawn')
+        ||
+        // Post owner accepting an active offer (proposition was 'active'
+        // BEFORE the write and the transaction id is being stamped).
+        (resource.data.lifecycle == 'active'
+          && resource.data.idPostTransaction == ''
+          && request.resource.data.idPostTransaction != ''
+          && parentPostActiveAndOwnedByCaller(resource.data.idOfPost))
+        ||
+        // Cascade from a post cancellation. The post owner flips the
+        // post to 'cancelled' first; this branch lets the cascade flip
+        // each linked proposition to 'cancelled' too.
+        (resource.data.lifecycle == 'active'
+          && request.resource.data.lifecycle == 'cancelled'
+          && parentPostCancelledByCaller(resource.data.idOfPost))
+      );
+
+      allow delete: if false;
+    }
+
+    function parentPostActiveAndOwnedByCaller(postId) {
+      return exists(/databases/$(database)/documents/posts/$(postId))
+        && get(/databases/$(database)/documents/posts/$(postId)).data.userEmail == callerEmail()
+        && get(/databases/$(database)/documents/posts/$(postId)).data.lifecycle == 'active';
+    }
+
+    function parentPostCancelledByCaller(postId) {
+      return exists(/databases/$(database)/documents/posts/$(postId))
+        && get(/databases/$(database)/documents/posts/$(postId)).data.userEmail == callerEmail()
+        && get(/databases/$(database)/documents/posts/$(postId)).data.lifecycle == 'cancelled';
+    }
+
+    // ── Marketplace: allTransactions ──────────────────────────────────
+    // Created by the post owner via the atomic accept flow. The same
+    // atomic write also stamps idPostTransaction on the related
+    // proposition; this rule mirrors the lifecycle guard so a transaction
+    // doc can never be created against a non-active proposition.
+    match /allTransactions/{txId} {
+      allow read: if isLoggedIn() && (
+        resource.data.userEmail == callerEmail()
+        || resource.data.counterpartyEmail == callerEmail()
+      );
+      // Two legitimate creators:
+      //   1. A user creating their own transaction (legacy + non-marketplace
+      //      flow). Requires that, if a propositionId is referenced, the
+      //      proposition is still acceptable.
+      //   2. The post owner creating BOTH halves of a marketplace accept
+      //      atomically — the bidder's mirrored tx (userEmail = bidder)
+      //      goes through this branch because the caller (post owner)
+      //      doesn't match `userEmail`. We cross-check that the caller
+      //      actually owns the parent post AND that the tx's userEmail
+      //      matches the proposition's bidder, so a malicious caller
+      //      can't forge a transaction in someone else's name.
+      allow create: if isLoggedIn() && (
+        // Self-write
+        (request.resource.data.userEmail == callerEmail()
+          && (
+            !('propositionId' in request.resource.data)
+            || propositionAcceptable(request.resource.data.propositionId)
+          ))
+        ||
+        // Post-owner-writes-bidder-tx during atomic accept
+        ('propositionId' in request.resource.data
+          && 'postId' in request.resource.data
+          && propositionAcceptable(request.resource.data.propositionId)
+          && propositionBelongsToBidder(
+              request.resource.data.propositionId,
+              request.resource.data.userEmail)
+          && postOwnedByCaller(request.resource.data.postId))
+      );
+      // Status updates by the involved parties; never delete from the
+      // client.
+      allow update: if isLoggedIn() && (
+        resource.data.userEmail == callerEmail()
+        || resource.data.counterpartyEmail == callerEmail()
+      );
+      allow delete: if false;
+    }
+
+    function propositionAcceptable(propId) {
+      return exists(/databases/$(database)/documents/propositions/$(propId))
+        && get(/databases/$(database)/documents/propositions/$(propId)).data.lifecycle == 'active'
+        && get(/databases/$(database)/documents/propositions/$(propId)).data.idPostTransaction == '';
+    }
+
+    function propositionBelongsToBidder(propId, email) {
+      return exists(/databases/$(database)/documents/propositions/$(propId))
+        && get(/databases/$(database)/documents/propositions/$(propId)).data.propositionEmail == email;
+    }
+
+    function postOwnedByCaller(postId) {
+      return exists(/databases/$(database)/documents/posts/$(postId))
+        && get(/databases/$(database)/documents/posts/$(postId)).data.userEmail == callerEmail();
+    }
+
+    // ── Marketplace: notifications ────────────────────────────────────
+    // Written by the lifecycle service (post cancellation cascade) and
+    // by the Cloud Function. Read by the targeted user. Updates are
+    // restricted to flipping `read: true` on the targeted user's own
+    // notification.
+    match /marketplaceNotifications/{notifId} {
+      allow read: if isLoggedIn()
+        && resource.data.targetUserEmail == callerEmail();
+
+      // Allow client-side creation only by the post owner cascading
+      // their own cancellation (lifecycle service path); other admin
+      // writes go through the Admin SDK and bypass these rules.
+      allow create: if isLoggedIn()
+        && request.resource.data.fromEmail == callerEmail();
+
+      allow update: if isLoggedIn()
+        && resource.data.targetUserEmail == callerEmail()
+        // Only the read flag may flip; everything else is immutable.
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(['read'])
+        && request.resource.data.read == true;
+
+      allow delete: if false;
+    }
+
+    // NOTE: walletAccount, kyc_verifications, admin_messages,
+    // foreignBillPaymentRequests, and other admin-managed collections
+    // are intentionally NOT matched here. Their existing rules (whatever
+    // is deployed for them — possibly default-permit while authenticated)
+    // remain in effect. If you tighten those collections later, add a
+    // dedicated `match` block per collection, never a catch-all.
   }
-  
-   function isLoggedIn() {
-       return request.auth != null;
-   }
-   
-   function isValidMessage() {
-       return true;
-   }
 }

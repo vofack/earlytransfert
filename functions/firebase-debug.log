@@ -1,0 +1,54 @@
+[debug] [2026-04-27T03:05:32.449Z] ----------------------------------------------------------------------
+[debug] [2026-04-27T03:05:32.461Z] Command:       /Users/ericanicetkwuningvofack/.nvm/versions/node/v20.20.2/bin/node /Users/ericanicetkwuningvofack/.nvm/versions/node/v20.20.2/bin/firebase deploy --only firestore:rules
+[debug] [2026-04-27T03:05:32.461Z] CLI Version:   15.13.0
+[debug] [2026-04-27T03:05:32.462Z] Platform:      darwin
+[debug] [2026-04-27T03:05:32.462Z] Node Version:  v20.20.2
+[debug] [2026-04-27T03:05:32.463Z] Time:          Sun Apr 26 2026 23:05:32 GMT-0400 (Eastern Daylight Time)
+[debug] [2026-04-27T03:05:32.463Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-27T03:05:35.859Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"headers"}
+[debug] [2026-04-27T03:05:35.865Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-27T03:05:35.865Z] > authorizing via signed-in user (pemetaskpwd@gmail.com)
+[debug] [2026-04-27T03:05:35.866Z] [iam] checking project dashboard-33d8e for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]
+[debug] [2026-04-27T03:05:35.867Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:35.868Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:35.869Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dashboard-33d8e:testIamPermissions [none]
+[debug] [2026-04-27T03:05:35.869Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dashboard-33d8e:testIamPermissions  x-goog-user-project=dashboard-33d8e
+[debug] [2026-04-27T03:05:35.869Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dashboard-33d8e:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]}
+[debug] [2026-04-27T03:05:36.349Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dashboard-33d8e:testIamPermissions 200
+[debug] [2026-04-27T03:05:36.349Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dashboard-33d8e:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]}
+[info] 
+[info] === Deploying to 'dashboard-33d8e'...
+[info] 
+[info] i  deploying firestore 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-04-27T03:05:36.356Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:36.356Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:36.356Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/dashboard-33d8e/databases/(default) [none]
+[debug] [2026-04-27T03:05:36.649Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/dashboard-33d8e/databases/(default) 200
+[debug] [2026-04-27T03:05:36.649Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/dashboard-33d8e/databases/(default) {"name":"projects/dashboard-33d8e/databases/(default)","uid":"93ba3394-1963-4ec5-90cf-bddc230ed0c6","createTime":"2022-09-11T17:47:58.887405Z","updateTime":"2022-09-11T17:47:58.887405Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-27T02:05:36.667050Z","appEngineIntegrationMode":"ENABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IJGXj5yGjZQDMJr37smj5pID"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-04-27T03:05:36.652Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:36.653Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:36.653Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e:test [none]
+[debug] [2026-04-27T03:05:36.653Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e:test [omitted]
+[debug] [2026-04-27T03:05:37.048Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e:test 200
+[debug] [2026-04-27T03:05:37.048Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-04-27T03:05:37.051Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:37.051Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:37.061Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e/releases pageSize=10&pageToken=
+[debug] [2026-04-27T03:05:37.180Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e/releases 200
+[debug] [2026-04-27T03:05:37.180Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e/releases {"releases":[{"name":"projects/dashboard-33d8e/releases/cloud.firestore","rulesetName":"projects/dashboard-33d8e/rulesets/c283fa14-734d-4186-b3ef-e349a2ad4391","createTime":"2022-09-11T17:48:17.086138Z","updateTime":"2026-04-27T00:11:12.559211Z"},{"name":"projects/dashboard-33d8e/releases/firebase.storage/dashboard-33d8e.appspot.com","rulesetName":"projects/dashboard-33d8e/rulesets/d97216c7-1cf4-4767-b1c4-54ca4fd0ab00","createTime":"2026-02-20T18:57:46.691554Z","updateTime":"2026-03-01T21:15:30.856536Z"}]}
+[debug] [2026-04-27T03:05:37.235Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:37.235Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:37.235Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e/rulesets/c283fa14-734d-4186-b3ef-e349a2ad4391 [none]
+[debug] [2026-04-27T03:05:37.432Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e/rulesets/c283fa14-734d-4186-b3ef-e349a2ad4391 200
+[debug] [2026-04-27T03:05:37.432Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e/rulesets/c283fa14-734d-4186-b3ef-e349a2ad4391 [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-04-27T03:05:37.434Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:37.434Z] Checked if tokens are valid: true, expires at: 1777261901782
+[debug] [2026-04-27T03:05:37.434Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e/rulesets [none]
+[debug] [2026-04-27T03:05:37.434Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/dashboard-33d8e/rulesets [omitted]

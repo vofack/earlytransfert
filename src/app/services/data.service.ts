@@ -181,6 +181,38 @@ export class DataService {
     return this.afs.collection('/walletAccount').doc(id).update({ amount });
   }
 
+  // Find a CAD wallet whose interacEmail matches, falling back to usersEmail.
+  // Used by the Interac email "Mark Processed" flow to debit the sender's wallet.
+  findWalletForInteracSender(senderEmail: string): Promise<WalletAccount | null> {
+    const email = (senderEmail || '').trim().toLowerCase();
+    if (!email) return Promise.resolve(null);
+
+    const matchByInterac = this.afs
+      .collection<WalletAccount>('/walletAccount', ref =>
+        ref.where('interacEmail', '==', email).limit(1)
+      )
+      .get().toPromise();
+
+    return matchByInterac.then(snap => {
+      if (snap && !snap.empty) {
+        const doc = snap.docs[0];
+        return { ...(doc.data() as WalletAccount), id: doc.id };
+      }
+      return this.afs
+        .collection<WalletAccount>('/walletAccount', ref =>
+          ref.where('usersEmail', '==', email).where('currency', '==', 'CAD').limit(1)
+        )
+        .get().toPromise()
+        .then(snap2 => {
+          if (snap2 && !snap2.empty) {
+            const doc = snap2.docs[0];
+            return { ...(doc.data() as WalletAccount), id: doc.id };
+          }
+          return null;
+        });
+    });
+  }
+
   // ── Interac Emails ──────────────────────────────────────────────────────
 
   getAllInteracEmails() {

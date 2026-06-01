@@ -227,6 +227,23 @@ export class DataService {
     return this.afs.collection('/interac_emails').doc(id).update(update);
   }
 
+  // ── MoMo Deposits (Cameroun) ───────────────────────────────────────────────
+
+  getAllMomoDeposits() {
+    return this.afs.collection('/momo_deposits', ref => ref.orderBy('submittedAt', 'desc')).snapshotChanges();
+  }
+
+  updateMomoDepositStatus(id: string, status: 'pending' | 'approved' | 'rejected', rejectReason?: string) {
+    const update: any = { status };
+    if (status === 'approved') {
+      update.approvedAt = new Date().toISOString();
+    } else if (status === 'rejected') {
+      update.rejectedAt = new Date().toISOString();
+      if (rejectReason) update.rejectReason = rejectReason;
+    }
+    return this.afs.collection('/momo_deposits').doc(id).update(update);
+  }
+
   // ── Issue Report Emails ─────────────────────────────────────────────────
 
   getAllIssueReportEmails() {

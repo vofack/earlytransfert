@@ -9,6 +9,7 @@ import { Beneficiary } from 'src/app/models/beneficiary';
 import { AdminMessage } from 'src/app/models/admin-message';
 import { WalletAccount } from 'src/app/models/wallet-account';
 import { InteracEmail } from 'src/app/models/interac-email';
+import { MomoDeposit } from 'src/app/models/momo-deposit';
 import { IssueReport } from 'src/app/models/issue-report';
 import { DepositIssueReport } from 'src/app/models/deposit-issue-report';
 import { KycVerification } from 'src/app/models/kyc-verification';
@@ -76,7 +77,7 @@ export class ManageTransactionsComponent implements OnInit {
   amount = '';
 
   // ── KYC TAB ──
-  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'deposit_issues' | 'notifications' | 'foreign_bills' = 'transactions';
+  activeTab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'momo' | 'interac' | 'issues' | 'deposit_issues' | 'notifications' | 'foreign_bills' = 'transactions';
   kycColumnDefs: any;
   kycColumnDefsXs: any;
   kycRowData: KycVerification[] = [];
@@ -105,6 +106,9 @@ export class ManageTransactionsComponent implements OnInit {
   selectedWallet: WalletAccount = null;
   private walletSubscription: Subscription;
   walletNewAmount: number = 0;
+  aliasGenerating: boolean = false;
+  momoCodeGenerating: boolean = false;
+  readonly interacAliasDomain = 'earlytransfert.com';
   @ViewChild('templateEditWallet', { read: TemplateRef }) templateEditWallet: TemplateRef<any>;
 
   // ── INTERAC EMAILS TAB ──
@@ -123,6 +127,19 @@ export class ManageTransactionsComponent implements OnInit {
   pendingInteracReversal: { wallet: WalletAccount; amount: number; amountStr: string; newBalance: number; targetStatus: 'new' | 'ignored' } | null = null;
   @ViewChild('templateInteracCreditConfirm', { read: TemplateRef }) templateInteracCreditConfirm: TemplateRef<any>;
   @ViewChild('templateInteracReversalConfirm', { read: TemplateRef }) templateInteracReversalConfirm: TemplateRef<any>;
+
+  // ── MOMO DEPOSITS TAB (Cameroun) ──
+  momoColumnDefs: any;
+  momoRowData: MomoDeposit[] = [];
+  momoGridParams: any;
+  selectedMomoDeposit: MomoDeposit = null;
+  private momoSubscription: Subscription;
+  newMomoCount = 0;
+  // State for the "Approve" → credit-wallet confirmation flow.
+  pendingMomoCredit: { wallet: WalletAccount; amount: number; newBalance: number } | null = null;
+  @ViewChild('templateMomoCreditConfirm', { read: TemplateRef }) templateMomoCreditConfirm: TemplateRef<any>;
+  @ViewChild('templateMomoRejectConfirm', { read: TemplateRef }) templateMomoRejectConfirm: TemplateRef<any>;
+  momoRejectReason: string = '';
 
   // ── ISSUES TAB ──
   issuesColumnDefs: any;
@@ -666,6 +683,29 @@ export class ManageTransactionsComponent implements OnInit {
                     }
                   },
                   {
+                    headerName: "Interac Full Name",
+                    field: "interacFullName",
+                    width: 180,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || '—'
+                  },
+                  {
+                    headerName: "Interac Alias",
+                    field: "interacAlias",
+                    width: 240,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => {
+                      return params.value ? `${params.value}@${this.interacAliasDomain}` : '—';
+                    }
+                  },
+                  {
+                    headerName: "MoMo Code",
+                    field: "momoCode",
+                    width: 130,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || '—'
+                  },
+                  {
                     headerName: "Label",
                     field: "label",
                     width: 120,
@@ -681,6 +721,13 @@ export class ManageTransactionsComponent implements OnInit {
                 };
 
                 this.interacColumnDefs = [
+                  {
+                    headerName: "Received Alias",
+                    field: "receivedAlias",
+                    width: 160,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || '—'
+                  },
                   {
                     headerName: "From",
                     field: "from",
@@ -699,6 +746,27 @@ export class ManageTransactionsComponent implements OnInit {
                     field: "senderName",
                     width: 160,
                     filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Sender Full Name",
+                    field: "senderFullName",
+                    width: 180,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || '—'
+                  },
+                  {
+                    headerName: "Sender Email (body)",
+                    field: "senderEmailFromBody",
+                    width: 220,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || '—'
+                  },
+                  {
+                    headerName: "Reference #",
+                    field: "referenceNumber",
+                    width: 140,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || '—'
                   },
                   {
                     headerName: "Subject",
@@ -739,6 +807,88 @@ export class ManageTransactionsComponent implements OnInit {
                     field: "snippet",
                     width: 300,
                     filter: "agTextColumnFilter"
+                  }
+                ];
+
+                // ── MOMO DEPOSITS COLUMN DEFS ──
+                const momoStatusCellClassRules = {
+                  "cell-pass": params => params.value === 'approved',
+                  "cell-fail": params => params.value === 'rejected',
+                  "cell-pending": params => params.value === 'pending'
+                };
+
+                this.momoColumnDefs = [
+                  {
+                    headerName: "Submitted",
+                    field: "submittedAt",
+                    width: 160,
+                    filter: "agTextColumnFilter",
+                    sort: 'desc',
+                    valueFormatter: (params) => {
+                      if (!params.value) return '';
+                      return new Date(params.value).toLocaleDateString('fr-FR', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                      });
+                    }
+                  },
+                  {
+                    headerName: "Operator",
+                    field: "operator",
+                    width: 110,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Amount",
+                    field: "amount",
+                    width: 130,
+                    filter: "agNumberColumnFilter",
+                    valueFormatter: (params) => {
+                      const val = params.value ?? 0;
+                      const currency = params.data?.currency || 'XAF';
+                      return `${Number(val).toLocaleString('fr-FR')} ${currency}`;
+                    }
+                  },
+                  {
+                    headerName: "Transaction ID",
+                    field: "transactionId",
+                    width: 200,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "Wallet Email",
+                    field: "walletEmail",
+                    width: 220,
+                    filter: "agTextColumnFilter"
+                  },
+                  {
+                    headerName: "MoMo Code",
+                    field: "momoCode",
+                    width: 120,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || '—'
+                  },
+                  {
+                    headerName: "Sender",
+                    field: "senderPhone",
+                    width: 160,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || '—'
+                  },
+                  {
+                    headerName: "Status",
+                    field: "status",
+                    cellClassRules: momoStatusCellClassRules,
+                    filter: "agTextColumnFilter",
+                    width: 120,
+                    valueFormatter: params => (params.value || '').toUpperCase()
+                  },
+                  {
+                    headerName: "Note",
+                    field: "note",
+                    width: 240,
+                    filter: "agTextColumnFilter",
+                    valueFormatter: (params) => params.value || ''
                   }
                 ];
 
@@ -1059,6 +1209,9 @@ export class ManageTransactionsComponent implements OnInit {
     }
     if(this.interacSubscription) {
       this.interacSubscription.unsubscribe();
+    }
+    if(this.momoSubscription) {
+      this.momoSubscription.unsubscribe();
     }
     if(this.issuesSubscription) {
       this.issuesSubscription.unsubscribe();
@@ -1400,7 +1553,7 @@ export class ManageTransactionsComponent implements OnInit {
 
   // ── KYC MANAGEMENT ──
 
-  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'issues' | 'deposit_issues' | 'notifications' | 'foreign_bills') {
+  switchTab(tab: 'transactions' | 'kyc' | 'messages' | 'wallets' | 'interac' | 'momo' | 'issues' | 'deposit_issues' | 'notifications' | 'foreign_bills') {
     this.activeTab = tab;
     this.selectedKyc = null;
     this.selectedMessage = null;
@@ -1456,6 +1609,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'messages': return this.messagesGridParams?.api;
       case 'wallets': return this.walletGridParams?.api;
       case 'interac': return this.interacGridParams?.api;
+      case 'momo': return this.momoGridParams?.api;
       case 'issues': return this.issuesGridParams?.api;
       case 'deposit_issues': return this.depositIssuesGridParams?.api;
       case 'notifications': return this.notificationGridParams?.api;
@@ -1470,6 +1624,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'messages': return 'targetUserEmail';
       case 'wallets': return 'usersEmail';
       case 'interac': return 'from';
+      case 'momo': return 'walletEmail';
       case 'issues': return 'from';
       case 'deposit_issues': return 'userEmail';
       case 'notifications': return 'targetEmail';
@@ -1484,6 +1639,7 @@ export class ManageTransactionsComponent implements OnInit {
       case 'messages': return 'createdAt';
       case 'wallets': return null;
       case 'interac': return 'date';
+      case 'momo': return 'submittedAt';
       case 'issues': return 'date';
       case 'deposit_issues': return 'date';
       case 'notifications': return 'sentAt';
@@ -1837,6 +1993,104 @@ export class ManageTransactionsComponent implements OnInit {
     });
   }
 
+  // Calls the assignInteracAlias Cloud Function to mint a unique alias for
+  // this wallet. The Cloud Function persists the alias on the wallet doc; we
+  // mirror it locally so the modal updates without a round-trip.
+  generateInteracAlias(walletId: string) {
+    if (!walletId || this.aliasGenerating) return;
+    this.aliasGenerating = true;
+    this.http.post('https://us-central1-dashboard-33d8e.cloudfunctions.net/assignInteracAlias',
+      { walletId }
+    ).subscribe(
+      (resp: any) => {
+        this.aliasGenerating = false;
+        if (resp && resp.success && resp.alias) {
+          if (this.selectedWallet && this.selectedWallet.id === walletId) {
+            this.selectedWallet.interacAlias = resp.alias;
+          }
+          const row = (this.walletRowData || []).find(w => w.id === walletId);
+          if (row) row.interacAlias = resp.alias;
+          this.toastr.success(`Alias assigned: ${resp.fullAddress}`, 'Early Transfer', {
+            progressBar: true, toastClass: 'toast-custom',
+            positionClass: 'toast-bottom-left', closeButton: true, timeOut: 4000
+          });
+        } else {
+          this.toastr.error(resp?.error || 'Failed to generate alias', 'Error', {
+            progressBar: true, toastClass: 'toast-custom',
+            positionClass: 'toast-bottom-left', closeButton: true
+          });
+        }
+      },
+      err => {
+        this.aliasGenerating = false;
+        this.toastr.error('Failed to generate alias', 'Error', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true
+        });
+        console.log('assignInteracAlias error:', err);
+      }
+    );
+  }
+
+  copyInteracAlias() {
+    if (!this.selectedWallet?.interacAlias) return;
+    const full = `${this.selectedWallet.interacAlias}@${this.interacAliasDomain}`;
+    navigator.clipboard.writeText(full).then(() => {
+      this.toastr.success('Alias copied to clipboard', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 2000
+      });
+    });
+  }
+
+  // Calls assignMomoCode to mint a unique reference code for a CM wallet.
+  // Mirrors generateInteracAlias for the Cameroun Mobile Money flow.
+  generateMomoCode(walletId: string) {
+    if (!walletId || this.momoCodeGenerating) return;
+    this.momoCodeGenerating = true;
+    this.http.post('https://us-central1-dashboard-33d8e.cloudfunctions.net/assignMomoCode',
+      { walletId }
+    ).subscribe(
+      (resp: any) => {
+        this.momoCodeGenerating = false;
+        if (resp && resp.success && resp.code) {
+          if (this.selectedWallet && this.selectedWallet.id === walletId) {
+            this.selectedWallet.momoCode = resp.code;
+          }
+          const row = (this.walletRowData || []).find(w => w.id === walletId);
+          if (row) row.momoCode = resp.code;
+          this.toastr.success(`MoMo code assigned: ${resp.code}`, 'Early Transfer', {
+            progressBar: true, toastClass: 'toast-custom',
+            positionClass: 'toast-bottom-left', closeButton: true, timeOut: 4000
+          });
+        } else {
+          this.toastr.error(resp?.error || 'Failed to generate MoMo code', 'Error', {
+            progressBar: true, toastClass: 'toast-custom',
+            positionClass: 'toast-bottom-left', closeButton: true
+          });
+        }
+      },
+      err => {
+        this.momoCodeGenerating = false;
+        this.toastr.error('Failed to generate MoMo code', 'Error', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true
+        });
+        console.log('assignMomoCode error:', err);
+      }
+    );
+  }
+
+  copyMomoCode() {
+    if (!this.selectedWallet?.momoCode) return;
+    navigator.clipboard.writeText(this.selectedWallet.momoCode).then(() => {
+      this.toastr.success('MoMo code copied to clipboard', 'Early Transfer', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true, timeOut: 2000
+      });
+    });
+  }
+
   // ── INTERAC EMAILS MANAGEMENT ──
 
   onInteracGridReady(params) {
@@ -1882,30 +2136,65 @@ export class ManageTransactionsComponent implements OnInit {
     });
   }
 
-  // Builds two case-normalized indexes over the loaded wallets so we can
-  // look up a wallet by interacEmail or usersEmail in O(1).
-  private buildWalletIndexes(): { byInterac: Map<string, WalletAccount>; byUserEmail: Map<string, WalletAccount> } {
+  // Builds case-normalized indexes over the loaded wallets so we can look up
+  // a wallet by interacAlias, interacEmail, usersEmail, or interacFullName in O(1).
+  private buildWalletIndexes(): {
+    byAlias: Map<string, WalletAccount>;
+    byInterac: Map<string, WalletAccount>;
+    byUserEmail: Map<string, WalletAccount>;
+    byFullName: Map<string, WalletAccount>;
+  } {
+    const byAlias = new Map<string, WalletAccount>();
     const byInterac = new Map<string, WalletAccount>();
     const byUserEmail = new Map<string, WalletAccount>();
+    const byFullName = new Map<string, WalletAccount>();
     for (const w of (this.walletRowData || [])) {
+      if (w.interacAlias) byAlias.set(w.interacAlias.toLowerCase().trim(), w);
       if (w.interacEmail) byInterac.set(w.interacEmail.toLowerCase().trim(), w);
       if (w.usersEmail) byUserEmail.set(w.usersEmail.toLowerCase().trim(), w);
+      if (w.interacFullName) byFullName.set(w.interacFullName.toLowerCase().trim(), w);
     }
-    return { byInterac, byUserEmail };
+    return { byAlias, byInterac, byUserEmail, byFullName };
   }
 
-  // Bank notifications often have a `from` that's the bank itself (or a
-  // forwarder), not the actual sender — so we first try matching `from`
-  // against walletAccount.interacEmail/usersEmail, then fall back to scanning
-  // the subject + snippet + body for any email address that matches a wallet.
+  // Interac notifications come FROM the bank (catch@payments.interac.ca, etc.),
+  // never the customer. The real sender is in the body — the Cloud Function
+  // extracts it into senderFullName and senderEmailFromBody. Match priority:
+  //   1. receivedAlias against wallet.interacAlias — 100% reliable when customer
+  //      sent to their dedicated alias (e.g. abc12xyz@earlytransfert.com)
+  //   2. Direct FROM (handles non-Interac forwarders that preserve sender)
+  //   3. senderEmailFromBody (Reply-To or body-extracted email)
+  //   4. senderFullName against wallet.interacFullName (fallback — name collisions possible)
+  //   5. Legacy fallback: any email in subject/snippet/body that matches a wallet
+  //      (kept for emails ingested before the new fields existed).
   private lookupInteracWallet(
     e: InteracEmail,
+    byAlias: Map<string, WalletAccount>,
     byInterac: Map<string, WalletAccount>,
-    byUserEmail: Map<string, WalletAccount>
+    byUserEmail: Map<string, WalletAccount>,
+    byFullName: Map<string, WalletAccount>
   ): WalletAccount | null {
+    const alias = (e.receivedAlias || '').toLowerCase().trim();
+    if (alias) {
+      const byAliasMatch = byAlias.get(alias);
+      if (byAliasMatch) return byAliasMatch;
+    }
+
     const from = (e.from || '').toLowerCase().trim();
     const direct = byInterac.get(from) || byUserEmail.get(from);
     if (direct) return direct;
+
+    const bodyEmail = (e.senderEmailFromBody || '').toLowerCase().trim();
+    if (bodyEmail) {
+      const byBodyEmail = byInterac.get(bodyEmail) || byUserEmail.get(bodyEmail);
+      if (byBodyEmail) return byBodyEmail;
+    }
+
+    const fullName = (e.senderFullName || '').toLowerCase().trim();
+    if (fullName) {
+      const byName = byFullName.get(fullName);
+      if (byName) return byName;
+    }
 
     const haystack = `${e.subject || ''}\n${e.snippet || ''}\n${e.body || ''}`.toLowerCase();
     const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;
@@ -1921,9 +2210,9 @@ export class ManageTransactionsComponent implements OnInit {
   // "User Email" column stays in sync regardless of which finishes first.
   private enrichInteracRowsWithUserEmail() {
     if (!this.interacRowData || !this.walletRowData) return;
-    const { byInterac, byUserEmail } = this.buildWalletIndexes();
+    const { byAlias, byInterac, byUserEmail, byFullName } = this.buildWalletIndexes();
     for (const e of this.interacRowData) {
-      const wallet = this.lookupInteracWallet(e, byInterac, byUserEmail);
+      const wallet = this.lookupInteracWallet(e, byAlias, byInterac, byUserEmail, byFullName);
       (e as any).userEmail = wallet ? wallet.usersEmail : '';
     }
   }
@@ -1933,8 +2222,8 @@ export class ManageTransactionsComponent implements OnInit {
   // New flows so they stay consistent with what the admin sees.
   private resolveWalletForSelectedInterac(): WalletAccount | null {
     if (!this.selectedInteracEmail) return null;
-    const { byInterac, byUserEmail } = this.buildWalletIndexes();
-    return this.lookupInteracWallet(this.selectedInteracEmail, byInterac, byUserEmail);
+    const { byAlias, byInterac, byUserEmail, byFullName } = this.buildWalletIndexes();
+    return this.lookupInteracWallet(this.selectedInteracEmail, byAlias, byInterac, byUserEmail, byFullName);
   }
 
   markInteracProcessed() {
@@ -2183,6 +2472,172 @@ export class ManageTransactionsComponent implements OnInit {
         console.log('Check interac emails error:', err);
       }
     );
+  }
+
+  // ── MOMO DEPOSITS MANAGEMENT (Cameroun) ──
+
+  onMomoGridReady(params) {
+    this.momoGridParams = params;
+    this.getMomoDeposits();
+    // Wallets are needed to resolve the target wallet on approve/reject. Load
+    // them if the wallets tab hasn't been opened yet (otherwise the
+    // subscription is already live).
+    if (!this.walletSubscription) {
+      this.getWalletAccounts();
+    }
+  }
+
+  onMomoRowClicked(event) {
+    this.selectedMomoDeposit = event.data as MomoDeposit;
+  }
+
+  private getMomoDeposits() {
+    this.momoSubscription = this.data.getAllMomoDeposits().subscribe(res => {
+      const list: MomoDeposit[] = res.map((e: any) => {
+        const d = e.payload.doc.data();
+        d.id = e.payload.doc.id;
+        return d as MomoDeposit;
+      });
+      this.momoRowData = list;
+      this.newMomoCount = list.filter(d => d.status === 'pending').length;
+      if (this.momoGridParams) {
+        this.momoGridParams.api.setRowData(this.momoRowData);
+      }
+    }, err => {
+      console.log('Error fetching MoMo deposits', err);
+    });
+  }
+
+  // Find the wallet doc that owns this deposit. Primary key is walletId (set
+  // at submission time). We fall back to (email + CM countryCode) in case the
+  // wallet was re-created since the submission, and lastly to email alone if
+  // the user only has one wallet at all.
+  private resolveWalletForSelectedMomo(): WalletAccount | null {
+    if (!this.selectedMomoDeposit) return null;
+    const byId = (this.walletRowData || []).find(w => w.id === this.selectedMomoDeposit.walletId);
+    if (byId) return byId;
+    const email = (this.selectedMomoDeposit.walletEmail || '').toLowerCase().trim();
+    if (!email) return null;
+    const wallets = this.walletRowData || [];
+    const sameEmail = wallets.filter(
+      w => (w.usersEmail || '').toLowerCase().trim() === email
+    );
+    if (sameEmail.length === 0) return null;
+    const cm = sameEmail.find(w => (w.countryCode || '').toUpperCase() === 'CM');
+    if (cm) return cm;
+    return sameEmail.length === 1 ? sameEmail[0] : null;
+  }
+
+  approveMomoDeposit() {
+    if (!this.selectedMomoDeposit) return;
+    if (this.selectedMomoDeposit.status === 'approved') return;
+
+    const amount = Number(this.selectedMomoDeposit.amount) || 0;
+    if (amount <= 0) {
+      this.toastr.error('Invalid amount on this deposit', 'Validation', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      return;
+    }
+
+    const wallet = this.resolveWalletForSelectedMomo();
+    if (!wallet) {
+      this.toastr.error(
+        `No wallet found for ${this.selectedMomoDeposit.walletEmail}`,
+        'Validation',
+        { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true }
+      );
+      return;
+    }
+
+    const currentBalance = Number(wallet.amount) || 0;
+    const newBalance = +(currentBalance + amount).toFixed(2);
+    this.pendingMomoCredit = { wallet, amount, newBalance };
+    this.modalRef = this.modalService.show(this.templateMomoCreditConfirm);
+  }
+
+  confirmMomoCredit() {
+    if (!this.selectedMomoDeposit || !this.pendingMomoCredit) return;
+    const { wallet, amount, newBalance } = this.pendingMomoCredit;
+    const depositId = this.selectedMomoDeposit.id;
+    const targetEmail = wallet.usersEmail || this.selectedMomoDeposit.walletEmail;
+
+    this.spinner.show();
+    this.data.updateWalletAmount(wallet.id, newBalance)
+      .then(() => this.data.updateMomoDepositStatus(depositId, 'approved'))
+      .then(() => {
+        this.spinner.hide();
+        if (this.modalRef) this.modalRef.hide();
+        this.selectedMomoDeposit = null;
+        this.pendingMomoCredit = null;
+        this.toastr.success(
+          `${amount.toLocaleString('fr-FR')} ${wallet.currency || 'XAF'} credited to ${targetEmail} (new balance: ${newBalance.toLocaleString('fr-FR')})`,
+          'Early Transfer',
+          { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 4000 }
+        );
+      })
+      .catch(err => {
+        this.spinner.hide();
+        this.toastr.error('Failed to approve MoMo deposit', 'Error', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true
+        });
+        console.log('Confirm MoMo credit error:', err);
+      });
+  }
+
+  cancelMomoCredit() {
+    this.pendingMomoCredit = null;
+    if (this.modalRef) this.modalRef.hide();
+  }
+
+  rejectMomoDeposit() {
+    if (!this.selectedMomoDeposit) return;
+    if (this.selectedMomoDeposit.status === 'rejected') return;
+    this.momoRejectReason = '';
+    this.modalRef = this.modalService.show(this.templateMomoRejectConfirm);
+  }
+
+  confirmMomoReject() {
+    if (!this.selectedMomoDeposit) return;
+    const depositId = this.selectedMomoDeposit.id;
+    const reason = (this.momoRejectReason || '').trim();
+    const wasApproved = this.selectedMomoDeposit.status === 'approved';
+    const wallet = wasApproved ? this.resolveWalletForSelectedMomo() : null;
+    const amount = Number(this.selectedMomoDeposit.amount) || 0;
+
+    this.spinner.show();
+    // If we're rejecting a previously approved deposit, reverse the credit.
+    const reversal = wasApproved && wallet && amount > 0
+      ? this.data.updateWalletAmount(wallet.id, +((Number(wallet.amount) || 0) - amount).toFixed(2))
+      : Promise.resolve();
+
+    reversal
+      .then(() => this.data.updateMomoDepositStatus(depositId, 'rejected', reason))
+      .then(() => {
+        this.spinner.hide();
+        if (this.modalRef) this.modalRef.hide();
+        this.selectedMomoDeposit = null;
+        this.momoRejectReason = '';
+        this.toastr.success('MoMo deposit rejected', 'Early Transfer', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+        });
+      })
+      .catch(err => {
+        this.spinner.hide();
+        this.toastr.error('Failed to reject MoMo deposit', 'Error', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true
+        });
+        console.log('Reject MoMo deposit error:', err);
+      });
+  }
+
+  cancelMomoReject() {
+    this.momoRejectReason = '';
+    if (this.modalRef) this.modalRef.hide();
   }
 
   // ── ISSUES MANAGEMENT ──

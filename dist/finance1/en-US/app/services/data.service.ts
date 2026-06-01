@@ -181,6 +181,38 @@ export class DataService {
     return this.afs.collection('/walletAccount').doc(id).update({ amount });
   }
 
+  // Find a CAD wallet whose interacEmail matches, falling back to usersEmail.
+  // Used by the Interac email "Mark Processed" flow to debit the sender's wallet.
+  findWalletForInteracSender(senderEmail: string): Promise<WalletAccount | null> {
+    const email = (senderEmail || '').trim().toLowerCase();
+    if (!email) return Promise.resolve(null);
+
+    const matchByInterac = this.afs
+      .collection<WalletAccount>('/walletAccount', ref =>
+        ref.where('interacEmail', '==', email).limit(1)
+      )
+      .get().toPromise();
+
+    return matchByInterac.then(snap => {
+      if (snap && !snap.empty) {
+        const doc = snap.docs[0];
+        return { ...(doc.data() as WalletAccount), id: doc.id };
+      }
+      return this.afs
+        .collection<WalletAccount>('/walletAccount', ref =>
+          ref.where('usersEmail', '==', email).where('currency', '==', 'CAD').limit(1)
+        )
+        .get().toPromise()
+        .then(snap2 => {
+          if (snap2 && !snap2.empty) {
+            const doc = snap2.docs[0];
+            return { ...(doc.data() as WalletAccount), id: doc.id };
+          }
+          return null;
+        });
+    });
+  }
+
   // ── Interac Emails ──────────────────────────────────────────────────────
 
   getAllInteracEmails() {
@@ -193,6 +225,23 @@ export class DataService {
       update.processedAt = new Date().toISOString();
     }
     return this.afs.collection('/interac_emails').doc(id).update(update);
+  }
+
+  // ── MoMo Deposits (Cameroun) ───────────────────────────────────────────────
+
+  getAllMomoDeposits() {
+    return this.afs.collection('/momo_deposits', ref => ref.orderBy('submittedAt', 'desc')).snapshotChanges();
+  }
+
+  updateMomoDepositStatus(id: string, status: 'pending' | 'approved' | 'rejected', rejectReason?: string) {
+    const update: any = { status };
+    if (status === 'approved') {
+      update.approvedAt = new Date().toISOString();
+    } else if (status === 'rejected') {
+      update.rejectedAt = new Date().toISOString();
+      if (rejectReason) update.rejectReason = rejectReason;
+    }
+    return this.afs.collection('/momo_deposits').doc(id).update(update);
   }
 
   // ── Issue Report Emails ─────────────────────────────────────────────────

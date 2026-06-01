@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"deposit\\\\|credit.*account\\\\|add.*funds\" /Volumes/DevSSD/StudioPojects/earlyTransfertFlutter/lib/views --include=\"*.dart\" -l)",
+      "Read(//Volumes/DevSSD/StudioPojects/earlyTransfertFlutter/lib/views/**)",
+      "Bash(grep -r \"walletAccount\\\\|wallet_account\" /Volumes/DevSSD/StudioPojects/earlyTransfertFlutter/lib --include=\"*.dart\" | head -10)",
+      "Read(//Volumes/DevSSD/StudioPojects/earlyTransfertFlutter/lib/**)",
+      "Read(//Volumes/DevSSD/StudioPojects/earlyTransfertFlutter/**)",
+      "Bash(flutter analyze *)",
+      "Bash(which flutter *)",
+      "Read(//opt/**)",
+      "Read(//Users/ericanicetkwuningvofack/fvm/default/**)",
+      "Read(//Users/ericanicetkwuningvofack/fvm/**)",
+      "Bash(/Users/ericanicetkwuningvofack/fvm/cache.git/bin/flutter --version)",
+      "Bash(/Users/ericanicetkwuningvofack/fvm/cache.git/bin/flutter analyze *)",
+      "Bash(node --check functions/index.js)",
+      "Bash(grep -n \"^                ];$\" /Volumes/DevSSD/vsCodeProject/earlytransfert/src/app/components/manage-transactions/manage-transactions.component.ts)",
+      "Bash(awk '/private parseInteracAmount/,/^  \\\\}$/ {print NR\": \"$0}' /Volumes/DevSSD/vsCodeProject/earlytransfert/src/app/components/manage-transactions/manage-transactions.component.ts)"
+    ],
+    "additionalDirectories": [
+      "/Volumes/DevSSD/StudioPojects/earlyTransfertFlutter/lib/views/home_page",
+      "/Volumes/DevSSD/StudioPojects/earlyTransfertFlutter/lib/utils"
+    ]
+  }
+}

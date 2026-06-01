@@ -199,3 +199,11 @@ firebase functions:secrets:set EMAIL_PASSWORD   # enter: Jesussauveur@26
 NB: pas besoin de password apps(with 2 step verifiction) comme avec gmail on utilise le mp tel que
 
 https://claude.ai/share/07918f22-1f58-4486-881f-d481e0d88e65
+
+
+Prochaines étapes pour vous :
+
+Déployer : firebase deploy --only functions:checkInteracEmails,functions:scheduledInteracCheck
+Ajouter un champ « Nom Interac » dans le formulaire de création/édition du wallet pour que les utilisateurs/admin puissent l'enregistrer (hors scope de ce plan)
+Tester avec de vrais courriels FR et EN — vérifier les champs senderFullName et senderEmailFromBody dans Firestore
+firebase deploy --only functions:checkInteracEmails,functions:scheduledInteracCheck,functions:assignInteracAlias,functions:backfillInteracAliases

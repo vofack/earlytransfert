@@ -3,6 +3,9 @@ const admin = require("firebase-admin");
 const Imap = require("imap");
 const { simpleParser } = require("mailparser");
 const cors = require("cors")({ origin: true });
+const crypto = require("crypto");
+
+const INTERAC_ALIAS_DOMAIN = "earlytransfert.com";
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -73,6 +76,93 @@ function extractAmount(subject, body) {
   if (subjectMatch) return subjectMatch[0].trim();
   const bodyMatch = (body || "").match(regex);
   return bodyMatch ? bodyMatch[0].trim() : "";
+}
+
+// Words that look like names but aren't the client (Interac/banque branding,
+// generic greetings). Compared case-insensitively against the extracted match.
+const SENDER_NAME_BLOCKLIST = new Set([
+  "interac", "interac e-transfer", "interac e-transfert",
+  "virement interac", "e-transfer", "e-transfert",
+  "money", "argent", "funds", "fonds",
+]);
+
+// Email domains we never want to treat as the customer's address.
+const SENDER_EMAIL_DOMAIN_BLOCKLIST = [
+  "payments.interac.ca",
+  "notify.interac.ca",
+  "interac.ca",
+  "earlytransfert.com",
+];
+
+function isBlockedSenderEmail(addr) {
+  const lower = (addr || "").toLowerCase();
+  if (!lower) return true;
+  return SENDER_EMAIL_DOMAIN_BLOCKLIST.some((d) => lower.endsWith("@" + d) || lower.endsWith("." + d));
+}
+
+/**
+ * Extracts the customer's full name and (when available) email from an Interac
+ * notification. The FROM header is always Interac/the bank — the real sender
+ * is embedded in the body, sometimes mirrored in Reply-To.
+ *
+ * Returns { senderFullName, senderEmailFromBody } (empty strings when not found).
+ */
+function parseInteracSender(subject, body, replyTo) {
+  const text = `${subject || ""}\n${body || ""}`;
+
+  // Bilingual patterns. Capitalized 2+ word names adjacent to known anchor
+  // phrases. \p{L} accepts French accented letters (é, à, ç, etc.).
+  const namePatterns = [
+    /([A-ZÀ-Ý][\p{L}'\-]+(?:\s+[A-ZÀ-Ý][\p{L}'\-]+)+)\s+sent you/u,
+    /from\s+([A-ZÀ-Ý][\p{L}'\-]+(?:\s+[A-ZÀ-Ý][\p{L}'\-]+)+)/u,
+    /([A-ZÀ-Ý][\p{L}'\-]+(?:\s+[A-ZÀ-Ý][\p{L}'\-]+)+)\s+vous a envoyé/u,
+    /(?:de la part de|de)\s+([A-ZÀ-Ý][\p{L}'\-]+(?:\s+[A-ZÀ-Ý][\p{L}'\-]+)+)/u,
+  ];
+
+  let senderFullName = "";
+  for (const pat of namePatterns) {
+    const m = text.match(pat);
+    if (m && m[1]) {
+      const candidate = m[1].trim();
+      if (!SENDER_NAME_BLOCKLIST.has(candidate.toLowerCase())) {
+        senderFullName = candidate;
+        break;
+      }
+    }
+  }
+
+  // Email: Reply-To takes priority, then scan body for the first non-blocked address.
+  let senderEmailFromBody = "";
+  if (replyTo && !isBlockedSenderEmail(replyTo)) {
+    senderEmailFromBody = replyTo.toLowerCase().trim();
+  } else {
+    const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+    const matches = (body || "").match(emailRegex) || [];
+    for (const candidate of matches) {
+      if (!isBlockedSenderEmail(candidate)) {
+        senderEmailFromBody = candidate.toLowerCase().trim();
+        break;
+      }
+    }
+  }
+
+  return { senderFullName, senderEmailFromBody };
+}
+
+/**
+ * Extracts the Interac reference number from the body. Bilingual: tries the
+ * labelled form ("Reference Number: …" / "Numéro de référence : …") first,
+ * then falls back to the standard Interac CAxxxxxxxx pattern.
+ * Returns "" when not found.
+ */
+function extractInteracReference(body) {
+  const text = body || "";
+  const labelled = text.match(
+    /(?:Reference\s*(?:Number|#|No\.?)|Num[ée]ro\s+de\s+r[ée]f[ée]rence)\s*[:\-]?\s*([A-Z0-9]{6,20})/i
+  );
+  if (labelled && labelled[1]) return labelled[1].toUpperCase().trim();
+  const fallback = text.match(/\b(CA[A-Z0-9]{6,18})\b/);
+  return fallback ? fallback[1].toUpperCase().trim() : "";
 }
 
 /**
@@ -166,6 +256,15 @@ function fetchInteracEmails(days) {
               try {
                 const mail = await simpleParser(raw);
                 const bodyText = (mail.text || "").substring(0, 2000).trim();
+                const replyTo = mail.replyTo?.value?.[0]?.address || "";
+                const { senderFullName, senderEmailFromBody } = parseInteracSender(
+                  mail.subject || "",
+                  bodyText,
+                  replyTo
+                );
+                const referenceNumber = extractInteracReference(bodyText);
+                const toAddress = (mail.to?.value?.[0]?.address || "").toLowerCase().trim();
+                const receivedAlias = toAddress ? toAddress.split("@")[0] : "";
                 parsed.push({
                   uid: raw.uid,
                   from: mail.from?.value?.[0]?.address || "",
@@ -175,6 +274,11 @@ function fetchInteracEmails(days) {
                   body: bodyText,
                   date: mail.date ? mail.date.toISOString() : new Date().toISOString(),
                   messageId: mail.messageId || `uid-${raw.uid}`,
+                  senderFullName,
+                  senderEmailFromBody,
+                  referenceNumber,
+                  receivedAlias,
+                  toAddress,
                 });
               } catch (parseErr) {
                 console.warn("Failed to parse email:", parseErr.message);
@@ -218,7 +322,9 @@ exports.checkInteracEmails = functions
         let newCount = 0;
 
         for (const email of emails) {
-          // Use messageId as dedup key
+          // Dedup by messageId (always) and by Interac referenceNumber when
+          // available — the same transfer forwarded as a new email has a
+          // different messageId but the same referenceNumber.
           const existing = await db
             .collection("interac_emails")
             .where("messageId", "==", email.messageId)
@@ -227,10 +333,24 @@ exports.checkInteracEmails = functions
 
           if (!existing.empty) continue;
 
+          if (email.referenceNumber) {
+            const existingByRef = await db
+              .collection("interac_emails")
+              .where("referenceNumber", "==", email.referenceNumber)
+              .limit(1)
+              .get();
+            if (!existingByRef.empty) continue;
+          }
+
           await db.collection("interac_emails").add({
             messageId: email.messageId,
             from: email.from,
             senderName: email.senderName,
+            senderFullName: email.senderFullName || "",
+            senderEmailFromBody: email.senderEmailFromBody || "",
+            referenceNumber: email.referenceNumber || "",
+            receivedAlias: email.receivedAlias || "",
+            toAddress: email.toAddress || "",
             subject: email.subject,
             snippet: email.snippet,
             body: email.body || "",
@@ -367,10 +487,24 @@ exports.scheduledInteracCheck = functions
 
         if (!existing.empty) continue;
 
+        if (email.referenceNumber) {
+          const existingByRef = await db
+            .collection("interac_emails")
+            .where("referenceNumber", "==", email.referenceNumber)
+            .limit(1)
+            .get();
+          if (!existingByRef.empty) continue;
+        }
+
         await db.collection("interac_emails").add({
           messageId: email.messageId,
           from: email.from,
           senderName: email.senderName,
+          senderFullName: email.senderFullName || "",
+          senderEmailFromBody: email.senderEmailFromBody || "",
+          referenceNumber: email.referenceNumber || "",
+          receivedAlias: email.receivedAlias || "",
+          toAddress: email.toAddress || "",
           subject: email.subject,
           snippet: email.snippet,
           body: email.body || "",
@@ -387,6 +521,315 @@ exports.scheduledInteracCheck = functions
       return null;
     }
   });
+
+/**
+ * Generates a unique 8-char alphanumeric Interac alias for a wallet.
+ * Retries up to 5 times on collision. Returns null if all retries collide.
+ */
+async function generateUniqueInteracAlias() {
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const candidate = crypto.randomBytes(5).toString("hex").substring(0, 8).toLowerCase();
+    const existing = await db
+      .collection("walletAccount")
+      .where("interacAlias", "==", candidate)
+      .limit(1)
+      .get();
+    if (existing.empty) return candidate;
+  }
+  return null;
+}
+
+/**
+ * HTTP Cloud Function: assigns a unique Interac alias to a wallet.
+ * Body params: { walletId: string }
+ * Returns: { success, alias, fullAddress }
+ */
+exports.assignInteracAlias = functions.https.onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const walletId = req.body?.walletId || req.query?.walletId;
+      if (!walletId) {
+        return res.status(400).json({ success: false, error: "walletId is required" });
+      }
+
+      const walletRef = db.collection("walletAccount").doc(walletId);
+      const walletSnap = await walletRef.get();
+      if (!walletSnap.exists) {
+        return res.status(404).json({ success: false, error: "Wallet not found" });
+      }
+
+      const existing = walletSnap.data().interacAlias;
+      if (existing) {
+        return res.json({
+          success: true,
+          alias: existing,
+          fullAddress: `${existing}@${INTERAC_ALIAS_DOMAIN}`,
+          alreadyAssigned: true,
+        });
+      }
+
+      const alias = await generateUniqueInteracAlias();
+      if (!alias) {
+        return res.status(500).json({ success: false, error: "Could not generate unique alias after retries" });
+      }
+
+      await walletRef.update({ interacAlias: alias });
+      res.json({
+        success: true,
+        alias,
+        fullAddress: `${alias}@${INTERAC_ALIAS_DOMAIN}`,
+      });
+    } catch (error) {
+      console.error("assignInteracAlias error:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+});
+
+/**
+ * HTTP Cloud Function: backfills interacAlias on all CA wallets that don't
+ * have one yet. Run once after deployment. Idempotent.
+ */
+exports.backfillInteracAliases = functions
+  .runWith({ timeoutSeconds: 300, memory: "256MB" })
+  .https.onRequest((req, res) => {
+    cors(req, res, async () => {
+      try {
+        const snap = await db
+          .collection("walletAccount")
+          .where("countryCode", "==", "CA")
+          .get();
+
+        let assigned = 0;
+        let skipped = 0;
+        const failures = [];
+
+        for (const doc of snap.docs) {
+          if (doc.data().interacAlias) {
+            skipped++;
+            continue;
+          }
+          const alias = await generateUniqueInteracAlias();
+          if (!alias) {
+            failures.push(doc.id);
+            continue;
+          }
+          await doc.ref.update({ interacAlias: alias });
+          assigned++;
+        }
+
+        res.json({
+          success: true,
+          totalCA: snap.size,
+          assigned,
+          skipped,
+          failures,
+        });
+      } catch (error) {
+        console.error("backfillInteracAliases error:", error);
+        res.status(500).json({ success: false, error: error.message });
+      }
+    });
+  });
+
+/**
+ * Generates a unique short MoMo reference code (e.g. "ET7K2X") for a CM wallet.
+ * Shorter than the Interac alias because customers type it on USSD/MoMo keypads.
+ * Excludes visually ambiguous chars (O, 0, I, 1). Retries up to 5 times on
+ * collision. Returns null if all retries collide.
+ */
+async function generateUniqueMomoCode() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  for (let attempt = 0; attempt < 5; attempt++) {
+    let candidate = "ET";
+    for (let i = 0; i < 4; i++) {
+      candidate += chars[Math.floor(Math.random() * chars.length)];
+    }
+    const existing = await db
+      .collection("walletAccount")
+      .where("momoCode", "==", candidate)
+      .limit(1)
+      .get();
+    if (existing.empty) return candidate;
+  }
+  return null;
+}
+
+/**
+ * HTTP Cloud Function: assigns a unique MoMo reference code to a CM wallet.
+ * Body params: { walletId: string }
+ * Returns: { success, code, alreadyAssigned? }
+ */
+exports.assignMomoCode = functions.https.onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const walletId = req.body?.walletId || req.query?.walletId;
+      if (!walletId) {
+        return res.status(400).json({ success: false, error: "walletId is required" });
+      }
+
+      const walletRef = db.collection("walletAccount").doc(walletId);
+      const walletSnap = await walletRef.get();
+      if (!walletSnap.exists) {
+        return res.status(404).json({ success: false, error: "Wallet not found" });
+      }
+
+      const existing = walletSnap.data().momoCode;
+      if (existing) {
+        return res.json({ success: true, code: existing, alreadyAssigned: true });
+      }
+
+      const code = await generateUniqueMomoCode();
+      if (!code) {
+        return res.status(500).json({ success: false, error: "Could not generate unique code after retries" });
+      }
+
+      await walletRef.update({ momoCode: code });
+      res.json({ success: true, code });
+    } catch (error) {
+      console.error("assignMomoCode error:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+});
+
+/**
+ * HTTP Cloud Function: backfills momoCode on all CM wallets that don't have
+ * one yet. Run once after deployment. Idempotent.
+ */
+exports.backfillMomoCodes = functions
+  .runWith({ timeoutSeconds: 300, memory: "256MB" })
+  .https.onRequest((req, res) => {
+    cors(req, res, async () => {
+      try {
+        const snap = await db
+          .collection("walletAccount")
+          .where("countryCode", "==", "CM")
+          .get();
+
+        let assigned = 0;
+        let skipped = 0;
+        const failures = [];
+
+        for (const doc of snap.docs) {
+          if (doc.data().momoCode) {
+            skipped++;
+            continue;
+          }
+          const code = await generateUniqueMomoCode();
+          if (!code) {
+            failures.push(doc.id);
+            continue;
+          }
+          await doc.ref.update({ momoCode: code });
+          assigned++;
+        }
+
+        res.json({
+          success: true,
+          totalCM: snap.size,
+          assigned,
+          skipped,
+          failures,
+        });
+      } catch (error) {
+        console.error("backfillMomoCodes error:", error);
+        res.status(500).json({ success: false, error: error.message });
+      }
+    });
+  });
+
+/**
+ * HTTP Cloud Function: lets a Cameroun customer declare a Mobile Money
+ * deposit they just made, so the admin can verify and credit their wallet.
+ *
+ * Body params:
+ *   - walletId: string (required)
+ *   - amount: number (required)
+ *   - transactionId: string (required) — MoMo transaction reference shown in
+ *     the SMS / app confirmation (e.g. "MP240526.1234.XXXXX" for MTN)
+ *   - operator: 'MTN' | 'ORANGE' (required)
+ *   - senderPhone: string (optional) — the number the customer sent from
+ *   - note: string (optional)
+ *
+ * Creates a doc in `momo_deposits` with status='pending'. Dedup is per
+ * (transactionId, walletId) so the same transaction can't be submitted twice.
+ */
+exports.submitMomoDeposit = functions.https.onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const {
+        walletId,
+        amount,
+        transactionId,
+        operator,
+        senderPhone,
+        note,
+      } = req.body || {};
+
+      if (!walletId || !amount || !transactionId || !operator) {
+        return res.status(400).json({
+          success: false,
+          error: "walletId, amount, transactionId and operator are required",
+        });
+      }
+
+      const opNormalized = String(operator).toUpperCase();
+      if (opNormalized !== "MTN" && opNormalized !== "ORANGE") {
+        return res.status(400).json({ success: false, error: "operator must be MTN or ORANGE" });
+      }
+
+      const txId = String(transactionId).trim();
+      const numericAmount = Number(amount);
+      if (!isFinite(numericAmount) || numericAmount <= 0) {
+        return res.status(400).json({ success: false, error: "amount must be a positive number" });
+      }
+
+      // Load wallet to enrich the deposit doc with usersEmail + momoCode.
+      const walletRef = db.collection("walletAccount").doc(walletId);
+      const walletSnap = await walletRef.get();
+      if (!walletSnap.exists) {
+        return res.status(404).json({ success: false, error: "Wallet not found" });
+      }
+      const walletData = walletSnap.data();
+
+      // Dedup: same transactionId + same wallet = already submitted.
+      const existing = await db
+        .collection("momo_deposits")
+        .where("transactionId", "==", txId)
+        .where("walletId", "==", walletId)
+        .limit(1)
+        .get();
+      if (!existing.empty) {
+        return res.status(409).json({
+          success: false,
+          error: "This transaction ID has already been submitted for this wallet",
+          existingId: existing.docs[0].id,
+        });
+      }
+
+      const nowIso = new Date().toISOString();
+      const docRef = await db.collection("momo_deposits").add({
+        walletId,
+        walletEmail: walletData.usersEmail || "",
+        momoCode: walletData.momoCode || "",
+        amount: numericAmount,
+        currency: walletData.currency || "XAF",
+        transactionId: txId,
+        operator: opNormalized,
+        senderPhone: senderPhone ? String(senderPhone).trim() : "",
+        note: note ? String(note).trim().substring(0, 500) : "",
+        status: "pending",
+        submittedAt: nowIso,
+      });
+
+      res.json({ success: true, id: docRef.id, submittedAt: nowIso });
+    } catch (error) {
+      console.error("submitMomoDeposit error:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+});
 
 /**
  * Connects to IMAP and fetches emails with "Issue Report from" in the subject

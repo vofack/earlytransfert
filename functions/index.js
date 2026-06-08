@@ -1040,9 +1040,13 @@ exports.scheduledIssueReportCheck = functions
 // destination forever.
 const MARKETPLACE_NOTIF_TITLES_EN = {
   post_cancelled: "Post cancelled",
+  post_expiry_warning: "Post expiring soon",
+  post_trashed: "Post moved to trash",
 };
 const MARKETPLACE_NOTIF_TITLES_FR = {
   post_cancelled: "Annonce annulée",
+  post_expiry_warning: "Annonce bientôt expirée",
+  post_trashed: "Annonce mise à la corbeille",
 };
 
 // ─── ONE-SHOT: backfill `lifecycle` on legacy posts/propositions ────────────
@@ -1111,14 +1115,34 @@ exports.backfillMarketplaceLifecycle = functions
   .https.onRequest((req, res) => {
     cors(req, res, async () => {
       try {
-        async function backfillCollection(name) {
+        // For each doc, compute the fields that still need stamping.
+        //   - `lifecycle`: 'active' on both collections when missing.
+        //   - posts ALSO get `lastActivityAt` and `expiryWarningStage`.
+        //
+        // CRITICAL: seed `lastActivityAt = now`, NOT `createdAt`. Most legacy
+        // posts were created well over 30 days ago, so seeding from createdAt
+        // would make them instantly eligible for trashing on the first sweep.
+        // Seeding from "now" gives every existing active post a fresh 30-day
+        // grace window. Idempotent: docs that already carry the field are
+        // skipped, so re-running won't reset clocks.
+        async function backfillCollection(name, isPosts) {
           const snap = await db.collection(name).get();
           let updated = 0;
           let batch = db.batch();
           let inBatch = 0;
           for (const doc of snap.docs) {
-            if (doc.get("lifecycle")) continue; // already stamped
-            batch.update(doc.ref, { lifecycle: "active" });
+            const patch = {};
+            if (!doc.get("lifecycle")) patch.lifecycle = "active";
+            if (isPosts) {
+              if (!doc.get("lastActivityAt")) {
+                patch.lastActivityAt = admin.firestore.FieldValue.serverTimestamp();
+              }
+              if (doc.get("expiryWarningStage") === undefined) {
+                patch.expiryWarningStage = 0;
+              }
+            }
+            if (Object.keys(patch).length === 0) continue; // nothing to do
+            batch.update(doc.ref, patch);
             inBatch++;
             updated++;
             if (inBatch >= 400) {
@@ -1131,8 +1155,8 @@ exports.backfillMarketplaceLifecycle = functions
           return { scanned: snap.size, updated };
         }
 
-        const posts = await backfillCollection("posts");
-        const propositions = await backfillCollection("propositions");
+        const posts = await backfillCollection("posts", true);
+        const propositions = await backfillCollection("propositions", false);
         console.log("Backfill complete:", { posts, propositions });
         res.json({ success: true, posts, propositions });
       } catch (error) {
@@ -1213,6 +1237,401 @@ exports.onMarketplaceNotificationCreated = functions.firestore
       } else {
         console.error("marketplace notif FCM send failed", err);
       }
+    }
+    return null;
+  });
+
+// ─── KYC review: push notifications ─────────────────────────────────────────
+//
+// Triggered whenever a `kyc_verifications/{kycId}` doc is updated. When the
+// admin (via the dashboard) flips `status` to `verified` or `rejected`, we
+// push the concerned user a localized notification so they learn the outcome
+// even with the app closed. Firing on the doc the admin already writes means
+// no dashboard-side change is needed and the push can't be forgotten.
+//
+// Guarded so it only sends on an actual transition INTO verified/rejected —
+// not on every unrelated field write, and not when the status is unchanged.
+//
+// Stale tokens are cleared on send failure, mirroring the marketplace push.
+const KYC_NOTIF_TITLES_EN = {
+  verified: "Identity verified",
+  rejected: "Identity verification failed",
+};
+const KYC_NOTIF_TITLES_FR = {
+  verified: "Identité vérifiée",
+  rejected: "Échec de la vérification d'identité",
+};
+const KYC_NOTIF_BODIES_EN = {
+  verified: "Your identity has been verified. You now have full access to your account.",
+  rejected: "Your identity verification was not approved. Please review and submit your documents again.",
+};
+const KYC_NOTIF_BODIES_FR = {
+  verified: "Votre identité a été vérifiée. Vous avez désormais un accès complet à votre compte.",
+  rejected: "Votre vérification d'identité n'a pas été approuvée. Veuillez vérifier et soumettre à nouveau vos documents.",
+};
+
+exports.onKycStatusChanged = functions.firestore
+  .document("kyc_verifications/{kycId}")
+  .onUpdate(async (change, context) => {
+    const before = change.before.data();
+    const after = change.after.data();
+    if (!after) return null;
+
+    const newStatus = after.status;
+    const oldStatus = before ? before.status : "";
+
+    // Only react to a real transition into a final review outcome.
+    if (newStatus === oldStatus) return null;
+    if (newStatus !== "verified" && newStatus !== "rejected") return null;
+
+    const targetEmail = after.userEmail;
+    if (!targetEmail) {
+      console.warn("kyc notif missing userEmail", context.params.kycId);
+      return null;
+    }
+
+    const userSnap = await db
+      .collection("users")
+      .where("email", "==", targetEmail)
+      .limit(1)
+      .get();
+    if (userSnap.empty) {
+      console.warn("kyc notif: no user doc for", targetEmail);
+      return null;
+    }
+
+    const userDoc = userSnap.docs[0];
+    const token = userDoc.get("fcmToken");
+    if (!token) {
+      console.log("kyc notif: user has no fcmToken yet, skipping push:", targetEmail);
+      return null;
+    }
+
+    const lang = (userDoc.get("preferredLang") || "en").toString();
+    const isFr = lang.toLowerCase().startsWith("fr");
+    const title = isFr
+      ? KYC_NOTIF_TITLES_FR[newStatus]
+      : KYC_NOTIF_TITLES_EN[newStatus];
+    let body = isFr
+      ? KYC_NOTIF_BODIES_FR[newStatus]
+      : KYC_NOTIF_BODIES_EN[newStatus];
+
+    // Surface the admin's rejection reason to the user when present.
+    if (newStatus === "rejected" && after.rejectionReason) {
+      body = `${body} (${after.rejectionReason})`;
+    }
+
+    const message = {
+      token,
+      notification: { title, body },
+      data: {
+        kycId: context.params.kycId,
+        type: newStatus === "verified" ? "kyc_verified" : "kyc_rejected",
+        status: newStatus,
+        // Only rejections deep-link to the KYC screen (so the user can
+        // resubmit). On approval there's nothing to act on, so we omit the
+        // route and the Flutter tap handler falls back to the home screen.
+        ...(newStatus === "rejected" ? { route: "kycStatus" } : {}),
+      },
+      android: {
+        priority: "high",
+        notification: { channelId: "high_importance_channel" },
+      },
+      apns: {
+        payload: { aps: { sound: "default" } },
+      },
+    };
+
+    try {
+      await admin.messaging().send(message);
+    } catch (err) {
+      // Stale token: drop it so the next sign-in re-registers cleanly.
+      if (err && err.code === "messaging/registration-token-not-registered") {
+        await userDoc.ref.update({ fcmToken: "" });
+      } else {
+        console.error("kyc notif FCM send failed", err);
+      }
+    }
+    return null;
+  });
+
+// ─── SCHEDULED: post lifecycle sweep (warn → trash → purge) ─────────────────
+//
+// Facebook-style ageing for marketplace posts, driven by `lastActivityAt`
+// (the inactivity clock, bumped on every edit/like/offer/accept/republish):
+//
+//   Phase 1 — WARN: active posts inactive for (30 - 7) and (30 - 1) days get
+//             one warning notification each (to the owner AND every active
+//             bidder), guarded by `expiryWarningStage` so each fires once.
+//   Phase 2 — TRASH: active posts inactive for 30 days flip to 'trashed'
+//             (cascade propositions → 'cancelled', notify bidders). This is
+//             the same cascade the client `trashPost` performs.
+//   Phase 3 — PURGE: trashed posts older than 30 days (the restore window)
+//             are HARD-deleted via the Admin SDK (post + standalone
+//             propositions + linked notifications). Client deletes stay
+//             forbidden by the rules; this is the only place bytes are removed.
+//
+// Runs via Admin SDK, so it bypasses Firestore security rules. All writes are
+// batched (commit every 400) and queries are paged to stay within limits.
+const POST_INACTIVITY_DAYS = 30;
+const POST_RESTORE_WINDOW_DAYS = 30;
+const POST_WARN_STAGE1_DAYS = 7; // first warning, 7 days before trashing
+const POST_WARN_STAGE2_DAYS = 1; // final warning, 1 day before trashing
+const SWEEP_PAGE_SIZE = 200;
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const POST_WARN_MESSAGES = {
+  stage1: {
+    owner: {
+      en: "Your post has been inactive for a while and will be moved to the trash in about 7 days. Republish it to keep it live.",
+      fr: "Votre annonce est inactive depuis un moment et sera déplacée dans la corbeille dans environ 7 jours. Republiez-la pour la garder active.",
+    },
+    bidder: {
+      en: "A post you placed an offer on will be moved to the trash in about 7 days if it stays inactive.",
+      fr: "Une annonce sur laquelle vous avez fait une offre sera déplacée dans la corbeille dans environ 7 jours si elle reste inactive.",
+    },
+  },
+  stage2: {
+    owner: {
+      en: "Last reminder: your inactive post will be moved to the trash tomorrow. Republish it now to keep it live.",
+      fr: "Dernier rappel : votre annonce inactive sera déplacée dans la corbeille demain. Republiez-la maintenant pour la garder active.",
+    },
+    bidder: {
+      en: "A post you placed an offer on will be moved to the trash tomorrow if it stays inactive.",
+      fr: "Une annonce sur laquelle vous avez fait une offre sera déplacée dans la corbeille demain si elle reste inactive.",
+    },
+  },
+};
+
+const POST_TRASHED_MESSAGE = {
+  bidder: {
+    en: "A post you placed an offer on has been moved to the trash because it stayed inactive.",
+    fr: "Une annonce sur laquelle vous avez fait une offre a été déplacée dans la corbeille car elle est restée inactive.",
+  },
+};
+
+// Distinct active bidders on a post (excludes the owner).
+async function activeBiddersForPost(postId, ownerEmail) {
+  const snap = await db
+    .collection("propositions")
+    .where("idOfPost", "==", postId)
+    .where("lifecycle", "==", "active")
+    .get();
+  const emails = new Set();
+  for (const d of snap.docs) {
+    const e = d.get("propositionEmail");
+    if (e && e !== ownerEmail) emails.add(e);
+  }
+  return [...emails];
+}
+
+function buildNotif(targetEmail, type, postId, msg) {
+  return {
+    targetUserEmail: targetEmail,
+    type,
+    postId,
+    fromEmail: "system",
+    messageEn: msg.en,
+    messageFr: msg.fr,
+    read: false,
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+  };
+}
+
+// Phase 1 — send the warning for a single stage. Uses an EQUALITY filter on
+// `expiryWarningStage` (Firestore allows only one inequality field per query,
+// and that slot is taken by `lastActivityAt`).
+async function sweepWarnings(stage, cutoff, fromStage, toStage) {
+  const msg = stage === 1 ? POST_WARN_MESSAGES.stage1 : POST_WARN_MESSAGES.stage2;
+  let processed = 0;
+  // No cursor: advancing `expiryWarningStage` to `toStage` removes each
+  // processed doc from the `== fromStage` filter, so re-querying from the
+  // start always surfaces the next unprocessed page. Terminates when empty.
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const snap = await db
+      .collection("posts")
+      .where("lifecycle", "==", "active")
+      .where("expiryWarningStage", "==", fromStage)
+      .where("lastActivityAt", "<=", cutoff)
+      .orderBy("lastActivityAt", "asc")
+      .limit(SWEEP_PAGE_SIZE)
+      .get();
+    if (snap.empty) break;
+
+    for (const doc of snap.docs) {
+      const ownerEmail = doc.get("userEmail");
+      const postId = doc.id;
+      const bidders = await activeBiddersForPost(postId, ownerEmail);
+      // One notification doc per recipient (each triggers an FCM push via
+      // onMarketplaceNotificationCreated). Keep notif writes un-batched so the
+      // onCreate trigger fires per doc.
+      await db
+        .collection("marketplaceNotifications")
+        .add(buildNotif(ownerEmail, "post_expiry_warning", postId, msg.owner));
+      for (const b of bidders) {
+        await db
+          .collection("marketplaceNotifications")
+          .add(buildNotif(b, "post_expiry_warning", postId, msg.bidder));
+      }
+      await doc.ref.update({ expiryWarningStage: toStage });
+      processed++;
+    }
+    if (snap.size < SWEEP_PAGE_SIZE) break;
+  }
+  return processed;
+}
+
+// Phase 2 — trash posts past the inactivity threshold.
+async function sweepTrash(cutoff, now) {
+  let trashed = 0;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const snap = await db
+      .collection("posts")
+      .where("lifecycle", "==", "active")
+      .where("lastActivityAt", "<=", cutoff)
+      .orderBy("lastActivityAt", "asc")
+      .limit(SWEEP_PAGE_SIZE)
+      .get();
+    if (snap.empty) break;
+
+    for (const doc of snap.docs) {
+      const postId = doc.id;
+      const ownerEmail = doc.get("userEmail");
+
+      const propSnap = await db
+        .collection("propositions")
+        .where("idOfPost", "==", postId)
+        .get();
+
+      let batch = db.batch();
+      let inBatch = 0;
+      const commitIfFull = async () => {
+        if (inBatch >= 400) {
+          await batch.commit();
+          batch = db.batch();
+          inBatch = 0;
+        }
+      };
+
+      // Cascade embedded propositions to 'cancelled' + flip the post.
+      const embedded = (doc.get("propositions") || []).map((p) => ({
+        ...p,
+        lifecycle: "cancelled",
+      }));
+      batch.update(doc.ref, {
+        lifecycle: "trashed",
+        trashedAt: now,
+        propositions: embedded,
+      });
+      inBatch++;
+
+      // Cascade standalone propositions + collect bidders.
+      const bidders = new Set();
+      for (const p of propSnap.docs) {
+        batch.update(p.ref, { lifecycle: "cancelled", cancelledAt: now });
+        inBatch++;
+        const e = p.get("propositionEmail");
+        if (e && e !== ownerEmail) bidders.add(e);
+        await commitIfFull();
+      }
+      if (inBatch > 0) await batch.commit();
+
+      // Notify bidders (un-batched so each fires the FCM trigger).
+      for (const b of bidders) {
+        await db
+          .collection("marketplaceNotifications")
+          .add(buildNotif(b, "post_trashed", postId, POST_TRASHED_MESSAGE.bidder));
+      }
+      trashed++;
+    }
+    if (snap.size < SWEEP_PAGE_SIZE) break;
+  }
+  return trashed;
+}
+
+// Phase 3 — hard-delete trashed posts past the restore window (+ cascade).
+async function sweepPurge(cutoff) {
+  let purged = 0;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const snap = await db
+      .collection("posts")
+      .where("lifecycle", "==", "trashed")
+      .where("trashedAt", "<=", cutoff)
+      .orderBy("trashedAt", "asc")
+      .limit(SWEEP_PAGE_SIZE)
+      .get();
+    if (snap.empty) break;
+
+    for (const doc of snap.docs) {
+      const postId = doc.id;
+
+      let batch = db.batch();
+      let inBatch = 0;
+      const add = async (ref) => {
+        batch.delete(ref);
+        inBatch++;
+        if (inBatch >= 400) {
+          await batch.commit();
+          batch = db.batch();
+          inBatch = 0;
+        }
+      };
+
+      // Delete standalone propositions of this post.
+      const propSnap = await db
+        .collection("propositions")
+        .where("idOfPost", "==", postId)
+        .get();
+      for (const p of propSnap.docs) await add(p.ref);
+
+      // Delete notifications pointing at this (now vanishing) post so no
+      // banner survives pointing at a gone doc.
+      const notifSnap = await db
+        .collection("marketplaceNotifications")
+        .where("postId", "==", postId)
+        .get();
+      for (const n of notifSnap.docs) await add(n.ref);
+
+      // Finally the post itself.
+      await add(doc.ref);
+      if (inBatch > 0) await batch.commit();
+      purged++;
+    }
+    if (snap.size < SWEEP_PAGE_SIZE) break;
+  }
+  return purged;
+}
+
+exports.scheduledPostLifecycleSweep = functions
+  .runWith({ timeoutSeconds: 540, memory: "512MB" })
+  .pubsub.schedule("every 24 hours")
+  .onRun(async () => {
+    const now = admin.firestore.Timestamp.now();
+    const ts = (days) =>
+      admin.firestore.Timestamp.fromMillis(now.toMillis() - days * DAY_MS);
+
+    const stage1Cutoff = ts(POST_INACTIVITY_DAYS - POST_WARN_STAGE1_DAYS); // 23d
+    const stage2Cutoff = ts(POST_INACTIVITY_DAYS - POST_WARN_STAGE2_DAYS); // 29d
+    const trashCutoff = ts(POST_INACTIVITY_DAYS); // 30d
+    const purgeCutoff = ts(POST_RESTORE_WINDOW_DAYS); // 30d in trash
+
+    try {
+      // Order matters: warn first (stage 1 then 2), then trash, then purge.
+      const warned1 = await sweepWarnings(1, stage1Cutoff, 0, 1);
+      const warned2 = await sweepWarnings(2, stage2Cutoff, 1, 2);
+      const trashed = await sweepTrash(trashCutoff, now);
+      const purged = await sweepPurge(purgeCutoff);
+      console.log("Post lifecycle sweep:", {
+        warned1,
+        warned2,
+        trashed,
+        purged,
+      });
+    } catch (err) {
+      console.error("scheduledPostLifecycleSweep error:", err);
     }
     return null;
   });

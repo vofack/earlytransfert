@@ -25,4 +25,14 @@ export interface Post {
   propositions: Proposition[];
   createdAt: any;
   listOfLikes: string[];
+  // Soft-delete / lifecycle state, mirrored from the Flutter client:
+  //   'active' | 'cancelled' | 'trashed'
+  lifecycle?: string;
+  cancelledAt?: any;
+  // Drives the 30-day inactivity clock (defaults to createdAt on legacy docs).
+  lastActivityAt?: any;
+  // Set when the post is in the corbeille; starts the 30-day restore window.
+  trashedAt?: any;
+  // 0 = none, 1 = 7-day expiry warning sent, 2 = 1-day warning sent.
+  expiryWarningStage?: number;
 }

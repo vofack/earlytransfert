@@ -336,15 +336,32 @@
 
   <div class="modal-body" *ngIf="selectedKyc">
     <div class="row">
-      <div class="col-md-6">
-        <h5>ID Document</h5>
-        <img *ngIf="selectedKyc.idPhotoUrl" [src]="selectedKyc.idPhotoUrl" class="kyc-photo" alt="ID Document">
+      <div class="col-md-4">
+        <h5>ID Document — Front (Recto)</h5>
+        <img *ngIf="selectedKyc.idPhotoUrl" [src]="selectedKyc.idPhotoUrl" class="kyc-photo" alt="ID Document Front">
         <div *ngIf="!selectedKyc.idPhotoUrl" class="kyc-photo-placeholder">No image available</div>
+        <button *ngIf="selectedKyc.idPhotoUrl" type="button" class="kyc-download-btn"
+          (click)="downloadKycImage(selectedKyc.idPhotoUrl, 'kyc_' + selectedKyc.userEmail + '_id_front.jpg')">
+          <i class="fa fa-download"></i> Download
+        </button>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
+        <h5>ID Document — Back (Verso)</h5>
+        <img *ngIf="selectedKyc.idBackPhotoUrl" [src]="selectedKyc.idBackPhotoUrl" class="kyc-photo" alt="ID Document Back">
+        <div *ngIf="!selectedKyc.idBackPhotoUrl" class="kyc-photo-placeholder">No image available</div>
+        <button *ngIf="selectedKyc.idBackPhotoUrl" type="button" class="kyc-download-btn"
+          (click)="downloadKycImage(selectedKyc.idBackPhotoUrl, 'kyc_' + selectedKyc.userEmail + '_id_back.jpg')">
+          <i class="fa fa-download"></i> Download
+        </button>
+      </div>
+      <div class="col-md-4">
         <h5>Selfie</h5>
         <img *ngIf="selectedKyc.selfieUrl" [src]="selectedKyc.selfieUrl" class="kyc-photo" alt="Selfie">
         <div *ngIf="!selectedKyc.selfieUrl" class="kyc-photo-placeholder">No image available</div>
+        <button *ngIf="selectedKyc.selfieUrl" type="button" class="kyc-download-btn"
+          (click)="downloadKycImage(selectedKyc.selfieUrl, 'kyc_' + selectedKyc.userEmail + '_selfie.jpg')">
+          <i class="fa fa-download"></i> Download
+        </button>
       </div>
     </div>
     <hr>
@@ -353,6 +370,7 @@
         <p><strong>Email:</strong> {{selectedKyc.userEmail}}</p>
         <p><strong>Extracted Name:</strong> {{selectedKyc.extractedName || 'N/A'}}</p>
         <p><strong>Document #:</strong> {{selectedKyc.extractedDocumentNumber || 'N/A'}}</p>
+        <p *ngIf="selectedKyc.attemptNumber"><strong>Attempt:</strong> #{{selectedKyc.attemptNumber}} of {{selectedKyc.totalAttempts}}</p>
       </div>
       <div class="col-md-6">
         <p><strong>Status:</strong>

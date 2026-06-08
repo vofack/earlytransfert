@@ -526,6 +526,16 @@ export class ManageTransactionsComponent implements OnInit {
                     width: 130
                   },
                   {
+                    headerName: "Attempt",
+                    field: "attemptNumber",
+                    width: 110,
+                    filter: "agNumberColumnFilter",
+                    valueFormatter: (params) =>
+                      params.value
+                        ? `#${params.value} / ${params.data.totalAttempts}`
+                        : ''
+                  },
+                  {
                     headerName: "Submitted",
                     field: "submittedAt",
                     width: 180,
@@ -572,6 +582,16 @@ export class ManageTransactionsComponent implements OnInit {
                     cellClassRules: kycCellClassRules,
                     filter: "agTextColumnFilter",
                     width: 100
+                  },
+                  {
+                    headerName: "Attempt",
+                    field: "attemptNumber",
+                    width: 90,
+                    filter: "agNumberColumnFilter",
+                    valueFormatter: (params) =>
+                      params.value
+                        ? `#${params.value} / ${params.data.totalAttempts}`
+                        : ''
                   },
                   {
                     headerName: "Name",
@@ -1711,6 +1731,28 @@ export class ManageTransactionsComponent implements OnInit {
         data.id = e.payload.doc.id;
         return data as KycVerification;
       });
+
+      // A user re-submitting KYC adds a NEW kyc_verifications doc each time
+      // (the Flutter side calls .add(), never overwrites), so the number of
+      // docs per email is the number of attempts. Stamp each row with its
+      // chronological attempt number (oldest = 1) and the user's total, so
+      // the admin can see at a glance how many tries it took.
+      const attemptsByEmail: { [email: string]: KycVerification[] } = {};
+      kycList.forEach(k => {
+        const key = k.userEmail || '';
+        (attemptsByEmail[key] = attemptsByEmail[key] || []).push(k);
+      });
+      Object.keys(attemptsByEmail).forEach(key => {
+        const group = attemptsByEmail[key];
+        // Oldest first so attempt #1 is the first submission.
+        group.sort((a, b) =>
+          (a.submittedAt || '').localeCompare(b.submittedAt || ''));
+        group.forEach((k, idx) => {
+          k.attemptNumber = idx + 1;
+          k.totalAttempts = group.length;
+        });
+      });
+
       this.kycRowData = kycList;
       this.pendingKycCount = kycList.filter(k => k.status === 'pending').length;
       if (this.kycGridParams) {
@@ -1724,6 +1766,40 @@ export class ManageTransactionsComponent implements OnInit {
   openKycDetailModal(template: TemplateRef<any>, kyc: KycVerification) {
     this.selectedKyc = kyc;
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
+  }
+
+  // Firebase Storage URLs are cross-origin, so the plain <a download>
+  // attribute is ignored by the browser (it would just open the image).
+  // Fetch the bytes as a blob and trigger a genuine download instead.
+  downloadKycImage(url: string, filename: string) {
+    if (!url) { return; }
+    this.spinner.show();
+    fetch(url)
+      .then(res => {
+        if (!res.ok) { throw new Error(`HTTP ${res.status}`); }
+        return res.blob();
+      })
+      .then(blob => {
+        const objectUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = objectUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(objectUrl);
+        this.spinner.hide();
+      })
+      .catch(err => {
+        this.spinner.hide();
+        // Fallback: open in a new tab so the admin can still save manually.
+        window.open(url, '_blank');
+        this.toastr.warning('Could not auto-download, opened in a new tab instead', 'Early Transfer', {
+          progressBar: true, toastClass: 'toast-custom',
+          positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000
+        });
+        console.log('Download KYC image error:', err);
+      });
   }
 
   approveKyc(kyc: KycVerification) {

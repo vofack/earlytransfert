@@ -49,6 +49,40 @@
         {"fieldPath": "read", "order": "ASCENDING"},
         {"fieldPath": "createdAt", "order": "DESCENDING"}
       ]
+    },
+    {
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "lifecycle", "order": "ASCENDING"},
+        {"fieldPath": "lastActivityAt", "order": "ASCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "lifecycle", "order": "ASCENDING"},
+        {"fieldPath": "expiryWarningStage", "order": "ASCENDING"},
+        {"fieldPath": "lastActivityAt", "order": "ASCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "lifecycle", "order": "ASCENDING"},
+        {"fieldPath": "trashedAt", "order": "ASCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "userEmail", "order": "ASCENDING"},
+        {"fieldPath": "lifecycle", "order": "ASCENDING"},
+        {"fieldPath": "trashedAt", "order": "DESCENDING"}
+      ]
     }
   ],
   "fieldOverrides": []

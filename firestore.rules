@@ -57,19 +57,44 @@ service cloud.firestore {
         && request.resource.data.userEmail == callerEmail()
         && request.resource.data.lifecycle == 'active';
 
-      allow update: if isLoggedIn()
-        && resource.data.userEmail == callerEmail()
-        && (
-          // No-lifecycle-change updates (edit message / amount on an
-          // active post) are fine as long as the field stays active.
-          request.resource.data.lifecycle == resource.data.lifecycle
-          ||
-          // Or transition active → cancelled.
-          (resource.data.lifecycle == 'active' &&
-           request.resource.data.lifecycle == 'cancelled')
-        );
+      allow update: if isLoggedIn() && (
+        // ── Owner transitions ──────────────────────────────────────────
+        ( resource.data.userEmail == callerEmail() && (
+            // No-lifecycle-change updates (edit message / amount, republish:
+            // bump lastActivityAt / reset expiryWarningStage) on a post —
+            // fine as long as the lifecycle field is unchanged.
+            request.resource.data.lifecycle == resource.data.lifecycle
+            ||
+            // active → cancelled (owner takes the post down).
+            (resource.data.lifecycle == 'active' &&
+             request.resource.data.lifecycle == 'cancelled')
+            ||
+            // active → trashed (owner sends the post to the corbeille).
+            (resource.data.lifecycle == 'active' &&
+             request.resource.data.lifecycle == 'trashed')
+            ||
+            // trashed → active (owner restores from the corbeille).
+            (resource.data.lifecycle == 'trashed' &&
+             request.resource.data.lifecycle == 'active')
+          )
+        )
+        ||
+        // ── Non-owner activity bump ────────────────────────────────────
+        // A like toggle or placing an offer is performed by someone who is
+        // NOT the post owner. It writes the whole post doc back, but the only
+        // fields that actually change are the interaction fields — never the
+        // lifecycle nor the ownership. Constrained with hasOnly so a non-owner
+        // can never trash, cancel, or reassign a post.
+        ( request.resource.data.lifecycle == 'active'
+          && resource.data.lifecycle == 'active'
+          && request.resource.data.userEmail == resource.data.userEmail
+          && request.resource.data.diff(resource.data).changedKeys()
+               .hasOnly(['listOfLikes', 'propositions', 'lastActivityAt',
+                         'expiryWarningStage', 'status'])
+        )
+      );
 
-      allow delete: if false; // soft-delete only
+      allow delete: if false; // soft-delete only; hard deletes via Admin SDK
     }
 
     // ── Marketplace: propositions ──────────────────────────────────────
@@ -107,6 +132,14 @@ service cloud.firestore {
         (resource.data.lifecycle == 'active'
           && request.resource.data.lifecycle == 'cancelled'
           && parentPostCancelledByCaller(resource.data.idOfPost))
+        ||
+        // Cascade from a post being moved to the corbeille. The owner flips
+        // the post to 'trashed' first; this branch lets the cascade flip each
+        // linked proposition to 'cancelled' (propositions have no 'trashed'
+        // state — a trashed post's offers are simply cancelled).
+        (resource.data.lifecycle == 'active'
+          && request.resource.data.lifecycle == 'cancelled'
+          && parentPostTrashedByCaller(resource.data.idOfPost))
       );
 
       allow delete: if false;
@@ -122,6 +155,12 @@ service cloud.firestore {
       return exists(/databases/$(database)/documents/posts/$(postId))
         && get(/databases/$(database)/documents/posts/$(postId)).data.userEmail == callerEmail()
         && get(/databases/$(database)/documents/posts/$(postId)).data.lifecycle == 'cancelled';
+    }
+
+    function parentPostTrashedByCaller(postId) {
+      return exists(/databases/$(database)/documents/posts/$(postId))
+        && get(/databases/$(database)/documents/posts/$(postId)).data.userEmail == callerEmail()
+        && get(/databases/$(database)/documents/posts/$(postId)).data.lifecycle == 'trashed';
     }
 
     // ── Marketplace: allTransactions ──────────────────────────────────

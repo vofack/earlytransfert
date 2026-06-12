@@ -41,5 +41,10 @@ export interface allTransaction {
     expires_at : string,
     postId? : string,
     propositionId? : string,
-    counterpartyEmail? : string
+    counterpartyEmail? : string,
+    // Real creation time (HH:mm) and per-step timestamps shown on the mobile
+    // tracking timeline. Optional: legacy docs may not carry them.
+    time? : string,
+    rate? : string,
+    stageTimestamps? : { [status: string]: string }
 }

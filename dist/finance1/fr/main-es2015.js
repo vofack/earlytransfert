@@ -17462,22 +17462,17 @@ class CustomizedCellComponentComponent {
         this.modalRef = this.modalService.show(this.modalTemplate);
     }
     modifyTransaction() {
-        this.transactionObj.id = this.params.data.id;
-        this.transactionObj.userEmail = this.params.data.userEmail; // current email connected
-        this.transactionObj.transactionCode = this.params.data.transactionCode;
-        this.transactionObj.sendingCountry = this.params.data.sendingCountry;
-        this.transactionObj.receivingCountry = this.params.data.receivingCountry;
-        this.transactionObj.receivingMethod = this.params.data.receivingMethod;
-        this.transactionObj.receiverNumber = this.params.data.receiverNumber;
-        this.transactionObj.senderNumber = this.params.data.senderNumber;
-        this.transactionObj.receiver = this.params.data.receiver;
-        this.transactionObj.amountSend = this.params.data.amountSend;
-        this.transactionObj.amountReceive = this.params.data.amountReceive;
-        this.transactionObj.date = this.params.data.date;
-        this.transactionObj.status = this.status;
-        this.transactionObj.isPostWoner = this.params.data.isPostWoner;
-        this.transactionObj.isMarketPlace = this.params.data.isMarketPlace;
-        this.transactionObj.expires_at = this.params.data.expires_at;
+        // Record the real clock time (HH:mm) at which this status step is reached,
+        // accumulating onto any previously stamped steps. Spreading the whole row
+        // preserves every field (rate, time, postId, propositionId,
+        // counterpartyEmail, stageTimestamps, …) — the old field-by-field copy
+        // dropped them when re-creating the doc.
+        const now = new Date();
+        const hhmm = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+        const existingStages = (this.params.data.stageTimestamps && typeof this.params.data.stageTimestamps === 'object')
+            ? this.params.data.stageTimestamps
+            : {};
+        this.transactionObj = Object.assign(Object.assign({}, this.params.data), { status: this.status, stageTimestamps: Object.assign(Object.assign({}, existingStages), { [this.status]: hhmm }) });
         this.toastr.success('Modification effectue avec succes', 'Early Transfer', { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 3000 });
         this.modalRef.hide(); // pour fermer le popup
         setTimeout(() => {

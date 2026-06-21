@@ -150,6 +150,26 @@ function parseInteracSender(subject, body, replyTo) {
 }
 
 /**
+ * Converts an HTML email body to plain text so reference/sender extraction
+ * works on HTML-only Interac notifications (no text/plain MIME part). Strips
+ * style/script blocks and tags, then decodes the few entities Interac uses.
+ */
+function htmlToPlainText(html) {
+  return (html || "")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<(?:br|\/p|\/div|\/tr|\/td|\/li)\s*\/?>/gi, "\n")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)))
+    .replace(/[ \t]+/g, " ")
+    .trim();
+}
+
+/**
  * Extracts the Interac reference number from the body. Bilingual: tries the
  * labelled form ("Reference Number: …" / "Numéro de référence : …") first,
  * then falls back to the standard Interac CAxxxxxxxx pattern.
@@ -158,10 +178,10 @@ function parseInteracSender(subject, body, replyTo) {
 function extractInteracReference(body) {
   const text = body || "";
   const labelled = text.match(
-    /(?:Reference\s*(?:Number|#|No\.?)|Num[ée]ro\s+de\s+r[ée]f[ée]rence)\s*[:\-]?\s*([A-Z0-9]{6,20})/i
+    /(?:Reference\s*(?:Number|#|No\.?)|Num[ée]ro\s+de\s+r[ée]f[ée]rence)\s*[:\-#]?\s*([A-Z0-9]{6,20})/i
   );
   if (labelled && labelled[1]) return labelled[1].toUpperCase().trim();
-  const fallback = text.match(/\b(CA[A-Z0-9]{6,18})\b/);
+  const fallback = text.match(/\b(CA[A-Z0-9]{6,18})\b/i);
   return fallback ? fallback[1].toUpperCase().trim() : "";
 }
 
@@ -255,14 +275,21 @@ function fetchInteracEmails(days) {
             for (const raw of emails) {
               try {
                 const mail = await simpleParser(raw);
-                const bodyText = (mail.text || "").substring(0, 2000).trim();
+                // Prefer text/plain, but fall back to HTML-derived text so
+                // HTML-only Interac notifications still yield a reference and
+                // sender. Run extraction on the FULL text (not the truncated
+                // display copy) so references deep in the body aren't missed.
+                const plain = (mail.text || "").trim();
+                const fromHtml = plain ? "" : htmlToPlainText(mail.html || mail.textAsHtml || "");
+                const fullText = (plain || fromHtml).trim();
+                const bodyText = fullText.substring(0, 2000).trim();
                 const replyTo = mail.replyTo?.value?.[0]?.address || "";
                 const { senderFullName, senderEmailFromBody } = parseInteracSender(
                   mail.subject || "",
-                  bodyText,
+                  fullText,
                   replyTo
                 );
-                const referenceNumber = extractInteracReference(bodyText);
+                const referenceNumber = extractInteracReference(fullText);
                 const toAddress = (mail.to?.value?.[0]?.address || "").toLowerCase().trim();
                 const receivedAlias = toAddress ? toAddress.split("@")[0] : "";
                 parsed.push({
@@ -1270,6 +1297,14 @@ const KYC_NOTIF_BODIES_FR = {
   rejected: "Votre vérification d'identité n'a pas été approuvée. Veuillez vérifier et soumettre à nouveau vos documents.",
 };
 
+const MOMO_DEPOSIT_NOTIF_TITLE_EN = "Deposit approved";
+const MOMO_DEPOSIT_NOTIF_TITLE_FR = "Dépôt approuvé";
+// `{amount}` is replaced with the formatted "1 000 XAF" string at send time.
+const MOMO_DEPOSIT_NOTIF_BODY_EN =
+  "Your deposit of {amount} has been approved and credited to your wallet.";
+const MOMO_DEPOSIT_NOTIF_BODY_FR =
+  "Votre dépôt de {amount} a été approuvé et crédité sur votre portefeuille.";
+
 exports.onKycStatusChanged = functions.firestore
   .document("kyc_verifications/{kycId}")
   .onUpdate(async (change, context) => {
@@ -1350,6 +1385,90 @@ exports.onKycStatusChanged = functions.firestore
         await userDoc.ref.update({ fcmToken: "" });
       } else {
         console.error("kyc notif FCM send failed", err);
+      }
+    }
+    return null;
+  });
+
+// ─── MoMo deposit approval → confirmation push ──────────────────────────────
+//
+// Fires when an admin approves a MoMo deposit (status flips to "approved" on
+// the momo_deposits doc). Sends the depositor a localized confirmation that
+// their wallet has been credited. Server-side so it fires regardless of which
+// client path performed the approval. Mirrors onKycStatusChanged.
+exports.onMomoDepositStatusChanged = functions.firestore
+  .document("momo_deposits/{depositId}")
+  .onUpdate(async (change, context) => {
+    const before = change.before.data();
+    const after = change.after.data();
+    if (!after) return null;
+
+    // Only react to a real transition into "approved".
+    const newStatus = after.status;
+    const oldStatus = before ? before.status : "";
+    if (newStatus === oldStatus) return null;
+    if (newStatus !== "approved") return null;
+
+    const targetEmail = after.walletEmail;
+    if (!targetEmail) {
+      console.warn("momo notif missing walletEmail", context.params.depositId);
+      return null;
+    }
+
+    const userSnap = await db
+      .collection("users")
+      .where("email", "==", targetEmail)
+      .limit(1)
+      .get();
+    if (userSnap.empty) {
+      console.warn("momo notif: no user doc for", targetEmail);
+      return null;
+    }
+
+    const userDoc = userSnap.docs[0];
+    const token = userDoc.get("fcmToken");
+    if (!token) {
+      console.log("momo notif: user has no fcmToken yet, skipping push:", targetEmail);
+      return null;
+    }
+
+    const lang = (userDoc.get("preferredLang") || "en").toString();
+    const isFr = lang.toLowerCase().startsWith("fr");
+
+    // Format the credited amount like the rest of the app: "1 000 XAF".
+    const currency = after.currency || "XAF";
+    const numericAmount = Number(after.amount) || 0;
+    const amountStr = `${numericAmount.toLocaleString("fr-FR")} ${currency}`;
+
+    const title = isFr ? MOMO_DEPOSIT_NOTIF_TITLE_FR : MOMO_DEPOSIT_NOTIF_TITLE_EN;
+    const body = (isFr ? MOMO_DEPOSIT_NOTIF_BODY_FR : MOMO_DEPOSIT_NOTIF_BODY_EN)
+      .replace("{amount}", amountStr);
+
+    const message = {
+      token,
+      notification: { title, body },
+      data: {
+        depositId: context.params.depositId,
+        type: "momo_deposit_approved",
+        status: newStatus,
+      },
+      android: {
+        priority: "high",
+        notification: { channelId: "high_importance_channel" },
+      },
+      apns: {
+        payload: { aps: { sound: "default" } },
+      },
+    };
+
+    try {
+      await admin.messaging().send(message);
+    } catch (err) {
+      // Stale token: drop it so the next sign-in re-registers cleanly.
+      if (err && err.code === "messaging/registration-token-not-registered") {
+        await userDoc.ref.update({ fcmToken: "" });
+      } else {
+        console.error("momo notif FCM send failed", err);
       }
     }
     return null;

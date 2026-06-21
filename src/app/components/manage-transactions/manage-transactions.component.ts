@@ -2302,8 +2302,46 @@ export class ManageTransactionsComponent implements OnInit {
     return this.lookupInteracWallet(this.selectedInteracEmail, byAlias, byInterac, byUserEmail, byFullName);
   }
 
+  // Returns another Interac email that represents the SAME transfer and has
+  // already been credited, so the admin can't process a duplicate twice. The
+  // reference number is the reliable key (the same transfer forwarded/re-ingested
+  // gets a new messageId but keeps its reference); messageId is a secondary key.
+  private findProcessedDuplicate(email: InteracEmail): InteracEmail | null {
+    if (!email || !this.interacRowData) return null;
+    const ref = (email.referenceNumber || '').trim().toUpperCase();
+    const msgId = (email.messageId || '').trim();
+    return this.interacRowData.find(e =>
+      e.id !== email.id &&
+      e.status === 'processed' &&
+      (
+        (ref && (e.referenceNumber || '').trim().toUpperCase() === ref) ||
+        (msgId && (e.messageId || '').trim() === msgId)
+      )
+    ) || null;
+  }
+
   markInteracProcessed() {
     if (!this.selectedInteracEmail) return;
+
+    // Guard against double-crediting: if the same transfer (same reference
+    // number / messageId) was already processed on another row, refuse.
+    if (this.selectedInteracEmail.status === 'processed') {
+      this.toastr.warning('This email is already processed', 'Validation', {
+        progressBar: true, toastClass: 'toast-custom',
+        positionClass: 'toast-bottom-left', closeButton: true
+      });
+      return;
+    }
+    const duplicate = this.findProcessedDuplicate(this.selectedInteracEmail);
+    if (duplicate) {
+      const ref = duplicate.referenceNumber ? ` (ref ${duplicate.referenceNumber})` : '';
+      this.toastr.error(
+        `This transfer${ref} was already processed on another email — not crediting again`,
+        'Duplicate',
+        { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 5000 }
+      );
+      return;
+    }
 
     // Re-extract the dollar amount from the email subject (with body fallback,
     // then the value the cloud function pre-extracted at ingest time).
@@ -2339,6 +2377,22 @@ export class ManageTransactionsComponent implements OnInit {
 
   confirmInteracCredit() {
     if (!this.selectedInteracEmail || !this.pendingInteracCredit) return;
+
+    // Final duplicate check at commit time: the live feed may have flipped
+    // another copy of this transfer to 'processed' while the modal was open.
+    const duplicate = this.findProcessedDuplicate(this.selectedInteracEmail);
+    if (duplicate) {
+      if (this.modalRef) this.modalRef.hide();
+      this.pendingInteracCredit = null;
+      const ref = duplicate.referenceNumber ? ` (ref ${duplicate.referenceNumber})` : '';
+      this.toastr.error(
+        `This transfer${ref} was already processed — not crediting again`,
+        'Duplicate',
+        { progressBar: true, toastClass: 'toast-custom', positionClass: 'toast-bottom-left', closeButton: true, timeOut: 5000 }
+      );
+      return;
+    }
+
     const { wallet, amount, newBalance } = this.pendingInteracCredit;
     const emailId = this.selectedInteracEmail.id;
     const senderEmail = wallet.usersEmail || this.selectedInteracEmail.from;
